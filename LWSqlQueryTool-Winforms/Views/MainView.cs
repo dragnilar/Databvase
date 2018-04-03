@@ -1,10 +1,19 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using DevExpress.Customization;
 using DevExpress.LookAndFeel;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraBars;
+using DevExpress.XtraBars.Docking;
+using DevExpress.XtraBars.Docking2010.Views;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ColorWheel;
+using DevExpress.XtraRichEdit.API.Native;
+using LWSqlQueryTool_Winforms.Modules;
 using LWSqlQueryTool_Winforms.View_Models;
+using PopupMenuShowingEventArgs = DevExpress.XtraBars.Docking2010.Views.PopupMenuShowingEventArgs;
 
 namespace LWSqlQueryTool_Winforms.Views
 {
@@ -19,11 +28,50 @@ namespace LWSqlQueryTool_Winforms.Views
             HookupEvents();
         }
 
+
+
         private void HookupEvents()
         {
             UserLookAndFeel.Default.StyleChanged += Default_StyleChanged;
             barButtonItemColorMixer.ItemClick += barButtonItemColorMixer_ItemClick;
             barButtonItemColorPalette.ItemClick += barButtonItemColorPalette_ItemClick;
+            barButtonItemNewQuery.ItemClick += BarButtonItemNewQueryOnItemClick;
+            barButtonItemSaveQuery.ItemClick += BarButtonItemSaveQueryOnItemClick;
+            tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
+            tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
+
+        }
+
+        private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            var menu = e.Menu;
+            if (e.HitInfo.Document != null)
+            {
+                menu.Items.Add(new DXMenuItem("Test Item", new EventHandler(TestItemClick)));
+            }
+        }
+
+        private void TestItemClick(object sender, EventArgs e)
+        {
+            tabbedViewMain.ActiveDocument.Caption = "I am Renamed";
+        }
+
+
+        private void BarButtonItemSaveQueryOnItemClick(object sender, ItemClickEventArgs e)
+        {
+            var control = tabbedViewMain.ActiveDocument?.Control as QueryControl;
+
+            control?.SaveQuery();
+        }
+
+        private void TabbedViewMainOnQueryControl(object sender, QueryControlEventArgs e)
+        {
+            e.Control = new QueryControl();
+        }
+
+        private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
+        {
+            tabbedViewMain.AddDocument("Test Caption", "Test Name");
         }
 
         #region Skin Goodness
