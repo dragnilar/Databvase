@@ -85,6 +85,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\SQLColumn.cs" />
+    <Compile Include="Modules\ObjectExplorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ObjectExplorer.Designer.cs">
+      <DependentUpon>ObjectExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ConnectionStringManager.cs" />
+    <Compile Include="Models\SQLTable.cs" />
+    <Compile Include="Services\SchemaService.cs" />
+    <Compile Include="Views\ConnectionStringView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ConnectionStringView.Designer.cs">
+      <DependentUpon>ConnectionStringView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\QueryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,6 +116,9 @@
     <Compile Include="View Models\MainViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Modules\ObjectExplorer.resx">
+      <DependentUpon>ObjectExplorer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\QueryControl.resx">
       <DependentUpon>QueryControl.cs</DependentUpon>
     </EmbeddedResource>

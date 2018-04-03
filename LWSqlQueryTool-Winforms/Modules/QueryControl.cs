@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraRichEdit.API.Native;
+using LWSqlQueryTool_Winforms.Services;
 
 namespace LWSqlQueryTool_Winforms.Modules
 {
@@ -41,8 +42,7 @@ namespace LWSqlQueryTool_Winforms.Modules
                 try
                 {
                     var goNecction =
-                        new SqlConnection(
-                            "Data Source=DRAGNILAR-PC\\MSSQLSERVER_LITE;Initial Catalog=WideWorldImportersDW;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                        new SqlConnection(ConnectionStringManager.CurrentConnectionString);
 
                     var cmd = new SqlCommand();
                     SqlDataReader reader;

@@ -12,6 +12,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ColorWheel;
 using DevExpress.XtraRichEdit.API.Native;
 using LWSqlQueryTool_Winforms.Modules;
+using LWSqlQueryTool_Winforms.Services;
 using LWSqlQueryTool_Winforms.View_Models;
 using PopupMenuShowingEventArgs = DevExpress.XtraBars.Docking2010.Views.PopupMenuShowingEventArgs;
 
@@ -30,8 +31,6 @@ namespace LWSqlQueryTool_Winforms.Views
             HookupEvents();
         }
 
-
-
         private void HookupEvents()
         {
             UserLookAndFeel.Default.StyleChanged += Default_StyleChanged;
@@ -39,9 +38,19 @@ namespace LWSqlQueryTool_Winforms.Views
             barButtonItemColorPalette.ItemClick += barButtonItemColorPalette_ItemClick;
             barButtonItemNewQuery.ItemClick += BarButtonItemNewQueryOnItemClick;
             barButtonItemSaveQuery.ItemClick += BarButtonItemSaveQueryOnItemClick;
+            barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
 
+        }
+
+        private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
+        {
+            ConnectionStringManager.CurrentConnectionString =
+                "Data Source=DRAGNILAR-PC\\MSSQLSERVER_LITE;Initial Catalog=TriviaDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            XtraMessageBox.Show("Connection Set");
+            ribbonPageGroupQuery.Visible = true;
+            SchemaService.GetSchema();
         }
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
