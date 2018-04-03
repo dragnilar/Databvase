@@ -51,7 +51,6 @@ namespace LWSqlQueryTool_Winforms.Modules
                     cmd.Connection = goNecction;
 
                     goNecction.Open();
-
                     reader = cmd.ExecuteReader();
 
                     if (reader.HasRows)
@@ -72,7 +71,7 @@ namespace LWSqlQueryTool_Winforms.Modules
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("We has errors?");
+                    XtraMessageBox.Show(ex.ToString(), "We has errors?");
                 }
             }
         }

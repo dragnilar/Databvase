@@ -19,6 +19,8 @@ namespace LWSqlQueryTool_Winforms.Views
 {
     public partial class MainView : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private bool ConnectionActive = false;
+
         public MainView()
         {
             InitializeComponent();
