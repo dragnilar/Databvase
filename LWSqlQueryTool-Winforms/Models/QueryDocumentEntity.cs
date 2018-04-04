@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LWSqlQueryTool_Winforms.Services
+namespace LWSqlQueryTool_Winforms.Models
 {
-    public static class QueryService
+    public class QueryDocumentEntity
     {
-
+        public string DocumentText { get; set; }
 
     }
 }

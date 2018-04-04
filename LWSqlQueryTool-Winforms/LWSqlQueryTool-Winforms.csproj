@@ -87,7 +87,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\SQLServerInterface.cs" />
     <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
+    <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\SavedConnectionString.cs" />
     <Compile Include="Models\SQLColumn.cs" />
     <Compile Include="Models\SQLSchema.cs" />
@@ -103,8 +105,9 @@
     <Compile Include="Modules\ObjectExplorer.Designer.cs">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\QueryEditorService.cs" />
+    <Compile Include="Models\QueryResult.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
-    <Compile Include="Services\QueryService.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Services\ConnectionStringService.cs" />
     <Compile Include="Models\SQLTable.cs" />
@@ -156,6 +159,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\LWSqlQueryTool_Winforms.Models.QueryDocumentEntity.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

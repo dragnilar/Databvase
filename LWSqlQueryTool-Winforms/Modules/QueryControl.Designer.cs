@@ -38,6 +38,7 @@
             this.lciQueryResults = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
             this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.bindingSourceQueryControl = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlResults)).BeginInit();
@@ -47,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciQueryResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItemQueryEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQueryControl)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControlQueryControl
@@ -66,10 +68,10 @@
             this.gridControlResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlResults.Location = new System.Drawing.Point(12, 274);
+            this.gridControlResults.Location = new System.Drawing.Point(12, 269);
             this.gridControlResults.MainView = this.gridViewResults;
             this.gridControlResults.Name = "gridControlResults";
-            this.gridControlResults.Size = new System.Drawing.Size(776, 314);
+            this.gridControlResults.Size = new System.Drawing.Size(776, 319);
             this.gridControlResults.TabIndex = 11;
             this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewResults});
@@ -119,9 +121,9 @@
             // lciQueryResults
             // 
             this.lciQueryResults.Control = this.gridControlResults;
-            this.lciQueryResults.Location = new System.Drawing.Point(0, 262);
+            this.lciQueryResults.Location = new System.Drawing.Point(0, 257);
             this.lciQueryResults.Name = "lciQueryResults";
-            this.lciQueryResults.Size = new System.Drawing.Size(780, 318);
+            this.lciQueryResults.Size = new System.Drawing.Size(780, 323);
             this.lciQueryResults.TextSize = new System.Drawing.Size(0, 0);
             this.lciQueryResults.TextVisible = false;
             // 
@@ -130,11 +132,16 @@
             this.splitterItemQueryEditor.AllowHotTrack = true;
             this.splitterItemQueryEditor.Location = new System.Drawing.Point(0, 252);
             this.splitterItemQueryEditor.Name = "splitterItemQueryEditor";
-            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 10);
+            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 5);
             // 
             // mvvmContextQueryControl
             // 
             this.mvvmContextQueryControl.ContainerControl = this;
+            this.mvvmContextQueryControl.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.QueryControlViewModel);
+            // 
+            // bindingSourceQueryControl
+            // 
+            this.bindingSourceQueryControl.DataSource = typeof(LWSqlQueryTool_Winforms.Models.QueryDocumentEntity);
             // 
             // QueryControl
             // 
@@ -152,6 +159,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciQueryResults)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItemQueryEditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQueryControl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -167,5 +175,6 @@
         private DevExpress.XtraLayout.LayoutControlItem lciQueryResults;
         private DevExpress.XtraLayout.SplitterItem splitterItemQueryEditor;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextQueryControl;
+        private System.Windows.Forms.BindingSource bindingSourceQueryControl;
     }
 }

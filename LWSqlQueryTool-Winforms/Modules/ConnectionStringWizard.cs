@@ -13,6 +13,7 @@ namespace LWSqlQueryTool_Winforms.Modules
 {
     public partial class ConnectionStringWizard : DevExpress.XtraEditors.XtraUserControl
     {
+        //TODO - Implement this for coolness sakes
         public ConnectionStringWizard()
         {
             InitializeComponent();

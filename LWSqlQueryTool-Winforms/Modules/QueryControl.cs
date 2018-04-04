@@ -8,6 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraRichEdit.API.Native;
@@ -22,61 +23,8 @@ namespace LWSqlQueryTool_Winforms.Modules
         {
             InitializeComponent();
             SetupQueryEditor();
-            richEditControlQueryEditor.KeyDown += RichEditControlQueryEditorOnKeyDown;
             if (!mvvmContextQueryControl.IsDesignMode)
                 InitializeBindings();
-        }
-
-        private void RichEditControlQueryEditorOnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F5)
-            {
-                var sqlCrap = "";
-                if (richEditControlQueryEditor.Document.Selection.Length > 1)
-                {
-                    var selection = richEditControlQueryEditor.Document.Selection;
-                    sqlCrap = richEditControlQueryEditor.Document.GetText(selection);
-                }
-                else
-                {
-                    sqlCrap = richEditControlQueryEditor.Text;
-
-                }
-                try
-                {
-                    var goNecction =
-                        new SqlConnection(ConnectionStringService.CurrentConnectionString);
-
-                    var cmd = new SqlCommand();
-                    SqlDataReader reader;
-                    cmd.CommandText = sqlCrap;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = goNecction;
-
-                    goNecction.Open();
-                    reader = cmd.ExecuteReader();
-
-                    if (reader.HasRows)
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        gridViewResults.Columns.Clear();
-                        gridControlResults.DataSource = dataTable;
-
-                    }
-
-                    reader.Dispose();
-                    goNecction.Close();
-
-
-
-
-                }
-                catch (Exception ex)
-                {
-                    XtraMessageBox.Show(ex.ToString(), "We has errors?");
-                }
-            }
         }
 
         public void SaveQuery()
@@ -95,6 +43,19 @@ namespace LWSqlQueryTool_Winforms.Modules
         void InitializeBindings()
         {
             var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
+            mvvmContextQueryControl.RegisterService(new QueryEditorService(richEditControlQueryEditor));
+            fluent.SetObjectDataSourceBinding(bindingSourceQueryControl, x => x.Entity, x => x.Update());
+            fluent.ViewModel.RaisePropertyChanged(x=>x.Entity);
+            fluent.WithKey(richEditControlQueryEditor, Keys.F5).KeyToCommand(x => x.Query());
+            fluent.SetBinding(gridControlResults, x => x.DataSource, y => y.GridSource);
+            fluent.SetTrigger(x=>x.ClearGrid, (clear)  =>
+            {
+                if (clear)
+                {
+                    gridViewResults.Columns.Clear();
+                }
+            });
+
         }
     }
 }
