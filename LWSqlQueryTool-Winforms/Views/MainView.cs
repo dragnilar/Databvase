@@ -39,9 +39,21 @@ namespace LWSqlQueryTool_Winforms.Views
             barButtonItemNewQuery.ItemClick += BarButtonItemNewQueryOnItemClick;
             barButtonItemSaveQuery.ItemClick += BarButtonItemSaveQueryOnItemClick;
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
+            barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
+            barButtonItemRunQuery.ItemClick += BarButtonItemRunQueryOnItemClick;
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
 
+        }
+
+        private void BarButtonItemRunQueryOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
+        {
+            //TODO send message to active guy to run query...?
+        }
+
+        private void BarButtonItemObjectExplorerOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
+        {
+            objectExplorerContainer.Panel.Show();
         }
 
         private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)

@@ -14,11 +14,13 @@ namespace LWSqlQueryTool_Winforms.View_Models
         public virtual QueryDocumentEntity Entity { get; set; }
         public virtual DataTable GridSource { get; set; }
         public virtual bool ClearGrid { get; set; }
+        public virtual string ResultsMessage { get; set; }
 
         public QueryControlViewModel()
         {
             Entity = new QueryDocumentEntity {DocumentText = string.Empty};
             GridSource = null;
+            ResultsMessage = string.Empty;
         }
 
         public void Query()
@@ -28,15 +30,17 @@ namespace LWSqlQueryTool_Winforms.View_Models
             {
                 if (result.HasErrors)
                 {
-                    XtraMessageBox.Show(result.ResultsMessage, "We Has ERrors?");
-
+                    ResultsMessage = $"Errors Occured: \n{result.ResultsMessage}";
                 }
                 else
                 {
                     ClearGrid = true;
                     GridSource = result.ResultsTable;
                     ClearGrid = false;
+                    ResultsMessage = result.ResultsMessage;
                 }
+
+               
             }
 
         }

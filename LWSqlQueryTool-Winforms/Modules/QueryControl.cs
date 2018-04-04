@@ -29,11 +29,13 @@ namespace LWSqlQueryTool_Winforms.Modules
 
         public void SaveQuery()
         {
+            //TODO - Move this to the Query Editor Service
             richEditControlQueryEditor.SaveDocumentAs();
         }
 
         private void SetupQueryEditor()
         {
+            //We want line numbers on the query editor because they are nice to have... :P
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.RestartType = DevExpress.XtraRichEdit.API.Native.LineNumberingRestart.Continuous;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
@@ -42,12 +44,24 @@ namespace LWSqlQueryTool_Winforms.Modules
 
         void InitializeBindings()
         {
+            //Instantiate fluent API
             var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
+
+            //Register services
             mvvmContextQueryControl.RegisterService(new QueryEditorService(richEditControlQueryEditor));
+
+            //Data source binding for query editor
             fluent.SetObjectDataSourceBinding(bindingSourceQueryControl, x => x.Entity, x => x.Update());
             fluent.ViewModel.RaisePropertyChanged(x=>x.Entity);
+
+            //With Key events
             fluent.WithKey(richEditControlQueryEditor, Keys.F5).KeyToCommand(x => x.Query());
+
+            //Bindings
             fluent.SetBinding(gridControlResults, x => x.DataSource, y => y.GridSource);
+            fluent.SetBinding(memoEditResults, x => x.EditValue, y => y.ResultsMessage);
+
+            //Triggers
             fluent.SetTrigger(x=>x.ClearGrid, (clear)  =>
             {
                 if (clear)

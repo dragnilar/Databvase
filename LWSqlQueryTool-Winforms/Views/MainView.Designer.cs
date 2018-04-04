@@ -39,11 +39,13 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemNewQuery = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemSaveQuery = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemConnect = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemObjectExplorer = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupGoNecction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupQuery = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupSkins = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroupWindows = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.mvvmContextMain = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.defaultLookAndFeelMain = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.dockManagerMain = new DevExpress.XtraBars.Docking.DockManager(this.components);
@@ -55,6 +57,7 @@ namespace LWSqlQueryTool_Winforms.Views
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedViewMain = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.barButtonItemRunQuery = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerMain)).BeginInit();
@@ -75,9 +78,11 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemColorPalette,
             this.barButtonItemNewQuery,
             this.barButtonItemSaveQuery,
-            this.barButtonItemConnect});
+            this.barButtonItemConnect,
+            this.barButtonItemObjectExplorer,
+            this.barButtonItemRunQuery});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 7;
+            this.ribbonControlMain.MaxItemId = 9;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageDatabvase,
@@ -131,6 +136,14 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemConnect.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemConnect.ImageOptions.LargeImage")));
             this.barButtonItemConnect.Name = "barButtonItemConnect";
             // 
+            // barButtonItemObjectExplorer
+            // 
+            this.barButtonItemObjectExplorer.Caption = "Show Object Explorer";
+            this.barButtonItemObjectExplorer.Id = 7;
+            this.barButtonItemObjectExplorer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemObjectExplorer.ImageOptions.Image")));
+            this.barButtonItemObjectExplorer.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemObjectExplorer.ImageOptions.LargeImage")));
+            this.barButtonItemObjectExplorer.Name = "barButtonItemObjectExplorer";
+            // 
             // ribbonPageDatabvase
             // 
             this.ribbonPageDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -148,6 +161,7 @@ namespace LWSqlQueryTool_Winforms.Views
             // ribbonPageGroupQuery
             // 
             this.ribbonPageGroupQuery.ItemLinks.Add(this.barButtonItemNewQuery);
+            this.ribbonPageGroupQuery.ItemLinks.Add(this.barButtonItemRunQuery);
             this.ribbonPageGroupQuery.ItemLinks.Add(this.barButtonItemSaveQuery);
             this.ribbonPageGroupQuery.Name = "ribbonPageGroupQuery";
             this.ribbonPageGroupQuery.Text = "Query";
@@ -156,7 +170,8 @@ namespace LWSqlQueryTool_Winforms.Views
             // ribbonPageView
             // 
             this.ribbonPageView.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroupSkins});
+            this.ribbonPageGroupSkins,
+            this.ribbonPageGroupWindows});
             this.ribbonPageView.Name = "ribbonPageView";
             this.ribbonPageView.Text = "View";
             // 
@@ -167,6 +182,12 @@ namespace LWSqlQueryTool_Winforms.Views
             this.ribbonPageGroupSkins.ItemLinks.Add(this.barButtonItemColorPalette);
             this.ribbonPageGroupSkins.Name = "ribbonPageGroupSkins";
             this.ribbonPageGroupSkins.Text = "Skins";
+            // 
+            // ribbonPageGroupWindows
+            // 
+            this.ribbonPageGroupWindows.ItemLinks.Add(this.barButtonItemObjectExplorer);
+            this.ribbonPageGroupWindows.Name = "ribbonPageGroupWindows";
+            this.ribbonPageGroupWindows.Text = "Windows";
             // 
             // mvvmContextMain
             // 
@@ -260,6 +281,15 @@ namespace LWSqlQueryTool_Winforms.Views
             this.documentManagerMain.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedViewMain});
             // 
+            // barButtonItemRunQuery
+            // 
+            this.barButtonItemRunQuery.Caption = "Run Query";
+            this.barButtonItemRunQuery.Id = 8;
+            this.barButtonItemRunQuery.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.barButtonItemRunQuery.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemRunQuery.ImageOptions.Image")));
+            this.barButtonItemRunQuery.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemRunQuery.ImageOptions.LargeImage")));
+            this.barButtonItemRunQuery.Name = "barButtonItemRunQuery";
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,6 +338,9 @@ namespace LWSqlQueryTool_Winforms.Views
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupQuery;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupGoNecction;
         private DevExpress.XtraBars.BarButtonItem barButtonItemConnect;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupWindows;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemObjectExplorer;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemRunQuery;
     }
 }
 

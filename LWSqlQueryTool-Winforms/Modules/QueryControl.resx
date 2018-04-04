@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xtraTabPageResultsGrid.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAQdEVYdFRpdGxlAEdyaWQ7VGFibGUb/TfnAAAAWUlE
+        QVQ4T2P4//8/RZihpaXlPyUYbIBv044GZEyK2CAxgBIMMwBEI2OixXBKECsGl0COW1LEYBJkY7jJaJho
+        MZwSxIrBJdD9RqwYTIJsjGIiORirIPH4PwMAQe9gKXwe+KgAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="xtraTabPageMessages.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABCdEVYdFRpdGxlAEluIExpbmU7TGluZTtBbGlnbjtU
+        ZXh0O0ltYWdlO0xheW91dDtTaGFwZTtXcmFwO0JvdHRvbTtSaWdodNsXJisAAABESURBVDhPY/j//z8Y
+        t7S0/CcFw/ShGEAswGuAb9MOvBgERl0wslwAAmXLp6NgECDJBSQbQHUXYAM4DSAFYxhAHv7PAACtCyF4
+        OL/X3gAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="mvvmContextQueryControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
