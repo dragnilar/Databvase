@@ -242,15 +242,15 @@ namespace LWSqlQueryTool_Winforms.Views
             this.dockPanelObjectExplorer.ID = new System.Guid("d1cabde8-1e60-4ff1-aba0-b217eab0dd67");
             this.dockPanelObjectExplorer.Location = new System.Drawing.Point(0, 162);
             this.dockPanelObjectExplorer.Name = "dockPanelObjectExplorer";
-            this.dockPanelObjectExplorer.OriginalSize = new System.Drawing.Size(200, 200);
-            this.dockPanelObjectExplorer.Size = new System.Drawing.Size(200, 606);
+            this.dockPanelObjectExplorer.OriginalSize = new System.Drawing.Size(255, 200);
+            this.dockPanelObjectExplorer.Size = new System.Drawing.Size(255, 606);
             this.dockPanelObjectExplorer.Text = "Object Explorer";
             // 
             // objectExplorerContainer
             // 
             this.objectExplorerContainer.Location = new System.Drawing.Point(3, 30);
             this.objectExplorerContainer.Name = "objectExplorerContainer";
-            this.objectExplorerContainer.Size = new System.Drawing.Size(193, 573);
+            this.objectExplorerContainer.Size = new System.Drawing.Size(248, 573);
             this.objectExplorerContainer.TabIndex = 0;
             // 
             // documentManagerMain

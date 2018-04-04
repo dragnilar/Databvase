@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.Data.v17.2" />
     <Reference Include="DevExpress.DataAccess.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Map.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Mvvm.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -85,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
     <Compile Include="Models\SQLColumn.cs" />
     <Compile Include="Models\SQLSchema.cs" />
     <Compile Include="Modules\ObjectExplorer.cs">
@@ -93,6 +95,7 @@
     <Compile Include="Modules\ObjectExplorer.Designer.cs">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\QueryService.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Services\ConnectionStringManager.cs" />
     <Compile Include="Models\SQLTable.cs" />

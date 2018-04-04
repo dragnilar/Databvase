@@ -50,20 +50,20 @@ namespace LWSqlQueryTool_Winforms.Views
                 "Data Source=DRAGNILAR-PC\\MSSQLSERVER_LITE;Initial Catalog=TriviaDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             XtraMessageBox.Show("Connection Set");
             ribbonPageGroupQuery.Visible = true;
-            SchemaService.GetSchema();
+            objectExplorerContainer.Controls.Add(new ObjectExplorer{Dock = DockStyle.Fill});
+
         }
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            //TODO add actual item here
             var menu = e.Menu;
             if (e.HitInfo.Document != null)
             {
-                menu.Items.Add(new DXMenuItem("Test Item", new EventHandler(TestItemClick)));
+                menu.Items.Add(new DXMenuItem("Rename Tab", new EventHandler(RenameTab)));
             }
         }
 
-        private void TestItemClick(object sender, EventArgs e)
+        private void RenameTab(object sender, EventArgs e)
         {
             //TODO add ability to rename here
             tabbedViewMain.ActiveDocument.Caption = "I am Renamed";
