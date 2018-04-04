@@ -106,7 +106,7 @@
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="Services\QueryService.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
-    <Compile Include="Services\ConnectionStringManager.cs" />
+    <Compile Include="Services\ConnectionStringService.cs" />
     <Compile Include="Models\SQLTable.cs" />
     <Compile Include="Services\SchemaService.cs" />
     <Compile Include="Views\ConnectionStringView.cs">

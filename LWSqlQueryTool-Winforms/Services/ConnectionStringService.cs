@@ -3,7 +3,7 @@ using LWSqlQueryTool_Winforms.Models;
 
 namespace LWSqlQueryTool_Winforms.Services
 {
-    public static class ConnectionStringManager
+    public static class ConnectionStringService
     {
         public static List<SavedConnectionString> SavedConnectionStrings = GetTempConnectionStrings();
 

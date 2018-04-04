@@ -24,7 +24,7 @@ namespace LWSqlQueryTool_Winforms.Services
         public static SQLSchema GetSchema()
         {
             SQLSchema schema;
-            using (var goNecction = new SqlConnection(ConnectionStringManager.CurrentConnectionString))
+            using (var goNecction = new SqlConnection(ConnectionStringService.CurrentConnectionString))
             {
                 goNecction.Open();
 

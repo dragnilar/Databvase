@@ -23,7 +23,7 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void SetUpSauces()
         {
-            lookUpEditConnectionStrings.Properties.DataSource = ConnectionStringManager.SavedConnectionStrings;
+            lookUpEditConnectionStrings.Properties.DataSource = ConnectionStringService.SavedConnectionStrings;
         }
 
         private void HookupEvents()
@@ -39,7 +39,7 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void SimpleButtonCancelOnClick(object sender, EventArgs eventArgs)
         {
-            ConnectionStringManager.CurrentConnectionString = null;
+            ConnectionStringService.CurrentConnectionString = null;
             Close();
         }
 
@@ -48,7 +48,7 @@ namespace LWSqlQueryTool_Winforms.Views
             var connectionstring = ((SavedConnectionString) lookUpEditConnectionStrings.EditValue).ConnectionString;
             if (TestConnection(connectionstring))
             {
-                ConnectionStringManager.CurrentConnectionString = connectionstring;
+                ConnectionStringService.CurrentConnectionString = connectionstring;
                 Close();
             }
         }
@@ -72,7 +72,7 @@ namespace LWSqlQueryTool_Winforms.Views
 
             if (TestConnection(builder.ConnectionString))
             {
-                ConnectionStringManager.SavedConnectionStrings.Add(
+                ConnectionStringService.SavedConnectionStrings.Add(
                     new SavedConnectionString
                     {
                         NickName = "BLAH",

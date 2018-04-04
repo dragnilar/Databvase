@@ -45,7 +45,7 @@ namespace LWSqlQueryTool_Winforms.Modules
                 try
                 {
                     var goNecction =
-                        new SqlConnection(ConnectionStringManager.CurrentConnectionString);
+                        new SqlConnection(ConnectionStringService.CurrentConnectionString);
 
                     var cmd = new SqlCommand();
                     SqlDataReader reader;

@@ -52,7 +52,7 @@ namespace LWSqlQueryTool_Winforms.Views
             window.ShowDialog();
             window.Dispose();
 
-            if (!string.IsNullOrEmpty(ConnectionStringManager.CurrentConnectionString))
+            if (!string.IsNullOrEmpty(ConnectionStringService.CurrentConnectionString))
             {
                 XtraMessageBox.Show("Connection Set");
                 ribbonPageGroupQuery.Visible = true;
