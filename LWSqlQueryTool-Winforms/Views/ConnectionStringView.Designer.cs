@@ -1,4 +1,6 @@
-﻿namespace LWSqlQueryTool_Winforms.Views
+﻿using LWSqlQueryTool_Winforms.View_Models;
+
+namespace LWSqlQueryTool_Winforms.Views
 {
     partial class ConnectionStringView
     {
@@ -29,11 +31,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.mvvmContextConnectionStringView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextConnectionStringView)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // mvvmContextConnectionStringView
+            // 
+            this.mvvmContextConnectionStringView.ContainerControl = this;
+            this.mvvmContextConnectionStringView.ViewModelType = typeof(ConnectionStringViewModel);
+            // 
+            // ConnectionStringView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "ConnectionStringView";
             this.Text = "ConnectionStringView";
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextConnectionStringView)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private DevExpress.Utils.MVVM.MVVMContext mvvmContextConnectionStringView;
     }
 }

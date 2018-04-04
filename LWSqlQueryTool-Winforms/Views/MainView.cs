@@ -55,6 +55,7 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
+            //TODO add actual item here
             var menu = e.Menu;
             if (e.HitInfo.Document != null)
             {
@@ -64,6 +65,7 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void TestItemClick(object sender, EventArgs e)
         {
+            //TODO add ability to rename here
             tabbedViewMain.ActiveDocument.Caption = "I am Renamed";
         }
 

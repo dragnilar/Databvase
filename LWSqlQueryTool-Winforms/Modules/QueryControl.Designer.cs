@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
             this.gridControlResults = new DevExpress.XtraGrid.GridControl();
             this.gridViewResults = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -36,6 +37,7 @@
             this.lciQueryEditor = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciQueryResults = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
+            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlResults)).BeginInit();
@@ -44,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciQueryEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciQueryResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItemQueryEditor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControlQueryControl
@@ -129,6 +132,10 @@
             this.splitterItemQueryEditor.Name = "splitterItemQueryEditor";
             this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 10);
             // 
+            // mvvmContextQueryControl
+            // 
+            this.mvvmContextQueryControl.ContainerControl = this;
+            // 
             // QueryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciQueryEditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciQueryResults)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItemQueryEditor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -158,5 +166,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewResults;
         private DevExpress.XtraLayout.LayoutControlItem lciQueryResults;
         private DevExpress.XtraLayout.SplitterItem splitterItemQueryEditor;
+        private DevExpress.Utils.MVVM.MVVMContext mvvmContextQueryControl;
     }
 }

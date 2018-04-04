@@ -12,6 +12,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraRichEdit.API.Native;
 using LWSqlQueryTool_Winforms.Services;
+using LWSqlQueryTool_Winforms.View_Models;
 
 namespace LWSqlQueryTool_Winforms.Modules
 {
@@ -22,6 +23,8 @@ namespace LWSqlQueryTool_Winforms.Modules
             InitializeComponent();
             SetupQueryEditor();
             richEditControlQueryEditor.KeyDown += RichEditControlQueryEditorOnKeyDown;
+            if (!mvvmContextQueryControl.IsDesignMode)
+                InitializeBindings();
         }
 
         private void RichEditControlQueryEditorOnKeyDown(object sender, KeyEventArgs e)
@@ -87,6 +90,11 @@ namespace LWSqlQueryTool_Winforms.Modules
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Distance = 0.1f;
+        }
+
+        void InitializeBindings()
+        {
+            var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
         }
     }
 }
