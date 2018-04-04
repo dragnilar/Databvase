@@ -34,15 +34,17 @@
             this.treeListObjectExplorer = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.imageCollectionObjectExplorer = new DevExpress.Utils.ImageCollection(this.components);
             this.lcgObjectExplorer = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.imageCollectionObjectExplorer = new DevExpress.Utils.ImageCollection(this.components);
+            this.mvvmContextObjectExplorer = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjectExplorer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionObjectExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgObjectExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionObjectExplorer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextObjectExplorer)).BeginInit();
             this.SuspendLayout();
             // 
             // lcObjectExplorer
@@ -87,6 +89,16 @@
             this.treeListColumnType.Name = "treeListColumnType";
             this.treeListColumnType.OptionsColumn.ReadOnly = true;
             // 
+            // imageCollectionObjectExplorer
+            // 
+            this.imageCollectionObjectExplorer.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionObjectExplorer.ImageStream")));
+            this.imageCollectionObjectExplorer.InsertGalleryImage("database_16x16.png", "office2013/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/data/database_16x16.png"), 0);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(0, "database_16x16.png");
+            this.imageCollectionObjectExplorer.InsertGalleryImage("grid_16x16.png", "office2013/grid/grid_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/grid/grid_16x16.png"), 1);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(1, "grid_16x16.png");
+            this.imageCollectionObjectExplorer.InsertGalleryImage("groupfooter_16x16.png", "office2013/reports/groupfooter_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/reports/groupfooter_16x16.png"), 2);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(2, "groupfooter_16x16.png");
+            // 
             // lcgObjectExplorer
             // 
             this.lcgObjectExplorer.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -106,15 +118,9 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // imageCollectionObjectExplorer
+            // mvvmContextObjectExplorer
             // 
-            this.imageCollectionObjectExplorer.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionObjectExplorer.ImageStream")));
-            this.imageCollectionObjectExplorer.InsertGalleryImage("database_16x16.png", "office2013/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/data/database_16x16.png"), 0);
-            this.imageCollectionObjectExplorer.Images.SetKeyName(0, "database_16x16.png");
-            this.imageCollectionObjectExplorer.InsertGalleryImage("grid_16x16.png", "office2013/grid/grid_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/grid/grid_16x16.png"), 1);
-            this.imageCollectionObjectExplorer.Images.SetKeyName(1, "grid_16x16.png");
-            this.imageCollectionObjectExplorer.InsertGalleryImage("groupfooter_16x16.png", "office2013/reports/groupfooter_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/reports/groupfooter_16x16.png"), 2);
-            this.imageCollectionObjectExplorer.Images.SetKeyName(2, "groupfooter_16x16.png");
+            this.mvvmContextObjectExplorer.ContainerControl = this;
             // 
             // ObjectExplorer
             // 
@@ -126,9 +132,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).EndInit();
             this.lcObjectExplorer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjectExplorer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionObjectExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgObjectExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionObjectExplorer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextObjectExplorer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -142,5 +149,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnType;
         private DevExpress.Utils.ImageCollection imageCollectionObjectExplorer;
+        private DevExpress.Utils.MVVM.MVVMContext mvvmContextObjectExplorer;
     }
 }

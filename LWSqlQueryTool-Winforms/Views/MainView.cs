@@ -46,12 +46,18 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
-            ConnectionStringManager.CurrentConnectionString =
-                "Data Source=DRAGNILAR-PC\\MSSQLSERVER_LITE;Initial Catalog=TriviaDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            XtraMessageBox.Show("Connection Set");
-            ribbonPageGroupQuery.Visible = true;
-            objectExplorerContainer.Controls.Add(new ObjectExplorer{Dock = DockStyle.Fill});
+            //TODO - hacked shit here fix it jackass
+            var window = new ConnectionStringView();
+            window.StartPosition = FormStartPosition.CenterScreen;
+            window.ShowDialog();
+            window.Dispose();
 
+            if (!string.IsNullOrEmpty(ConnectionStringManager.CurrentConnectionString))
+            {
+                XtraMessageBox.Show("Connection Set");
+                ribbonPageGroupQuery.Visible = true;
+                objectExplorerContainer.Controls.Add(new ObjectExplorer { Dock = DockStyle.Fill });
+            }
         }
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)

@@ -70,6 +70,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v17.2.Extensions, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.Types.dll</HintPath>
@@ -87,14 +88,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
+    <Compile Include="Models\SavedConnectionString.cs" />
     <Compile Include="Models\SQLColumn.cs" />
     <Compile Include="Models\SQLSchema.cs" />
+    <Compile Include="Modules\ConnectionStringWizard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ConnectionStringWizard.Designer.cs">
+      <DependentUpon>ConnectionStringWizard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ObjectExplorer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\ObjectExplorer.Designer.cs">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="Services\QueryService.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Services\ConnectionStringManager.cs" />
@@ -122,6 +131,9 @@
     <Compile Include="View Models\MainViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Modules\ConnectionStringWizard.resx">
+      <DependentUpon>ConnectionStringWizard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ObjectExplorer.resx">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </EmbeddedResource>

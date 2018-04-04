@@ -12,6 +12,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
 using LWSqlQueryTool_Winforms.Models;
 using LWSqlQueryTool_Winforms.Services;
+using LWSqlQueryTool_Winforms.View_Models;
 
 namespace LWSqlQueryTool_Winforms.Modules
 {
@@ -23,6 +24,8 @@ namespace LWSqlQueryTool_Winforms.Modules
         {
             InitializeComponent();
             SetupObjectExplorer();
+            if (!mvvmContextObjectExplorer.IsDesignMode)
+                InitializeBindings();
         }
 
         public void SetupObjectExplorer()
@@ -78,5 +81,9 @@ namespace LWSqlQueryTool_Winforms.Modules
             return sauce;
         }
 
+        void InitializeBindings()
+        {
+            var fluent = mvvmContextObjectExplorer.OfType<ObjectExplorerViewModel>();
+        }
     }
 }
