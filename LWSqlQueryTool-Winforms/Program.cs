@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.UserSkins;
@@ -20,7 +21,21 @@ namespace LWSqlQueryTool_Winforms
             Application.SetCompatibleTextRenderingDefault(false);
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
+            CheckSettings();
             Application.Run(new MainView());
         }
+
+        private static void CheckSettings()
+        {
+            if (File.Exists(App.Config.FullFilePath))
+            {
+                App.Config.Load();
+            }
+        }
+    }
+
+    public static class App
+    {
+        public static Settings Config = new Settings();
     }
 }

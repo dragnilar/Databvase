@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Customization;
@@ -29,7 +30,7 @@ namespace LWSqlQueryTool_Winforms.Views
             InitializeComponent();
             if (!mvvmContextMain.IsDesignMode)
                 InitializeBindings();
-
+            SkinService.LoadSkinSettings();
             HookupEvents();
         }
 
@@ -46,9 +47,16 @@ namespace LWSqlQueryTool_Winforms.Views
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
+
+            defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
                
 
 
+        }
+
+        private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
+        {
+            SkinService.SaveSkinSettings();
         }
 
         private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
