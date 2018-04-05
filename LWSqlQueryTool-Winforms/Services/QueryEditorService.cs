@@ -39,12 +39,15 @@ namespace LWSqlQueryTool_Winforms.Services
                 sqlQuery = _queryPane.Text;
             }
 
-            if (string.IsNullOrEmpty(sqlQuery))
+            //TODO - Comment parsing needs to be improved
+            if (string.IsNullOrEmpty(sqlQuery) || sqlQuery.StartsWith("--") || sqlQuery.StartsWith("/*"))
             {
                 return null;
             }
 
             return SQLServerInterface.SendQueryStringAndGetResult(sqlQuery);
         }
+
+        
     }
 }

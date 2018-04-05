@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.Mvvm.POCO;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraRichEdit.API.Native;
@@ -19,6 +21,8 @@ namespace LWSqlQueryTool_Winforms.Modules
 {
     public partial class QueryControl : DevExpress.XtraEditors.XtraUserControl
     {
+        public RibbonControl Ribbon => ribbonControlQueryControl;
+
         public QueryControl()
         {
             InitializeComponent();
@@ -27,11 +31,14 @@ namespace LWSqlQueryTool_Winforms.Modules
                 InitializeBindings();
         }
 
-        public void SaveQuery()
+
+        private void SaveQueryButton_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //TODO - Move this to the Query Editor Service
+            //Its probably better to leave this in the view because its using stuff baked into the view.
             richEditControlQueryEditor.SaveDocumentAs();
         }
+
+
 
         private void SetupQueryEditor()
         {
@@ -54,6 +61,9 @@ namespace LWSqlQueryTool_Winforms.Modules
             fluent.SetObjectDataSourceBinding(bindingSourceQueryControl, x => x.Entity, x => x.Update());
             fluent.ViewModel.RaisePropertyChanged(x=>x.Entity);
 
+            //Event to command
+            fluent.EventToCommand<ItemClickEventArgs>(QueryButton, "ItemClick", x => x.Query());
+
             //With Key events
             fluent.WithKey(richEditControlQueryEditor, Keys.F5).KeyToCommand(x => x.Query());
 
@@ -71,5 +81,7 @@ namespace LWSqlQueryTool_Winforms.Modules
             });
 
         }
+
+
     }
 }

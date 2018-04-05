@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Customization;
 using DevExpress.LookAndFeel;
@@ -8,6 +9,7 @@ using DevExpress.Utils.Menu;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking;
 using DevExpress.XtraBars.Docking2010.Views;
+using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ColorWheel;
 using DevExpress.XtraRichEdit.API.Native;
@@ -37,19 +39,24 @@ namespace LWSqlQueryTool_Winforms.Views
             barButtonItemColorMixer.ItemClick += barButtonItemColorMixer_ItemClick;
             barButtonItemColorPalette.ItemClick += barButtonItemColorPalette_ItemClick;
             barButtonItemNewQuery.ItemClick += BarButtonItemNewQueryOnItemClick;
-            barButtonItemSaveQuery.ItemClick += BarButtonItemSaveQueryOnItemClick;
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
-            barButtonItemRunQuery.ItemClick += BarButtonItemRunQueryOnItemClick;
+
+            
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
+            tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
+               
+
 
         }
 
-        private void BarButtonItemRunQueryOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
+        private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
         {
-            //TODO send message to active guy to run query...?
+            tabbedViewMain.AddDocument("Test Caption", "Test Name");
+            tabbedViewMain.Controller.Activate(tabbedViewMain.Documents.FirstOrDefault());
         }
+
 
         private void BarButtonItemObjectExplorerOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
@@ -58,16 +65,19 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
+            Gonnection();
+
+        }
+
+        private void Gonnection()
+        {
             //TODO - hacked shit here fix it jackass
-            var window = new ConnectionStringView();
-            window.StartPosition = FormStartPosition.CenterScreen;
+            var window = new ConnectionStringView {StartPosition = FormStartPosition.CenterScreen};
             window.ShowDialog();
             window.Dispose();
 
             if (!string.IsNullOrEmpty(ConnectionStringService.CurrentConnectionString))
             {
-                XtraMessageBox.Show("Connection Set");
-                ribbonPageGroupQuery.Visible = true;
                 objectExplorerContainer.Controls.Add(new ObjectExplorer { Dock = DockStyle.Fill });
             }
         }
@@ -87,23 +97,22 @@ namespace LWSqlQueryTool_Winforms.Views
             tabbedViewMain.ActiveDocument.Caption = "I am Renamed";
         }
 
-
-        private void BarButtonItemSaveQueryOnItemClick(object sender, ItemClickEventArgs e)
-        {
-            var control = tabbedViewMain.ActiveDocument?.Control as QueryControl;
-
-            control?.SaveQuery();
-        }
-
         private void TabbedViewMainOnQueryControl(object sender, QueryControlEventArgs e)
         {
+
             e.Control = new QueryControl();
         }
 
-        private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
+        private void TabbedViewMainOnDocumentActivated(object sender, DocumentEventArgs e)
         {
-            tabbedViewMain.AddDocument("Test Caption", "Test Name");
+            MergeMainRibbon(e.Document.Control as QueryControl);
         }
+
+        private void MergeMainRibbon(QueryControl queryControl)
+        {
+            ribbonControlMain.MergeRibbon(queryControl.Ribbon);
+        }
+
 
         #region Skin Goodness
         private void Default_StyleChanged(object sender, EventArgs e)

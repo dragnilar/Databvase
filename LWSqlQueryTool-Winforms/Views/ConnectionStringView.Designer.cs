@@ -45,15 +45,15 @@ namespace LWSqlQueryTool_Winforms.Views
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navigationPageConnetionStringBuilder = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.comboBoxEditDatabases = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEditInstances = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.simpleButtonQueryDatabases = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonQueryInstances = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonCancelCreateConnection = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonSave = new DevExpress.XtraEditors.SimpleButton();
             this.textEditPassword = new DevExpress.XtraEditors.TextEdit();
             this.textEditUserName = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButtonQueryInstances = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButtonQueryDatabases = new DevExpress.XtraEditors.SimpleButton();
             this.mvvmContextConnectionStringView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
-            this.comboBoxEditInstances = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEditDatabases = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.navigationPageConnectionStringManager.SuspendLayout();
@@ -67,11 +67,11 @@ namespace LWSqlQueryTool_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.navigationPageConnetionStringBuilder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabases.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditInstances.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextConnectionStringView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditInstances.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabases.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationFrame
@@ -212,6 +212,7 @@ namespace LWSqlQueryTool_Winforms.Views
             // 
             // navigationPageConnetionStringBuilder
             // 
+            this.navigationPageConnetionStringBuilder.Caption = "navigationPageConnetionStringBuilder";
             this.navigationPageConnetionStringBuilder.Controls.Add(this.comboBoxEditDatabases);
             this.navigationPageConnetionStringBuilder.Controls.Add(this.comboBoxEditInstances);
             this.navigationPageConnetionStringBuilder.Controls.Add(this.simpleButtonQueryDatabases);
@@ -222,6 +223,40 @@ namespace LWSqlQueryTool_Winforms.Views
             this.navigationPageConnetionStringBuilder.Controls.Add(this.textEditUserName);
             this.navigationPageConnetionStringBuilder.Name = "navigationPageConnetionStringBuilder";
             this.navigationPageConnetionStringBuilder.Size = new System.Drawing.Size(728, 516);
+            // 
+            // comboBoxEditDatabases
+            // 
+            this.comboBoxEditDatabases.Location = new System.Drawing.Point(184, 143);
+            this.comboBoxEditDatabases.Name = "comboBoxEditDatabases";
+            this.comboBoxEditDatabases.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditDatabases.Size = new System.Drawing.Size(335, 20);
+            this.comboBoxEditDatabases.TabIndex = 4;
+            // 
+            // comboBoxEditInstances
+            // 
+            this.comboBoxEditInstances.Location = new System.Drawing.Point(184, 94);
+            this.comboBoxEditInstances.Name = "comboBoxEditInstances";
+            this.comboBoxEditInstances.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditInstances.Size = new System.Drawing.Size(335, 20);
+            this.comboBoxEditInstances.TabIndex = 4;
+            // 
+            // simpleButtonQueryDatabases
+            // 
+            this.simpleButtonQueryDatabases.Location = new System.Drawing.Point(525, 140);
+            this.simpleButtonQueryDatabases.Name = "simpleButtonQueryDatabases";
+            this.simpleButtonQueryDatabases.Size = new System.Drawing.Size(112, 23);
+            this.simpleButtonQueryDatabases.TabIndex = 3;
+            this.simpleButtonQueryDatabases.Text = "Get Databases";
+            // 
+            // simpleButtonQueryInstances
+            // 
+            this.simpleButtonQueryInstances.Location = new System.Drawing.Point(525, 91);
+            this.simpleButtonQueryInstances.Name = "simpleButtonQueryInstances";
+            this.simpleButtonQueryInstances.Size = new System.Drawing.Size(112, 23);
+            this.simpleButtonQueryInstances.TabIndex = 3;
+            this.simpleButtonQueryInstances.Text = "Get Instances";
             // 
             // simpleButtonCancelCreateConnection
             // 
@@ -253,44 +288,10 @@ namespace LWSqlQueryTool_Winforms.Views
             this.textEditUserName.Size = new System.Drawing.Size(335, 20);
             this.textEditUserName.TabIndex = 1;
             // 
-            // simpleButtonQueryInstances
-            // 
-            this.simpleButtonQueryInstances.Location = new System.Drawing.Point(525, 91);
-            this.simpleButtonQueryInstances.Name = "simpleButtonQueryInstances";
-            this.simpleButtonQueryInstances.Size = new System.Drawing.Size(112, 23);
-            this.simpleButtonQueryInstances.TabIndex = 3;
-            this.simpleButtonQueryInstances.Text = "Get Instances";
-            // 
-            // simpleButtonQueryDatabases
-            // 
-            this.simpleButtonQueryDatabases.Location = new System.Drawing.Point(525, 140);
-            this.simpleButtonQueryDatabases.Name = "simpleButtonQueryDatabases";
-            this.simpleButtonQueryDatabases.Size = new System.Drawing.Size(112, 23);
-            this.simpleButtonQueryDatabases.TabIndex = 3;
-            this.simpleButtonQueryDatabases.Text = "Get Databases";
-            // 
             // mvvmContextConnectionStringView
             // 
             this.mvvmContextConnectionStringView.ContainerControl = this;
             this.mvvmContextConnectionStringView.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.ConnectionStringViewModel);
-            // 
-            // comboBoxEditInstances
-            // 
-            this.comboBoxEditInstances.Location = new System.Drawing.Point(184, 94);
-            this.comboBoxEditInstances.Name = "comboBoxEditInstances";
-            this.comboBoxEditInstances.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditInstances.Size = new System.Drawing.Size(335, 20);
-            this.comboBoxEditInstances.TabIndex = 4;
-            // 
-            // comboBoxEditDatabases
-            // 
-            this.comboBoxEditDatabases.Location = new System.Drawing.Point(184, 143);
-            this.comboBoxEditDatabases.Name = "comboBoxEditDatabases";
-            this.comboBoxEditDatabases.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditDatabases.Size = new System.Drawing.Size(335, 20);
-            this.comboBoxEditDatabases.TabIndex = 4;
             // 
             // ConnectionStringView
             // 
@@ -313,11 +314,11 @@ namespace LWSqlQueryTool_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.navigationPageConnetionStringBuilder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabases.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditInstances.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextConnectionStringView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditInstances.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabases.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
