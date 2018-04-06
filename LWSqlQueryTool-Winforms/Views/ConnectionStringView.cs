@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
+using DevExpress.Mvvm.POCO;
+using DevExpress.Utils.MVVM;
+using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using LWSqlQueryTool_Winforms.Models;
 using LWSqlQueryTool_Winforms.Services;
 using LWSqlQueryTool_Winforms.View_Models;
@@ -16,94 +21,17 @@ namespace LWSqlQueryTool_Winforms.Views
             InitializeComponent();
             if (!mvvmContextConnectionStringView.IsDesignMode)
                 InitializeBindings();
+                MVVMContext.RegisterXtraMessageBoxService();
 
-            HookupEvents();
-            SetUpSauces();
+            HackControls();
         }
 
-        private void SetUpSauces()
+        //Hacks to enable feature on controls that are not natively supported by DX
+        private void HackControls()
         {
-            lookUpEditConnectionStrings.Properties.DataSource = ConnectionStringService.SavedConnectionStrings;
-        }
-
-        private void HookupEvents()
-        {
-            simpleButtonCancelCreateConnection.Click += SimpleButtonCancelCreateConnection_Click;
-            simpleButtonCreateNewString.Click += SimpleButtonCreateNewString_Click;
-            simpleButtonQueryDatabases.Click += SimpleButtonQueryDatabases_Click;
-            simpleButtonQueryInstances.Click += SimpleButtonQueryInstances_Click;
-            simpleButtonSave.Click += SimpleButtonSaveOnClick;
-            simpleButtonConnect.Click += SimpleButtonConnectOnClick;
-            simpleButtonCancel.Click += SimpleButtonCancelOnClick;
-        }
-
-        private void SimpleButtonCancelOnClick(object sender, EventArgs eventArgs)
-        {
-            ConnectionStringService.CurrentConnectionString = null;
-            Close();
-        }
-
-        private void SimpleButtonConnectOnClick(object sender, EventArgs eventArgs)
-        {
-            var connectionstring = ((SavedConnectionString) lookUpEditConnectionStrings.EditValue).ConnectionString;
-            if (TestConnection(connectionstring))
-            {
-                ConnectionStringService.CurrentConnectionString = connectionstring;
-                Close();
-            }
-        }
-
-        private void SimpleButtonSaveOnClick(object sender, EventArgs eventArgs)
-        {
-            //Test the connection and save it if it works
-            TestAndSave();
-        }
-
-        private void TestAndSave()
-        {
-            //TODO - LOTS OF GOOD PLACES TO FAIL HERE!!!
-            var builder = new SqlConnectionStringBuilder();
-
-            builder.DataSource = comboBoxEditInstances.EditValue.ToString();
-            builder.InitialCatalog = comboBoxEditDatabases.EditValue.ToString();
-            builder.ConnectTimeout = 30;
-            builder.UserID = textEditUserName.EditValue.ToString();
-            builder.Password = textEditPassword.EditValue.ToString();
-
-            if (TestConnection(builder.ConnectionString))
-            {
-                ConnectionStringService.SavedConnectionStrings.Add(
-                    new SavedConnectionString
-                    {
-                        NickName = "BLAH",
-                        ConnectionString = builder.ConnectionString
-                    });
-
-
-                ShowConnectionStringManager();
-            }
-
-
-        }
-
-        private void SimpleButtonQueryInstances_Click(object sender, EventArgs e)
-        {
-            //Get instances
-        }
-
-        private void SimpleButtonQueryDatabases_Click(object sender, EventArgs e)
-        {
-            //Get databvases
-        }
-
-        private void SimpleButtonCreateNewString_Click(object sender, EventArgs e)
-        {
-            ShowConnectionStringBuilder();
-        }
-
-        private void SimpleButtonCancelCreateConnection_Click(object sender, EventArgs e)
-        {
-            ShowConnectionStringManager();
+            
+            FieldInfo f = comboBoxEditInstances.Properties.GetType().GetField("fTextEditStyle", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            if (f != null) f.SetValue(comboBoxEditInstances.Properties, TextEditStyles.Standard);
         }
 
         private void ShowConnectionStringBuilder()
@@ -116,34 +44,75 @@ namespace LWSqlQueryTool_Winforms.Views
             navigationFrame.SelectedPage = navigationPageConnectionStringManager;
         }
 
-        private bool TestConnection(string connectionString)
-        {
-            try
-            {
-                using (var conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (var command = new SqlCommand())
-                    {
-                        command.CommandText = "SELECT 1";
-                        command.Connection = conn;
-                        command.ExecuteScalar();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                XtraMessageBox.Show(e.ToString(), "Connection Failed");
-                return false;
-            }
 
-
-            return true;
-        }
 
         private void InitializeBindings()
         {
+            
             var fluent = mvvmContextConnectionStringView.OfType<ConnectionStringViewModel>();
+
+            mvvmContextConnectionStringView.RegisterService(SplashScreenService.Create(splashScreenManager));
+            
+
+            fluent.BindCommand(simpleButtonCreateNewString, x=>x.GoToConnectionStringBuilder());
+            fluent.BindCommand(simpleButtonCancelCreateConnection, x=>x.GoToConnectionStringManager());
+            fluent.BindCommand(simpleButtonCancel, x=>x.Cancel());
+            fluent.BindCommand(simpleButtonSaveAndTest, x=>x.TestAndSave());
+            fluent.BindCommand(simpleButtonConnect, x=>x.Connect());
+            fluent.BindCommand(simpleButtonQueryInstances, x=>x.GetInstances());
+
+            fluent.SetBinding(textEditDatabaseName, x => x.EditValue, y => y.InitalCatalog);
+            fluent.SetBinding(textEditNickName, x => x.EditValue, y => y.NickName);
+            fluent.SetBinding(textEditPassword, x => x.EditValue, y => y.Password);
+            fluent.SetBinding(textEditUserName, x => x.EditValue, y => y.UserId);
+            fluent.SetBinding(lookUpEditConnectionStrings.Properties, x => x.DataSource,
+                vm => vm.SavedConnectionStrings);
+            fluent.SetBinding(lookUpEditConnectionStrings, x => x.EditValue, y => y.SelectedConnectionString);
+            fluent.SetBinding(checkEditWindowsAuthentication, x => x.EditValue, y => y.UseWindowsAuthentication);
+            fluent.SetBinding(spinEditConnectionTimeout, x => x.EditValue, y => y.ConnectTimeout);
+            fluent.SetItemsSourceBinding(comboBoxEditInstances.Properties, cb=>cb.Items , x=>x.Instances,
+                (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
+            fluent.SetBinding(comboBoxEditInstances, x => x.EditValue, vm => vm.DataSource);
+            fluent.SetBinding(simpleButtonConnect, x => x.Enabled, vm => vm.CanConnect);
+
+
+
+            fluent.SetTrigger(x => x.WindowState, (state) =>
+            {
+                switch (state)
+                {
+                    case ConnectionStringViewModel.State.Open:
+                        break;
+                    case ConnectionStringViewModel.State.ConnectionStringManager:
+                        ShowConnectionStringManager();
+                        break;
+                    case ConnectionStringViewModel.State.ConnectionStringBuilder:
+                        ShowConnectionStringBuilder();
+                        break;
+                    case ConnectionStringViewModel.State.Exit:
+                        Close();
+                        break;
+                    default:
+                        break;
+                }
+            });
+
+            fluent.SetTrigger(x => x.UseWindowsAuthentication, (state) =>
+            {
+                switch (state)
+                {
+                    case false:
+                        textEditPassword.Enabled = true;
+                        textEditUserName.Enabled = true;
+                        break;
+                    case true:
+                        textEditPassword.Enabled = false;
+                        textEditUserName.Enabled = false;
+                        break;
+                    default:
+                        break;
+                }
+            });
         }
 
 

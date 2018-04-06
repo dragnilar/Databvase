@@ -269,6 +269,7 @@ namespace LWSqlQueryTool_Winforms.Views
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.dockPanelObjectExplorer);
             this.Controls.Add(this.ribbonControlMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainView";
             this.Ribbon = this.ribbonControlMain;
             this.Text = "Lightweight Query Tool";
