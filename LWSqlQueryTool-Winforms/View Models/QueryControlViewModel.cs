@@ -11,7 +11,6 @@ namespace LWSqlQueryTool_Winforms.View_Models
     [POCOViewModel()]
     public class QueryControlViewModel
     {
-        byte[] document = default(byte[]);
         public virtual QueryDocumentEntity Entity { get; set; }
         public virtual DataTable GridSource { get; set; }
         public virtual bool ClearGrid { get; set; }
