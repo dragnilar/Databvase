@@ -27,7 +27,6 @@ namespace LWSqlQueryTool_Winforms.Views
     public partial class MainView : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private int _numberOfQueries;
-        private bool Connected = false;
 
         public MainView()
         {
@@ -59,31 +58,19 @@ namespace LWSqlQueryTool_Winforms.Views
 
         }
 
-
-
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
         {
             SkinService.SaveSkinSettings();
         }
 
-        private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
-        {
-            AddNewTab();
-        }
 
-        private void AddNewTab()
-        {
-            _numberOfQueries++;
-            var caption = "Query " + _numberOfQueries;
-            var name = "QueryTab" + _numberOfQueries;
-            tabbedViewMain.AddDocument(caption, name);
-            tabbedViewMain.Controller.Activate(tabbedViewMain.Documents.FirstOrDefault());
-        }
 
         private void BarButtonItemObjectExplorerOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
             objectExplorerContainer.Panel.Show();
         }
+
+
 
         private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
@@ -97,11 +84,34 @@ namespace LWSqlQueryTool_Winforms.Views
             var window = new ConnectionStringView {StartPosition = FormStartPosition.CenterScreen};
             window.ShowDialog();
             window.Dispose();
-            Connected = true;
+            UpdateConnectionStatusOnUi();
 
             if (!string.IsNullOrEmpty(ConnectionStringService.CurrentConnectionString))
             {
                 objectExplorerContainer.Controls.Add(new ObjectExplorer { Dock = DockStyle.Fill });
+            }
+        }
+
+        private void UpdateConnectionStatusOnUi()
+        {
+            if (ConnectionStringService.CurrentConnectionString != null)
+            {
+                barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
+                barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
+                barButtonItemConnect.Visibility = BarItemVisibility.Never;
+            }
+            else
+            {
+                if (tabbedViewMain.ActiveDocument != null)
+                {
+                    tabbedViewMain.ActiveDocument.Dispose();
+
+                }
+
+                tabbedViewMain.Documents.Clear();
+                barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
+                barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
+                barButtonItemConnect.Visibility = BarItemVisibility.Always;
             }
         }
 
@@ -114,6 +124,23 @@ namespace LWSqlQueryTool_Winforms.Views
         {
             ConnectionStringService.CurrentConnectionString = null;
             objectExplorerContainer.Controls.Clear();
+            UpdateConnectionStatusOnUi();
+        }
+
+        #region Tabbed Main View
+
+        private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
+        {
+            AddNewTab();
+        }
+
+        private void AddNewTab()
+        {
+            _numberOfQueries++;
+            var caption = "Query " + _numberOfQueries;
+            var name = "QueryTab" + _numberOfQueries;
+            tabbedViewMain.AddDocument(caption, name);
+            tabbedViewMain.Controller.Activate(tabbedViewMain.Documents.LastOrDefault());
         }
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
@@ -146,6 +173,11 @@ namespace LWSqlQueryTool_Winforms.Views
         {
             MergeMainRibbon(e.Document.Control as QueryControl);
         }
+
+        #endregion
+
+
+
 
         private void MergeMainRibbon(QueryControl queryControl)
         {

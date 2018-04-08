@@ -117,6 +117,7 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemNewQuery.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemNewQuery.ImageOptions.Image")));
             this.barButtonItemNewQuery.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemNewQuery.ImageOptions.LargeImage")));
             this.barButtonItemNewQuery.Name = "barButtonItemNewQuery";
+            this.barButtonItemNewQuery.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barButtonItemConnect
             // 
@@ -141,6 +142,7 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemDisconnect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemDisconnect.ImageOptions.Image")));
             this.barButtonItemDisconnect.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemDisconnect.ImageOptions.LargeImage")));
             this.barButtonItemDisconnect.Name = "barButtonItemDisconnect";
+            this.barButtonItemDisconnect.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // ribbonPageDatabvase
             // 
