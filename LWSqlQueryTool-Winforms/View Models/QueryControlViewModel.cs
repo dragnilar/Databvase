@@ -64,7 +64,7 @@ namespace LWSqlQueryTool_Winforms.View_Models
                 else
                 {
                     ClearGrid = true;
-                    GridSource = result.ResultsTable;
+                    GridSource = result.ResultsSet.Tables.Count > 0 ? result.ResultsSet.Tables[0] : null;
                     ClearGrid = false;
                     ResultsMessage = result.ResultsMessage;
                 }

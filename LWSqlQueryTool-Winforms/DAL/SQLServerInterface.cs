@@ -4,8 +4,6 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LWSqlQueryTool_Winforms.Models;
 using LWSqlQueryTool_Winforms.Services;
 
@@ -13,50 +11,68 @@ namespace LWSqlQueryTool_Winforms.DAL
 {
     public static class SQLServerInterface
     {
-        public static QueryResult SendQueryStringAndGetResult(string sqlQuery)
+        /// <summary>
+        /// Sends a sql query to the sql server instance and database that are in the current connection string.
+        /// The sql query must be in the form of a string and can be anything such as select, update, etc.
+        /// </summary>
+        /// <param name="sqlQuery">A plain text sql query such as select * from tableName</param>
+        /// <returns>QueryResult</returns>
+        public static QueryResult SendQueryAndGetResult(string sqlQuery)
         {
             var result = new QueryResult();
             try
             {
-                var goNecction =
-                    new SqlConnection(ConnectionStringService.CurrentConnectionString);
-
-                var cmd = new SqlCommand();
-                SqlDataReader reader;
-                cmd.CommandText = sqlQuery;
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = goNecction;
-
-                goNecction.Open();
-                reader = cmd.ExecuteReader();
-
-                if (reader.VisibleFieldCount > 0)
+                using (var connection = new SqlConnection(ConnectionStringService.CurrentConnectionString))
                 {
-                    var dataTable = new DataTable();
-                    dataTable.Load(reader);
-                    result.ResultsTable = dataTable;
-                    var stats = goNecction.RetrieveStatistics();
-                    result.ResultsMessage = "Row(s) Affected " + stats["SelectRows"];
-
+                    connection.Open();
+                    var cmd = new SqlCommand
+                    {
+                        CommandText = sqlQuery,
+                        CommandType = CommandType.Text,
+                        Connection = connection
+                    };
+                    var adapter = new SqlDataAdapter(cmd);
+                    result = GetResult(adapter);
+                    connection.Close();
                 }
-                else
-                {
-                    result.ResultsMessage = "Command(s) Completed Successfully";
-                }
-
-                result.HasErrors = false;
-                reader.Dispose();
-                goNecction.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 result.HasErrors = true;
-                result.ResultsMessage = ex.Message;
+                result.ResultsMessage = ProcessSqlErrors(ex);
             }
-
-            return result; 
+            return result;
         }
 
+        private static QueryResult GetResult(SqlDataAdapter adapter)
+        {
+            var result = new QueryResult();
+            var ds = new DataSet();
+
+            var numberOfRows = adapter.Fill(ds);
+
+            result.ResultsMessage = numberOfRows > 0
+                ? numberOfRows + " row(s) affected."
+                : "Command(s) completed successfully";
+
+            result.ResultsSet = ds;
+            result.HasErrors = false;
+
+            return result;
+        }
+
+        private static string ProcessSqlErrors(SqlException ex)
+        {
+            var errorMessage = string.Empty;
+            foreach (SqlError error in ex.Errors) errorMessage = $"ERROR: {error.Message}\n";
+            return errorMessage;
+        }
+
+        /// <summary>
+        /// Tests a connection to SQL Server using the specified connection string.
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns>True or False</returns>
         public static bool TestConnection(string connectionString)
         {
             try
@@ -72,22 +88,26 @@ namespace LWSqlQueryTool_Winforms.DAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-
                 return false;
             }
 
             return true;
         }
 
+        /// <summary>
+        /// Gets a list of instances on the same network as the computer that the application is running.
+        /// This method takes a long time to run.
+        /// </summary>
+        /// <returns></returns>
         public static List<SQLServerInstance> GetInstances()
         {
-            SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
+            var instance = SqlDataSourceEnumerator.Instance;
 
             var table = instance.GetDataSources();
 
-            var instanceList = table.AsEnumerable().Select(x => new SQLServerInstance()
+            var instanceList = table.AsEnumerable().Select(x => new SQLServerInstance
             {
                 InstanceName = x.Field<string>("InstanceName"),
                 IsClustered = x.Field<string>("IsClustered"),
@@ -98,6 +118,11 @@ namespace LWSqlQueryTool_Winforms.DAL
             return instanceList;
         }
 
+
+        /// <summary>
+        /// Returns a sql schema object for the database specified in the connection string.
+        /// </summary>
+        /// <returns></returns>
         public static SQLSchema GetSqlSchema()
         {
             var schema = new SQLSchema();
@@ -122,12 +147,11 @@ namespace LWSqlQueryTool_Winforms.DAL
             return schema;
         }
 
-
         private static List<SQLTable> ConvertTableDataTableToList(DataTable tablesDataTable)
         {
             var tableList = new List<SQLTable>();
 
-            foreach (var table in (tablesDataTable.AsEnumerable()).Select(row => new SQLTable
+            foreach (var table in tablesDataTable.AsEnumerable().Select(row => new SQLTable
             {
                 TableName = Convert.ToString(row["TABLE_NAME"]),
                 TableSchema = Convert.ToString(row["TABLE_SCHEMA"]),
@@ -137,14 +161,13 @@ namespace LWSqlQueryTool_Winforms.DAL
                 tableList.Add(table);
 
             return tableList;
-
         }
 
         private static List<SQLColumn> ConvertColumnsDataTableToList(DataTable columnsDataTable)
         {
             var columnList = new List<SQLColumn>();
 
-            foreach (var column in (columnsDataTable.AsEnumerable()).Select(row => new SQLColumn
+            foreach (var column in columnsDataTable.AsEnumerable().Select(row => new SQLColumn
             {
                 TableName = Convert.ToString(row["TABLE_NAME"]),
                 TableSchema = Convert.ToString(row["TABLE_SCHEMA"]),

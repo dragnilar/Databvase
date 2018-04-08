@@ -27,7 +27,7 @@ namespace LWSqlQueryTool_Winforms.Services
 
         public QueryResult RunQuery(string sqlQuery)
         {
-            return sqlQuery == null ? null : SQLServerInterface.SendQueryStringAndGetResult(sqlQuery);
+            return sqlQuery == null ? null : SQLServerInterface.SendQueryAndGetResult(sqlQuery);
         }
 
         public string GetSqlQuery()

@@ -22,6 +22,7 @@ namespace LWSqlQueryTool_Winforms
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             CheckSettings();
+            SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
             Application.Run(new MainView());
         }
 
