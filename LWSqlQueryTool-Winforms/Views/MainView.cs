@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.Customization;
 using DevExpress.LookAndFeel;
+using DevExpress.Mvvm;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking;
@@ -14,6 +15,8 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ColorWheel;
 using DevExpress.XtraRichEdit.API.Native;
+using LWSqlQueryTool_Winforms.Dialogs;
+using LWSqlQueryTool_Winforms.Messages;
 using LWSqlQueryTool_Winforms.Modules;
 using LWSqlQueryTool_Winforms.Services;
 using LWSqlQueryTool_Winforms.View_Models;
@@ -23,7 +26,7 @@ namespace LWSqlQueryTool_Winforms.Views
 {
     public partial class MainView : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        private bool ConnectionActive = false;
+        private int _numberOfQueries = 0;
 
         public MainView()
         {
@@ -43,7 +46,7 @@ namespace LWSqlQueryTool_Winforms.Views
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
 
-            
+
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
@@ -61,10 +64,17 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
         {
-            tabbedViewMain.AddDocument("Test Caption", "Test Name");
-            tabbedViewMain.Controller.Activate(tabbedViewMain.Documents.FirstOrDefault());
+            AddNewTab();
         }
 
+        private void AddNewTab()
+        {
+            _numberOfQueries++;
+            var caption = "Query " + _numberOfQueries;
+            var name = "QueryTab" + _numberOfQueries;
+            tabbedViewMain.AddDocument(caption, name);
+            tabbedViewMain.Controller.Activate(tabbedViewMain.Documents.FirstOrDefault());
+        }
 
         private void BarButtonItemObjectExplorerOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
@@ -101,8 +111,13 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void RenameTab(object sender, EventArgs e)
         {
-            //TODO add ability to rename here
-            tabbedViewMain.ActiveDocument.Caption = "I am Renamed";
+            var renameTabDialog = new RenameTabDialog {StartPosition = FormStartPosition.CenterParent};
+            var dialogResult = renameTabDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                tabbedViewMain.ActiveDocument.Caption = renameTabDialog.NewTabName;
+            }
+            renameTabDialog.Dispose();
         }
 
         private void TabbedViewMainOnQueryControl(object sender, QueryControlEventArgs e)

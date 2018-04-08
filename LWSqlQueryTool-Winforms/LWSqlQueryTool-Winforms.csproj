@@ -36,6 +36,7 @@
     <ApplicationIcon>icons8_Database_Administrator.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevExpress.BonusSkins.v17.2" />
     <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -82,7 +83,13 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,6 +104,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\SQLServerInterface.cs" />
+    <Compile Include="Dialogs\RenameTabDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RenameTabDialog.Designer.cs">
+      <DependentUpon>RenameTabDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\SavedConnectionString.cs" />
@@ -151,6 +165,9 @@
     <Compile Include="Views\WaitSplashyView.Designer.cs">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\RenameTabDialog.resx">
+      <DependentUpon>RenameTabDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ConnectionStringWizard.resx">
       <DependentUpon>ConnectionStringWizard.cs</DependentUpon>
     </EmbeddedResource>
