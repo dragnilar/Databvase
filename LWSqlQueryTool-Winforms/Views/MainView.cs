@@ -26,7 +26,8 @@ namespace LWSqlQueryTool_Winforms.Views
 {
     public partial class MainView : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        private int _numberOfQueries = 0;
+        private int _numberOfQueries;
+        private bool Connected = false;
 
         public MainView()
         {
@@ -45,6 +46,7 @@ namespace LWSqlQueryTool_Winforms.Views
             barButtonItemNewQuery.ItemClick += BarButtonItemNewQueryOnItemClick;
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
+            barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
 
 
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
@@ -56,6 +58,8 @@ namespace LWSqlQueryTool_Winforms.Views
 
 
         }
+
+
 
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
         {
@@ -93,11 +97,23 @@ namespace LWSqlQueryTool_Winforms.Views
             var window = new ConnectionStringView {StartPosition = FormStartPosition.CenterScreen};
             window.ShowDialog();
             window.Dispose();
+            Connected = true;
 
             if (!string.IsNullOrEmpty(ConnectionStringService.CurrentConnectionString))
             {
                 objectExplorerContainer.Controls.Add(new ObjectExplorer { Dock = DockStyle.Fill });
             }
+        }
+
+        private void BarButtonItemDisconnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
+        {
+            Disconnect();
+        }
+
+        private void Disconnect()
+        {
+            ConnectionStringService.CurrentConnectionString = null;
+            objectExplorerContainer.Controls.Clear();
         }
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)

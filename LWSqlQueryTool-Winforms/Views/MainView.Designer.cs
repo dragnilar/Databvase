@@ -39,6 +39,7 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemNewQuery = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemConnect = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemObjectExplorer = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemDisconnect = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -75,9 +76,10 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemColorPalette,
             this.barButtonItemNewQuery,
             this.barButtonItemConnect,
-            this.barButtonItemObjectExplorer});
+            this.barButtonItemObjectExplorer,
+            this.barButtonItemDisconnect});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 9;
+            this.ribbonControlMain.MaxItemId = 10;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -132,6 +134,14 @@ namespace LWSqlQueryTool_Winforms.Views
             this.barButtonItemObjectExplorer.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemObjectExplorer.ImageOptions.LargeImage")));
             this.barButtonItemObjectExplorer.Name = "barButtonItemObjectExplorer";
             // 
+            // barButtonItemDisconnect
+            // 
+            this.barButtonItemDisconnect.Caption = "Disconnect";
+            this.barButtonItemDisconnect.Id = 9;
+            this.barButtonItemDisconnect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemDisconnect.ImageOptions.Image")));
+            this.barButtonItemDisconnect.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemDisconnect.ImageOptions.LargeImage")));
+            this.barButtonItemDisconnect.Name = "barButtonItemDisconnect";
+            // 
             // ribbonPageDatabvase
             // 
             this.ribbonPageDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -142,6 +152,7 @@ namespace LWSqlQueryTool_Winforms.Views
             // ribbonPageGroupDatabvase
             // 
             this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemConnect);
+            this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemDisconnect);
             this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemNewQuery);
             this.ribbonPageGroupDatabvase.Name = "ribbonPageGroupDatabvase";
             this.ribbonPageGroupDatabvase.Text = "Databvase?!";
@@ -311,6 +322,7 @@ namespace LWSqlQueryTool_Winforms.Views
         private DevExpress.XtraBars.BarButtonItem barButtonItemConnect;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupWindows;
         private DevExpress.XtraBars.BarButtonItem barButtonItemObjectExplorer;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemDisconnect;
     }
 }
 
