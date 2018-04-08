@@ -181,7 +181,11 @@ namespace LWSqlQueryTool_Winforms.Views
 
         private void MergeMainRibbon(QueryControl queryControl)
         {
-            ribbonControlMain.MergeRibbon(queryControl.Ribbon);
+            if (queryControl != null)
+            {
+                ribbonControlMain.MergeRibbon(queryControl.Ribbon);
+
+            }
         }
 
 
