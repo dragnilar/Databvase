@@ -13,7 +13,7 @@ using LWSqlQueryTool_Winforms.View_Models;
 
 namespace LWSqlQueryTool_Winforms.Views
 {
-    public partial class ConnectionStringView : Form
+    public partial class ConnectionStringView : XtraForm
     {
         //TODO this is just plain nasty, clean it up
         public ConnectionStringView()
