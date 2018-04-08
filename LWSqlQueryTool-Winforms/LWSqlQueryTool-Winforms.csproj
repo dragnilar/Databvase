@@ -123,7 +123,6 @@
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Services\ConnectionStringService.cs" />
     <Compile Include="Models\SQLTable.cs" />
-    <Compile Include="Services\SchemaService.cs" />
     <Compile Include="Views\ConnectionStringView.cs">
       <SubType>Form</SubType>
     </Compile>

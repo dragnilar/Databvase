@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DevExpress.Mvvm.DataAnnotations;
+using LWSqlQueryTool_Winforms.DAL;
 using LWSqlQueryTool_Winforms.Models;
 using LWSqlQueryTool_Winforms.Services;
 
@@ -27,7 +28,7 @@ namespace LWSqlQueryTool_Winforms.View_Models
 
         private void GetSchema()
         {
-            CurrentSchema = SchemaService.GetSchema();
+            CurrentSchema = SQLServerInterface.GetSqlSchema();
         }
 
         private List<ObjectExplorerTreeListObject> GetObjectExplorerDataSource()
