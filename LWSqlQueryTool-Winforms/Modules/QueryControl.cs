@@ -62,10 +62,10 @@ namespace LWSqlQueryTool_Winforms.Modules
             fluent.ViewModel.RaisePropertyChanged(x=>x.Entity);
 
             //Event to command
-            fluent.EventToCommand<ItemClickEventArgs>(QueryButton, "ItemClick", x => x.Query());
+            fluent.EventToCommand<ItemClickEventArgs>(QueryButton, "ItemClick", x => x.AsynchronousQuery());
 
             //With Key events
-            fluent.WithKey(richEditControlQueryEditor, Keys.F5).KeyToCommand(x => x.Query());
+            fluent.WithKey(richEditControlQueryEditor, Keys.F5).KeyToCommand(x => x.AsynchronousQuery());
 
             //Bindings
             fluent.SetBinding(gridControlResults, x => x.DataSource, y => y.GridSource);
@@ -79,6 +79,8 @@ namespace LWSqlQueryTool_Winforms.Modules
                     gridViewResults.Columns.Clear();
                 }
             });
+
+            fluent.SetTrigger(x => x.QueryRunning, (state) => { QueryButton.Enabled = !state; });
 
         }
 

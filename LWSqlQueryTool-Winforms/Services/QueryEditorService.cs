@@ -13,7 +13,8 @@ namespace LWSqlQueryTool_Winforms.Services
 {
     interface IQueryEditorService
     {
-        QueryResult RunQuery();
+        QueryResult RunQuery(string sqlQuery);
+        string GetSqlQuery();
     }
     class QueryEditorService: IQueryEditorService
     {
@@ -24,19 +25,14 @@ namespace LWSqlQueryTool_Winforms.Services
             _queryPane = queryPane;
         }
 
-        public QueryResult RunQuery()
+        public QueryResult RunQuery(string sqlQuery)
         {
-            var sqlQuery = GetSQLQuery();
-
-            if (sqlQuery == null) return null; 
-
-
-            return SQLServerInterface.SendQueryStringAndGetResult(sqlQuery);
+            return sqlQuery == null ? null : SQLServerInterface.SendQueryStringAndGetResult(sqlQuery);
         }
 
-        private string GetSQLQuery()
+        public string GetSqlQuery()
         {
-            var sqlQuery = string.Empty;
+            string sqlQuery;
 
             if (_queryPane.Document.Selection.Length > 1)
             {

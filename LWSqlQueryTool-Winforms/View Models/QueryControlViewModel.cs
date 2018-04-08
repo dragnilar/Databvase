@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Threading.Tasks;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
@@ -15,17 +16,45 @@ namespace LWSqlQueryTool_Winforms.View_Models
         public virtual DataTable GridSource { get; set; }
         public virtual bool ClearGrid { get; set; }
         public virtual string ResultsMessage { get; set; }
+        public virtual bool QueryRunning { get; set; }
 
         public QueryControlViewModel()
         {
             Entity = new QueryDocumentEntity {DocumentText = string.Empty};
             GridSource = null;
             ResultsMessage = string.Empty;
+            QueryRunning = false;
         }
 
-        public void Query()
+
+
+        /// <summary>
+        /// Executes an asynchronous query using the text on the query editor pane
+        /// </summary>
+        public async void AsynchronousQuery()
         {
-            var result = this.GetService<IQueryEditorService>().RunQuery();
+            if (QueryRunning)
+            {
+                return;
+            }
+
+            QueryRunning = true;
+            var sqlQuery = GetSQLQueryString();
+            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery)).ContinueWith((x) => ProcessResults(x.Result), 
+                TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);
+            QueryRunning = false;
+
+        }
+
+        private string GetSQLQueryString()
+        {
+            var sqlQueryString = this.GetService<IQueryEditorService>().GetSqlQuery();
+
+            return sqlQueryString;
+        }
+
+        private void ProcessResults(QueryResult result)
+        {
             if (result != null)
             {
                 if (result.HasErrors)
@@ -39,10 +68,7 @@ namespace LWSqlQueryTool_Winforms.View_Models
                     ClearGrid = false;
                     ResultsMessage = result.ResultsMessage;
                 }
-
-               
             }
-
         }
 
         public void Update()
