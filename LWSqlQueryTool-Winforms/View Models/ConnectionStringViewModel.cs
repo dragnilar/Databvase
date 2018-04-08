@@ -55,8 +55,8 @@ namespace LWSqlQueryTool_Winforms.View_Models
             WindowState = State.Open;
         }
 
-        //Simple Dependency For CurrentConnectionString, binds at runtime
-        protected void OnCurrentConnectionStringChanged()
+        //Simple Dependency For SelectedConnectionString, binds at runtime
+        protected void OnSelectedConnectionStringChanged()
         {
             CanConnect = SelectedConnectionString != null;
         }

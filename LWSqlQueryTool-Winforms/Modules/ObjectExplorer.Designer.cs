@@ -121,6 +121,7 @@
             // mvvmContextObjectExplorer
             // 
             this.mvvmContextObjectExplorer.ContainerControl = this;
+            this.mvvmContextObjectExplorer.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.ObjectExplorerViewModel);
             // 
             // ObjectExplorer
             // 

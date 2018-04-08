@@ -18,7 +18,7 @@ namespace LWSqlQueryTool_Winforms.Services
     public static class SchemaService
     {
         /// <summary>
-        /// Returns a SQL schema object. Uses the database speciified in the connection string manager's current connection string.
+        /// Returns a SQL schema object. Uses the database specified in the connection string manager's current connection string.
         /// </summary>
         /// <returns></returns>
         public static SQLSchema GetSchema()
