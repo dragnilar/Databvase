@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
@@ -92,7 +93,10 @@ namespace LWSqlQueryTool_Winforms.View_Models
 
         public void TestAndSave()
         {
-            //TODO - LOTS OF GOOD PLACES TO FAIL HERE!!!
+            if (!IsConnectionValid())
+            {
+                return;
+            }
 
             if (IsNickNameADuplicate())
             {
@@ -186,6 +190,44 @@ namespace LWSqlQueryTool_Winforms.View_Models
             return builder;
         }
 
+        private bool IsConnectionValid()
+        {
+            var errors = new List<string>();
+
+            if (string.IsNullOrEmpty(DataSource))
+            {
+                errors.Add("No server/instance specified");
+            }
+
+            if (string.IsNullOrEmpty(InitalCatalog))
+            {
+                errors.Add("No database specified");
+            }
+
+            if (ConnectTimeout < 1)
+            {
+                errors.Add("Connection timeout must be at least 1 second");
+            }
+
+            if (!UseWindowsAuthentication)
+            {
+                if (string.IsNullOrEmpty(UserId))
+                {
+                    errors.Add("You must specify a User Id if you are not using Windows Authentication");
+                }
+            }
+
+            if (errors.Count <= 0) return true;
+            var errorBuilder = new StringBuilder("There are errors with the connection string, please review them below: \n");
+            foreach (var error in errors)
+            {
+                errorBuilder.AppendLine(error);
+            }
+            MessageBoxService.ShowMessage(errorBuilder.ToString(), "Error(s) Creating Connection String", MessageButton.OK, MessageIcon.Error);
+
+            return false;
+
+        }
 
 
 
