@@ -102,13 +102,7 @@ namespace LWSqlQueryTool_Winforms.Views
             }
             else
             {
-                if (tabbedViewMain.ActiveDocument != null)
-                {
-                    tabbedViewMain.ActiveDocument.Dispose();
-
-                }
-
-                tabbedViewMain.Documents.Clear();
+                tabbedViewMain.Controller.CloseAll();
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
                 barButtonItemConnect.Visibility = BarItemVisibility.Always;
