@@ -26,7 +26,16 @@ namespace LWSqlQueryTool_Winforms.Services
 
         public QueryResult RunQuery()
         {
+            var sqlQuery = GetSQLQuery();
 
+            if (sqlQuery == null) return null; 
+
+
+            return SQLServerInterface.SendQueryStringAndGetResult(sqlQuery);
+        }
+
+        private string GetSQLQuery()
+        {
             var sqlQuery = string.Empty;
 
             if (_queryPane.Document.Selection.Length > 1)
@@ -45,7 +54,7 @@ namespace LWSqlQueryTool_Winforms.Services
                 return null;
             }
 
-            return SQLServerInterface.SendQueryStringAndGetResult(sqlQuery);
+            return sqlQuery;
         }
 
         
