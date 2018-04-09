@@ -14,7 +14,7 @@ namespace LWSqlQueryTool_Winforms.Services
     interface IQueryEditorService
     {
         QueryResult RunQuery(string sqlQuery);
-        string GetSqlQuery();
+        string GetSqlQueryFromQueryPane();
     }
     class QueryEditorService: IQueryEditorService
     {
@@ -30,7 +30,7 @@ namespace LWSqlQueryTool_Winforms.Services
             return sqlQuery == null ? null : SQLServerInterface.SendQueryAndGetResult(sqlQuery);
         }
 
-        public string GetSqlQuery()
+        public string GetSqlQueryFromQueryPane()
         {
             string sqlQuery;
 

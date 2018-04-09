@@ -50,6 +50,16 @@
             this.lciRibbon = new DevExpress.XtraLayout.LayoutControlItem();
             this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.bindingSourceQueryControl = new System.Windows.Forms.BindingSource(this.components);
+            this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barSubItemExport = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItemExportGridToExcel = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToXLSX = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToHTML = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToPDF = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToMHT = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToRTF = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToText = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemPrintGrid = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -89,9 +99,18 @@
             this.ribbonControlQueryControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControlQueryControl.ExpandCollapseItem,
             this.QueryButton,
-            this.SaveQueryButton});
+            this.SaveQueryButton,
+            this.barSubItemExport,
+            this.barButtonItemExportGridToExcel,
+            this.barButtonItemExportToXLSX,
+            this.barButtonItemExportToHTML,
+            this.barButtonItemExportToPDF,
+            this.barButtonItemExportToMHT,
+            this.barButtonItemExportToRTF,
+            this.barButtonItemExportToText,
+            this.barButtonItemPrintGrid});
             this.ribbonControlQueryControl.Location = new System.Drawing.Point(12, 12);
-            this.ribbonControlQueryControl.MaxItemId = 3;
+            this.ribbonControlQueryControl.MaxItemId = 14;
             this.ribbonControlQueryControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlQueryControl.Name = "ribbonControlQueryControl";
             this.ribbonControlQueryControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -99,7 +118,7 @@
             this.ribbonControlQueryControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 128);
+            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 120);
             this.ribbonControlQueryControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
             // 
             // QueryButton
@@ -117,12 +136,12 @@
             this.SaveQueryButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SaveQueryButton.ImageOptions.Image")));
             this.SaveQueryButton.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("SaveQueryButton.ImageOptions.LargeImage")));
             this.SaveQueryButton.Name = "SaveQueryButton";
-            this.SaveQueryButton.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.SaveQueryButton_ItemClick);
             // 
             // ribbonPageGroupDatabvase
             // 
             this.ribbonPageGroupDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroupQuery});
+            this.ribbonPageGroupQuery,
+            this.ribbonPageGroupGridPrintAndExport});
             this.ribbonPageGroupDatabvase.Name = "ribbonPageGroupDatabvase";
             this.ribbonPageGroupDatabvase.Text = "Databvase!";
             // 
@@ -135,10 +154,10 @@
             // 
             // xtraTabControlResultsPane
             // 
-            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 290);
+            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 285);
             this.xtraTabControlResultsPane.Name = "xtraTabControlResultsPane";
             this.xtraTabControlResultsPane.SelectedTabPage = this.xtraTabPageResultsGrid;
-            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 298);
+            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 303);
             this.xtraTabControlResultsPane.TabIndex = 12;
             this.xtraTabControlResultsPane.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageResultsGrid,
@@ -149,7 +168,7 @@
             this.xtraTabPageResultsGrid.Controls.Add(this.gridControlResults);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
-            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
+            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(770, 272);
             this.xtraTabPageResultsGrid.Text = "Results";
             // 
             // gridControlResults
@@ -158,7 +177,7 @@
             this.gridControlResults.Location = new System.Drawing.Point(0, 0);
             this.gridControlResults.MainView = this.gridViewResults;
             this.gridControlResults.Name = "gridControlResults";
-            this.gridControlResults.Size = new System.Drawing.Size(774, 266);
+            this.gridControlResults.Size = new System.Drawing.Size(770, 272);
             this.gridControlResults.TabIndex = 12;
             this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewResults});
@@ -175,7 +194,7 @@
             this.xtraTabPageMessages.Controls.Add(this.memoEditResults);
             this.xtraTabPageMessages.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageMessages.ImageOptions.Image")));
             this.xtraTabPageMessages.Name = "xtraTabPageMessages";
-            this.xtraTabPageMessages.Size = new System.Drawing.Size(774, 266);
+            this.xtraTabPageMessages.Size = new System.Drawing.Size(770, 272);
             this.xtraTabPageMessages.Text = "Messages";
             // 
             // memoEditResults
@@ -183,7 +202,7 @@
             this.memoEditResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEditResults.Location = new System.Drawing.Point(0, 0);
             this.memoEditResults.Name = "memoEditResults";
-            this.memoEditResults.Size = new System.Drawing.Size(774, 266);
+            this.memoEditResults.Size = new System.Drawing.Size(770, 272);
             this.memoEditResults.TabIndex = 0;
             // 
             // richEditControlQueryEditor
@@ -228,14 +247,14 @@
             this.splitterItemQueryEditor.AllowHotTrack = true;
             this.splitterItemQueryEditor.Location = new System.Drawing.Point(0, 268);
             this.splitterItemQueryEditor.Name = "splitterItemQueryEditor";
-            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 10);
+            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 5);
             // 
             // lcIResultsPane
             // 
             this.lcIResultsPane.Control = this.xtraTabControlResultsPane;
-            this.lcIResultsPane.Location = new System.Drawing.Point(0, 278);
+            this.lcIResultsPane.Location = new System.Drawing.Point(0, 273);
             this.lcIResultsPane.Name = "lcIResultsPane";
-            this.lcIResultsPane.Size = new System.Drawing.Size(780, 302);
+            this.lcIResultsPane.Size = new System.Drawing.Size(780, 307);
             this.lcIResultsPane.Text = "ResultsPane";
             this.lcIResultsPane.TextSize = new System.Drawing.Size(0, 0);
             this.lcIResultsPane.TextVisible = false;
@@ -258,6 +277,94 @@
             // bindingSourceQueryControl
             // 
             this.bindingSourceQueryControl.DataSource = typeof(LWSqlQueryTool_Winforms.Models.QueryDocumentEntity);
+            // 
+            // ribbonPageGroupGridPrintAndExport
+            // 
+            this.ribbonPageGroupGridPrintAndExport.AllowTextClipping = false;
+            this.ribbonPageGroupGridPrintAndExport.ItemLinks.Add(this.barSubItemExport);
+            this.ribbonPageGroupGridPrintAndExport.ItemLinks.Add(this.barButtonItemPrintGrid);
+            this.ribbonPageGroupGridPrintAndExport.Name = "ribbonPageGroupGridPrintAndExport";
+            this.ribbonPageGroupGridPrintAndExport.Text = "Print And Export Data";
+            // 
+            // barSubItemExport
+            // 
+            this.barSubItemExport.Caption = "Export Grid";
+            this.barSubItemExport.Id = 5;
+            this.barSubItemExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItemExport.ImageOptions.Image")));
+            this.barSubItemExport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barSubItemExport.ImageOptions.LargeImage")));
+            this.barSubItemExport.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportGridToExcel),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToXLSX),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToHTML),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToPDF),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToMHT),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToRTF),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToText)});
+            this.barSubItemExport.Name = "barSubItemExport";
+            // 
+            // barButtonItemExportGridToExcel
+            // 
+            this.barButtonItemExportGridToExcel.Caption = "Export to XLS";
+            this.barButtonItemExportGridToExcel.Id = 6;
+            this.barButtonItemExportGridToExcel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportGridToExcel.ImageOptions.Image")));
+            this.barButtonItemExportGridToExcel.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportGridToExcel.ImageOptions.LargeImage")));
+            this.barButtonItemExportGridToExcel.Name = "barButtonItemExportGridToExcel";
+            // 
+            // barButtonItemExportToXLSX
+            // 
+            this.barButtonItemExportToXLSX.Caption = "Export to XLSX";
+            this.barButtonItemExportToXLSX.Id = 7;
+            this.barButtonItemExportToXLSX.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToXLSX.ImageOptions.Image")));
+            this.barButtonItemExportToXLSX.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToXLSX.ImageOptions.LargeImage")));
+            this.barButtonItemExportToXLSX.Name = "barButtonItemExportToXLSX";
+            // 
+            // barButtonItemExportToHTML
+            // 
+            this.barButtonItemExportToHTML.Caption = "Export to HTML";
+            this.barButtonItemExportToHTML.Id = 8;
+            this.barButtonItemExportToHTML.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToHTML.ImageOptions.Image")));
+            this.barButtonItemExportToHTML.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToHTML.ImageOptions.LargeImage")));
+            this.barButtonItemExportToHTML.Name = "barButtonItemExportToHTML";
+            // 
+            // barButtonItemExportToPDF
+            // 
+            this.barButtonItemExportToPDF.Caption = "Export to PDF";
+            this.barButtonItemExportToPDF.Id = 9;
+            this.barButtonItemExportToPDF.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToPDF.ImageOptions.Image")));
+            this.barButtonItemExportToPDF.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToPDF.ImageOptions.LargeImage")));
+            this.barButtonItemExportToPDF.Name = "barButtonItemExportToPDF";
+            // 
+            // barButtonItemExportToMHT
+            // 
+            this.barButtonItemExportToMHT.Caption = "Export to MHT";
+            this.barButtonItemExportToMHT.Id = 10;
+            this.barButtonItemExportToMHT.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToMHT.ImageOptions.Image")));
+            this.barButtonItemExportToMHT.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToMHT.ImageOptions.LargeImage")));
+            this.barButtonItemExportToMHT.Name = "barButtonItemExportToMHT";
+            // 
+            // barButtonItemExportToRTF
+            // 
+            this.barButtonItemExportToRTF.Caption = "Export to RTF";
+            this.barButtonItemExportToRTF.Id = 11;
+            this.barButtonItemExportToRTF.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToRTF.ImageOptions.Image")));
+            this.barButtonItemExportToRTF.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToRTF.ImageOptions.LargeImage")));
+            this.barButtonItemExportToRTF.Name = "barButtonItemExportToRTF";
+            // 
+            // barButtonItemExportToText
+            // 
+            this.barButtonItemExportToText.Caption = "Export to Text";
+            this.barButtonItemExportToText.Id = 12;
+            this.barButtonItemExportToText.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToText.ImageOptions.Image")));
+            this.barButtonItemExportToText.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToText.ImageOptions.LargeImage")));
+            this.barButtonItemExportToText.Name = "barButtonItemExportToText";
+            // 
+            // barButtonItemPrintGrid
+            // 
+            this.barButtonItemPrintGrid.Caption = "Print Preview";
+            this.barButtonItemPrintGrid.Id = 13;
+            this.barButtonItemPrintGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.barButtonItemPrintGrid.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.barButtonItemPrintGrid.Name = "barButtonItemPrintGrid";
             // 
             // QueryControl
             // 
@@ -310,5 +417,15 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageGroupDatabvase;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupQuery;
         private DevExpress.XtraLayout.LayoutControlItem lciRibbon;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupGridPrintAndExport;
+        private DevExpress.XtraBars.BarSubItem barSubItemExport;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportGridToExcel;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToXLSX;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToHTML;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToPDF;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToMHT;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToRTF;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToText;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemPrintGrid;
     }
 }

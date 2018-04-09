@@ -47,7 +47,7 @@ namespace LWSqlQueryTool_Winforms.View_Models
 
         private string GetSQLQueryString()
         {
-            var sqlQueryString = this.GetService<IQueryEditorService>().GetSqlQuery();
+            var sqlQueryString = this.GetService<IQueryEditorService>().GetSqlQueryFromQueryPane();
 
             return sqlQueryString;
         }

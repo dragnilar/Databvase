@@ -64,7 +64,7 @@ namespace LWSqlQueryTool_Winforms.DAL
         private static string ProcessSqlErrors(SqlException ex)
         {
             var errorMessage = string.Empty;
-            foreach (SqlError error in ex.Errors) errorMessage = $"ERROR: {error.Message}\n";
+            foreach (SqlError error in ex.Errors) errorMessage = $"{error.Message}\n";
             return errorMessage;
         }
 
