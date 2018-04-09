@@ -1,4 +1,4 @@
-﻿namespace LWSqlQueryTool_Winforms.Models
+﻿namespace Databvase_Winforms.Models
 {
     /// <summary>
     /// A class representing a SQL Sever database's schema definition for a table.

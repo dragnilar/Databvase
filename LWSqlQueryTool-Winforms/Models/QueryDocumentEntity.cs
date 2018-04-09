@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LWSqlQueryTool_Winforms.Models
+namespace Databvase_Winforms.Models
 {
     public class QueryDocumentEntity
     {

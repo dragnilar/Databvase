@@ -1,4 +1,4 @@
-﻿namespace LWSqlQueryTool_Winforms.Views
+﻿namespace Databvase_Winforms.Views
 {
     partial class WaitSplashyView
     {

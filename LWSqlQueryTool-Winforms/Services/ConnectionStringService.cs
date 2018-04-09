@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using LWSqlQueryTool_Winforms.Models;
+using Databvase_Winforms.Models;
 
-namespace LWSqlQueryTool_Winforms.Services
+namespace Databvase_Winforms.Services
 {
     public static class ConnectionStringService
     {

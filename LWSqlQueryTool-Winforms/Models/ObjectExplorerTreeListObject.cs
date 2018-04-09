@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LWSqlQueryTool_Winforms.Models
+namespace Databvase_Winforms.Models
 {
     /// <summary>
     /// A class that is used for populating data in the object explorer

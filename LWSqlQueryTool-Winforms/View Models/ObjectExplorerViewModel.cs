@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using DevExpress.Mvvm.DataAnnotations;
-using LWSqlQueryTool_Winforms.DAL;
-using LWSqlQueryTool_Winforms.Models;
-using LWSqlQueryTool_Winforms.Services;
+using Databvase_Winforms.DAL;
+using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
 
-namespace LWSqlQueryTool_Winforms.View_Models
+namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel()]
     public class ObjectExplorerViewModel

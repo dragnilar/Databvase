@@ -1,8 +1,8 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
-using LWSqlQueryTool_Winforms.Messages;
+using Databvase_Winforms.Messages;
 
-namespace LWSqlQueryTool_Winforms.View_Models
+namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel()]
     public class MainViewModel

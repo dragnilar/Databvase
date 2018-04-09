@@ -7,11 +7,11 @@ using DevExpress.Utils.MVVM;
 using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using LWSqlQueryTool_Winforms.Models;
-using LWSqlQueryTool_Winforms.Services;
-using LWSqlQueryTool_Winforms.View_Models;
+using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
+using Databvase_Winforms.View_Models;
 
-namespace LWSqlQueryTool_Winforms.Views
+namespace Databvase_Winforms.Views
 {
     public partial class ConnectionStringView : XtraForm
     {

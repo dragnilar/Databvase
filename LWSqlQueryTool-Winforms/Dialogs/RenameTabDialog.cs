@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace LWSqlQueryTool_Winforms.Dialogs
+namespace Databvase_Winforms.Dialogs
 {
     public partial class RenameTabDialog : DevExpress.XtraEditors.XtraForm
     {

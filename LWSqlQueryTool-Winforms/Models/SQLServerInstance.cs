@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LWSqlQueryTool_Winforms.Models
+namespace Databvase_Winforms.Models
 {
     /// <summary>
     /// A class that represents a SQL Server instance returned by the SqlDataSourceEnumerator.GetDataSources() method.

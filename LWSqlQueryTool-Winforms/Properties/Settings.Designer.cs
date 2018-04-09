@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LWSqlQueryTool_Winforms.Properties
+namespace Databvase_Winforms.Properties
 {
 
 

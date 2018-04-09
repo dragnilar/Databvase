@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace LWSqlQueryTool_Winforms.Models
+namespace Databvase_Winforms.Models
 {
     public class QueryResult
     {

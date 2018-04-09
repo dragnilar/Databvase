@@ -15,14 +15,14 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ColorWheel;
 using DevExpress.XtraRichEdit.API.Native;
-using LWSqlQueryTool_Winforms.Dialogs;
-using LWSqlQueryTool_Winforms.Messages;
-using LWSqlQueryTool_Winforms.Modules;
-using LWSqlQueryTool_Winforms.Services;
-using LWSqlQueryTool_Winforms.View_Models;
+using Databvase_Winforms.Dialogs;
+using Databvase_Winforms.Messages;
+using Databvase_Winforms.Modules;
+using Databvase_Winforms.Services;
+using Databvase_Winforms.View_Models;
 using PopupMenuShowingEventArgs = DevExpress.XtraBars.Docking2010.Views.PopupMenuShowingEventArgs;
 
-namespace LWSqlQueryTool_Winforms.Views
+namespace Databvase_Winforms.Views
 {
     public partial class MainView : DevExpress.XtraBars.Ribbon.RibbonForm
     {

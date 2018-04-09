@@ -1,6 +1,6 @@
-﻿using LWSqlQueryTool_Winforms.View_Models;
+﻿using Databvase_Winforms.View_Models;
 
-namespace LWSqlQueryTool_Winforms.Views
+namespace Databvase_Winforms.Views
 {
     partial class ConnectionStringView
     {
@@ -104,7 +104,7 @@ namespace LWSqlQueryTool_Winforms.Views
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lciDatabaseName = new DevExpress.XtraLayout.LayoutControlItem();
             this.mvvmContextConnectionStringView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
-            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::LWSqlQueryTool_Winforms.Views.WaitSplashyView), true, true);
+            this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.navigationPageConnectionStringManager.SuspendLayout();
@@ -902,7 +902,7 @@ namespace LWSqlQueryTool_Winforms.Views
             // mvvmContextConnectionStringView
             // 
             this.mvvmContextConnectionStringView.ContainerControl = this;
-            this.mvvmContextConnectionStringView.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.ConnectionStringViewModel);
+            this.mvvmContextConnectionStringView.ViewModelType = typeof(Databvase_Winforms.View_Models.ConnectionStringViewModel);
             // 
             // splashScreenManager
             // 

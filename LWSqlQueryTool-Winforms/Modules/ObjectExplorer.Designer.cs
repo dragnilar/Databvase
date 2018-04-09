@@ -1,4 +1,4 @@
-﻿namespace LWSqlQueryTool_Winforms.Modules
+﻿namespace Databvase_Winforms.Modules
 {
     partial class ObjectExplorer
     {
@@ -121,7 +121,7 @@
             // mvvmContextObjectExplorer
             // 
             this.mvvmContextObjectExplorer.ContainerControl = this;
-            this.mvvmContextObjectExplorer.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.ObjectExplorerViewModel);
+            this.mvvmContextObjectExplorer.ViewModelType = typeof(Databvase_Winforms.View_Models.ObjectExplorerViewModel);
             // 
             // ObjectExplorer
             // 

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace LWSqlQueryTool_Winforms.Utilities
+namespace Databvase_Winforms.Utilities
 {
     public static class GridUtilities
     {

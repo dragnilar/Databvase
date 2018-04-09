@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LWSqlQueryTool_Winforms.Models;
+using Databvase_Winforms.Models;
 using Tyrrrz.Settings;
 
-namespace LWSqlQueryTool_Winforms
+namespace Databvase_Winforms
 {
     public class Settings : SettingsManager
     {

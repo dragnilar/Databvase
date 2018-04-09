@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraWaitForm;
 
-namespace LWSqlQueryTool_Winforms.Views
+namespace Databvase_Winforms.Views
 {
     public partial class WaitSplashyView : WaitForm
     {

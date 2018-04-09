@@ -1,4 +1,4 @@
-﻿namespace LWSqlQueryTool_Winforms.Modules
+﻿namespace Databvase_Winforms.Modules
 {
     partial class QueryControl
     {
@@ -272,11 +272,11 @@
             // mvvmContextQueryControl
             // 
             this.mvvmContextQueryControl.ContainerControl = this;
-            this.mvvmContextQueryControl.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.QueryControlViewModel);
+            this.mvvmContextQueryControl.ViewModelType = typeof(Databvase_Winforms.View_Models.QueryControlViewModel);
             // 
             // bindingSourceQueryControl
             // 
-            this.bindingSourceQueryControl.DataSource = typeof(LWSqlQueryTool_Winforms.Models.QueryDocumentEntity);
+            this.bindingSourceQueryControl.DataSource = typeof(Databvase_Winforms.Models.QueryDocumentEntity);
             // 
             // ribbonPageGroupGridPrintAndExport
             // 

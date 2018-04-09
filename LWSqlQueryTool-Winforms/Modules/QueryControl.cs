@@ -15,11 +15,11 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraRichEdit.API.Native;
-using LWSqlQueryTool_Winforms.Services;
-using LWSqlQueryTool_Winforms.Utilities;
-using LWSqlQueryTool_Winforms.View_Models;
+using Databvase_Winforms.Services;
+using Databvase_Winforms.Utilities;
+using Databvase_Winforms.View_Models;
 
-namespace LWSqlQueryTool_Winforms.Modules
+namespace Databvase_Winforms.Modules
 {
     public partial class QueryControl : DevExpress.XtraEditors.XtraUserControl
     {

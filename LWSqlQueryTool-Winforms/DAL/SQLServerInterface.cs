@@ -4,10 +4,10 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Linq;
-using LWSqlQueryTool_Winforms.Models;
-using LWSqlQueryTool_Winforms.Services;
+using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
 
-namespace LWSqlQueryTool_Winforms.DAL
+namespace Databvase_Winforms.DAL
 {
     public static class SQLServerInterface
     {

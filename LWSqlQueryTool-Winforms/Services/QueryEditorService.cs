@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevExpress.XtraRichEdit;
-using LWSqlQueryTool_Winforms.DAL;
-using LWSqlQueryTool_Winforms.Models;
+using Databvase_Winforms.DAL;
+using Databvase_Winforms.Models;
 
-namespace LWSqlQueryTool_Winforms.Services
+namespace Databvase_Winforms.Services
 {
     interface IQueryEditorService
     {

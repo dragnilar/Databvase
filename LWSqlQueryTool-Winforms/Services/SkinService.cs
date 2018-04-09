@@ -8,9 +8,9 @@ using DevExpress.Customization;
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.XtraEditors.ColorWheel;
-using LWSqlQueryTool_Winforms.Views;
+using Databvase_Winforms.Views;
 
-namespace LWSqlQueryTool_Winforms.Services
+namespace Databvase_Winforms.Services
 {
     public static class SkinService
     {

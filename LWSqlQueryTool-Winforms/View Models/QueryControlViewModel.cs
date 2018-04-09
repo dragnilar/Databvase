@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
-using LWSqlQueryTool_Winforms.Models;
-using LWSqlQueryTool_Winforms.Services;
+using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
 
-namespace LWSqlQueryTool_Winforms.View_Models
+namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel()]
     public class QueryControlViewModel

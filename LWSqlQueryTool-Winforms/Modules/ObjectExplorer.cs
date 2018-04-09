@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
-using LWSqlQueryTool_Winforms.Models;
-using LWSqlQueryTool_Winforms.Services;
-using LWSqlQueryTool_Winforms.View_Models;
+using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
+using Databvase_Winforms.View_Models;
 
-namespace LWSqlQueryTool_Winforms.Modules
+namespace Databvase_Winforms.Modules
 {
     public partial class ObjectExplorer : DevExpress.XtraEditors.XtraUserControl
     {

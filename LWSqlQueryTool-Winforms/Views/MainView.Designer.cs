@@ -1,6 +1,6 @@
-﻿using LWSqlQueryTool_Winforms.View_Models;
+﻿using Databvase_Winforms.View_Models;
 
-namespace LWSqlQueryTool_Winforms.Views
+namespace Databvase_Winforms.Views
 {
     partial class MainView
     {
@@ -184,7 +184,7 @@ namespace LWSqlQueryTool_Winforms.Views
             // mvvmContextMain
             // 
             this.mvvmContextMain.ContainerControl = this;
-            this.mvvmContextMain.ViewModelType = typeof(LWSqlQueryTool_Winforms.View_Models.MainViewModel);
+            this.mvvmContextMain.ViewModelType = typeof(Databvase_Winforms.View_Models.MainViewModel);
             // 
             // defaultLookAndFeelMain
             // 

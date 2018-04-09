@@ -1,4 +1,4 @@
-﻿namespace LWSqlQueryTool_Winforms.Modules
+﻿namespace Databvase_Winforms.Modules
 {
     partial class ConnectionStringWizard
     {

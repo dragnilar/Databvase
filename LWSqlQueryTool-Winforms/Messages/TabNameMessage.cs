@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LWSqlQueryTool_Winforms.Messages
+namespace Databvase_Winforms.Messages
 {
     public class TabNameMessage
     {

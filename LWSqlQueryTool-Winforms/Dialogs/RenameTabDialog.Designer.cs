@@ -1,4 +1,4 @@
-﻿namespace LWSqlQueryTool_Winforms.Dialogs
+﻿namespace Databvase_Winforms.Dialogs
 {
     partial class RenameTabDialog
     {
