@@ -1,23 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using DevExpress.Mvvm;
-using DevExpress.Mvvm.DataAnnotations;
-using DevExpress.Mvvm.POCO;
-using DevExpress.Utils.MVVM.Services;
 using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 
 namespace Databvase_Winforms.View_Models
 {
-    [POCOViewModel()]
+    [POCOViewModel]
     public class ConnectionStringViewModel
     {
+        public enum State
+        {
+            Open,
+            ConnectionStringManager,
+            ConnectionStringBuilder,
+            Exit
+        }
+
+
+        public ConnectionStringViewModel()
+        {
+            InitalizeValues();
+            SelectedConnection = null;
+            SavedConnectionStrings = App.Config.ConnectionStrings;
+            CanConnect = false;
+        }
+
         public virtual bool UseWindowsAuthentication { get; set; }
         public virtual string DataSource { get; set; }
         public virtual int ConnectTimeout { get; set; }
@@ -34,16 +47,7 @@ namespace Databvase_Winforms.View_Models
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
-
-        public ConnectionStringViewModel()
-        {
-            InitalizeValues();
-            SelectedConnection = null;
-            SavedConnectionStrings = App.Config.ConnectionStrings;
-            CanConnect = false;
-        }
-
-        void InitalizeValues()
+        private void InitalizeValues()
         {
             UseWindowsAuthentication = false;
             DataSource = string.Empty;
@@ -61,20 +65,13 @@ namespace Databvase_Winforms.View_Models
 
         public void Connect()
         {
-
-            if (ConnectionService.SetAndTestConnection(SelectedConnection))
-            {
-
-                WindowState = State.Exit;
-            }
-
+            if (ConnectionService.SetAndTestConnection(SelectedConnection)) WindowState = State.Exit;
         }
 
         public void Cancel()
         {
             ConnectionService.CurrentConnection = null;
             WindowState = State.Exit;
-
         }
 
         public void GoToConnectionStringBuilder()
@@ -90,14 +87,12 @@ namespace Databvase_Winforms.View_Models
 
         public void TestAndSave()
         {
-            if (!IsConnectionValid())
-            {
-                return;
-            }
+            if (!IsConnectionValid()) return;
 
             if (IsNickNameADuplicate())
             {
-                MessageBoxService.ShowMessage("Nickname is already being used by another saved string, please enter a different one.");
+                MessageBoxService.ShowMessage(
+                    "Nickname is already being used by another saved string, please enter a different one.");
                 return;
             }
 
@@ -124,10 +119,7 @@ namespace Databvase_Winforms.View_Models
 
         private bool IsNickNameADuplicate()
         {
-            if (App.Config.ConnectionStrings.Any(r=>r.NickName == NickName))
-            {
-                return true;
-            }
+            if (App.Config.ConnectionStrings.Any(r => r.NickName == NickName)) return true;
 
             return false;
         }
@@ -157,8 +149,6 @@ namespace Databvase_Winforms.View_Models
 
                 MessageBoxService.ShowMessage("An error occured getting the instances: \n " + e);
             }
-
-
         }
 
         private SavedConnection BuildConnection()
@@ -186,45 +176,22 @@ namespace Databvase_Winforms.View_Models
         {
             var errors = new List<string>();
 
-            if (string.IsNullOrEmpty(DataSource))
-            {
-                errors.Add("No server/instance specified");
-            }
+            if (string.IsNullOrEmpty(DataSource)) errors.Add("No server/instance specified");
 
-            if (ConnectTimeout < 1)
-            {
-                errors.Add("Connection timeout must be at least 1 second");
-            }
+            if (ConnectTimeout < 1) errors.Add("Connection timeout must be at least 1 second");
 
             if (!UseWindowsAuthentication)
-            {
                 if (string.IsNullOrEmpty(UserId))
-                {
                     errors.Add("You must specify a User Id if you are not using Windows Authentication");
-                }
-            }
 
             if (errors.Count <= 0) return true;
-            var errorBuilder = new StringBuilder("There are errors with the connection string, please review them below: \n");
-            foreach (var error in errors)
-            {
-                errorBuilder.AppendLine(error);
-            }
-            MessageBoxService.ShowMessage(errorBuilder.ToString(), "Error(s) Creating Connection String", MessageButton.OK, MessageIcon.Error);
+            var errorBuilder =
+                new StringBuilder("There are errors with the connection string, please review them below: \n");
+            foreach (var error in errors) errorBuilder.AppendLine(error);
+            MessageBoxService.ShowMessage(errorBuilder.ToString(), "Error(s) Creating Connection String",
+                MessageButton.OK, MessageIcon.Error);
 
             return false;
-
         }
-
-
-
-        public enum State
-        {
-            Open,
-            ConnectionStringManager,
-            ConnectionStringBuilder,
-            Exit
-        }
-
     }
 }

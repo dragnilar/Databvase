@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DevExpress.XtraRichEdit;
-using Databvase_Winforms.DAL;
+﻿using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
+using DevExpress.XtraRichEdit;
 
 namespace Databvase_Winforms.Services
 {
-    interface IQueryEditorService
+    internal interface IQueryEditorService
     {
         QueryResult RunQuery(string sqlQuery);
         string GetSqlQueryFromQueryPane();
     }
-    class QueryEditorService: IQueryEditorService
+
+    internal class QueryEditorService : IQueryEditorService
     {
-        private RichEditControl _queryPane;
+        private readonly RichEditControl _queryPane;
 
         public QueryEditorService(RichEditControl queryPane)
         {
@@ -45,14 +39,9 @@ namespace Databvase_Winforms.Services
             }
 
             //TODO - Comment parsing needs to be improved
-            if (string.IsNullOrEmpty(sqlQuery) || sqlQuery.StartsWith("--") || sqlQuery.StartsWith("/*"))
-            {
-                return null;
-            }
+            if (string.IsNullOrEmpty(sqlQuery) || sqlQuery.StartsWith("--") || sqlQuery.StartsWith("/*")) return null;
 
             return sqlQuery;
         }
-
-        
     }
 }

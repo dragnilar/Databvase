@@ -1,30 +1,21 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.Customization;
-using DevExpress.LookAndFeel;
-using DevExpress.Mvvm;
-using DevExpress.Utils.Menu;
-using DevExpress.XtraBars;
-using DevExpress.XtraBars.Docking;
-using DevExpress.XtraBars.Docking2010.Views;
-using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.ColorWheel;
-using DevExpress.XtraRichEdit.API.Native;
 using Databvase_Winforms.Dialogs;
-using Databvase_Winforms.Messages;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
-using PopupMenuShowingEventArgs = DevExpress.XtraBars.Docking2010.Views.PopupMenuShowingEventArgs;
+using DevExpress.Customization;
+using DevExpress.LookAndFeel;
+using DevExpress.Utils.Menu;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Docking2010.Views;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors.ColorWheel;
 
 namespace Databvase_Winforms.Views
 {
-    public partial class MainView : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class MainView : RibbonForm
     {
         private int _numberOfQueries;
 
@@ -53,9 +44,6 @@ namespace Databvase_Winforms.Views
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
 
             defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
-               
-
-
         }
 
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
@@ -64,18 +52,15 @@ namespace Databvase_Winforms.Views
         }
 
 
-
         private void BarButtonItemObjectExplorerOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
             objectExplorerContainer.Panel.Show();
         }
 
 
-
         private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
             Gonnection();
-
         }
 
         private void Gonnection()
@@ -87,9 +72,7 @@ namespace Databvase_Winforms.Views
             UpdateConnectionStatusOnUi();
 
             if (ConnectionService.CurrentConnection != null)
-            {
-                objectExplorerContainer.Controls.Add(new ObjectExplorer { Dock = DockStyle.Fill });
-            }
+                objectExplorerContainer.Controls.Add(new ObjectExplorer {Dock = DockStyle.Fill});
         }
 
         private void UpdateConnectionStatusOnUi()
@@ -121,6 +104,18 @@ namespace Databvase_Winforms.Views
             UpdateConnectionStatusOnUi();
         }
 
+
+        private void MergeMainRibbon(QueryControl queryControl)
+        {
+            if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
+        }
+
+
+        private void InitializeBindings()
+        {
+            var fluent = mvvmContextMain.OfType<MainViewModel>();
+        }
+
         #region Tabbed Main View
 
         private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
@@ -140,26 +135,19 @@ namespace Databvase_Winforms.Views
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             var menu = e.Menu;
-            if (e.HitInfo.Document != null)
-            {
-                menu.Items.Add(new DXMenuItem("Rename Tab", new EventHandler(RenameTab)));
-            }
+            if (e.HitInfo.Document != null) menu.Items.Add(new DXMenuItem("Rename Tab", RenameTab));
         }
 
         private void RenameTab(object sender, EventArgs e)
         {
             var renameTabDialog = new RenameTabDialog {StartPosition = FormStartPosition.CenterParent};
             var dialogResult = renameTabDialog.ShowDialog();
-            if (dialogResult == DialogResult.OK)
-            {
-                tabbedViewMain.ActiveDocument.Caption = renameTabDialog.NewTabName;
-            }
+            if (dialogResult == DialogResult.OK) tabbedViewMain.ActiveDocument.Caption = renameTabDialog.NewTabName;
             renameTabDialog.Dispose();
         }
 
         private void TabbedViewMainOnQueryControl(object sender, QueryControlEventArgs e)
         {
-
             e.Control = new QueryControl();
         }
 
@@ -171,25 +159,16 @@ namespace Databvase_Winforms.Views
         #endregion
 
 
-
-
-        private void MergeMainRibbon(QueryControl queryControl)
-        {
-            if (queryControl != null)
-            {
-                ribbonControlMain.MergeRibbon(queryControl.Ribbon);
-
-            }
-        }
-
-
         #region Skin Goodness
+
         private void Default_StyleChanged(object sender, EventArgs e)
         {
-            barButtonItemColorPalette.Visibility = LookAndFeel.ActiveSkinName == SkinStyle.Bezier ? BarItemVisibility.Always : BarItemVisibility.Never;
+            barButtonItemColorPalette.Visibility = LookAndFeel.ActiveSkinName == SkinStyle.Bezier
+                ? BarItemVisibility.Always
+                : BarItemVisibility.Never;
         }
 
-        private void barButtonItemColorMixer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonItemColorMixer_ItemClick(object sender, ItemClickEventArgs e)
         {
             using (var colorWheel = new ColorWheelForm())
             {
@@ -202,19 +181,14 @@ namespace Databvase_Winforms.Views
             }
         }
 
-        private void barButtonItemColorPalette_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonItemColorPalette_ItemClick(object sender, ItemClickEventArgs e)
         {
             using (var svgSkinSelector = new SvgSkinPaletteSelector(this))
             {
                 svgSkinSelector.ShowDialog();
             }
         }
-        #endregion  
 
-
-        void InitializeBindings()
-        {
-            var fluent = mvvmContextMain.OfType<MainViewModel>();
-        }
+        #endregion
     }
 }

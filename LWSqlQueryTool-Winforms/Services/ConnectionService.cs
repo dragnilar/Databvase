@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Databvase_Winforms.Models;
+﻿using Databvase_Winforms.Models;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Services
 {
     public static class ConnectionService
     {
+        public static string CurrentDatabase = "MonsterDB";
 
         public static SavedConnection CurrentConnection { get; set; }
-        public static string CurrentDatabase = "MonsterDB";
 
         public static Server GetServerAtCurrentDatabase()
         {
@@ -33,20 +31,14 @@ namespace Databvase_Winforms.Services
                 CurrentServer.ConnectionContext.StatementTimeout = CurrentConnection.Timeout;
             }
 
-            if (dbName != null)
-            {
-                CurrentServer.ConnectionContext.DatabaseName = dbName;
-            }
+            if (dbName != null) CurrentServer.ConnectionContext.DatabaseName = dbName;
 
             return CurrentServer;
-
         }
-
 
 
         public static bool SetAndTestConnection(SavedConnection savedConnection)
         {
-
             if (savedConnection != null)
             {
                 CurrentConnection = savedConnection;
@@ -85,11 +77,5 @@ namespace Databvase_Winforms.Services
                 return false;
             }
         }
-
-
-
-
-
-
     }
 }

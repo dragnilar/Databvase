@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Databvase_Winforms.Models
+﻿namespace Databvase_Winforms.Models
 {
     /// <summary>
-    /// This is a class that is used to store connection strings to the application settings
+    ///     This is a class that is used to store connection strings to the application settings
     /// </summary>
     public class SavedConnection
     {

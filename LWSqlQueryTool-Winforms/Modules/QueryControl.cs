@@ -1,30 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Data.SqlClient;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Databvase_Winforms.Services;
+using Databvase_Winforms.Utilities;
+using Databvase_Winforms.View_Models;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Utils.MVVM;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
-using DevExpress.XtraRichEdit.Model;
 using DevExpress.XtraRichEdit.API.Native;
-using Databvase_Winforms.Services;
-using Databvase_Winforms.Utilities;
-using Databvase_Winforms.View_Models;
 
 namespace Databvase_Winforms.Modules
 {
-    public partial class QueryControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class QueryControl : XtraUserControl
     {
-        public RibbonControl Ribbon => ribbonControlQueryControl;
-
         private const string PDFFilter = "PDF Document (*.pdf)|*.pdf";
         private const string XLSFilter = "XLS File (*.XLS)|*.XLS";
         private const string XLSXFilter = "XLSX File (*.XLSX)|*.XLSX";
@@ -43,11 +31,13 @@ namespace Databvase_Winforms.Modules
                 InitializeBindings();
         }
 
+        public RibbonControl Ribbon { get; private set; }
+
 
         private void SetupQueryEditor()
         {
             //We want line numbers on the query editor because they are nice to have... :P
-            richEditControlQueryEditor.Document.Sections[0].LineNumbering.RestartType = DevExpress.XtraRichEdit.API.Native.LineNumberingRestart.Continuous;
+            richEditControlQueryEditor.Document.Sections[0].LineNumbering.RestartType = LineNumberingRestart.Continuous;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Distance = 0.1f;
@@ -70,7 +60,6 @@ namespace Databvase_Winforms.Modules
             barButtonItemExportToPDF.ItemClick += (sender, args) => ExportGrid("pdf");
             barButtonItemExportToRTF.ItemClick += (sender, args) => ExportGrid("rtf");
             barButtonItemExportToText.ItemClick += (sender, args) => ExportGrid("txt");
-
         }
 
         private void ExportGrid(string fileType)
@@ -99,7 +88,7 @@ namespace Databvase_Winforms.Modules
                     gridViewResults.ExportToMht(GridUtilities.GetFileNameViaSavePrompt(fileType, MHTFilter));
                     break;
                 case "csv":
-                    gridViewResults.ExportToCsv(GridUtilities.GetFileNameViaSavePrompt(fileType, CSVFILTER ));
+                    gridViewResults.ExportToCsv(GridUtilities.GetFileNameViaSavePrompt(fileType, CSVFILTER));
                     break;
                 default:
                     break;
@@ -107,7 +96,8 @@ namespace Databvase_Winforms.Modules
         }
 
         #region MVVMContext
-        void InitializeBindings()
+
+        private void InitializeBindings()
         {
             //Instantiate fluent API
             var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
@@ -143,15 +133,12 @@ namespace Databvase_Winforms.Modules
         private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)
         {
             //Grid clear trigger
-            fluent.SetTrigger(x => x.ClearGrid, (clear) =>
+            fluent.SetTrigger(x => x.ClearGrid, clear =>
             {
-                if (clear)
-                {
-                    gridViewResults.Columns.Clear();
-                }
+                if (clear) gridViewResults.Columns.Clear();
             });
 
-            fluent.SetTrigger(x => x.QueryRunning, (state) => { QueryButton.Enabled = !state; });
+            fluent.SetTrigger(x => x.QueryRunning, state => { QueryButton.Enabled = !state; });
         }
 
         #endregion

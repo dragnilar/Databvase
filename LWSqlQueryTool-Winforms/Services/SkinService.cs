@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Databvase_Winforms.Views;
 using DevExpress.Customization;
 using DevExpress.LookAndFeel;
-using DevExpress.Skins;
 using DevExpress.XtraEditors.ColorWheel;
-using Databvase_Winforms.Views;
 
 namespace Databvase_Winforms.Services
 {
@@ -18,20 +12,14 @@ namespace Databvase_Winforms.Services
         {
             var mainWindow = new Form();
             foreach (Form window in Application.OpenForms)
-            {
                 if (window is MainView)
-                {
                     mainWindow = window;
-                }
-            }
 
             if (mainWindow is MainView)
-            {
                 using (var palletteSelector = new SvgSkinPaletteSelector(mainWindow))
                 {
                     palletteSelector.ShowDialog();
                 }
-            }
         }
 
         public static void ChangeColorSwatch()
@@ -55,6 +43,7 @@ namespace Databvase_Winforms.Services
                 App.Config.DefaultSvgPalette = UserLookAndFeel.Default.ActiveSvgPaletteName;
                 App.Config.Save();
             }
+
             App.Config.DefaultSvgPalette = UserLookAndFeel.Default.ActiveSvgPaletteName;
             App.Config.SavedSkinColor1 = UserLookAndFeel.Default.SkinMaskColor;
             App.Config.SavedSkinColor2 = UserLookAndFeel.Default.SkinMaskColor2;
@@ -63,19 +52,13 @@ namespace Databvase_Winforms.Services
 
         public static void LoadSkinSettings()
         {
-
             if (App.Config.DefaultSkinName == "The Bezier")
-            {
                 UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Bezier, App.Config.DefaultSvgPalette);
-            }
             else
-            {
                 UserLookAndFeel.Default.SkinName = App.Config.DefaultSkinName;
-            }
 
             UserLookAndFeel.Default.SkinMaskColor = App.Config.SavedSkinColor1;
             UserLookAndFeel.Default.SkinMaskColor2 = App.Config.SavedSkinColor2;
         }
-
     }
 }

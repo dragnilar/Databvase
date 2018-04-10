@@ -1,8 +1,9 @@
 ﻿namespace Databvase_Winforms.Models
 {
     /// <summary>
-    /// A class representing a SQL Sever database's schema definition for a table.
-    /// Schema information can be found here: https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-schema-collections
+    ///     A class representing a SQL Sever database's schema definition for a table.
+    ///     Schema information can be found here:
+    ///     https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-schema-collections
     /// </summary>
     public class SQLTable
     {

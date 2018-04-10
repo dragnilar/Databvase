@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Databvase_Winforms.Models
+﻿namespace Databvase_Winforms.Models
 {
     /// <summary>
-    /// A class that represents a SQL Server instance returned by SmoApplication.EnumAvailableSqlServers(false);
+    ///     A class that represents a SQL Server instance returned by SmoApplication.EnumAvailableSqlServers(false);
     /// </summary>
     public class SQLServerInstance
     {

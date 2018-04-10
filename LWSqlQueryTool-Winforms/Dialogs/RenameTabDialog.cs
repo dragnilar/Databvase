@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
 namespace Databvase_Winforms.Dialogs
 {
-    public partial class RenameTabDialog : DevExpress.XtraEditors.XtraForm
+    public partial class RenameTabDialog : XtraForm
     {
         public string NewTabName = string.Empty;
+
         public RenameTabDialog()
         {
             InitializeComponent();
@@ -40,7 +34,6 @@ namespace Databvase_Winforms.Dialogs
                 DialogResult = DialogResult.OK;
                 Close();
             }
-
         }
     }
 }

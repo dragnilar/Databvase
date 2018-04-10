@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
 namespace Databvase_Winforms.Utilities
 {
     public static class GridUtilities
     {
-
         public static string GetExportFileName(string extension, string filter)
         {
             var fileName = GetFileNameViaSavePrompt($"*.{extension}", filter);
@@ -22,6 +20,5 @@ namespace Databvase_Winforms.Utilities
                 return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : string.Empty;
             }
         }
-
     }
 }

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryControl));
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
-            this.ribbonControlQueryControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.Ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.QueryButton = new DevExpress.XtraBars.BarButtonItem();
             this.SaveQueryButton = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -62,7 +62,7 @@
             this.barButtonItemPrintGrid = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlResultsPane)).BeginInit();
             this.xtraTabControlResultsPane.SuspendLayout();
             this.xtraTabPageResultsGrid.SuspendLayout();
@@ -81,7 +81,7 @@
             // 
             // layoutControlQueryControl
             // 
-            this.layoutControlQueryControl.Controls.Add(this.ribbonControlQueryControl);
+            this.layoutControlQueryControl.Controls.Add(this.Ribbon);
             this.layoutControlQueryControl.Controls.Add(this.xtraTabControlResultsPane);
             this.layoutControlQueryControl.Controls.Add(this.richEditControlQueryEditor);
             this.layoutControlQueryControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -94,10 +94,10 @@
             // 
             // ribbonControlQueryControl
             // 
-            this.ribbonControlQueryControl.Dock = System.Windows.Forms.DockStyle.None;
-            this.ribbonControlQueryControl.ExpandCollapseItem.Id = 0;
-            this.ribbonControlQueryControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControlQueryControl.ExpandCollapseItem,
+            this.Ribbon.Dock = System.Windows.Forms.DockStyle.None;
+            this.Ribbon.ExpandCollapseItem.Id = 0;
+            this.Ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.Ribbon.ExpandCollapseItem,
             this.QueryButton,
             this.SaveQueryButton,
             this.barSubItemExport,
@@ -109,17 +109,17 @@
             this.barButtonItemExportToRTF,
             this.barButtonItemExportToText,
             this.barButtonItemPrintGrid});
-            this.ribbonControlQueryControl.Location = new System.Drawing.Point(12, 12);
-            this.ribbonControlQueryControl.MaxItemId = 14;
-            this.ribbonControlQueryControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
-            this.ribbonControlQueryControl.Name = "ribbonControlQueryControl";
-            this.ribbonControlQueryControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.Ribbon.Location = new System.Drawing.Point(12, 12);
+            this.Ribbon.MaxItemId = 14;
+            this.Ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
+            this.Ribbon.Name = "Ribbon";
+            this.Ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageGroupDatabvase});
-            this.ribbonControlQueryControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControlQueryControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControlQueryControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 120);
-            this.ribbonControlQueryControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
+            this.Ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+            this.Ribbon.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
+            this.Ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
+            this.Ribbon.Size = new System.Drawing.Size(776, 120);
+            this.Ribbon.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
             // 
             // QueryButton
             // 
@@ -209,7 +209,7 @@
             // 
             this.richEditControlQueryEditor.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
             this.richEditControlQueryEditor.Location = new System.Drawing.Point(12, 36);
-            this.richEditControlQueryEditor.MenuManager = this.ribbonControlQueryControl;
+            this.richEditControlQueryEditor.MenuManager = this.Ribbon;
             this.richEditControlQueryEditor.Name = "richEditControlQueryEditor";
             this.richEditControlQueryEditor.Size = new System.Drawing.Size(776, 240);
             this.richEditControlQueryEditor.TabIndex = 10;
@@ -261,7 +261,7 @@
             // 
             // lciRibbon
             // 
-            this.lciRibbon.Control = this.ribbonControlQueryControl;
+            this.lciRibbon.Control = this.Ribbon;
             this.lciRibbon.Location = new System.Drawing.Point(0, 0);
             this.lciRibbon.Name = "lciRibbon";
             this.lciRibbon.Size = new System.Drawing.Size(780, 24);
@@ -376,7 +376,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).EndInit();
             this.layoutControlQueryControl.ResumeLayout(false);
             this.layoutControlQueryControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlResultsPane)).EndInit();
             this.xtraTabControlResultsPane.ResumeLayout(false);
             this.xtraTabPageResultsGrid.ResumeLayout(false);
@@ -411,7 +411,6 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageMessages;
         private DevExpress.XtraLayout.LayoutControlItem lcIResultsPane;
         private DevExpress.XtraEditors.MemoEdit memoEditResults;
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControlQueryControl;
         private DevExpress.XtraBars.BarButtonItem QueryButton;
         private DevExpress.XtraBars.BarButtonItem SaveQueryButton;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageGroupDatabvase;

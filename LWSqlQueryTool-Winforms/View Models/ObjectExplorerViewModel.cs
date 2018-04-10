@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using DevExpress.Mvvm.DataAnnotations;
 using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
-using Databvase_Winforms.Services;
+using DevExpress.Mvvm.DataAnnotations;
 
 namespace Databvase_Winforms.View_Models
 {
-    [POCOViewModel()]
+    [POCOViewModel]
     public class ObjectExplorerViewModel
     {
-        public virtual List<ObjectExplorerTreeListObject> ObjectExplorerDataSource { get; set; }
-        public virtual SQLSchema CurrentSchema { get; set; }
-
         public ObjectExplorerViewModel()
         {
             SetupObjectExplorer();
         }
+
+        public virtual List<ObjectExplorerTreeListObject> ObjectExplorerDataSource { get; set; }
+        public virtual SQLSchema CurrentSchema { get; set; }
 
 
         public void SetupObjectExplorer()
@@ -55,7 +53,6 @@ namespace Databvase_Winforms.View_Models
                 });
 
                 foreach (var obj in db.Tables)
-                {
                     sauce.Add(new ObjectExplorerTreeListObject
                     {
                         Id = index++,
@@ -63,10 +60,8 @@ namespace Databvase_Winforms.View_Models
                         NodeType = ObjectExplorerTreeListObject.TypeOfNode.Table,
                         ParentId = sauce.First(r => r.Name == db.DataBaseName).Id
                     });
-                }
 
                 foreach (var obj in db.Columns)
-                {
                     sauce.Add(new ObjectExplorerTreeListObject
                     {
                         Id = index++,
@@ -74,10 +69,7 @@ namespace Databvase_Winforms.View_Models
                         NodeType = ObjectExplorerTreeListObject.TypeOfNode.Column,
                         ParentId = sauce.First(r => r.Name == obj.TableName).Id
                     });
-                }
-
             }
-
 
 
             return sauce;

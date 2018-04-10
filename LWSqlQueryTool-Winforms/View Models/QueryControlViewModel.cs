@@ -1,22 +1,15 @@
 ﻿using System.Data;
 using System.Threading.Tasks;
-using DevExpress.Mvvm.DataAnnotations;
-using DevExpress.Mvvm.POCO;
-using DevExpress.XtraEditors;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
+using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 
 namespace Databvase_Winforms.View_Models
 {
-    [POCOViewModel()]
+    [POCOViewModel]
     public class QueryControlViewModel
     {
-        public virtual QueryDocumentEntity Entity { get; set; }
-        public virtual DataTable GridSource { get; set; }
-        public virtual bool ClearGrid { get; set; }
-        public virtual string ResultsMessage { get; set; }
-        public virtual bool QueryRunning { get; set; }
-
         public QueryControlViewModel()
         {
             Entity = new QueryDocumentEntity {DocumentText = string.Empty};
@@ -25,24 +18,26 @@ namespace Databvase_Winforms.View_Models
             QueryRunning = false;
         }
 
+        public virtual QueryDocumentEntity Entity { get; set; }
+        public virtual DataTable GridSource { get; set; }
+        public virtual bool ClearGrid { get; set; }
+        public virtual string ResultsMessage { get; set; }
+        public virtual bool QueryRunning { get; set; }
 
 
         /// <summary>
-        /// Executes an asynchronous query using the text on the query editor pane
+        ///     Executes an asynchronous query using the text on the query editor pane
         /// </summary>
         public async void AsynchronousQuery()
         {
-            if (QueryRunning)
-            {
-                return;
-            }
+            if (QueryRunning) return;
 
             QueryRunning = true;
             var sqlQuery = GetSQLQueryString();
-            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery)).ContinueWith((x) => ProcessResults(x.Result), 
+            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery)).ContinueWith(
+                x => ProcessResults(x.Result),
                 TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);
             QueryRunning = false;
-
         }
 
         private string GetSQLQueryString()
@@ -55,7 +50,6 @@ namespace Databvase_Winforms.View_Models
         private void ProcessResults(QueryResult result)
         {
             if (result != null)
-            {
                 if (result.HasErrors)
                 {
                     ResultsMessage = $"Errors Occured: \n{result.ResultsMessage}";
@@ -67,16 +61,11 @@ namespace Databvase_Winforms.View_Models
                     ClearGrid = false;
                     ResultsMessage = result.ResultsMessage;
                 }
-            }
         }
 
         public void Update()
         {
             //TODO - Implement some kind of functionality if necessary, otherwise do nothing here since this is needed for the MVVM context
         }
-
-
-
-
     }
 }

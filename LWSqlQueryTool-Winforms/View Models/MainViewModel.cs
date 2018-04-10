@@ -1,13 +1,9 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.DataAnnotations;
-using Databvase_Winforms.Messages;
+﻿using DevExpress.Mvvm.DataAnnotations;
 
 namespace Databvase_Winforms.View_Models
 {
-    [POCOViewModel()]
+    [POCOViewModel]
     public class MainViewModel
     {
-
-
     }
 }
