@@ -8,40 +8,76 @@ namespace Databvase_Winforms.Services
     public static class ConnectionService
     {
 
-        public static Server CurrentServer { get; set; }
+        public static SavedConnection CurrentConnection { get; set; }
+        public static string CurrentDatabase = "MonsterDB";
+
+        public static Server GetServerAtCurrentDatabase()
+        {
+            return GetServer(CurrentDatabase);
+        }
+
+        public static Server GetServer(string dbName = null)
+        {
+            var CurrentServer = new Server();
+
+            CurrentServer.ConnectionContext.ServerInstance = CurrentConnection.Instance;
+            if (CurrentConnection.WindowsAuthentication == false)
+            {
+                CurrentServer.ConnectionContext.Login = CurrentConnection.UserName;
+                CurrentServer.ConnectionContext.Password = CurrentConnection.Password;
+            }
+            else
+            {
+                CurrentServer.ConnectionContext.LoginSecure = true;
+                CurrentServer.ConnectionContext.NonPooledConnection = true;
+                CurrentServer.ConnectionContext.StatementTimeout = CurrentConnection.Timeout;
+            }
+
+            if (dbName != null)
+            {
+                CurrentServer.ConnectionContext.DatabaseName = dbName;
+            }
+
+            return CurrentServer;
+
+        }
+
+
 
         public static bool SetAndTestConnection(SavedConnection savedConnection)
         {
 
             if (savedConnection != null)
             {
-                CurrentServer = new Server();
+                CurrentConnection = savedConnection;
 
-                CurrentServer.ConnectionContext.ServerInstance = savedConnection.Instance;
-                if (savedConnection.WindowsAuthentication == false)
-                {
-                    CurrentServer.ConnectionContext.Login = savedConnection.UserName;
-                    CurrentServer.ConnectionContext.Password = savedConnection.Password;
-                }
-                else
-                {
-                    CurrentServer.ConnectionContext.LoginSecure = true;
-                    CurrentServer.ConnectionContext.NonPooledConnection = true;
-                    CurrentServer.ConnectionContext.StatementTimeout = savedConnection.Timeout;
-                }
+                var CurrentServer = GetServer();
 
-                return TestConnection();
+                return TestServerConnection(CurrentServer);
+            }
+
+            CurrentConnection = null;
+            return false;
+        }
+
+        public static bool TestSavedConnection(SavedConnection savedConnection)
+        {
+            if (savedConnection != null)
+            {
+                var server = GetServer();
+
+                return TestServerConnection(server);
             }
 
             return false;
         }
 
-        private static bool TestConnection()
+        private static bool TestServerConnection(Server server)
         {
             try
             {
-                CurrentServer.ConnectionContext.Connect();
-                CurrentServer.ConnectionContext.Disconnect();
+                server.ConnectionContext.Connect();
+                server.ConnectionContext.Disconnect();
                 return true;
             }
             catch
@@ -49,6 +85,10 @@ namespace Databvase_Winforms.Services
                 return false;
             }
         }
+
+
+
+
 
 
     }

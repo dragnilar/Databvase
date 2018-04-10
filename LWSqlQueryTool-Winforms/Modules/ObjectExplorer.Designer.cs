@@ -92,12 +92,14 @@
             // imageCollectionObjectExplorer
             // 
             this.imageCollectionObjectExplorer.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionObjectExplorer.ImageStream")));
-            this.imageCollectionObjectExplorer.InsertGalleryImage("database_16x16.png", "office2013/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/data/database_16x16.png"), 0);
-            this.imageCollectionObjectExplorer.Images.SetKeyName(0, "database_16x16.png");
-            this.imageCollectionObjectExplorer.InsertGalleryImage("grid_16x16.png", "office2013/grid/grid_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/grid/grid_16x16.png"), 1);
-            this.imageCollectionObjectExplorer.Images.SetKeyName(1, "grid_16x16.png");
-            this.imageCollectionObjectExplorer.InsertGalleryImage("groupfooter_16x16.png", "office2013/reports/groupfooter_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/reports/groupfooter_16x16.png"), 2);
-            this.imageCollectionObjectExplorer.Images.SetKeyName(2, "groupfooter_16x16.png");
+            this.imageCollectionObjectExplorer.InsertGalleryImage("addnewdatasource_16x16.png", "grayscaleimages/data/addnewdatasource_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("grayscaleimages/data/addnewdatasource_16x16.png"), 0);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(0, "addnewdatasource_16x16.png");
+            this.imageCollectionObjectExplorer.InsertGalleryImage("database_16x16.png", "office2013/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/data/database_16x16.png"), 1);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(1, "database_16x16.png");
+            this.imageCollectionObjectExplorer.InsertGalleryImage("grid_16x16.png", "office2013/grid/grid_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/grid/grid_16x16.png"), 2);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(2, "grid_16x16.png");
+            this.imageCollectionObjectExplorer.InsertGalleryImage("groupfooter_16x16.png", "office2013/reports/groupfooter_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/reports/groupfooter_16x16.png"), 3);
+            this.imageCollectionObjectExplorer.Images.SetKeyName(3, "groupfooter_16x16.png");
             // 
             // lcgObjectExplorer
             // 

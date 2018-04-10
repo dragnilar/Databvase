@@ -61,7 +61,6 @@ namespace Databvase_Winforms.Views
             fluent.BindCommand(simpleButtonConnect, x=>x.Connect());
             fluent.BindCommand(simpleButtonQueryInstances, x=>x.GetInstances());
 
-            fluent.SetBinding(textEditDatabaseName, x => x.EditValue, y => y.InitalCatalog);
             fluent.SetBinding(textEditNickName, x => x.EditValue, y => y.NickName);
             fluent.SetBinding(textEditPassword, x => x.EditValue, y => y.Password);
             fluent.SetBinding(textEditUserName, x => x.EditValue, y => y.UserId);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LWSqlQueryTool_Winforms.Models;
 
 namespace Databvase_Winforms.Models
 {
@@ -11,8 +12,15 @@ namespace Databvase_Winforms.Models
     /// </summary>
     public class SQLSchema
     {
-        public string DatabaseName { get; set; }
-        public List<SQLColumn> Columns { get; set; }
-        public List<SQLTable> Tables { get; set; }
+        
+        public string InstanceName { get; set; }
+        public List<SQLDatabase> Databases { get; set; }
+
+        public SQLSchema()
+        {
+            InstanceName = String.Empty;
+            Databases = new List<SQLDatabase>();
+        }
+
     }
 }

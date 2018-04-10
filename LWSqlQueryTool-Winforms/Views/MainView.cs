@@ -86,7 +86,7 @@ namespace Databvase_Winforms.Views
             window.Dispose();
             UpdateConnectionStatusOnUi();
 
-            if (!string.IsNullOrEmpty(ConnectionStringService.CurrentConnectionString))
+            if (ConnectionService.CurrentConnection != null)
             {
                 objectExplorerContainer.Controls.Add(new ObjectExplorer { Dock = DockStyle.Fill });
             }
@@ -94,7 +94,7 @@ namespace Databvase_Winforms.Views
 
         private void UpdateConnectionStatusOnUi()
         {
-            if (ConnectionStringService.CurrentConnectionString != null)
+            if (ConnectionService.CurrentConnection != null)
             {
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
@@ -116,7 +116,7 @@ namespace Databvase_Winforms.Views
 
         private void Disconnect()
         {
-            ConnectionStringService.CurrentConnectionString = null;
+            ConnectionService.CurrentConnection = null;
             objectExplorerContainer.Controls.Clear();
             UpdateConnectionStatusOnUi();
         }

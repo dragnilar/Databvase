@@ -39,34 +39,46 @@ namespace Databvase_Winforms.View_Models
             sauce.Add(new ObjectExplorerTreeListObject
             {
                 Id = index++,
-                Name = CurrentSchema.DatabaseName,
-                NodeType = ObjectExplorerTreeListObject.TypeOfNode.Database,
+                Name = CurrentSchema.InstanceName,
+                NodeType = ObjectExplorerTreeListObject.TypeOfNode.Instance,
                 ParentId = index - 1
             });
 
-
-
-            foreach (var obj in CurrentSchema.Tables)
+            foreach (var db in CurrentSchema.Databases)
             {
                 sauce.Add(new ObjectExplorerTreeListObject
                 {
                     Id = index++,
-                    Name = obj.TableName,
-                    NodeType = ObjectExplorerTreeListObject.TypeOfNode.Table,
-                    ParentId = sauce.First(r => r.Name == obj.TableCatalog).Id
+                    Name = db.DataBaseName,
+                    NodeType = ObjectExplorerTreeListObject.TypeOfNode.Database,
+                    ParentId = 0
                 });
+
+                foreach (var obj in db.Tables)
+                {
+                    sauce.Add(new ObjectExplorerTreeListObject
+                    {
+                        Id = index++,
+                        Name = obj.TableName,
+                        NodeType = ObjectExplorerTreeListObject.TypeOfNode.Table,
+                        ParentId = sauce.First(r => r.Name == db.DataBaseName).Id
+                    });
+                }
+
+                foreach (var obj in db.Columns)
+                {
+                    sauce.Add(new ObjectExplorerTreeListObject
+                    {
+                        Id = index++,
+                        Name = obj.ColumnName,
+                        NodeType = ObjectExplorerTreeListObject.TypeOfNode.Column,
+                        ParentId = sauce.First(r => r.Name == obj.TableName).Id
+                    });
+                }
+
             }
 
-            foreach (var obj in CurrentSchema.Columns)
-            {
-                sauce.Add(new ObjectExplorerTreeListObject
-                {
-                    Id = index++,
-                    Name = obj.ColumnName,
-                    NodeType = ObjectExplorerTreeListObject.TypeOfNode.Column,
-                    ParentId = sauce.First(r => r.Name == obj.TableName).Id
-                });
-            }
+
 
             return sauce;
         }

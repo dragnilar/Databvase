@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Linq;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
+using LWSqlQueryTool_Winforms.Models;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.DAL
 {
@@ -22,19 +22,13 @@ namespace Databvase_Winforms.DAL
             var result = new QueryResult();
             try
             {
-                using (var connection = new SqlConnection(ConnectionStringService.CurrentConnectionString))
-                {
-                    connection.Open();
-                    var cmd = new SqlCommand
-                    {
-                        CommandText = sqlQuery,
-                        CommandType = CommandType.Text,
-                        Connection = connection
-                    };
-                    var adapter = new SqlDataAdapter(cmd);
-                    result = GetResult(adapter);
-                    connection.Close();
-                }
+                var server = ConnectionService.GetServerAtCurrentDatabase();
+                server.ConnectionContext.DatabaseName = ConnectionService.CurrentDatabase;
+                server.ConnectionContext.Connect();
+                var dataset = server.ConnectionContext.ExecuteWithResults(sqlQuery);
+                result = GetResult(dataset);
+                server.ConnectionContext.Disconnect();
+
             }
             catch (SqlException ex)
             {
@@ -44,12 +38,11 @@ namespace Databvase_Winforms.DAL
             return result;
         }
 
-        private static QueryResult GetResult(SqlDataAdapter adapter)
+        private static QueryResult GetResult(DataSet ds)
         {
             var result = new QueryResult();
-            var ds = new DataSet();
 
-            var numberOfRows = adapter.Fill(ds);
+            var numberOfRows = ds.Tables[0].Rows.Count;
 
             result.ResultsMessage = numberOfRows > 0
                 ? numberOfRows + " row(s) affected."
@@ -69,53 +62,39 @@ namespace Databvase_Winforms.DAL
         }
 
         /// <summary>
-        /// Tests a connection to SQL Server using the specified connection string.
-        /// </summary>
-        /// <param name="connectionString"></param>
-        /// <returns>True or False</returns>
-        public static bool TestConnection(string connectionString)
-        {
-            try
-            {
-                using (var conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (var command = new SqlCommand())
-                    {
-                        command.CommandText = "SELECT 1";
-                        command.Connection = conn;
-                        command.ExecuteScalar();
-                    }
-                }
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// Gets a list of instances on the same network as the computer that the application is running.
         /// This method takes a long time to run.
         /// </summary>
         /// <returns></returns>
         public static List<SQLServerInstance> GetInstances()
         {
-            var instance = SqlDataSourceEnumerator.Instance;
+            var instancesTable = SmoApplication.EnumAvailableSqlServers(false);
 
-            var table = instance.GetDataSources();
-
-            var instanceList = table.AsEnumerable().Select(x => new SQLServerInstance
+            var instanceList = instancesTable.AsEnumerable().Select(x => new SQLServerInstance
             {
-                InstanceName = x.Field<string>("InstanceName"),
+                InstanceName = x.Field<string>("Instance"),
                 IsClustered = x.Field<string>("IsClustered"),
-                ServerName = x.Field<string>("ServerName"),
-                Version = x.Field<string>("Version")
+                Name = x.Field<string>("Name"),
+                ServerName = x.Field<string>("Server"),
+                Version = x.Field<string>("Version"),
+                Local = x.Field<string>("IsLocal")
             }).ToList();
 
             return instanceList;
+        }
+
+
+        private static List<string> GetDatabases()
+        {
+            var server = ConnectionService.GetServer();
+            var list = new List<string>();
+            foreach (Database db in server.Databases)
+            {
+                list.Add(db.Name);
+            }
+
+            return list;
+
         }
 
 
@@ -125,62 +104,53 @@ namespace Databvase_Winforms.DAL
         /// <returns></returns>
         public static SQLSchema GetSqlSchema()
         {
+            var server = ConnectionService.GetServer();
             var schema = new SQLSchema();
-            using (var goNecction = new SqlConnection(ConnectionStringService.CurrentConnectionString))
+            server.ConnectionContext.Connect();
+
+            schema.InstanceName = server.InstanceName;
+            var dbList = GetDatabases();
+
+            foreach (var dbName in dbList)
             {
-                goNecction.Open();
-
-                var tables = goNecction.GetSchema("Tables");
-                var columns = goNecction.GetSchema("Columns");
-                var dbName = goNecction.Database;
-
-                schema = new SQLSchema
+                schema.Databases.Add(new SQLDatabase
                 {
-                    DatabaseName = dbName,
-                    Tables = ConvertTableDataTableToList(tables),
-                    Columns = ConvertColumnsDataTableToList(columns)
-                };
+                    DataBaseName = dbName,
+                    Tables = GetDatabaseTables(dbName),
+                    Columns = GetDatabaseColumns(dbName)
 
-                goNecction.Close();
+                });
+
+
             }
+            
 
             return schema;
         }
 
-        private static List<SQLTable> ConvertTableDataTableToList(DataTable tablesDataTable)
+        private static List<SQLTable> GetDatabaseTables(string dbName)
         {
-            var tableList = new List<SQLTable>();
+            var server = ConnectionService.GetServer(dbName);
+            server.ConnectionContext.Connect();
+            var result = server.ConnectionContext.ExecuteWithResults(
+                "select * from INFORMATION_SCHEMA.TABLES");
+            server.ConnectionContext.Disconnect();
 
-            foreach (var table in tablesDataTable.AsEnumerable().Select(row => new SQLTable
-            {
-                TableName = Convert.ToString(row["TABLE_NAME"]),
-                TableSchema = Convert.ToString(row["TABLE_SCHEMA"]),
-                TableCatalog = Convert.ToString(row["TABLE_CATALOG"]),
-                TableType = Convert.ToString(row["TABLE_TYPE"])
-            }))
-                tableList.Add(table);
-
-            return tableList;
+            return result.Tables.Count > 0 ? SQLServerInterfaceUtilities.ConvertTableDataTableToList(result.Tables[0]) : new List<SQLTable>();
         }
 
-        private static List<SQLColumn> ConvertColumnsDataTableToList(DataTable columnsDataTable)
+        private static List<SQLColumn> GetDatabaseColumns(string dbName)
         {
-            var columnList = new List<SQLColumn>();
 
-            foreach (var column in columnsDataTable.AsEnumerable().Select(row => new SQLColumn
-            {
-                TableName = Convert.ToString(row["TABLE_NAME"]),
-                TableSchema = Convert.ToString(row["TABLE_SCHEMA"]),
-                TableCatalog = Convert.ToString(row["TABLE_CATALOG"]),
-                ColumnDefault = Convert.ToString(row["COLUMN_DEFAULT"]),
-                ColumnName = Convert.ToString(row["COLUMN_NAME"]),
-                DataType = Convert.ToString(row["DATA_TYPE"]),
-                IsNullable = Convert.ToString(row["IS_NULLABLE"]),
-                OrdinalPosition = Convert.ToString(row["ORDINAL_POSITION"])
-            }))
-                columnList.Add(column);
+            var server = ConnectionService.GetServer(dbName);
+            server.ConnectionContext.Connect();
+            var result = server.ConnectionContext.ExecuteWithResults(
+                "select * from INFORMATION_SCHEMA.COLUMNS");
+            server.ConnectionContext.Disconnect();
 
-            return columnList;
+            return result.Tables.Count > 0 ? SQLServerInterfaceUtilities.ConvertColumnsDataTableToList(result.Tables[0]) : new List<SQLColumn>();
         }
+
+
     }
 }

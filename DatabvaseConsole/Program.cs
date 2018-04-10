@@ -23,7 +23,7 @@ namespace DatabvaseConsole
                 Console.WriteLine("1. Test Getting Databases");
                 Console.WriteLine("2. Test Getting Instances");
                 Console.WriteLine("3. Test A Query");
-                Console.WriteLine("3. Test Insert and Update");
+                Console.WriteLine("4. Test Insert and Update");
                 Console.WriteLine("Enter an option with a key or press esc to quit.");
                 var key = Console.ReadKey();
                 switch (key.Key)

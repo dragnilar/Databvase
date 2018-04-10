@@ -19,6 +19,7 @@ namespace Databvase_Winforms.Models
 
         public enum TypeOfNode
         {
+            Instance,
             Database,
             Table,
             Column

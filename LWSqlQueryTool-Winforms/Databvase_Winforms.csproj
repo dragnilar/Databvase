@@ -8,7 +8,7 @@
     <ProjectGuid>{0DC87899-8547-471A-83FF-A94304B6FFB6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LWSqlQueryTool_Winforms</RootNamespace>
+    <RootNamespace>Databvase_Winforms</RootNamespace>
     <AssemblyName>Databvase</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -181,6 +181,7 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -203,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\SQLServerInterface.cs" />
+    <Compile Include="DAL\SQLServerInterfaceUtilities.cs" />
     <Compile Include="Dialogs\RenameTabDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +216,7 @@
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\SavedConnection.cs" />
     <Compile Include="Models\SQLColumn.cs" />
+    <Compile Include="Models\SQLDatabase.cs" />
     <Compile Include="Models\SQLSchema.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />
     <Compile Include="Modules\ConnectionStringWizard.cs">
@@ -237,7 +240,6 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
-    <Compile Include="Services\ConnectionStringService.cs" />
     <Compile Include="Models\SQLTable.cs" />
     <Compile Include="Views\ConnectionStringView.cs">
       <SubType>Form</SubType>
@@ -294,6 +296,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\WaitSplashyView.resx">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>

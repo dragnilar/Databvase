@@ -20,12 +20,10 @@ namespace Databvase_Winforms.View_Models
     {
         public virtual bool UseWindowsAuthentication { get; set; }
         public virtual string DataSource { get; set; }
-        public virtual string InitalCatalog { get; set; }
         public virtual int ConnectTimeout { get; set; }
         public virtual string UserId { get; set; }
         public virtual string Password { get; set; }
         public virtual string NickName { get; set; }
-        public virtual List<string> Datasources { get; set; } //TODO - Need to look into if this is even feasible...
         public virtual List<SQLServerInstance> Instances { get; set; }
         public virtual State WindowState { get; set; }
         public virtual SavedConnection SelectedConnection { get; set; }
@@ -49,7 +47,6 @@ namespace Databvase_Winforms.View_Models
         {
             UseWindowsAuthentication = false;
             DataSource = string.Empty;
-            InitalCatalog = string.Empty;
             ConnectTimeout = 30;
             UserId = string.Empty;
             Password = string.Empty;
@@ -57,25 +54,25 @@ namespace Databvase_Winforms.View_Models
         }
 
         //Simple Dependency For SelectedConnectionString, binds at runtime
-        protected void OnSelectedConnectionStringChanged()
+        protected void OnSelectedConnectionChanged()
         {
             CanConnect = SelectedConnection != null;
         }
 
         public void Connect()
         {
-            if (TestConnection(SelectedConnection.ConnectionString))
+
+            if (ConnectionService.SetAndTestConnection(SelectedConnection))
             {
-                ConnectionStringService.CurrentConnectionString = SelectedConnection.ConnectionString;
+
                 WindowState = State.Exit;
             }
-
 
         }
 
         public void Cancel()
         {
-            ConnectionStringService.CurrentConnectionString = null;
+            ConnectionService.CurrentConnection = null;
             WindowState = State.Exit;
 
         }
@@ -104,14 +101,13 @@ namespace Databvase_Winforms.View_Models
                 return;
             }
 
-            var builder = BuildConnection();
+            var connection = BuildConnection();
 
-            if (TestConnection(builder.ConnectionString))
+            if (ConnectionService.TestSavedConnection(connection))
             {
-                var ConnectionStringToBeBuilt = new SavedConnection
+                var connectionToBeBuild = new SavedConnection
                 {
                     NickName = NickName,
-                    ConnectionString = builder.ConnectionString,
                     Timeout = ConnectTimeout,
                     Password = Password,
                     Instance = DataSource,
@@ -119,7 +115,7 @@ namespace Databvase_Winforms.View_Models
                     WindowsAuthentication = UseWindowsAuthentication
                 };
 
-                SaveConnectionStringAndUpdateViewModel(ConnectionStringToBeBuilt);
+                SaveConnectionToBeBuilt(connectionToBeBuild);
 
 
                 WindowState = State.ConnectionStringManager;
@@ -136,7 +132,7 @@ namespace Databvase_Winforms.View_Models
             return false;
         }
 
-        private void SaveConnectionStringAndUpdateViewModel(SavedConnection connection)
+        private void SaveConnectionToBeBuilt(SavedConnection connection)
         {
             App.Config.ConnectionStrings.Add(connection);
 
@@ -165,34 +161,25 @@ namespace Databvase_Winforms.View_Models
 
         }
 
-
-
-        private bool TestConnection(string connectionString)
+        private SavedConnection BuildConnection()
         {
-            return SQLServerInterface.TestConnection(connectionString);
-        }
-
-        private SqlConnectionStringBuilder BuildConnection()
-        {
-            //TODO - ADD VALIDATION?
-            var builder = new SqlConnectionStringBuilder
+            var connection = new SavedConnection
             {
-                DataSource = DataSource,
-                InitialCatalog = InitalCatalog,
-                ConnectTimeout = ConnectTimeout
+                Instance = DataSource,
+                Timeout = ConnectTimeout
             };
 
             if (!UseWindowsAuthentication)
             {
-                builder.UserID = UserId;
-                builder.Password = Password;
+                connection.UserName = UserId;
+                connection.Password = Password;
             }
             else
             {
-                builder.IntegratedSecurity = true;
+                connection.WindowsAuthentication = true;
             }
 
-            return builder;
+            return connection;
         }
 
         private bool IsConnectionValid()
@@ -202,11 +189,6 @@ namespace Databvase_Winforms.View_Models
             if (string.IsNullOrEmpty(DataSource))
             {
                 errors.Add("No server/instance specified");
-            }
-
-            if (string.IsNullOrEmpty(InitalCatalog))
-            {
-                errors.Add("No database specified");
             }
 
             if (ConnectTimeout < 1)
