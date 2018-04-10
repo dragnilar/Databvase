@@ -28,8 +28,8 @@ namespace Databvase_Winforms.View_Models
         public virtual List<string> Datasources { get; set; } //TODO - Need to look into if this is even feasible...
         public virtual List<SQLServerInstance> Instances { get; set; }
         public virtual State WindowState { get; set; }
-        public virtual SavedConnectionString SelectedConnectionString { get; set; }
-        public virtual List<SavedConnectionString> SavedConnectionStrings { get; set; }
+        public virtual SavedConnection SelectedConnection { get; set; }
+        public virtual List<SavedConnection> SavedConnectionStrings { get; set; }
         public virtual bool CanConnect { get; set; }
 
 
@@ -40,7 +40,7 @@ namespace Databvase_Winforms.View_Models
         public ConnectionStringViewModel()
         {
             InitalizeValues();
-            SelectedConnectionString = null;
+            SelectedConnection = null;
             SavedConnectionStrings = App.Config.ConnectionStrings;
             CanConnect = false;
         }
@@ -59,14 +59,14 @@ namespace Databvase_Winforms.View_Models
         //Simple Dependency For SelectedConnectionString, binds at runtime
         protected void OnSelectedConnectionStringChanged()
         {
-            CanConnect = SelectedConnectionString != null;
+            CanConnect = SelectedConnection != null;
         }
 
         public void Connect()
         {
-            if (TestConnection(SelectedConnectionString.ConnectionString))
+            if (TestConnection(SelectedConnection.ConnectionString))
             {
-                ConnectionStringService.CurrentConnectionString = SelectedConnectionString.ConnectionString;
+                ConnectionStringService.CurrentConnectionString = SelectedConnection.ConnectionString;
                 WindowState = State.Exit;
             }
 
@@ -108,10 +108,15 @@ namespace Databvase_Winforms.View_Models
 
             if (TestConnection(builder.ConnectionString))
             {
-                var ConnectionStringToBeBuilt = new SavedConnectionString
+                var ConnectionStringToBeBuilt = new SavedConnection
                 {
                     NickName = NickName,
-                    ConnectionString = builder.ConnectionString
+                    ConnectionString = builder.ConnectionString,
+                    Timeout = ConnectTimeout,
+                    Password = Password,
+                    Instance = DataSource,
+                    UserName = UserId,
+                    WindowsAuthentication = UseWindowsAuthentication
                 };
 
                 SaveConnectionStringAndUpdateViewModel(ConnectionStringToBeBuilt);
@@ -131,14 +136,14 @@ namespace Databvase_Winforms.View_Models
             return false;
         }
 
-        private void SaveConnectionStringAndUpdateViewModel(SavedConnectionString connectionString)
+        private void SaveConnectionStringAndUpdateViewModel(SavedConnection connection)
         {
-            App.Config.ConnectionStrings.Add(connectionString);
+            App.Config.ConnectionStrings.Add(connection);
 
             App.Config.Save();
 
-            SelectedConnectionString =
-                SavedConnectionStrings.FirstOrDefault(r => r.NickName == connectionString.NickName);
+            SelectedConnection =
+                SavedConnectionStrings.FirstOrDefault(r => r.NickName == connection.NickName);
         }
 
 

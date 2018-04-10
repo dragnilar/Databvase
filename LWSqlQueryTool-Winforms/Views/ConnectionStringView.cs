@@ -67,7 +67,7 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(textEditUserName, x => x.EditValue, y => y.UserId);
             fluent.SetBinding(lookUpEditConnectionStrings.Properties, x => x.DataSource,
                 vm => vm.SavedConnectionStrings);
-            fluent.SetBinding(lookUpEditConnectionStrings, x => x.EditValue, y => y.SelectedConnectionString);
+            fluent.SetBinding(lookUpEditConnectionStrings, x => x.EditValue, y => y.SelectedConnection);
             fluent.SetBinding(checkEditWindowsAuthentication, x => x.EditValue, y => y.UseWindowsAuthentication);
             fluent.SetBinding(spinEditConnectionTimeout, x => x.EditValue, y => y.ConnectTimeout);
             fluent.SetItemsSourceBinding(comboBoxEditInstances.Properties, cb=>cb.Items , x=>x.Instances,

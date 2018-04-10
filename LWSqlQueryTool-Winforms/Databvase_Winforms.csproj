@@ -212,7 +212,7 @@
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />
-    <Compile Include="Models\SavedConnectionString.cs" />
+    <Compile Include="Models\SavedConnection.cs" />
     <Compile Include="Models\SQLColumn.cs" />
     <Compile Include="Models\SQLSchema.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />
@@ -228,6 +228,7 @@
     <Compile Include="Modules\ObjectExplorer.Designer.cs">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Utilities\GridExportService.cs" />
     <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Models\QueryResult.cs" />

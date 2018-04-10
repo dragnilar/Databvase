@@ -17,7 +17,7 @@ namespace Databvase_Winforms
             Configuration.FileName = "SettingsFile.json";
             Configuration.SubDirectoryPath = "Settings";
         }
-        public List<SavedConnectionString> ConnectionStrings = new List<SavedConnectionString>();
+        public List<SavedConnection> ConnectionStrings = new List<SavedConnection>();
         public string DefaultSkinName = "The Bezier";
         public string DefaultSvgPalette = string.Empty;
         public Color SavedSkinColor1 = Color.Empty;
