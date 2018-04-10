@@ -285,7 +285,7 @@ namespace Databvase_Winforms.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainView";
             this.Ribbon = this.ribbonControlMain;
-            this.Text = "Lightweight Query Tool";
+            this.Text = "Databvase";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerMain)).EndInit();
