@@ -1,5 +1,7 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
+using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm.DataAnnotations;
@@ -16,6 +18,8 @@ namespace Databvase_Winforms.View_Models
             GridSource = null;
             ResultsMessage = string.Empty;
             QueryRunning = false;
+            CurrentDatabase = string.Empty;
+            DatabasesList = SQLServerInterface.GetDatabases();
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -23,6 +27,8 @@ namespace Databvase_Winforms.View_Models
         public virtual bool ClearGrid { get; set; }
         public virtual string ResultsMessage { get; set; }
         public virtual bool QueryRunning { get; set; }
+        public virtual string CurrentDatabase { get; set; }
+        public virtual List<string> DatabasesList { get; set; }
 
 
         /// <summary>
@@ -33,6 +39,7 @@ namespace Databvase_Winforms.View_Models
             if (QueryRunning) return;
 
             QueryRunning = true;
+            ConnectionService.CurrentDatabase = CurrentDatabase;
             var sqlQuery = GetSQLQueryString();
             await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery)).ContinueWith(
                 x => ProcessResults(x.Result),

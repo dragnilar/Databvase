@@ -31,7 +31,7 @@ namespace Databvase_Winforms.Modules
                 InitializeBindings();
         }
 
-        public RibbonControl Ribbon { get; private set; }
+        public RibbonControl Ribbon => ribbonControlQueryControl;
 
 
         private void SetupQueryEditor()
@@ -128,6 +128,8 @@ namespace Databvase_Winforms.Modules
         {
             fluent.SetBinding(gridControlResults, x => x.DataSource, y => y.GridSource);
             fluent.SetBinding(memoEditResults, x => x.EditValue, y => y.ResultsMessage);
+            fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
+            fluent.SetBinding(barEditItemDatabaseList, x => x.EditValue, y => y.CurrentDatabase);
         }
 
         private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -29,10 +30,10 @@ namespace Databvase_Winforms.DAL
                 result = GetResult(dataset);
                 server.ConnectionContext.Disconnect();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 result.HasErrors = true;
-                result.ResultsMessage = ProcessSqlErrors(ex);
+                result.ResultsMessage = ex.InnerException.Message;
             }
 
             return result;
@@ -84,7 +85,7 @@ namespace Databvase_Winforms.DAL
         }
 
 
-        private static List<string> GetDatabases()
+        public static List<string> GetDatabases()
         {
             var server = ConnectionService.GetServer();
             var list = new List<string>();
