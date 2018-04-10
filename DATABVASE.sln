@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Databvase_Winforms", "LWSqlQueryTool-Winforms\Databvase_Winforms.csproj", "{0DC87899-8547-471A-83FF-A94304B6FFB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabvaseConsole", "DatabvaseConsole\DatabvaseConsole.csproj", "{EFBE6565-516B-43BC-AC8C-5E6F2285BE48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0DC87899-8547-471A-83FF-A94304B6FFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC87899-8547-471A-83FF-A94304B6FFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC87899-8547-471A-83FF-A94304B6FFB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFBE6565-516B-43BC-AC8C-5E6F2285BE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFBE6565-516B-43BC-AC8C-5E6F2285BE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFBE6565-516B-43BC-AC8C-5E6F2285BE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFBE6565-516B-43BC-AC8C-5E6F2285BE48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
