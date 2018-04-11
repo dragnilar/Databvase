@@ -10,6 +10,7 @@
         public string TableCatalog { get; set; }
         public string TableSchema { get; set; }
         public string TableName { get; set; }
+        public string TableFullName =>  TableSchema != "dbo" ? $"{TableSchema}.{TableName}" : TableName;
         public string ColumnName { get; set; }
         public string OrdinalPosition { get; set; }
         public string ColumnDefault { get; set; }

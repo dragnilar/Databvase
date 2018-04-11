@@ -11,5 +11,6 @@
         public string TableSchema { get; set; }
         public string TableCatalog { get; set; }
         public string TableType { get; set; }
+        public string TableFullName => this.TableSchema != "dbo" ? $"{this.TableSchema}.{this.TableName}" : this.TableName;
     }
 }

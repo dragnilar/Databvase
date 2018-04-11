@@ -56,7 +56,7 @@ namespace Databvase_Winforms.View_Models
                     sauce.Add(new ObjectExplorerTreeListObject
                     {
                         Id = index++,
-                        Name = obj.TableName,
+                        Name = obj.TableFullName,
                         NodeType = ObjectExplorerTreeListObject.TypeOfNode.Table,
                         ParentId = sauce.First(r => r.Name == db.DataBaseName).Id
                     });
@@ -67,7 +67,7 @@ namespace Databvase_Winforms.View_Models
                         Id = index++,
                         Name = obj.ColumnName,
                         NodeType = ObjectExplorerTreeListObject.TypeOfNode.Column,
-                        ParentId = sauce.First(r => r.Name == obj.TableName).Id
+                        ParentId = sauce.First(r => r.Name == obj.TableFullName).Id
                     });
             }
 
