@@ -24,7 +24,7 @@ namespace Databvase_Winforms.Views
             InitializeComponent();
             if (!mvvmContextMain.IsDesignMode)
                 InitializeBindings();
-            SkinService.LoadSkinSettings();
+            App.Skins.LoadSkinSettings();
             HookupEvents();
         }
 
@@ -48,7 +48,7 @@ namespace Databvase_Winforms.Views
 
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
         {
-            SkinService.SaveSkinSettings();
+            App.Skins.SaveSkinSettings();
         }
 
 
@@ -71,13 +71,13 @@ namespace Databvase_Winforms.Views
             window.Dispose();
             UpdateConnectionStatusOnUi();
 
-            if (ConnectionService.CurrentConnection != null)
+            if (App.Connection.CurrentConnection != null)
                 objectExplorerContainer.Controls.Add(new ObjectExplorer {Dock = DockStyle.Fill});
         }
 
         private void UpdateConnectionStatusOnUi()
         {
-            if (ConnectionService.CurrentConnection != null)
+            if (App.Connection.CurrentConnection != null)
             {
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
@@ -99,7 +99,7 @@ namespace Databvase_Winforms.Views
 
         private void Disconnect()
         {
-            ConnectionService.CurrentConnection = null;
+            App.Connection.CurrentConnection = null;
             objectExplorerContainer.Controls.Clear();
             UpdateConnectionStatusOnUi();
         }

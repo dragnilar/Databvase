@@ -39,7 +39,7 @@ namespace Databvase_Winforms.View_Models
             if (QueryRunning) return;
 
             QueryRunning = true;
-            ConnectionService.CurrentDatabase = CurrentDatabase;
+            App.Connection.CurrentDatabase = CurrentDatabase;
             var sqlQuery = GetSQLQueryString();
             await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery)).ContinueWith(
                 x => ProcessResults(x.Result),

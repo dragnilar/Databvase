@@ -3,28 +3,28 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Services
 {
-    public static class ConnectionService
+    public class ConnectionService
     {
-        public static string CurrentDatabase = string.Empty;
+        public string CurrentDatabase = string.Empty;
 
-        public static SavedConnection CurrentConnection { get; set; }
+        public SavedConnection CurrentConnection { get; set; }
 
-        public static Server GetServerAtCurrentDatabase()
+        public Server GetServerAtCurrentDatabase()
         {
             return GetServerAtCurrentConnection(CurrentDatabase);
         }
 
-        public static Server GetServerAtCurrentConnection(string dbName = null)
+        public  Server GetServerAtCurrentConnection(string dbName = null)
         {
             return GetServer(CurrentConnection, dbName);
         }
 
-        private static Server GetServerAtSpecificConnection(SavedConnection connection, string dbName = null)
+        private  Server GetServerAtSpecificConnection(SavedConnection connection, string dbName = null)
         {
             return GetServer(connection, dbName);
         }
 
-        private static Server GetServer(SavedConnection connection, string dbName)
+        private  Server GetServer(SavedConnection connection, string dbName)
         {
             var server = new Server();
             server.ConnectionContext.ServerInstance = connection.Instance;
@@ -48,7 +48,7 @@ namespace Databvase_Winforms.Services
         }
 
 
-        public static bool SetAndTestConnection(SavedConnection savedConnection)
+        public  bool SetAndTestConnection(SavedConnection savedConnection)
         {
             if (savedConnection != null)
             {
@@ -63,7 +63,7 @@ namespace Databvase_Winforms.Services
             return false;
         }
 
-        public static bool TestSavedConnection(SavedConnection savedConnection)
+        public  bool TestSavedConnection(SavedConnection savedConnection)
         {
             if (savedConnection != null)
             {
@@ -74,7 +74,7 @@ namespace Databvase_Winforms.Services
             return false;
         }
 
-        private static bool TestServerConnection(Server server)
+        private  bool TestServerConnection(Server server)
         {
             try
             {

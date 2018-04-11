@@ -23,8 +23,8 @@ namespace Databvase_Winforms.DAL
             var result = new QueryResult();
             try
             {
-                var server = ConnectionService.GetServerAtCurrentDatabase();
-                server.ConnectionContext.DatabaseName = ConnectionService.CurrentDatabase;
+                var server = App.Connection.GetServerAtCurrentDatabase();
+                server.ConnectionContext.DatabaseName = App.Connection.CurrentDatabase;
                 server.ConnectionContext.Connect();
                 var dataset = server.ConnectionContext.ExecuteWithResults(sqlQuery);
                 result = GetResult(dataset);
@@ -87,7 +87,7 @@ namespace Databvase_Winforms.DAL
 
         public static List<string> GetDatabases()
         {
-            var server = ConnectionService.GetServerAtCurrentConnection();
+            var server = App.Connection.GetServerAtCurrentConnection();
             var list = new List<string>();
             foreach (Database db in server.Databases) list.Add(db.Name);
 
@@ -101,7 +101,7 @@ namespace Databvase_Winforms.DAL
         /// <returns></returns>
         public static SQLSchema GetSqlSchema()
         {
-            var server = ConnectionService.GetServerAtCurrentConnection();
+            var server = App.Connection.GetServerAtCurrentConnection();
             var schema = new SQLSchema();
             server.ConnectionContext.Connect();
 
@@ -122,7 +122,7 @@ namespace Databvase_Winforms.DAL
 
         private static List<SQLTable> GetDatabaseTables(string dbName)
         {
-            var server = ConnectionService.GetServerAtCurrentConnection(dbName);
+            var server = App.Connection.GetServerAtCurrentConnection(dbName);
             server.ConnectionContext.Connect();
             var result = server.ConnectionContext.ExecuteWithResults(
                 "select * from INFORMATION_SCHEMA.TABLES");
@@ -135,7 +135,7 @@ namespace Databvase_Winforms.DAL
 
         private static List<SQLColumn> GetDatabaseColumns(string dbName)
         {
-            var server = ConnectionService.GetServerAtCurrentConnection(dbName);
+            var server = App.Connection.GetServerAtCurrentConnection(dbName);
             server.ConnectionContext.Connect();
             var result = server.ConnectionContext.ExecuteWithResults(
                 "select * from INFORMATION_SCHEMA.COLUMNS");

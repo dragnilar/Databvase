@@ -13,14 +13,6 @@ namespace Databvase_Winforms.Modules
 {
     public partial class QueryControl : XtraUserControl
     {
-        private const string PDFFilter = "PDF Document (*.pdf)|*.pdf";
-        private const string XLSFilter = "XLS File (*.XLS)|*.XLS";
-        private const string XLSXFilter = "XLSX File (*.XLSX)|*.XLSX";
-        private const string MHTFilter = "MHT File (*.MHT)|*.MHT";
-        private const string RTFFilter = "RTF File (*.RTF)|*.RTF";
-        private const string TXTFilter = "TXT File (*.TXT)|*.TXT";
-        private const string HTMLFilter = "HTML File (*.HTML)|*.HTML";
-        private const string CSVFILTER = "CSV FILE (*.CSV)|CSV";
 
         public QueryControl()
         {
@@ -67,28 +59,28 @@ namespace Databvase_Winforms.Modules
             switch (fileType)
             {
                 case "pdf":
-                    gridViewResults.ExportToPdf(GridUtilities.GetFileNameViaSavePrompt(fileType, PDFFilter));
+                    gridViewResults.ExportToPdf(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.PDFFilter));
                     break;
                 case "xls":
-                    gridViewResults.ExportToXls(GridUtilities.GetFileNameViaSavePrompt(fileType, XLSFilter));
+                    gridViewResults.ExportToXls(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.XLSFilter));
                     break;
                 case "xlsx":
-                    gridViewResults.ExportToXlsx(GridUtilities.GetFileNameViaSavePrompt(fileType, XLSXFilter));
+                    gridViewResults.ExportToXlsx(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.XLSXFilter));
                     break;
                 case "rtf":
-                    gridViewResults.ExportToRtf(GridUtilities.GetFileNameViaSavePrompt(fileType, RTFFilter));
+                    gridViewResults.ExportToRtf(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.RTFFilter));
                     break;
                 case "txt":
-                    gridViewResults.ExportToText(GridUtilities.GetFileNameViaSavePrompt(fileType, TXTFilter));
+                    gridViewResults.ExportToText(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.TXTFilter));
                     break;
                 case "html":
-                    gridViewResults.ExportToHtml(GridUtilities.GetFileNameViaSavePrompt(fileType, HTMLFilter));
+                    gridViewResults.ExportToHtml(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.HTMLFilter));
                     break;
                 case "mht":
-                    gridViewResults.ExportToMht(GridUtilities.GetFileNameViaSavePrompt(fileType, MHTFilter));
+                    gridViewResults.ExportToMht(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.MHTFilter));
                     break;
                 case "csv":
-                    gridViewResults.ExportToCsv(GridUtilities.GetFileNameViaSavePrompt(fileType, CSVFILTER));
+                    gridViewResults.ExportToCsv(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.CSVFILTER));
                     break;
                 default:
                     break;

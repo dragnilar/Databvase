@@ -6,9 +6,9 @@ using DevExpress.XtraEditors.ColorWheel;
 
 namespace Databvase_Winforms.Services
 {
-    public static class SkinService
+    public class SkinService
     {
-        public static void ChangeBezierPalette()
+        public void ChangeBezierPalette()
         {
             var mainWindow = new Form();
             foreach (Form window in Application.OpenForms)
@@ -22,7 +22,7 @@ namespace Databvase_Winforms.Services
                 }
         }
 
-        public static void ChangeColorSwatch()
+        public void ChangeColorSwatch()
         {
             using (var colorWheel = new ColorWheelForm())
             {
@@ -35,7 +35,7 @@ namespace Databvase_Winforms.Services
             }
         }
 
-        public static void SaveSkinSettings()
+        public void SaveSkinSettings()
         {
             App.Config.DefaultSkinName = UserLookAndFeel.Default.SkinName;
             if (UserLookAndFeel.Default.SkinName == "The Bezier")
@@ -50,7 +50,7 @@ namespace Databvase_Winforms.Services
             App.Config.Save();
         }
 
-        public static void LoadSkinSettings()
+        public void LoadSkinSettings()
         {
             if (App.Config.DefaultSkinName == "The Bezier")
                 UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Bezier, App.Config.DefaultSvgPalette);

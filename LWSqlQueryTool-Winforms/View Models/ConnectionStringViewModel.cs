@@ -65,12 +65,12 @@ namespace Databvase_Winforms.View_Models
 
         public void Connect()
         {
-            if (ConnectionService.SetAndTestConnection(SelectedConnection)) WindowState = State.Exit;
+            if (App.Connection.SetAndTestConnection(SelectedConnection)) WindowState = State.Exit;
         }
 
         public void Cancel()
         {
-            ConnectionService.CurrentConnection = null;
+            App.Connection.CurrentConnection = null;
             WindowState = State.Exit;
         }
 
@@ -98,7 +98,7 @@ namespace Databvase_Winforms.View_Models
 
             var connection = BuildConnection();
 
-            if (ConnectionService.TestSavedConnection(connection))
+            if (App.Connection.TestSavedConnection(connection))
             {
                 var connectionToBeBuild = new SavedConnection
                 {

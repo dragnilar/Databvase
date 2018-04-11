@@ -211,6 +211,7 @@
     <Compile Include="Dialogs\RenameTabDialog.Designer.cs">
       <DependentUpon>RenameTabDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Globals\GlobalStrings.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />

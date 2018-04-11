@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Databvase_Winforms.Services;
 using Databvase_Winforms.Views;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
@@ -42,5 +43,7 @@ namespace Databvase_Winforms
     public static class App
     {
         public static Settings Config = new Settings();
+        public static ConnectionService Connection = new ConnectionService();
+        public static SkinService Skins = new SkinService();
     }
 }
