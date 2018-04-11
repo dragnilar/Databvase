@@ -20,6 +20,7 @@ namespace Databvase_Winforms
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             CheckSettings();
+            ToggleDirectX();
             SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
             Application.Run(new MainView());
         }
@@ -27,6 +28,14 @@ namespace Databvase_Winforms
         private static void CheckSettings()
         {
             if (File.Exists(App.Config.FullFilePath)) App.Config.Load();
+        }
+
+        private static void ToggleDirectX()
+        {
+            if (App.Config.UseDirectX)
+            {
+                DevExpress.XtraEditors.WindowsFormsSettings.ForceDirectXPaint();
+            }
         }
     }
 

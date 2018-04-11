@@ -12,6 +12,7 @@ namespace Databvase_Winforms
         public string DefaultSvgPalette = string.Empty;
         public Color SavedSkinColor1 = Color.Empty;
         public Color SavedSkinColor2 = Color.Empty;
+        public bool UseDirectX = false;
 
         public Settings()
         {
