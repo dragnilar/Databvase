@@ -87,7 +87,7 @@ namespace Databvase_Winforms.DAL
 
         public static List<string> GetDatabases()
         {
-            var server = ConnectionService.GetServer();
+            var server = ConnectionService.GetServerAtCurrentConnection();
             var list = new List<string>();
             foreach (Database db in server.Databases) list.Add(db.Name);
 
@@ -101,11 +101,11 @@ namespace Databvase_Winforms.DAL
         /// <returns></returns>
         public static SQLSchema GetSqlSchema()
         {
-            var server = ConnectionService.GetServer();
+            var server = ConnectionService.GetServerAtCurrentConnection();
             var schema = new SQLSchema();
             server.ConnectionContext.Connect();
 
-            schema.InstanceName = server.InstanceName;
+            schema.InstanceName = server.Name;
             var dbList = GetDatabases();
 
             foreach (var dbName in dbList)
@@ -122,7 +122,7 @@ namespace Databvase_Winforms.DAL
 
         private static List<SQLTable> GetDatabaseTables(string dbName)
         {
-            var server = ConnectionService.GetServer(dbName);
+            var server = ConnectionService.GetServerAtCurrentConnection(dbName);
             server.ConnectionContext.Connect();
             var result = server.ConnectionContext.ExecuteWithResults(
                 "select * from INFORMATION_SCHEMA.TABLES");
@@ -135,7 +135,7 @@ namespace Databvase_Winforms.DAL
 
         private static List<SQLColumn> GetDatabaseColumns(string dbName)
         {
-            var server = ConnectionService.GetServer(dbName);
+            var server = ConnectionService.GetServerAtCurrentConnection(dbName);
             server.ConnectionContext.Connect();
             var result = server.ConnectionContext.ExecuteWithResults(
                 "select * from INFORMATION_SCHEMA.COLUMNS");
