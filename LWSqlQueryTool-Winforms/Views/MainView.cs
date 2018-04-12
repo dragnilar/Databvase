@@ -7,6 +7,7 @@ using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
 using DevExpress.Customization;
 using DevExpress.LookAndFeel;
+using DevExpress.Mvvm;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
@@ -153,6 +154,7 @@ namespace Databvase_Winforms.Views
 
         private void TabbedViewMainOnDocumentActivated(object sender, DocumentEventArgs e)
         {
+            
             MergeMainRibbon(e.Document.Control as QueryControl);
         }
 

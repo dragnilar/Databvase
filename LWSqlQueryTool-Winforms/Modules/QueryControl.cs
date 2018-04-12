@@ -13,7 +13,6 @@ namespace Databvase_Winforms.Modules
 {
     public partial class QueryControl : XtraUserControl
     {
-
         public QueryControl()
         {
             InitializeComponent();

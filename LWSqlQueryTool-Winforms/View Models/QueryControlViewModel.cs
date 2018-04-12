@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 
@@ -12,6 +13,7 @@ namespace Databvase_Winforms.View_Models
     [POCOViewModel]
     public class QueryControlViewModel
     {
+
         public QueryControlViewModel()
         {
             Entity = new QueryDocumentEntity {DocumentText = string.Empty};
