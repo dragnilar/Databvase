@@ -4,8 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Databvase_Winforms.Models;
-using Databvase_Winforms.Services;
-using LWSqlQueryTool_Winforms.Models;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.DAL
@@ -85,7 +83,13 @@ namespace Databvase_Winforms.DAL
         }
 
 
-        public static List<string> GetDatabases()
+        public static string GetServerName()
+        {
+            var server = App.Connection.GetServerAtCurrentConnection();
+            return server.Name;
+        }
+
+        public static List<string> GetDatabaseNames()
         {
             var server = App.Connection.GetServerAtCurrentConnection();
             var list = new List<string>();
@@ -94,56 +98,16 @@ namespace Databvase_Winforms.DAL
             return list;
         }
 
-
-        /// <summary>
-        ///     Returns a sql schema object for the database specified in the connection string.
-        /// </summary>
-        /// <returns></returns>
-        public static SQLSchema GetSqlSchema()
+        public static List<Database> GetDatabases()
         {
             var server = App.Connection.GetServerAtCurrentConnection();
-            var schema = new SQLSchema();
-            server.ConnectionContext.Connect();
+            var list = new List<Database>();
+            foreach (Database db in server.Databases)
+            {
+                list.Add(db);
+            }
 
-            schema.InstanceName = server.Name;
-            var dbList = GetDatabases();
-
-            foreach (var dbName in dbList)
-                schema.Databases.Add(new SQLDatabase
-                {
-                    DataBaseName = dbName,
-                    Tables = GetDatabaseTables(dbName),
-                    Columns = GetDatabaseColumns(dbName)
-                });
-
-
-            return schema;
-        }
-
-        private static List<SQLTable> GetDatabaseTables(string dbName)
-        {
-            var server = App.Connection.GetServerAtCurrentConnection(dbName);
-            server.ConnectionContext.Connect();
-            var result = server.ConnectionContext.ExecuteWithResults(
-                "select * from INFORMATION_SCHEMA.TABLES");
-            server.ConnectionContext.Disconnect();
-
-            return result.Tables.Count > 0
-                ? SQLServerInterfaceUtilities.ConvertTableDataTableToList(result.Tables[0])
-                : new List<SQLTable>();
-        }
-
-        private static List<SQLColumn> GetDatabaseColumns(string dbName)
-        {
-            var server = App.Connection.GetServerAtCurrentConnection(dbName);
-            server.ConnectionContext.Connect();
-            var result = server.ConnectionContext.ExecuteWithResults(
-                "select * from INFORMATION_SCHEMA.COLUMNS");
-            server.ConnectionContext.Disconnect();
-
-            return result.Tables.Count > 0
-                ? SQLServerInterfaceUtilities.ConvertColumnsDataTableToList(result.Tables[0])
-                : new List<SQLColumn>();
+            return list;
         }
     }
 }

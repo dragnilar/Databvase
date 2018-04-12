@@ -3,6 +3,7 @@ using System.Linq;
 using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
 using DevExpress.Mvvm.DataAnnotations;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -15,18 +16,25 @@ namespace Databvase_Winforms.View_Models
         }
 
         public virtual List<ObjectExplorerTreeListObject> ObjectExplorerDataSource { get; set; }
-        public virtual SQLSchema CurrentSchema { get; set; }
+        public virtual List<Database> CurrentDatabases { get; set; }
+        public virtual string CurrentServerName { get; set; }
 
 
         public void SetupObjectExplorer()
         {
-            GetSchema();
+            GetDatabases();
+            GetServerName();
             ObjectExplorerDataSource = GetObjectExplorerDataSource();
         }
 
-        private void GetSchema()
+        private void GetDatabases()
         {
-            CurrentSchema = SQLServerInterface.GetSqlSchema();
+            CurrentDatabases = SQLServerInterface.GetDatabases();
+        }
+
+        private void GetServerName()
+        {
+            CurrentServerName = SQLServerInterface.GetServerName();
         }
 
         private List<ObjectExplorerTreeListObject> GetObjectExplorerDataSource()
@@ -37,38 +45,43 @@ namespace Databvase_Winforms.View_Models
             sauce.Add(new ObjectExplorerTreeListObject
             {
                 Id = index++,
-                Name = CurrentSchema.InstanceName,
+                Name = CurrentServerName,
                 NodeType = ObjectExplorerTreeListObject.TypeOfNode.Instance,
                 ParentId = index - 1
             });
 
-            foreach (var db in CurrentSchema.Databases)
+            foreach (Database db in CurrentDatabases)
             {
+                var databaseId = index;
                 sauce.Add(new ObjectExplorerTreeListObject
                 {
                     Id = index++,
-                    Name = db.DataBaseName,
+                    Name = db.Name,
                     NodeType = ObjectExplorerTreeListObject.TypeOfNode.Database,
                     ParentId = 0
                 });
 
-                foreach (var obj in db.Tables)
+                foreach (Table table in db.Tables)
+                {
+                    var tableId = index;
                     sauce.Add(new ObjectExplorerTreeListObject
                     {
                         Id = index++,
-                        Name = obj.TableFullName,
+                        Name = table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
                         NodeType = ObjectExplorerTreeListObject.TypeOfNode.Table,
-                        ParentId = sauce.First(r => r.Name == db.DataBaseName).Id
+                        ParentId = databaseId
                     });
 
-                foreach (var obj in db.Columns)
-                    sauce.Add(new ObjectExplorerTreeListObject
-                    {
-                        Id = index++,
-                        Name = obj.ColumnName,
-                        NodeType = ObjectExplorerTreeListObject.TypeOfNode.Column,
-                        ParentId = sauce.First(r => r.Name == obj.TableFullName).Id
-                    });
+                    foreach (Column obj in table.Columns)
+                        sauce.Add(new ObjectExplorerTreeListObject
+                        {
+                            Id = index++,
+                            Name = obj.Name,
+                            NodeType = ObjectExplorerTreeListObject.TypeOfNode.Column,
+                            ParentId = tableId
+                        });
+                }
+
             }
 
 

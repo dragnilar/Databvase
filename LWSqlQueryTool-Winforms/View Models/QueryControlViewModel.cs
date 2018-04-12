@@ -19,7 +19,7 @@ namespace Databvase_Winforms.View_Models
             ResultsMessage = string.Empty;
             QueryRunning = false;
             CurrentDatabase = string.Empty;
-            DatabasesList = SQLServerInterface.GetDatabases();
+            DatabasesList = SQLServerInterface.GetDatabaseNames();
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
