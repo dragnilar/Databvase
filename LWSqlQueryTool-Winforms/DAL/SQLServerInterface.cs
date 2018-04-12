@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Databvase_Winforms.Models;
+using DevExpress.Data.Helpers;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.DAL
@@ -72,11 +73,11 @@ namespace Databvase_Winforms.DAL
             var instanceList = instancesTable.AsEnumerable().Select(x => new SQLServerInstance
             {
                 InstanceName = x.Field<string>("Instance"),
-                IsClustered = x.Field<string>("IsClustered"),
+                IsClustered = x.Field<bool>("IsClustered"),
                 Name = x.Field<string>("Name"),
                 ServerName = x.Field<string>("Server"),
                 Version = x.Field<string>("Version"),
-                Local = x.Field<string>("IsLocal")
+                Local = x.Field<bool>("IsLocal")
             }).ToList();
 
             return instanceList;
@@ -98,7 +99,35 @@ namespace Databvase_Winforms.DAL
             return list;
         }
 
-        public static List<Database> GetDatabases()
+        public static List<Table> GetTables(string databaseName)
+        {
+            var dbList = GetDatabases();
+            var db = dbList.First(r => r.Name == databaseName);
+            var tablesList = new List<Table>();
+            foreach (Table table in db.Tables)
+            {
+                tablesList.Add(table);
+            }
+
+            return tablesList;
+        }
+
+        public static List<string> GetColumnNames(string tableName, string databaseName)
+        {
+            var tablesList = GetTables(databaseName);
+            var table = tablesList.First(r => r.Name == tableName);
+            var columnsList = new List<string>();
+            foreach (Column col in table.Columns)
+            {
+                columnsList.Add(col.Name);
+            }
+
+            return columnsList;
+        }
+
+
+
+        private static List<Database> GetDatabases()
         {
             var server = App.Connection.GetServerAtCurrentConnection();
             var list = new List<Database>();
@@ -109,5 +138,9 @@ namespace Databvase_Winforms.DAL
 
             return list;
         }
+
+
+
+
     }
 }

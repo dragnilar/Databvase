@@ -8,9 +8,9 @@
         public string ServerName { get; set; }
         public string InstanceName { get; set; }
         public string Name { get; set; }
-        public string IsClustered { get; set; }
+        public bool IsClustered { get; set; }
         public string Version { get; set; }
-        public string Local { get; set; }
+        public bool Local { get; set; }
 
         public override string ToString()
         {
