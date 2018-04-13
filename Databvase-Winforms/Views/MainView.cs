@@ -34,7 +34,6 @@ namespace Databvase_Winforms.Views
             UserLookAndFeel.Default.StyleChanged += Default_StyleChanged;
             barButtonItemColorMixer.ItemClick += barButtonItemColorMixer_ItemClick;
             barButtonItemColorPalette.ItemClick += barButtonItemColorPalette_ItemClick;
-            barButtonItemNewQuery.ItemClick += BarButtonItemNewQueryOnItemClick;
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
@@ -111,27 +110,7 @@ namespace Databvase_Winforms.Views
             if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
         }
 
-
-        private void InitializeBindings()
-        {
-            var fluent = mvvmContextMain.OfType<MainViewModel>();
-        }
-
         #region Tabbed Main View
-
-        private void BarButtonItemNewQueryOnItemClick(object sender, ItemClickEventArgs e)
-        {
-            AddNewTab();
-        }
-
-        private void AddNewTab()
-        {
-            _numberOfQueries++;
-            var caption = "Query " + _numberOfQueries;
-            var name = "QueryTab" + _numberOfQueries;
-            tabbedViewMain.AddDocument(caption, name);
-            tabbedViewMain.Controller.Activate(tabbedViewMain.Documents.LastOrDefault());
-        }
 
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
@@ -192,5 +171,12 @@ namespace Databvase_Winforms.Views
         }
 
         #endregion
+
+
+        private void InitializeBindings()
+        {
+            var fluent = mvvmContextMain.OfType<MainViewModel>();
+            fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
+        }
     }
 }

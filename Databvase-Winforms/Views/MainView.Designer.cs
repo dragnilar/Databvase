@@ -46,6 +46,7 @@ namespace Databvase_Winforms.Views
             this.ribbonPageGroupSkins = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupWindows = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.mvvmContextMain = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.tabbedViewMain = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.defaultLookAndFeelMain = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.dockManagerMain = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
@@ -55,15 +56,14 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer = new DevExpress.XtraBars.Docking.DockPanel();
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.tabbedViewMain = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerMain)).BeginInit();
             this.dockPanel2.SuspendLayout();
             this.dockPanelMain.SuspendLayout();
             this.dockPanelObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControlMain
@@ -79,7 +79,7 @@ namespace Databvase_Winforms.Views
             this.barButtonItemObjectExplorer,
             this.barButtonItemDisconnect});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 10;
+            this.ribbonControlMain.MaxItemId = 11;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -184,6 +184,8 @@ namespace Databvase_Winforms.Views
             // mvvmContextMain
             // 
             this.mvvmContextMain.ContainerControl = this;
+            this.mvvmContextMain.RegistrationExpressions.AddRange(new DevExpress.Utils.MVVM.RegistrationExpression[] {
+            DevExpress.Utils.MVVM.RegistrationExpression.RegisterDocumentManagerService(null, false, this.tabbedViewMain)});
             this.mvvmContextMain.ViewModelType = typeof(Databvase_Winforms.View_Models.MainViewModel);
             // 
             // defaultLookAndFeelMain
@@ -288,12 +290,12 @@ namespace Databvase_Winforms.Views
             this.Text = "Databvase";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerMain)).EndInit();
             this.dockPanel2.ResumeLayout(false);
             this.dockPanelMain.ResumeLayout(false);
             this.dockPanelObjectExplorer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

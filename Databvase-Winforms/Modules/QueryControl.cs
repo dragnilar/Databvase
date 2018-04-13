@@ -86,6 +86,11 @@ namespace Databvase_Winforms.Modules
             }
         }
 
+        public void SetText(string text)
+        {
+            richEditControlQueryEditor.Text = text;
+        }
+
         #region MVVMContext
 
         private void InitializeBindings()
