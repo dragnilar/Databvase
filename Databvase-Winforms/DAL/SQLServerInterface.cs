@@ -31,8 +31,9 @@ namespace Databvase_Winforms.DAL
             }
             catch (Exception ex)
             {
+                //TODO - Need to get back to better handling of the sql exceptions, this is just a hack
                 result.HasErrors = true;
-                result.ResultsMessage = ex.InnerException.Message;
+                result.ResultsMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
             }
 
             return result;
@@ -41,8 +42,12 @@ namespace Databvase_Winforms.DAL
         private static QueryResult GetResult(DataSet ds)
         {
             var result = new QueryResult();
+            var numberOfRows = 0;
+            if (ds.Tables.Count > 0)
+            {
+               numberOfRows = ds.Tables[0].Rows.Count;
+            }
 
-            var numberOfRows = ds.Tables[0].Rows.Count;
 
             result.ResultsMessage = numberOfRows > 0
                 ? numberOfRows + " row(s) affected."

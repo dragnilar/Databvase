@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.Utilities;
@@ -8,6 +10,7 @@ using DevExpress.Utils.MVVM;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraRichEdit.API.Native;
 
 namespace Databvase_Winforms.Modules
@@ -34,7 +37,29 @@ namespace Databvase_Winforms.Modules
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Distance = 0.1f;
             SaveQueryButton.ItemClick += SaveQueryButton_ItemClick;
+            gridViewResults.CustomDrawCell += GridViewResultsOnCustomDrawCell;
         }
+
+        private void GridViewResultsOnCustomDrawCell(object o, RowCellCustomDrawEventArgs e)
+        {
+            if (e.CellValue == DBNull.Value)
+            {
+                if (App.Config.UseDirectX)
+                {
+                    e.CellValue = "[NULL]";
+                    e.Cache.FillRectangle(Color.Red, e.Bounds);
+                    e.Appearance.DrawString(e.Cache, "", e.Bounds);
+                }
+                else
+                {
+                    e.DisplayText = "[NULL]";
+                    e.Cache.FillRectangle(Color.Red, e.Bounds);
+                    e.Appearance.DrawString(e.Cache ,"", e.Bounds);
+                }
+            }
+        }
+
+
 
         private void SaveQueryButton_ItemClick(object sender, ItemClickEventArgs e)
         {
