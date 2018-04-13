@@ -126,8 +126,7 @@ namespace Databvase_Winforms.DAL
         }
 
 
-
-        private static List<Database> GetDatabases()
+        public static List<Database> GetDatabases()
         {
             var server = App.Connection.GetServerAtCurrentConnection();
             var list = new List<Database>();

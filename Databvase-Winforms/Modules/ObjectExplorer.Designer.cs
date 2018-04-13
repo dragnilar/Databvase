@@ -49,6 +49,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.treeListColumnData = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -78,7 +79,8 @@
             this.treeListColumnFullName,
             this.treeListColumnType,
             this.treeListColumnName,
-            this.treeListColumnParentName});
+            this.treeListColumnParentName,
+            this.treeListColumnData});
             this.treeListObjExp.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeListObjExp.DataSource = null;
             this.treeListObjExp.Location = new System.Drawing.Point(12, 12);
@@ -234,6 +236,13 @@
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
             this.popupMenuTable.Name = "popupMenuTable";
             // 
+            // treeListColumnData
+            // 
+            this.treeListColumnData.Caption = "Data";
+            this.treeListColumnData.FieldName = "Data";
+            this.treeListColumnData.Name = "treeListColumnData";
+            this.treeListColumnData.OptionsColumn.ShowInCustomizationForm = false;
+            // 
             // ObjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,5 +290,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemCopy;
         private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectAll;
         private DevExpress.XtraBars.PopupMenu popupMenuTable;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnData;
     }
 }

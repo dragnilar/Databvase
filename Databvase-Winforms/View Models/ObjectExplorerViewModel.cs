@@ -66,6 +66,48 @@ namespace Databvase_Winforms.View_Models
 
         }
 
+        public void GetCellValue(VirtualTreeGetCellValueInfo e)
+        {
+            try
+            {
+                var nodeObject = (ObjectExplorerTreeListObject)e.Node;
+                ProcessNodeCellValue(e, nodeObject);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
+
+
+        private void ProcessNodeCellValue(VirtualTreeGetCellValueInfo e, ObjectExplorerTreeListObject nodeObject)
+        {
+            if (e.Column.FieldName == nameof(nodeObject.FullName))
+            {
+                e.CellData = nodeObject.FullName;
+            }
+
+            if (e.Column.FieldName == nameof(nodeObject.Type))
+            {
+                e.CellData = nodeObject.Type;
+            }
+
+            if (e.Column.FieldName == nameof(nodeObject.Name))
+            {
+                e.CellData = nodeObject.Name;
+            }
+
+            if (e.Column.FieldName == nameof(nodeObject.ParentName))
+            {
+                e.CellData = nodeObject.ParentName;
+            }
+
+            if (e.Column.FieldName == nameof(nodeObject.Data))
+            {
+                e.CellData = nodeObject.Data;
+            }
+        }
+
 
         private void GetInstancesList(VirtualTreeGetChildNodesInfo e)
         {
@@ -97,7 +139,7 @@ namespace Databvase_Winforms.View_Models
 
             try
             {
-                var dbList = SQLServerInterface.GetDatabaseNames();
+                var dbList = SQLServerInterface.GetDatabases();
 
                 if (dbList.Any())
                 {
@@ -106,10 +148,11 @@ namespace Databvase_Winforms.View_Models
                     {
                         list.Add(new ObjectExplorerTreeListObject
                         {
-                            Name = db,
+                            Name = db.Name,
                             Type = "Database",
                             ParentName = string.Empty,
-                            FullName = db
+                            FullName = db.Name,
+                            Data = db
                         }
                         );
                     }
@@ -141,7 +184,9 @@ namespace Databvase_Winforms.View_Models
                             Name = table.Name,
                             Type = "Table",
                             ParentName = dbName,
-                            FullName = table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name
+                            FullName = table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
+                            Data = table
+
                         }
                         );
                     }
@@ -175,7 +220,8 @@ namespace Databvase_Winforms.View_Models
                             Name = col,
                             Type = "Column",
                             FullName = col,
-                            ParentName = table.Name
+                            ParentName = table.Name,
+                            Data = col
 
                         }
                         );

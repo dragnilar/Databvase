@@ -13,6 +13,7 @@ namespace Databvase_Winforms.Models
         public string Type { get; set; }
         public string ParentName { get; set; }
         public string FullName { get; set; }
+        public object Data { get; set; }
         public override string ToString()
         {
             return Type;

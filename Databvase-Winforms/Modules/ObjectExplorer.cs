@@ -35,7 +35,6 @@ namespace Databvase_Winforms.Modules
 
         private void HookupEvents()
         {
-            treeListObjExp.VirtualTreeGetCellValue += treeListObjectExplorer_VirtualTreeGetCellValue;
             treeListObjExp.GetSelectImage += TreeListObjExpOnGetSelectImage;
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
@@ -63,44 +62,6 @@ namespace Databvase_Winforms.Modules
                 case 3:
                     e.NodeImageIndex = 3;
                     break;
-            }
-        }
-
-        
-        private void treeListObjectExplorer_VirtualTreeGetCellValue(object sender, DevExpress.XtraTreeList.VirtualTreeGetCellValueInfo e)
-        { //This is view code so it stays on the view
-            try
-            {
-                var nodeObject = (ObjectExplorerTreeListObject)e.Node;
-                ProcessNodeCellValue(e, nodeObject);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-
-        }
-
-        private void ProcessNodeCellValue(VirtualTreeGetCellValueInfo e, ObjectExplorerTreeListObject nodeObject)
-        {
-            if (e.Column == treeListColumnFullName)
-            {
-                e.CellData = nodeObject.FullName;
-            }
-
-            if (e.Column == treeListColumnType)
-            {
-                e.CellData = nodeObject.Type;
-            }
-
-            if (e.Column == treeListColumnName)
-            {
-                e.CellData = nodeObject.Name;
-            }
-
-            if (e.Column == treeListColumnParentName)
-            {
-                e.CellData = nodeObject.ParentName;
             }
         }
 
@@ -159,6 +120,8 @@ namespace Databvase_Winforms.Modules
             var fluent = mvvmContextObjectExplorer.OfType<ObjectExplorerViewModel>();
             fluent.EventToCommand<VirtualTreeGetChildNodesInfo>(treeListObjExp, "VirtualTreeGetChildNodes",
                 x => x.GetNodesForObjectExplorer(null));
+            fluent.EventToCommand<VirtualTreeGetCellValueInfo>(treeListObjExp, "VirtualTreeGetCellValue",
+                x => x.GetCellValue(null));
 
         }
     }
