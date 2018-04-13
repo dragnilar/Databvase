@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.Dialogs;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
@@ -27,7 +28,10 @@ namespace Databvase_Winforms.Views
                 InitializeBindings();
             App.Skins.LoadSkinSettings();
             HookupEvents();
+            RegisterMessages();
         }
+
+
 
         private void HookupEvents()
         {
@@ -44,6 +48,11 @@ namespace Databvase_Winforms.Views
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
 
             defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
+        }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<NewScriptMessage>(this, NewScriptMessage.NewScriptSender, CreateNewQueryPaneWithScript);
         }
 
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
@@ -136,6 +145,14 @@ namespace Databvase_Winforms.Views
             
             MergeMainRibbon(e.Document.Control as QueryControl);
         }
+
+        private void CreateNewQueryPaneWithScript(NewScriptMessage message)
+        {
+            mvvmContextMain.GetViewModel<MainViewModel>().AddNewTab();
+            ((QueryControl)tabbedViewMain.ActiveDocument.Control).SetScriptToDatabase(message);
+        }
+
+
 
         #endregion
 

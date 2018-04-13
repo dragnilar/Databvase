@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.Utilities;
 using Databvase_Winforms.View_Models;
@@ -86,9 +87,10 @@ namespace Databvase_Winforms.Modules
             }
         }
 
-        public void SetText(string text)
+        public void SetScriptToDatabase(NewScriptMessage message)
         {
-            richEditControlQueryEditor.Text = text;
+            richEditControlQueryEditor.Text = message.Script;
+            barEditItemDatabaseList.EditValue = message.SelectedDatabase;
         }
 
         #region MVVMContext

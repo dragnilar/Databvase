@@ -6,7 +6,9 @@ using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
+using DevExpress.Mvvm;
 using DevExpress.Utils.Extensions;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
@@ -39,6 +41,7 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
 
             barButtonItemCopy.ItemClick += CopyCell;
+            barButtonItemGenerateSelectAll.ItemClick += ScriptSelectAllForTable;
         }
 
 
@@ -114,13 +117,41 @@ namespace Databvase_Winforms.Modules
 
         private void TreeListObjectExplorerOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            popupMenuObjectExplorer.ShowPopup(MousePosition);
+            var focusedNodeType = treeListObjExp.FocusedNode.GetValue(treeListColumnType).ToString();
+
+            switch (focusedNodeType)
+            {
+                case "Table":
+                    popupMenuTable.ShowPopup(MousePosition);
+                    break;
+                default:
+                    popupMenuObjectExplorer.ShowPopup(MousePosition);
+                    break;
+            }
+
         }
         #endregion
 
         private void CopyCell(object sender, EventArgs e)
         {
-            Clipboard.SetText(treeListObjExp.FocusedNode.GetValue(treeListColumnFullName).ToString());
+            Clipboard.SetText(GetFocusedNameCellString());
+        }
+
+        private void ScriptSelectAllForTable(object sender, EventArgs e)
+        {
+            var selectedTable = GetFocusedNameCellString();
+            var selectedDatabase = GetFocusedNodeParent();
+            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable, selectedDatabase);
+        }
+
+        private string GetFocusedNameCellString()
+        {
+            return treeListObjExp.FocusedNode.GetValue(treeListColumnFullName).ToString();
+        }
+
+        private string GetFocusedNodeParent()
+        {
+            return treeListObjExp.FocusedNode.ParentNode.GetValue(treeListColumnName).ToString();
         }
 
         private void InitializeBindings()

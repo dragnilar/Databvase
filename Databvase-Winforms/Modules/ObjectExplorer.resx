@@ -159,7 +159,34 @@
         nFnvtqI2y4WaO7s+m1CnlB8XAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="barButtonItemGenerateSelectAll.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAADXRFWHRUaXRsZQBTY3JpcHQ7
+        IHOVYgAAANVJREFUOE+1kT0KwkAQhXOnnMPSziNYegIJWNmL4D0Cgp34A9b+YSUYkkZUULDwubPs6GSd
+        /DQ+eOzM7L5vsyQAYB1FEUr88mecywHqqhJwSK7ojOaug61pxqoEUMAHyL4S0B5MXfWVnP0XMIzXdtUk
+        98x5HZCe72j1J7aWotnt8cT+dEGjG7PDHwBJe0K8On7CElIIWGwz1wHLXebfTA4LAbNNimZv7DpoYbb+
+        BKmysLH+G6XosPb5Ziswax7gm8QhAbFhcg7g2wCsGcBhCkmr4fpG8AYqyx3chTa/ugAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
+  <data name="barButtonItemGenerateSelectAll.ImageOptions.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAADXRFWHRUaXRsZQBTY3JpcHQ7
+        IHOVYgAAAWRJREFUWEftlDFOw0AQRXOnnIMjcBFK5JKOnitQIdFQh5KGKkqBRCIkpCCgoBzmb2bI7nqM
+        7dHESMCXnrT+653/k9iZEdGPYppTYppTYppTYpqgaRqKpJ6vmCaQQyH6L/D7Cqyf32n79iFXlNbwuhRa
+        4Pzyjo5Or+lqsRKH0hoe9iyFFugK0mKWwgus1i9ytRe8v1Pg4elVrvaCd9ACeMqPz27o5GIhTlvYwz31
+        GxFSAK+aBnRJC+avKBRSQOV5BiDem2NfwDrltIKVyALLze75qJjz1uELZOH5N6D3+grgt14+bsXhEF7D
+        k6FfMj55UYI1vgDC8K93e78Rh9IaXlHK/tqBlvD9BEP0Tbjifwj7NDQc8O2xBcaEAz4SV8ATDorQnDEF
+        xoYDPpYoQnNQoA/IEw40pwj1wMM0pA5WvxUO9HwxzAMPy8MGhQM9XwzzwMPq0N5woOeLYR54WF5gUDjY
+        nafZJ544i52DQCMYAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="popupMenuObjectExplorer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>444, 17</value>
+  </metadata>
+  <metadata name="popupMenuTable.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>842, 17</value>
   </metadata>
 </root>

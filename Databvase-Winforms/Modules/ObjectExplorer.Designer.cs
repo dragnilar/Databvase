@@ -47,6 +47,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -56,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextObjectExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuObjectExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerObjectExplorer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuTable)).BeginInit();
             this.SuspendLayout();
             // 
             // lcObjectExplorer
@@ -165,7 +168,7 @@
             // 
             // barButtonItemCopy
             // 
-            this.barButtonItemCopy.Caption = "Copy";
+            this.barButtonItemCopy.Caption = "Copy Text To Clipboard";
             this.barButtonItemCopy.Id = 0;
             this.barButtonItemCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.Image")));
             this.barButtonItemCopy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.LargeImage")));
@@ -179,8 +182,9 @@
             this.barManagerObjectExplorer.DockControls.Add(this.barDockControlRight);
             this.barManagerObjectExplorer.Form = this;
             this.barManagerObjectExplorer.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItemCopy});
-            this.barManagerObjectExplorer.MaxItemId = 1;
+            this.barButtonItemCopy,
+            this.barButtonItemGenerateSelectAll});
+            this.barManagerObjectExplorer.MaxItemId = 3;
             // 
             // barDockControlTop
             // 
@@ -214,6 +218,22 @@
             this.barDockControlRight.Manager = this.barManagerObjectExplorer;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 600);
             // 
+            // barButtonItemGenerateSelectAll
+            // 
+            this.barButtonItemGenerateSelectAll.Caption = "Generate Select Statement";
+            this.barButtonItemGenerateSelectAll.Id = 2;
+            this.barButtonItemGenerateSelectAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectAll.ImageOptions.Image")));
+            this.barButtonItemGenerateSelectAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectAll.ImageOptions.LargeImage")));
+            this.barButtonItemGenerateSelectAll.Name = "barButtonItemGenerateSelectAll";
+            // 
+            // popupMenuTable
+            // 
+            this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopy),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectAll)});
+            this.popupMenuTable.Manager = this.barManagerObjectExplorer;
+            this.popupMenuTable.Name = "popupMenuTable";
+            // 
             // ObjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,6 +254,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextObjectExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuObjectExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerObjectExplorer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +279,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCopy;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectAll;
+        private DevExpress.XtraBars.PopupMenu popupMenuTable;
     }
 }

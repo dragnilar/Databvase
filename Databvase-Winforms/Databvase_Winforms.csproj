@@ -211,6 +211,7 @@
       <DependentUpon>RenameTabDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals\GlobalStrings.cs" />
+    <Compile Include="Messages\NewScriptMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />
@@ -229,6 +230,7 @@
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\ScriptGeneratorService.cs" />
     <Compile Include="Utilities\GridExportService.cs" />
     <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Models\QueryResult.cs" />

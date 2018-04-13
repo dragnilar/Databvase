@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.DAL;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
+using Databvase_Winforms.Services;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.XtraTreeList;
 using Microsoft.SqlServer.Management.Smo;
@@ -23,6 +26,13 @@ namespace Databvase_Winforms.View_Models
 
         }
 
+        public void ScriptSelectAllForTable(string selectedTable, string dbName)
+        {
+            var selectStatement = new ScriptGeneratorService().GenerateSelectAllStatement(selectedTable);
+            var scriptMessage = new NewScriptMessage(selectStatement, dbName);
+
+            Messenger.Default.Send(scriptMessage, NewScriptMessage.NewScriptSender);
+        }
 
         public void GetNodesForObjectExplorer(VirtualTreeGetChildNodesInfo e)
         {
@@ -56,7 +66,6 @@ namespace Databvase_Winforms.View_Models
 
         }
 
-        
 
         private void GetInstancesList(VirtualTreeGetChildNodesInfo e)
         {
