@@ -16,15 +16,29 @@ namespace Databvase_Winforms.View_Models
     [POCOViewModel]
     public class ObjectExplorerViewModel
     {
+        public virtual string SelectTopContextMenuItemDescription { get; set; }
 
         public ObjectExplorerViewModel()
         {
+            SelectTopContextMenuItemDescription = GetSelectTopDescription();
+        }
 
+        private string GetSelectTopDescription()
+        {
+            return $"Generate Select Top {App.Config.NumberOfRowsForTopSelectScript} Rows"
         }
 
         public void ScriptSelectAllForTable(Table selectedTable)
         {
             var selectStatement = new ScriptGeneratorService().GenerateSelectAllStatement(selectedTable);
+            var scriptMessage = new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
+
+            Messenger.Default.Send(scriptMessage, NewScriptMessage.NewScriptSender);
+        }
+
+        public void ScriptSelectTopForTable(Table selectedTable)
+        {
+            var selectStatement = new ScriptGeneratorService().GenerateSelectTopStatement(selectedTable);
             var scriptMessage = new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
 
             Messenger.Default.Send(scriptMessage, NewScriptMessage.NewScriptSender);

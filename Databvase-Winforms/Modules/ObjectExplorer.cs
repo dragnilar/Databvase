@@ -42,6 +42,7 @@ namespace Databvase_Winforms.Modules
 
             barButtonItemCopy.ItemClick += CopyCell;
             barButtonItemGenerateSelectAll.ItemClick += ScriptSelectAllForTable;
+            barButtonItemGenerateSelectTopStatement.ItemClick += ScriptSelectTopForTable;
 
         }
 
@@ -281,11 +282,19 @@ namespace Databvase_Winforms.Modules
             mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable);
         }
 
+        private void ScriptSelectTopForTable(object sender, EventArgs e)
+        {
+            var selectedTable = GetFocusedNodeTable();
+            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectTopForTable(selectedTable);
+        }
+
 
 
         private void InitializeBindings()
         {
             var fluent = mvvmContextObjectExplorer.OfType<ObjectExplorerViewModel>();
+            fluent.SetBinding(barButtonItemGenerateSelectTopStatement, x => x.Caption,
+                y => y.SelectTopContextMenuItemDescription);
 
         }
     }

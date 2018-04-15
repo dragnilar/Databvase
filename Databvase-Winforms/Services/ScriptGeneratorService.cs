@@ -17,9 +17,8 @@ namespace Databvase_Winforms.Services
 
         public string GenerateSelectTopStatement(Table selectedTable)
         {
-            var quantityString = "1000";
 
-            return $"SELECT TOP {quantityString} * FROM {GetFullTablePath(selectedTable)}";
+            return $"SELECT TOP {App.Config.NumberOfRowsForTopSelectScript} * FROM {GetFullTablePath(selectedTable)}";
         }
 
         private string GetFullTablePath(Table selectedTable)

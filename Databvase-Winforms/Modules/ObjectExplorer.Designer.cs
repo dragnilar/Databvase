@@ -49,6 +49,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonItemGenerateSelectTopStatement = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -186,8 +187,9 @@
             this.barManagerObjectExplorer.Form = this;
             this.barManagerObjectExplorer.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItemCopy,
-            this.barButtonItemGenerateSelectAll});
-            this.barManagerObjectExplorer.MaxItemId = 3;
+            this.barButtonItemGenerateSelectAll,
+            this.barButtonItemGenerateSelectTopStatement});
+            this.barManagerObjectExplorer.MaxItemId = 4;
             // 
             // barDockControlTop
             // 
@@ -223,7 +225,7 @@
             // 
             // barButtonItemGenerateSelectAll
             // 
-            this.barButtonItemGenerateSelectAll.Caption = "Generate Select Statement";
+            this.barButtonItemGenerateSelectAll.Caption = "Generate Select * Statement";
             this.barButtonItemGenerateSelectAll.Id = 2;
             this.barButtonItemGenerateSelectAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectAll.ImageOptions.Image")));
             this.barButtonItemGenerateSelectAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectAll.ImageOptions.LargeImage")));
@@ -233,9 +235,18 @@
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopy),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectAll)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectAll),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement)});
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
             this.popupMenuTable.Name = "popupMenuTable";
+            // 
+            // barButtonItemGenerateSelectTopStatement
+            // 
+            this.barButtonItemGenerateSelectTopStatement.Caption = "Generate Select Top Statement";
+            this.barButtonItemGenerateSelectTopStatement.Id = 3;
+            this.barButtonItemGenerateSelectTopStatement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectTopStatement.ImageOptions.Image")));
+            this.barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage")));
+            this.barButtonItemGenerateSelectTopStatement.Name = "barButtonItemGenerateSelectTopStatement";
             // 
             // ObjectExplorer
             // 
@@ -284,5 +295,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectAll;
         private DevExpress.XtraBars.PopupMenu popupMenuTable;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnData;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectTopStatement;
     }
 }

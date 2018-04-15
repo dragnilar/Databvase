@@ -14,6 +14,7 @@ namespace Databvase_Winforms
         public Color SavedSkinColor2 = Color.Empty;
         public bool UseDirectX = false;
         public bool ShowRowNumberColumn = false;
+        public int NumberOfRowsForTopSelectScript = 1000;
 
         public Settings()
         {

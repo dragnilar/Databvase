@@ -147,7 +147,7 @@ namespace Databvase_Winforms.View_Models
             {
                 SplashScreenService.HideSplashScreen();
 
-                MessageBoxService.ShowMessage("An error occured getting the instances: \n " + e);
+                MessageBoxService.ShowMessage("An error occurred getting the instances: \n " + e);
             }
         }
 
