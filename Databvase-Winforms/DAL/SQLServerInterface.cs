@@ -133,7 +133,7 @@ namespace Databvase_Winforms.DAL
             return tablesList;
         }
 
-        public static List<Column> GetColumns(string databaseName, string tableName)
+        public static List<Column> GetColumns(string tableName, string  databaseName)
         {
             var tablesList = GetTables(databaseName);
             var table = tablesList.First(r => r.Name == tableName);
