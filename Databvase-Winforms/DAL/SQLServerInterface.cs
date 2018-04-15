@@ -119,8 +119,6 @@ namespace Databvase_Winforms.DAL
 
         public static List<Table> GetTables(string databaseName)
         {
-            var watch = new Stopwatch();
-            watch.Start();
             var dbList = GetDatabases();
             var db = dbList.First(r => r.Name == databaseName);
             var tablesList = new List<Table>();
@@ -128,8 +126,6 @@ namespace Databvase_Winforms.DAL
             {
                 tablesList.Add(table);
             }
-            watch.Stop();
-            Console.WriteLine($"Time to get tables:{watch.ElapsedMilliseconds}MS");
             return tablesList;
         }
 

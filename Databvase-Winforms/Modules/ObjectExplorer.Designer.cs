@@ -110,7 +110,6 @@
             this.treeListColumnType.Caption = "Type";
             this.treeListColumnType.FieldName = "Type";
             this.treeListColumnType.Name = "treeListColumnType";
-            this.treeListColumnType.OptionsColumn.ShowInCustomizationForm = false;
             this.treeListColumnType.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             // 
             // treeListColumnName

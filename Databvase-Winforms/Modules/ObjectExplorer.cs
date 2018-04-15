@@ -172,7 +172,8 @@ namespace Databvase_Winforms.Modules
 
         private void GenerateTables(TreeListNode databaseNode)
         {
-            var tableList = SQLServerInterface.GetTables(databaseNode.GetValue(treeListColumnName).ToString());
+            var databaseName = GetParentNodeFullName(databaseNode);
+            var tableList = SQLServerInterface.GetTables(databaseName);
 
             if (tableList.Any())
             {
@@ -183,7 +184,7 @@ namespace Databvase_Winforms.Modules
                         table.Name,
                         "Table",
                         table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
-                        string.Empty,
+                        databaseName,
                         table
                     }, databaseNode);
                     node.StateImageIndex = 2;
@@ -221,7 +222,7 @@ namespace Databvase_Winforms.Modules
                     col.Name,
                     "Column",
                     col.Name,
-                    string.Empty,
+                    tableName,
                     col
                 }, tableNode);
                 node.StateImageIndex = 3;
