@@ -22,48 +22,69 @@ namespace Databvase_Winforms.Modules
 {
     public partial class ObjectExplorer : XtraUserControl
     {
-        private bool InstancesLoaded;
+        private List<string> InstancesList { get; set; }
 
-        public ObjectExplorer()
+    public ObjectExplorer()
         {
             InitializeComponent();
-            treeListObjExp.DataSource = new object();
             if (!mvvmContextObjectExplorer.IsDesignMode)
                 InitializeBindings();
+
             HookupEvents();
+            InstancesList = mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().GetInstancesList();
+            InitializeData();
         }
 
         private void HookupEvents()
         {
-            treeListObjExp.GetSelectImage += TreeListObjExpOnGetSelectImage;
+
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
+            treeListObjExp.BeforeExpand += TreeListObjExpOnBeforeExpand;
 
             barButtonItemCopy.ItemClick += CopyCell;
             barButtonItemGenerateSelectAll.ItemClick += ScriptSelectAllForTable;
+
+        }
+
+
+
+        private void InitializeData()
+        {
+            InitInstances(null);
+        }
+
+
+
+        private void InitInstances(TreeListNode parentNode)
+        {
+            treeListObjExp.BeginUnboundLoad();
+            try
+            {
+                foreach (var instance in InstancesList)
+                {
+                    var node = treeListObjExp.AppendNode(new object[]
+                    {
+                        instance,
+                        "Instance",
+                        instance,
+                        string.Empty
+                    }, parentNode);
+                    node.StateImageIndex = 0;
+                    node.HasChildren = true;
+                    node.Tag = "Instance";
+                } 
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            treeListObjExp.EndUnboundLoad();
         }
 
 
 
         #region TreeList Methods
-        private void TreeListObjExpOnGetSelectImage(object sender, GetSelectImageEventArgs e)
-        { //This is view code so it stays on the view
-            switch (e.Node.Level)
-            {
-                case 0:
-                    e.NodeImageIndex = 0;
-                    break;
-                case 1:
-                    e.NodeImageIndex = 1;
-                    break;
-                case 2:
-                    e.NodeImageIndex = 2;
-                    break;
-                case 3:
-                    e.NodeImageIndex = 3;
-                    break;
-            }
-        }
 
         private void TreeListObjExpOnMouseDown(object sender, MouseEventArgs e)
         {
@@ -91,7 +112,122 @@ namespace Databvase_Winforms.Modules
             }
 
         }
+
+        private void TreeListObjExpOnBeforeExpand(object sender, BeforeExpandEventArgs e)
+        {
+            switch (e.Node.Tag.ToString())
+            {
+                case "Instance":
+                    InitDatabases(e.Node);
+                    break;
+                case "Database":
+                    InitTables(e.Node);
+                    break;
+                case "Table":
+                    InitColumns(e.Node);
+                    break;
+            }
+        }
         #endregion
+
+        private void InitDatabases(TreeListNode parentNode)
+        {
+            treeListObjExp.BeginUnboundLoad();
+            try
+            {
+                var dbList = SQLServerInterface.GetDatabases();
+
+                if (dbList.Any())
+                {
+                    foreach (var db in dbList)
+                    {
+                        var node = treeListObjExp.AppendNode(new object[]
+                        {
+                            db.Name,
+                            "Database",
+                            db.Name,
+                            string.Empty,
+                            db
+                        }, parentNode);
+                        node.StateImageIndex = 1;
+                        node.HasChildren = true;
+                        node.Tag = "Database";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            treeListObjExp.EndUnboundLoad();
+        }
+
+        private void InitTables(TreeListNode parentNode)
+        {
+            treeListObjExp.BeginUnboundLoad();
+            try
+            {
+                var tableList = SQLServerInterface.GetTables(parentNode.GetValue(treeListColumnName).ToString());
+
+                if (tableList.Any())
+                {
+                    foreach (var table in tableList)
+                    {
+                        var node = treeListObjExp.AppendNode(new object[]
+                        {
+                            table.Name,
+                            "Table",
+                            table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
+                            string.Empty,
+                            table
+                        }, parentNode);
+                        node.StateImageIndex = 2;
+                        node.HasChildren = true;
+                        node.Tag = "Table";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            treeListObjExp.EndUnboundLoad();
+        }
+
+        private void InitColumns(TreeListNode parentNode)
+        {
+            treeListObjExp.BeginUnboundLoad();
+            try
+            {
+
+                var columnList = SQLServerInterface.GetColumns(parentNode.GetValue(treeListColumnName).ToString(), 
+                    parentNode.ParentNode.GetValue(treeListColumnName).ToString());
+
+                if (columnList.Any())
+                {
+                    foreach (var col in columnList)
+                    {
+                        var node = treeListObjExp.AppendNode(new object[]
+                        {
+                            col.Name,
+                            "Column",
+                            col.Name,
+                            string.Empty,
+                            col
+                        }, parentNode);
+                        node.StateImageIndex = 3;
+                        node.HasChildren = false;
+                        node.Tag = "Column";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            treeListObjExp.EndUnboundLoad();
+        }
+
 
         private void CopyCell(object sender, EventArgs e)
         {
@@ -118,10 +254,10 @@ namespace Databvase_Winforms.Modules
         private void InitializeBindings()
         {
             var fluent = mvvmContextObjectExplorer.OfType<ObjectExplorerViewModel>();
-            fluent.EventToCommand<VirtualTreeGetChildNodesInfo>(treeListObjExp, "VirtualTreeGetChildNodes",
-                x => x.GetNodesForObjectExplorer(null));
-            fluent.EventToCommand<VirtualTreeGetCellValueInfo>(treeListObjExp, "VirtualTreeGetCellValue",
-                x => x.GetCellValue(null));
+            //fluent.EventToCommand<VirtualTreeGetChildNodesInfo>(treeListObjExp, "VirtualTreeGetChildNodes",
+            //    x => x.GetNodesForObjectExplorer(null));
+            //fluent.EventToCommand<VirtualTreeGetCellValueInfo>(treeListObjExp, "VirtualTreeGetCellValue",
+            //    x => x.GetCellValue(null));
 
         }
     }

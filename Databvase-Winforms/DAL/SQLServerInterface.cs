@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using Databvase_Winforms.Models;
 using DevExpress.Data.Helpers;
@@ -9,6 +10,18 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.DAL
 {
+    public class InClassName
+    {
+        public InClassName(string tableName, string databaseName)
+        {
+            TableName = tableName;
+            DatabaseName = databaseName;
+        }
+
+        public string TableName { get; private set; }
+        public string DatabaseName { get; private set; }
+    }
+
     public static class SQLServerInterface
     {
         /// <summary>
@@ -106,6 +119,8 @@ namespace Databvase_Winforms.DAL
 
         public static List<Table> GetTables(string databaseName)
         {
+            var watch = new Stopwatch();
+            watch.Start();
             var dbList = GetDatabases();
             var db = dbList.First(r => r.Name == databaseName);
             var tablesList = new List<Table>();
@@ -113,18 +128,19 @@ namespace Databvase_Winforms.DAL
             {
                 tablesList.Add(table);
             }
-
+            watch.Stop();
+            Console.WriteLine($"Time to get tables:{watch.ElapsedMilliseconds}MS");
             return tablesList;
         }
 
-        public static List<string> GetColumnNames(string tableName, string databaseName)
+        public static List<Column> GetColumns(string databaseName, string tableName)
         {
             var tablesList = GetTables(databaseName);
             var table = tablesList.First(r => r.Name == tableName);
-            var columnsList = new List<string>();
+            var columnsList = new List<Column>();
             foreach (Column col in table.Columns)
             {
-                columnsList.Add(col.Name);
+                columnsList.Add(col);
             }
 
             return columnsList;

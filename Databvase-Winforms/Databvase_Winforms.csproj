@@ -213,7 +213,6 @@
     <Compile Include="Globals\GlobalStrings.cs" />
     <Compile Include="Messages\NewScriptMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
-    <Compile Include="Models\ObjectExplorerTreeListObject.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\SavedConnection.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />

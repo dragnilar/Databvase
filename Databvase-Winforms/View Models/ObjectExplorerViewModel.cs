@@ -16,13 +16,9 @@ namespace Databvase_Winforms.View_Models
     [POCOViewModel]
     public class ObjectExplorerViewModel
     {
-        protected bool InstancesLoaded;
-        public virtual List<string> InstancesList { get; set; }
 
         public ObjectExplorerViewModel()
         {
-            InstancesList = GetInstancesList();
-            InstancesLoaded = false;
 
         }
 
@@ -34,99 +30,7 @@ namespace Databvase_Winforms.View_Models
             Messenger.Default.Send(scriptMessage, NewScriptMessage.NewScriptSender);
         }
 
-        public void GetNodesForObjectExplorer(VirtualTreeGetChildNodesInfo e)
-        {
-            try
-            {
-                if (!InstancesLoaded)
-                {
-                    GetInstancesList(e);
-                }
-                else
-                {
-                    ObjectExplorerTreeListObject nodeObject = (ObjectExplorerTreeListObject)e.Node;
-                    switch (nodeObject.Type)
-                    {
-                        case "Instance":
-                            GetDatabases(e);
-                            break;
-                        case "Database":
-                            GetTables(e);
-                            break;
-                        case "Table":
-                            GetColumns(e);
-                            break;
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-
-        }
-
-        public void GetCellValue(VirtualTreeGetCellValueInfo e)
-        {
-            try
-            {
-                var nodeObject = (ObjectExplorerTreeListObject)e.Node;
-                ProcessNodeCellValue(e, nodeObject);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-        }
-
-
-        private void ProcessNodeCellValue(VirtualTreeGetCellValueInfo e, ObjectExplorerTreeListObject nodeObject)
-        {
-            if (e.Column.FieldName == nameof(nodeObject.FullName))
-            {
-                e.CellData = nodeObject.FullName;
-            }
-
-            if (e.Column.FieldName == nameof(nodeObject.Type))
-            {
-                e.CellData = nodeObject.Type;
-            }
-
-            if (e.Column.FieldName == nameof(nodeObject.Name))
-            {
-                e.CellData = nodeObject.Name;
-            }
-
-            if (e.Column.FieldName == nameof(nodeObject.ParentName))
-            {
-                e.CellData = nodeObject.ParentName;
-            }
-
-            if (e.Column.FieldName == nameof(nodeObject.Data))
-            {
-                e.CellData = nodeObject.Data;
-            }
-        }
-
-
-        private void GetInstancesList(VirtualTreeGetChildNodesInfo e)
-        {
-            var list = new List<ObjectExplorerTreeListObject>();
-            foreach (var instance in InstancesList)
-            {
-                list.Add(new ObjectExplorerTreeListObject
-                {
-                    Name = instance,
-                    Type = "Instance",
-                    FullName = instance,
-                    ParentName = string.Empty
-                });
-            }
-            e.Children = list;
-            InstancesLoaded = true;
-        }
-
-        private List<string> GetInstancesList()
+        public List<string> GetInstancesList()
         {
             //Only one instance at a time right now...
             var instancesList = new List<string>();
@@ -134,107 +38,6 @@ namespace Databvase_Winforms.View_Models
             return instancesList;
         }
 
-        private void GetDatabases(VirtualTreeGetChildNodesInfo e)
-        {
 
-            try
-            {
-                var dbList = SQLServerInterface.GetDatabases();
-
-                if (dbList.Any())
-                {
-                    var list = new List<ObjectExplorerTreeListObject>();
-                    foreach (var db in dbList)
-                    {
-                        list.Add(new ObjectExplorerTreeListObject
-                        {
-                            Name = db.Name,
-                            Type = "Database",
-                            ParentName = string.Empty,
-                            FullName = db.Name,
-                            Data = db
-                        }
-                        );
-                    }
-
-                    e.Children = list;
-                }
-                else e.Children = new List<ObjectExplorerTreeListObject>();
-            }
-            catch
-            {
-                e.Children = new List<ObjectExplorerTreeListObject>();
-            }
-        }
-
-        private void GetTables(VirtualTreeGetChildNodesInfo e)
-        {
-            try
-            {
-                var dbName = ((ObjectExplorerTreeListObject)e.Node).Name;
-                var tableList = SQLServerInterface.GetTables(dbName);
-
-                if (tableList.Any())
-                {
-                    var list = new List<ObjectExplorerTreeListObject>();
-                    foreach (var table in tableList)
-                    {
-                        list.Add(new ObjectExplorerTreeListObject
-                        {
-                            Name = table.Name,
-                            Type = "Table",
-                            ParentName = dbName,
-                            FullName = table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
-                            Data = table
-
-                        }
-                        );
-                    }
-
-                    e.Children = list;
-                }
-                else e.Children = new List<ObjectExplorerTreeListObject>();
-            }
-            catch
-            {
-                e.Children = new List<ObjectExplorerTreeListObject>();
-            }
-        }
-
-        private static void GetColumns(VirtualTreeGetChildNodesInfo e)
-        {
-
-
-            try
-            {
-                var table = ((ObjectExplorerTreeListObject)e.Node);
-                var columnList = SQLServerInterface.GetColumnNames(table.Name, table.ParentName);
-
-                if (columnList.Any())
-                {
-                    var list = new List<ObjectExplorerTreeListObject>();
-                    foreach (var col in columnList)
-                    {
-                        list.Add(new ObjectExplorerTreeListObject
-                        {
-                            Name = col,
-                            Type = "Column",
-                            FullName = col,
-                            ParentName = table.Name,
-                            Data = col
-
-                        }
-                        );
-                    }
-
-                    e.Children = list;
-                }
-                else e.Children = new List<ObjectExplorerTreeListObject>();
-            }
-            catch
-            {
-                e.Children = new List<ObjectExplorerTreeListObject>();
-            }
-        }
     }
 }
