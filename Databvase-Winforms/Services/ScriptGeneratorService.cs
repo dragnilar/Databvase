@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Services
 {
     public class ScriptGeneratorService
     {
 
-        public string GenerateSelectAllStatement(string tableName)
+        public string GenerateSelectAllStatement(Table selectedTable)
         {
-            return $"SELECT * FROM {tableName}";
+            return $"SELECT * FROM [{selectedTable.Schema}].[{selectedTable.Name}]";
         }
 
         public string GenerateSelectTopStatement(string tableName)

@@ -34,7 +34,6 @@
             this.treeListObjExp = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumnFullName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnParentName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnData = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.imageCollectionObjectExplorer = new DevExpress.Utils.ImageCollection(this.components);
@@ -78,7 +77,6 @@
             this.treeListObjExp.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumnFullName,
             this.treeListColumnType,
-            this.treeListColumnName,
             this.treeListColumnParentName,
             this.treeListColumnData});
             this.treeListObjExp.Cursor = System.Windows.Forms.Cursors.Default;
@@ -111,14 +109,6 @@
             this.treeListColumnType.FieldName = "Type";
             this.treeListColumnType.Name = "treeListColumnType";
             this.treeListColumnType.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
-            // 
-            // treeListColumnName
-            // 
-            this.treeListColumnName.Caption = "Name";
-            this.treeListColumnName.FieldName = "Name";
-            this.treeListColumnName.Name = "treeListColumnName";
-            this.treeListColumnName.OptionsColumn.ShowInCustomizationForm = false;
-            this.treeListColumnName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             // 
             // treeListColumnParentName
             // 
@@ -283,7 +273,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnType;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnParentName;
         private DevExpress.XtraBars.PopupMenu popupMenuObjectExplorer;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;

@@ -22,7 +22,7 @@ namespace Databvase_Winforms.View_Models
 
         }
 
-        public void ScriptSelectAllForTable(string selectedTable, string dbName)
+        public void ScriptSelectAllForTable(Table selectedTable, string dbName)
         {
             var selectStatement = new ScriptGeneratorService().GenerateSelectAllStatement(selectedTable);
             var scriptMessage = new NewScriptMessage(selectStatement, dbName);

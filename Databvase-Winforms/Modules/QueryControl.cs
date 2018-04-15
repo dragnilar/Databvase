@@ -20,22 +20,28 @@ namespace Databvase_Winforms.Modules
         public QueryControl()
         {
             InitializeComponent();
-            SetupQueryEditor();
+            HookupEvents();
             SetupGridButtons();
+            ShowLineNumbers();
             if (!mvvmContextQueryControl.IsDesignMode)
                 InitializeBindings();
         }
 
+
+
         public RibbonControl Ribbon => ribbonControlQueryControl;
 
-
-        private void SetupQueryEditor()
+        private void ShowLineNumbers()
         {
             //We want line numbers on the query editor because they are nice to have... :P
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.RestartType = LineNumberingRestart.Continuous;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Distance = 0.1f;
+        }
+
+        private void HookupEvents()
+        {
             SaveQueryButton.ItemClick += SaveQueryButton_ItemClick;
             gridViewResults.CustomDrawCell += GridViewResultsOnCustomDrawCell;
         }
@@ -46,7 +52,7 @@ namespace Databvase_Winforms.Modules
             {
                 if (App.Config.UseDirectX)
                 {
-                    e.CellValue = "[NULL]";
+                    e.DisplayText = "[NULL]";
                     e.Cache.FillRectangle(Color.Red, e.Bounds);
                     e.Appearance.DrawString(e.Cache, "", e.Bounds);
                 }
@@ -58,8 +64,6 @@ namespace Databvase_Winforms.Modules
                 }
             }
         }
-
-
 
         private void SaveQueryButton_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -114,8 +118,9 @@ namespace Databvase_Winforms.Modules
 
         public void SetScriptToDatabase(NewScriptMessage message)
         {
-            richEditControlQueryEditor.Text = message.Script;
+            richEditControlQueryEditor.Document.Text = message.Script;
             barEditItemDatabaseList.EditValue = message.SelectedDatabase;
+            ShowLineNumbers();
         }
 
         #region MVVMContext

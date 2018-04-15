@@ -104,7 +104,6 @@ namespace Databvase_Winforms.Modules
                     {
                         instance,
                         "Instance",
-                        instance,
                         string.Empty
                     }, null);
                     node.StateImageIndex = 0;
@@ -136,7 +135,7 @@ namespace Databvase_Winforms.Modules
         private void GenerateDatabases(TreeListNode instanceNode)
         {
             var dbList = SQLServerInterface.GetDatabases();
-
+            var instanceName = GetParentNodeFullName(instanceNode);
             if (dbList.Any())
             {
                 foreach (var db in dbList)
@@ -145,8 +144,7 @@ namespace Databvase_Winforms.Modules
                     {
                         db.Name,
                         "Database",
-                        db.Name,
-                        string.Empty,
+                         instanceName,
                         db
                     }, instanceNode);
                     node.StateImageIndex = 1;
@@ -181,9 +179,8 @@ namespace Databvase_Winforms.Modules
                 {
                     var node = treeListObjExp.AppendNode(new object[]
                     {
-                        table.Name,
-                        "Table",
                         table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
+                        "Table",
                         databaseName,
                         table
                     }, databaseNode);
@@ -221,7 +218,6 @@ namespace Databvase_Winforms.Modules
                 {
                     col.Name,
                     "Column",
-                    col.Name,
                     tableName,
                     col
                 }, tableNode);
@@ -230,28 +226,17 @@ namespace Databvase_Winforms.Modules
                 node.Tag = "Column";
             }
         }
-        #endregion
 
-        private void CopyCell(object sender, EventArgs e)
-        {
-            Clipboard.SetText(GetFocusedNodeFullName());
-        }
-
-        private void ScriptSelectAllForTable(object sender, EventArgs e)
-        {
-            var selectedTable = GetFocusedNodeFullName();
-            var selectedDatabase = GetFocusedNodeParentFullName();
-            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable, selectedDatabase);
-        }
+        #region Focused Node Methods
 
         private string GetParentNodeFullName(TreeListNode parentNode)
         {
-            return parentNode.GetValue(treeListColumnName).ToString();
+            return parentNode.GetValue(treeListColumnFullName).ToString();
         }
 
         private string GetParentNodesParentFullName(TreeListNode parentNode)
         {
-            return parentNode.ParentNode.GetValue(treeListColumnName).ToString();
+            return parentNode.ParentNode.GetValue(treeListColumnFullName).ToString();
         }
 
         private string GetFocusedNodeFullName()
@@ -261,8 +246,42 @@ namespace Databvase_Winforms.Modules
 
         private string GetFocusedNodeParentFullName()
         {
-            return treeListObjExp.FocusedNode.ParentNode.GetValue(treeListColumnName).ToString();
+            return treeListObjExp.FocusedNode.ParentNode.GetValue(treeListColumnFullName).ToString();
         }
+
+        private Table GetFocusedNodeTable()
+        {
+            return (Table)treeListObjExp.FocusedNode.GetValue(treeListColumnData);
+        }
+
+        private Column GetFocusedNodeColumn()
+        {
+            return (Column)treeListObjExp.FocusedNode.GetValue(treeListColumnData);
+        }
+
+        private Database GetFocusedNodeDatabase()
+        {
+            return (Database)treeListObjExp.FocusedNode.GetValue(treeListColumnData);
+        }
+
+        #endregion
+
+
+        #endregion
+
+        private void CopyCell(object sender, EventArgs e)
+        {
+            Clipboard.SetText(GetFocusedNodeFullName());
+        }
+
+        private void ScriptSelectAllForTable(object sender, EventArgs e)
+        {
+            var selectedTable = GetFocusedNodeTable();
+            var selectedDatabase = GetFocusedNodeParentFullName();
+            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable, selectedDatabase);
+        }
+
+
 
         private void InitializeBindings()
         {
