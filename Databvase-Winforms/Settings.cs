@@ -13,6 +13,7 @@ namespace Databvase_Winforms
         public Color SavedSkinColor1 = Color.Empty;
         public Color SavedSkinColor2 = Color.Empty;
         public bool UseDirectX = false;
+        public bool ShowRowNumberColumn = false;
 
         public Settings()
         {

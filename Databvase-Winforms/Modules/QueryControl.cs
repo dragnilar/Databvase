@@ -38,7 +38,7 @@ namespace Databvase_Winforms.Modules
 
         private void ShowLineNumbers()
         {
-            //We want line numbers on the query editor because they are nice to have... :P
+            //TODO - Line numbers do not show up if we create the query panel through SetScriptToDatabase, figure out why...
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.RestartType = LineNumberingRestart.Continuous;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
@@ -48,23 +48,16 @@ namespace Databvase_Winforms.Modules
         private void HookupEvents()
         {
             SaveQueryButton.ItemClick += SaveQueryButton_ItemClick;
-            gridViewResults.CustomColumnDisplayText += GridViewResultsOnCustomColumnDisplayText;
-            gridViewResults.RowCellStyle += GridViewResultsOnRowCellStyle;
+            gridViewResults.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
+            barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
+            barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
         }
 
-        private void GridViewResultsOnRowCellStyle(object o, RowCellStyleEventArgs e)
+        private void GridViewResultsOnPopupMenuShowing(object o, PopupMenuShowingEventArgs e)
         {
-            if (e.CellValue == DBNull.Value)
+            if (e.MenuType == GridMenuType.Row )
             {
-                e.Appearance.BackColor = Color.Red;
-            }
-        }
-
-        private void GridViewResultsOnCustomColumnDisplayText(object o, CustomColumnDisplayTextEventArgs e)
-        {
-            if (e.Value == DBNull.Value)
-            {
-                e.DisplayText = "[NULL]";
+                popupMenuQueryGrid.ShowPopup(MousePosition);
             }
         }
 
@@ -96,7 +89,7 @@ namespace Databvase_Winforms.Modules
         {
             richEditControlQueryEditor.Document.Text = message.Script;
             barEditItemDatabaseList.EditValue = message.SelectedDatabase;
-            ShowLineNumbers();
+            ShowLineNumbers(); //TODO - This feels like a hack, there may be a better way to use ShowLineNumbers without having to call it again here
         }
 
         #region MVVMContext

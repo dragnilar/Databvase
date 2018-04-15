@@ -11,7 +11,7 @@ namespace Databvase_Winforms.Controls.QueryGrid
 {
     public class QueryGridView : GridView
     {
-        public GridColumn IndicatorColumn = new GridColumn();
+        public GridColumn RowNumberColumn = new GridColumn();
         public QueryGridView()
         {
             InitializeGridView();
@@ -26,11 +26,29 @@ namespace Databvase_Winforms.Controls.QueryGrid
         private void InitializeGridView()
         {
             this.CustomUnboundColumnData += OnCustomUnboundColumnData;
+            this.RowCellStyle += QueryGridView_RowCellStyle;
+            this.CustomColumnDisplayText += OnCustomColumnDisplayText;
+        }
+
+        private void OnCustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Value == DBNull.Value)
+            {
+                e.DisplayText = "[NULL]";
+            }
+        }
+
+        private void QueryGridView_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.CellValue == DBNull.Value)
+            {
+                e.Appearance.BackColor = Color.Red;
+            }
         }
 
         private void OnCustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
         {
-            if (e.Column == IndicatorColumn)
+            if (e.Column == RowNumberColumn)
             {
                 e.Value = e.ListSourceRowIndex + 1;
             }
@@ -41,14 +59,17 @@ namespace Databvase_Winforms.Controls.QueryGrid
         public void AddRowNumberColumn()
         {
             BeginUpdate();
-            IndicatorColumn.Caption = "#";
-            IndicatorColumn.FieldName = "Row";
-            IndicatorColumn.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
-            IndicatorColumn.Visible = true;
-            Columns.Add(IndicatorColumn);
-            IndicatorColumn.VisibleIndex = 0;
+            RowNumberColumn.Caption = "#";
+            RowNumberColumn.FieldName = "Row";
+            RowNumberColumn.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            RowNumberColumn.Visible = true;
+            Columns.Add(RowNumberColumn);
+            RowNumberColumn.VisibleIndex = 0;
+            RowNumberColumn.BestFit();
             EndUpdate();
         }
+
+
 
 
 

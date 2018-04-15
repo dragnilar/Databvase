@@ -47,6 +47,8 @@ namespace Databvase_Winforms.Modules
             this.barButtonItemPrintGrid = new DevExpress.XtraBars.BarButtonItem();
             this.barEditItemDatabaseList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEditDatabaseList = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.barButtonCopyCells = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupQuery = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -64,6 +66,7 @@ namespace Databvase_Winforms.Modules
             this.lciRibbon = new DevExpress.XtraLayout.LayoutControlItem();
             this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.bindingSourceQueryControl = new System.Windows.Forms.BindingSource(this.components);
+            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -82,6 +85,7 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.lciRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQueryControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuQueryGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControlQueryControl
@@ -115,9 +119,11 @@ namespace Databvase_Winforms.Modules
             this.barButtonItemExportToText,
             this.barButtonItemPrintGrid,
             this.barEditItemDatabaseList,
-            this.barButtonItemExportToCSV});
+            this.barButtonItemExportToCSV,
+            this.barButtonCopyCells,
+            this.barButtonItemSelectAll});
             this.ribbonControlQueryControl.Location = new System.Drawing.Point(12, 12);
-            this.ribbonControlQueryControl.MaxItemId = 16;
+            this.ribbonControlQueryControl.MaxItemId = 18;
             this.ribbonControlQueryControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlQueryControl.Name = "ribbonControlQueryControl";
             this.ribbonControlQueryControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -250,6 +256,22 @@ namespace Databvase_Winforms.Modules
             this.repositoryItemLookUpEditDatabaseList.Name = "repositoryItemLookUpEditDatabaseList";
             this.repositoryItemLookUpEditDatabaseList.NullText = "Select a database...";
             // 
+            // barButtonCopyCells
+            // 
+            this.barButtonCopyCells.Caption = "Copy Selected Cells";
+            this.barButtonCopyCells.Id = 16;
+            this.barButtonCopyCells.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonCopyCells.ImageOptions.Image")));
+            this.barButtonCopyCells.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonCopyCells.ImageOptions.LargeImage")));
+            this.barButtonCopyCells.Name = "barButtonCopyCells";
+            // 
+            // barButtonItemSelectAll
+            // 
+            this.barButtonItemSelectAll.Caption = "Select All";
+            this.barButtonItemSelectAll.Id = 17;
+            this.barButtonItemSelectAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemSelectAll.ImageOptions.Image")));
+            this.barButtonItemSelectAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemSelectAll.ImageOptions.LargeImage")));
+            this.barButtonItemSelectAll.Name = "barButtonItemSelectAll";
+            // 
             // ribbonPageGroupDatabvase
             // 
             this.ribbonPageGroupDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -296,11 +318,23 @@ namespace Databvase_Winforms.Modules
             // gridControlResults
             // 
             this.gridControlResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlResults.EmbeddedNavigator.Buttons.Append.Enabled = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.Append.Visible = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.CancelEdit.Enabled = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.Edit.Enabled = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.Edit.Visible = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.EndEdit.Enabled = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.Remove.Enabled = false;
+            this.gridControlResults.EmbeddedNavigator.Buttons.Remove.Visible = false;
+            this.gridControlResults.EmbeddedNavigator.TextStringFormat = "Row {0} of {1}";
             this.gridControlResults.Location = new System.Drawing.Point(0, 0);
             this.gridControlResults.MainView = this.gridViewResults;
             this.gridControlResults.Name = "gridControlResults";
             this.gridControlResults.Size = new System.Drawing.Size(770, 272);
             this.gridControlResults.TabIndex = 12;
+            this.gridControlResults.UseEmbeddedNavigator = true;
             this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewResults});
             // 
@@ -402,6 +436,13 @@ namespace Databvase_Winforms.Modules
             // 
             this.bindingSourceQueryControl.DataSource = typeof(Databvase_Winforms.Models.QueryDocumentEntity);
             // 
+            // popupMenuQueryGrid
+            // 
+            this.popupMenuQueryGrid.ItemLinks.Add(this.barButtonCopyCells);
+            this.popupMenuQueryGrid.ItemLinks.Add(this.barButtonItemSelectAll);
+            this.popupMenuQueryGrid.Name = "popupMenuQueryGrid";
+            this.popupMenuQueryGrid.Ribbon = this.ribbonControlQueryControl;
+            // 
             // QueryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,6 +469,7 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.lciRibbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQueryControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuQueryGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -467,5 +509,8 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditDatabaseList;
         private DevExpress.XtraBars.BarButtonItem barButtonItemExportToCSV;
         private Controls.QueryGrid.QueryGridView gridViewResults;
+        private DevExpress.XtraBars.PopupMenu popupMenuQueryGrid;
+        private DevExpress.XtraBars.BarButtonItem barButtonCopyCells;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemSelectAll;
     }
 }

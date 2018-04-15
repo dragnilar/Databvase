@@ -56,6 +56,8 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer = new DevExpress.XtraBars.Docking.DockPanel();
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+            this.ribbonPageGroupSettings = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barCheckItemShowRowNumbers = new DevExpress.XtraBars.BarCheckItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).BeginInit();
@@ -77,9 +79,10 @@ namespace Databvase_Winforms.Views
             this.barButtonItemNewQuery,
             this.barButtonItemConnect,
             this.barButtonItemObjectExplorer,
-            this.barButtonItemDisconnect});
+            this.barButtonItemDisconnect,
+            this.barCheckItemShowRowNumbers});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 11;
+            this.ribbonControlMain.MaxItemId = 12;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -163,7 +166,8 @@ namespace Databvase_Winforms.Views
             // 
             this.ribbonPageView.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroupSkins,
-            this.ribbonPageGroupWindows});
+            this.ribbonPageGroupWindows,
+            this.ribbonPageGroupSettings});
             this.ribbonPageView.Name = "ribbonPageView";
             this.ribbonPageView.Text = "View";
             // 
@@ -277,6 +281,19 @@ namespace Databvase_Winforms.Views
             this.documentManagerMain.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedViewMain});
             // 
+            // ribbonPageGroupSettings
+            // 
+            this.ribbonPageGroupSettings.ItemLinks.Add(this.barCheckItemShowRowNumbers);
+            this.ribbonPageGroupSettings.Name = "ribbonPageGroupSettings";
+            this.ribbonPageGroupSettings.Text = "Settings";
+            // 
+            // barCheckItemShowRowNumbers
+            // 
+            this.barCheckItemShowRowNumbers.Caption = "Show Row Number Column";
+            this.barCheckItemShowRowNumbers.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
+            this.barCheckItemShowRowNumbers.Id = 11;
+            this.barCheckItemShowRowNumbers.Name = "barCheckItemShowRowNumbers";
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,6 +344,8 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupWindows;
         private DevExpress.XtraBars.BarButtonItem barButtonItemObjectExplorer;
         private DevExpress.XtraBars.BarButtonItem barButtonItemDisconnect;
+        private DevExpress.XtraBars.BarCheckItem barCheckItemShowRowNumbers;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupSettings;
     }
 }
 

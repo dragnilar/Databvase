@@ -63,7 +63,7 @@ namespace Databvase_Winforms.View_Models
             if (result != null)
                 if (result.HasErrors)
                 {
-                    ResultsMessage = $"Errors Occured: \n{result.ResultsMessage}";
+                    ResultsMessage = $"Errors Occurred: \n{result.ResultsMessage}";
                 }
                 else
                 {
@@ -71,11 +71,15 @@ namespace Databvase_Winforms.View_Models
                     GridSource = result.ResultsSet.Tables.Count > 0 ? result.ResultsSet.Tables[0] : null;
                     ClearGrid = false;
                     ResultsMessage = result.ResultsMessage;
-                    AddIndicatorColumn();
+                    if (App.Config.ShowRowNumberColumn)
+                    {
+                        AddRowNumberColumn();
+                    }
+                    
                 }
         }
 
-        private void AddIndicatorColumn()
+        private void AddRowNumberColumn()
         {
             AddIndicator = true;
             AddIndicator = false;
