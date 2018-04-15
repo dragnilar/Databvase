@@ -25,7 +25,7 @@ namespace Databvase_Winforms.View_Models
 
         private string GetSelectTopDescription()
         {
-            return $"Generate Select Top {App.Config.NumberOfRowsForTopSelectScript} Rows"
+            return $"Generate Select Top {App.Config.NumberOfRowsForTopSelectScript} Rows";
         }
 
         public void ScriptSelectAllForTable(Table selectedTable)
