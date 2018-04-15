@@ -12,14 +12,19 @@ namespace Databvase_Winforms.Services
 
         public string GenerateSelectAllStatement(Table selectedTable)
         {
-            return $"SELECT * FROM [{selectedTable.Schema}].[{selectedTable.Name}]";
+            return $"SELECT * FROM {GetFullTablePath(selectedTable)}";
         }
 
-        public string GenerateSelectTopStatement(string tableName)
+        public string GenerateSelectTopStatement(Table selectedTable)
         {
             var quantityString = "1000";
 
-            return $"SELECT TOP {quantityString} * FROM {tableName}";
+            return $"SELECT TOP {quantityString} * FROM {GetFullTablePath(selectedTable)}";
+        }
+
+        private string GetFullTablePath(Table selectedTable)
+        {
+            return $"[{selectedTable.Parent.Name}].[{selectedTable.Schema}].[{selectedTable.Name}]";
         }
     }
 }

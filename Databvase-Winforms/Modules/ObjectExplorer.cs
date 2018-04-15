@@ -278,8 +278,7 @@ namespace Databvase_Winforms.Modules
         private void ScriptSelectAllForTable(object sender, EventArgs e)
         {
             var selectedTable = GetFocusedNodeTable();
-            var selectedDatabase = GetFocusedNodeParentFullName();
-            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable, selectedDatabase);
+            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable);
         }
 
 
