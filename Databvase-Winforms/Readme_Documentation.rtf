@@ -1,0 +1,199 @@
+{\rtf1\ansi\ansicpg1252\deff0{\fonttbl{\f0\fnil\fcharset0 Tahoma;}{\f1\fnil\fcharset0 MS Sans Serif;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
+\viewkind4\uc1\pard\lang1033\ul\f0\fs44 DATABVASE!!!! ReadMe\fs32\par
+\par
+\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 5)\ul\par
+\par
+Release Notes:\par
+\par
+\b\fs16 Rev 5 Changes:\b0\fs24\par
+\par
+\ulnone\fs16 - Fixed bug where the connection wizard would not let you make a connection using a username and password.\par
+\par
+- Further improved the performance of the object explorer (it now only loads data from the server when a specific node is clicked instead of trying to load all the data for each subnode).\par
+\par
+- Fixed bug where the script generator was not properly generating scripts with the fully qualified table name.\par
+\par
+- Added an optional row number column to the query grid\par
+\par
+- Added navigator to the query grid that displays the number of rows and the ability to navigate between records.\par
+\par
+- Added ability to select multiple cells or individual cells via left clicking and drag on the query grid\par
+\par
+- Added ability to right click and copy or select all of the query grid\par
+\par
+- Slightly improved the way the grid handles null values versus blank values (they now show up on exports instead of as blanks).\par
+\par
+- Improved documentation of the readme and also added to the list of possible limitations/bugs.\par
+\par
+\ul\fs24\par
+\b\fs16 Rev 4 Changes:\ulnone\b0\par
+\par
+- Fixed error that occured querying database instances\par
+\par
+- Fixed crash bug when using queries that dont return result sets\par
+\par
+- Added ability to right click on a table and generate a select * script to a new query pane. \par
+\par
+- Grid now paints cells that contain NULL data in RED with [NULL] to help distinguish from empty strings. \par
+\par
+- Improved display and performance of the object explorer's initial load \par
+\par
+- Streamlined the right click + copy cell context menu option\par
+\ul\fs24\par
+\par
+\b\fs16 Rev 3 Changes:\ulnone\b0\par
+\par
+- Fixed a crash bug that was occuring when testing and saving a database connection\par
+\par
+- The full database and instance name now displays in the object explorer\par
+\par
+- Full table names now display (previously table names with periods/schemas other than dbo would not display completely).\par
+\par
+- Added Direct X hardware acceleration support; you must toggle this manually in the settings if you wish to experiment with it. \par
+\par
+Otherwise wait until a proper settings menu is available to make use of it.\par
+\par
+Note: this setting requires an application restart.\ul\fs24\par
+\par
+\b\fs16 Rev 2 Changes:\b0\par
+\par
+\ulnone - You are now able to connect to a database instance and view all databases in the object explorer instead of just one database at a time.\par
+\par
+- To query a specific database, you must select a database from the drop down menu. Otherwise you will be running queries against the master database (just like in SSMS).\par
+\par
+- The file size grew a little becuase of the incorporation of SMO (SQL Management Objects)\par
+\par
+-  You no longer have to specify a database when you create a connection.\par
+\par
+ - Connections are no longer saved as connection strings, but as fields. \ul\fs24\par
+\ulnone\fs16\par
+\ul\fs24 Features:\ulnone\fs16\par
+\par
+\b View/ Look and Feel:\par
+\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Features over 50+ different kinds of skins/themes, allowing for you to customize the appearance of the appplication. This includes the new vector based Bezier skin/theme.\par
+{\pntext\f3\'B7\tab}Ability to change the color palletes for the Bezier skin/theme via DevExpress' pallete selector.\par
+{\pntext\f3\'B7\tab}Ability to select certain colors for each theme via the color mixer.\par
+{\pntext\f3\'B7\tab}All color and theme settings are saved to the settings file.\par
+\pard\par
+\b Window Layout\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Overall control of the application is controlled via a ribbon.\b\par
+\b0{\pntext\f3\'B7\tab}The ribbon can be minimized and moved (to a certain degree).\b\par
+\b0{\pntext\f3\'B7\tab}All query panes and the object explorer can be dragged off the main window and placed elsewhere.\par
+{\pntext\f3\'B7\tab}Visual Studio/Management Studio style docking and floating of queries within the main window.\par
+{\pntext\f3\'B7\tab}Visual Studio/Management Studio style pinning of \par
+{\pntext\f3\'B7\tab}Individual query panes can be opened and closed.\par
+{\pntext\f3\'B7\tab}The object explorer can be closed (and shown again via a button on the ribbon).\par
+{\pntext\f3\'B7\tab}Semi-Responsive layout - Databvase resizes itself appropriately (within reason) to the size of your monitor and window size. \par
+\pard\par
+\b Connection Settings\par
+\b0\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720 Able to connect to any MS SQL Server database that is on the same or different network, permitting that the server is set up to accept connections via the standard ports.\par
+{\pntext\f3\'B7\tab}Able to scan the network for any SQL Server instances that are visible (note that this scan can be time consuming, thus it is optional. You may type in a server address if you already know it).\par
+{\pntext\f3\'B7\tab}Able to connect using either Windows Authentication or using a Username and Password.\par
+{\pntext\f3\'B7\tab}Saves all used connections to the settings file for later reuse.\par
+{\pntext\f3\'B7\tab}When you connect to a database, you may open and start running queries.\par
+{\pntext\f3\'B7\tab}When you disconnect from a database, all queries are closed imeedietly to prevent querying a database.\par
+\pard\par
+\b Object Explorer\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Allows you to filter the database instances/tables/columns via right click menus.\par
+{\pntext\f3\'B7\tab}Allows you to search using the find panel (CTRL + F or right click the column header and select show find panel).\par
+{\pntext\f3\'B7\tab}Displays current databases/tables/columns that you can see in your current instance.\par
+{\pntext\f3\'B7\tab}Able to right click and copy the name of the currently focused object.\par
+{\pntext\f3\'B7\tab}You can script statements to a new query pane via the right click context menu (I.E. select * from [tablename].\par
+{\pntext\f3\'B7\tab}Data for each node is loaded on demand (I.E. When you click on a database, only the table names are loaded, when you click on a table, the columns for that specific table are loaded).\par
+\pard\par
+\b Querying\par
+\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720 Query Performance / Features\par
+\pard{\pntext\f0 i.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pnlcrm{\pntxta.}}
+\fi-360\li1080\b0 Able to have numerous query tabs open at once and run multiple queries at once asynchronously.\par
+{\pntext\f0 ii.\tab}All queries can be executed against a specific database within the instance via a drop down/combo box on the ribbon. If this is not done you are presumed to be executing against the master (like in SSMS) or the database you specifiy in your query.\par
+{\pntext\f0 iii.\tab}You can execute pretty much any query that you desire against a database (I.E. Selects, inserts, updates, drops, etc.)\par
+{\pntext\f0 iv.\tab}Queries can be executed by either clicking an execute button or by hitting F5.\par
+{\pntext\f0 v.\tab}Able to run part of a query by highlighting it and hitting F5.\par
+{\pntext\f0 vi.\tab}Queries will (to a limited degree) factor in whether or not the text is commented out and if it is it will not run.\par
+\pard\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b Text Editor\b0\par
+\pard{\pntext\f0 i.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pnlcrm{\pntxta.}}
+\fi-360\li1080 Line numbers are shown on the query text editor.\par
+{\pntext\f0 ii.\tab}You can change the font and other display properties via the right click menu in the text editor.\par
+{\pntext\f0 iii.\tab}You can also zoom in and out in the text editor via CTRL+mouse wheel\par
+{\pntext\f0 iv.\tab}You can show the find and replace window by hitting ctrl+f in the text editor.\par
+{\pntext\f0 v.\tab}Queries (or any text for that matter) can be saved to a variety of different file formats (I.E. Text, RTF, etc)\par
+{\pntext\f0 vi.\tab}Query tabs can be renamed for easier identification.\par
+\pard\par
+\par
+\b Query Results/Data Display\par
+\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Query results are displayed in a DevExpress XtraGrid and messages (such as errors or result numbers) are displayed ina  messages tab.\b\par
+\pard\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720 Filtering/Searching\par
+\pard{\pntext\f0 i.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pnlcrm{\pntxta.}}
+\fi-360\li1080\b0 The grid allows you to perform further data shaping via filters, sorting, searching and grouping.\par
+{\pntext\f0 ii.\tab}Grouping can be performed by dragging column headers onto the group panel at the top of the grid.\par
+{\pntext\f0 iii.\tab}Further filters can be applied via the right click context menu on the headers or via the filter button on each column header.\par
+{\pntext\f0 iv.\tab}Sorting can be performed by clicking on a column header.\par
+{\pntext\f0 v.\tab}Auto filter rows can be shown and hidden via the right click context menu on the column headers.\par
+{\pntext\f0 vi.\tab}The search/find panel can be shown in the grid by pressing ctrl+F or right clicking on the column headers and selecting "show find panel".\par
+{\pntext\f0 vii.\tab}You can show and hide columns via the column chooser in the right click menu or dragging columns off the screen.\par
+\pard\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b Navigation and Data Highlighting\b0\par
+\pard{\pntext\f0 i.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pnlcrm{\pntxta.}}
+\fi-360\li1080 You can copy (with headers) the results of your query to the clipboard via right click.\par
+{\pntext\f0 ii.\tab}You can highlight individual cells via the left mouse.\par
+{\pntext\f0 iii.\tab}A navigation control is displayed at the bottom of the grid that shows the number of rows in a result set as well as the ability to navigate between rows.\par
+{\pntext\f0 iv.\tab}A selector/indicator column is displayed on the left side of the grid that shows the currently selected row and also allows you to highlight/select the whole row.\par
+{\pntext\f0 v.\tab}An optional row number column can be displayed for your results that lets you see the row number within the grid (if the navigation control is not enough).\par
+\pard\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b Print/Exporting\b0\par
+\pard{\pntext\f0 i.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pnlcrm{\pntxta.}}
+\fi-360\li1080 You can print your query results out with a print preview tool that lets you make additional changes to your print out.\b\par
+\b0{\pntext\f0 ii.\tab}Query results can be exported to a variety of file formats via either the print preview/tool or via the export grid drop down on the ribbon (note that export time depends on the amount of data shown in the grid and also the file format selection. Also be aware that certain file formats have limitations for export, such as regular XLS having a limtiation of 65,000 rows).\par
+\pard\par
+NOTE: Pretty much all dependencies are embedded in the executable file to keep the package small. This means that the application should have everything it needs to run, assuming .NET 4.7 is installed.\par
+\par
+\ul\par
+Known Issues / Limitations\ulnone\par
+\par
+- Grid exporting and printing performance can be slow with large data sets and may cause excessive memory consumption when using certain file formats (I.E. PDF). This is more or less a limitation of the "out of box" functionality of the DevExpress grid. This may or may not be looked into improving upon down the road, depending on the level of interest.\par
+\par
+- No splash screen or about/information page is present. This will be changed.\par
+\par
+- Databvase can only display one table result at a time. For example, if you run two select statements at once, only one table's results will be returned. This may be looked into down the road, depending on demand / interest.\par
+\par
+- Databvase can only connect to one instance at a time currently. This will be looked into if there is demand/interest for being able to work with multiple instances at once. \par
+\par
+- Databvase does not currently use connection pooling or keep connections going while a query pane is open. It treats all database operations as one unit of work (connection > do the work > disconnect). This may or may not be ideal in some situations and it will be looked into if this can be toggled on or off down the road for those that may prefer to have a connection always going. \par
+\par
+- When errors occur the bottom tab does not auto switch its tab to the messages tab.\par
+\par
+- There may be possible situations where comments are not properly parsed out in a query (I.E. if they are in the middle of a statement). You will probably get query errors as a result or strange result sets.\par
+\par
+- When queries are returned, there is a momentary pause in the application as the grid is populated. This may be looked into down the road.\par
+\par
+- There may be situations where queries can time out where SSMS does not (I.E. long running queries). This will be looked into as time goes on.\par
+\par
+- Null/empty string columns are not easily distinguishable in filters for nvarchar/varchar/string type columns in tables. NULL is however differentiated display wise but the filtering mechanism does not pick up on this. This will be looked into down the road.\par
+\par
+- There currently is no way to abort/cancel a query.\par
+\par
+- Groups added to the quick access toolbar on the ribbon may show as boxes with X's in them and/or they may not function normally as if they were on the ribbon. The quick access toolbar may be removed down the road unless there is an interest in keeping it.\par
+\par
+- No intellisense (this is a very complex feature and as a result it is unlikely if it will be implemented). Also there have been some cases where people do not like the intellisense/auto complete of SSMS. \par
+\par
+- The query text editor allows you to add comments, bookmarks, hyperlinks, and insert images (becuase it is using a rich text edit control). While this may not cause any harm, these are features that do not seem appropriate for the software. These will probably be removed.\par
+\par
+-  It is possible to get the object explorer to not properly dispose of its current data and retain duplicates between connections. This will be looked into. \par
+\par
+- High DPI support is currently not implemented. The application may display distorted on computers that have DPIs set higher than the standard 100%.\par
+\par
+- There may be other unforeseen or currently unknown issues (I.E. Performance, stability, memory consumption, weird display bugs, etc.).\par
+\par
+\par
+\par
+\par
+\f1\par
+\pard\sa200\sl276\slmult1\lang9\f2\fs22\par
+}
+ 

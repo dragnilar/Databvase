@@ -74,6 +74,10 @@ namespace Databvase_Winforms.Modules
 
         }
 
+        #endregion
+
+        #region Tree List Unbound Methods
+
         private void TreeListObjExpOnBeforeExpand(object sender, BeforeExpandEventArgs e)
         {
             switch (e.Node.Tag.ToString())
@@ -89,9 +93,6 @@ namespace Databvase_Winforms.Modules
                     break;
             }
         }
-        #endregion
-
-        #region Tree List Unbound Methods
 
         private void InitInstances()
         {
