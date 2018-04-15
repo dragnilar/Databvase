@@ -33,6 +33,7 @@ namespace Databvase_Winforms.Services
 
             if (connection.WindowsAuthentication == false)
             {
+                server.ConnectionContext.LoginSecure = false;
                 server.ConnectionContext.Login = connection.UserName;
                 server.ConnectionContext.Password = connection.Password;
             }
