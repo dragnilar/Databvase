@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.Utilities;
 using Databvase_Winforms.View_Models;
 using DevExpress.Mvvm.POCO;
+using DevExpress.Utils;
+using DevExpress.Utils.Drawing;
 using DevExpress.Utils.MVVM;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraRichEdit.API.Native;
+using DevExpress.Utils.Text;
 
 namespace Databvase_Winforms.Modules
 {
@@ -43,25 +48,23 @@ namespace Databvase_Winforms.Modules
         private void HookupEvents()
         {
             SaveQueryButton.ItemClick += SaveQueryButton_ItemClick;
-            gridViewResults.CustomDrawCell += GridViewResultsOnCustomDrawCell;
+            gridViewResults.CustomColumnDisplayText += GridViewResultsOnCustomColumnDisplayText;
+            gridViewResults.RowCellStyle += GridViewResultsOnRowCellStyle;
         }
 
-        private void GridViewResultsOnCustomDrawCell(object o, RowCellCustomDrawEventArgs e)
+        private void GridViewResultsOnRowCellStyle(object o, RowCellStyleEventArgs e)
         {
             if (e.CellValue == DBNull.Value)
             {
-                if (App.Config.UseDirectX)
-                {
-                    e.DisplayText = "[NULL]";
-                    e.Cache.FillRectangle(Color.Red, e.Bounds);
-                    e.Appearance.DrawString(e.Cache, "", e.Bounds);
-                }
-                else
-                {
-                    e.DisplayText = "[NULL]";
-                    e.Cache.FillRectangle(Color.Red, e.Bounds);
-                    e.Appearance.DrawString(e.Cache ,"", e.Bounds);
-                }
+                e.Appearance.BackColor = Color.Red;
+            }
+        }
+
+        private void GridViewResultsOnCustomColumnDisplayText(object o, CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Value == DBNull.Value)
+            {
+                e.DisplayText = "[NULL]";
             }
         }
 
@@ -81,39 +84,12 @@ namespace Databvase_Winforms.Modules
             barButtonItemExportToPDF.ItemClick += (sender, args) => ExportGrid("pdf");
             barButtonItemExportToRTF.ItemClick += (sender, args) => ExportGrid("rtf");
             barButtonItemExportToText.ItemClick += (sender, args) => ExportGrid("txt");
+            barButtonItemExportToCSV.ItemClick += (sender, args) => ExportGrid("csv");
         }
 
         private void ExportGrid(string fileType)
         {
-            switch (fileType)
-            {
-                case "pdf":
-                    gridViewResults.ExportToPdf(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.PDFFilter));
-                    break;
-                case "xls":
-                    gridViewResults.ExportToXls(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.XLSFilter));
-                    break;
-                case "xlsx":
-                    gridViewResults.ExportToXlsx(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.XLSXFilter));
-                    break;
-                case "rtf":
-                    gridViewResults.ExportToRtf(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.RTFFilter));
-                    break;
-                case "txt":
-                    gridViewResults.ExportToText(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.TXTFilter));
-                    break;
-                case "html":
-                    gridViewResults.ExportToHtml(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.HTMLFilter));
-                    break;
-                case "mht":
-                    gridViewResults.ExportToMht(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.MHTFilter));
-                    break;
-                case "csv":
-                    gridViewResults.ExportToCsv(GridUtilities.GetFileNameViaSavePrompt(fileType, Globals.GlobalStrings.CSVFILTER));
-                    break;
-                default:
-                    break;
-            }
+            GridUtilities.ExportGridAsFileType(gridViewResults, fileType);
         }
 
         public void SetScriptToDatabase(NewScriptMessage message)
@@ -169,6 +145,14 @@ namespace Databvase_Winforms.Modules
             });
 
             fluent.SetTrigger(x => x.QueryRunning, state => { QueryButton.Enabled = !state; });
+            fluent.SetTrigger(x => x.AddIndicator, add =>
+            {
+                if (add)
+                {
+                    gridViewResults.AddRowNumberColumn();
+                }
+
+            });
         }
 
         #endregion

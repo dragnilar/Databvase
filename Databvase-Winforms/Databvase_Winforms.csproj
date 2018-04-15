@@ -203,6 +203,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\QueryGrid\QueryGridControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\QueryGrid\QueryGridHandler.cs" />
+    <Compile Include="Controls\QueryGrid\QueryGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\QueryGrid\QueryGridRegistrator.cs" />
+    <Compile Include="Controls\QueryGrid\QueryGridViewInfo.cs" />
     <Compile Include="DAL\SQLServerInterface.cs" />
     <Compile Include="Dialogs\RenameTabDialog.cs">
       <SubType>Form</SubType>
@@ -230,7 +239,7 @@
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
-    <Compile Include="Utilities\GridExportService.cs" />
+    <Compile Include="Utilities\GridUtilities.cs" />
     <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Models\QueryResult.cs" />
     <Compile Include="Services\SkinService.cs" />
@@ -337,6 +346,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

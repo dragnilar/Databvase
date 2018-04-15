@@ -1,4 +1,5 @@
-﻿namespace Databvase_Winforms.Modules
+﻿
+namespace Databvase_Winforms.Modules
 {
     partial class QueryControl
     {
@@ -42,6 +43,7 @@
             this.barButtonItemExportToMHT = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemExportToRTF = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemExportToText = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemExportToCSV = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemPrintGrid = new DevExpress.XtraBars.BarButtonItem();
             this.barEditItemDatabaseList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEditDatabaseList = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -50,8 +52,8 @@
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControlResultsPane = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageResultsGrid = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControlResults = new DevExpress.XtraGrid.GridControl();
-            this.gridViewResults = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControlResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridControl();
+            this.gridViewResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridView();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
             this.richEditControlQueryEditor = new DevExpress.XtraRichEdit.RichEditControl();
@@ -112,9 +114,10 @@
             this.barButtonItemExportToRTF,
             this.barButtonItemExportToText,
             this.barButtonItemPrintGrid,
-            this.barEditItemDatabaseList});
+            this.barEditItemDatabaseList,
+            this.barButtonItemExportToCSV});
             this.ribbonControlQueryControl.Location = new System.Drawing.Point(12, 12);
-            this.ribbonControlQueryControl.MaxItemId = 15;
+            this.ribbonControlQueryControl.MaxItemId = 16;
             this.ribbonControlQueryControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlQueryControl.Name = "ribbonControlQueryControl";
             this.ribbonControlQueryControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -124,7 +127,7 @@
             this.ribbonControlQueryControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 128);
+            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 120);
             this.ribbonControlQueryControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
             // 
             // QueryButton
@@ -156,7 +159,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToPDF),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToMHT),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToRTF),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToText)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToText),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExportToCSV)});
             this.barSubItemExport.Name = "barSubItemExport";
             // 
             // barButtonItemExportGridToExcel
@@ -215,6 +219,14 @@
             this.barButtonItemExportToText.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToText.ImageOptions.LargeImage")));
             this.barButtonItemExportToText.Name = "barButtonItemExportToText";
             // 
+            // barButtonItemExportToCSV
+            // 
+            this.barButtonItemExportToCSV.Caption = "Export to CSV";
+            this.barButtonItemExportToCSV.Id = 15;
+            this.barButtonItemExportToCSV.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToCSV.ImageOptions.Image")));
+            this.barButtonItemExportToCSV.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemExportToCSV.ImageOptions.LargeImage")));
+            this.barButtonItemExportToCSV.Name = "barButtonItemExportToCSV";
+            // 
             // barButtonItemPrintGrid
             // 
             this.barButtonItemPrintGrid.Caption = "Print Preview";
@@ -264,10 +276,10 @@
             // 
             // xtraTabControlResultsPane
             // 
-            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 290);
+            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 285);
             this.xtraTabControlResultsPane.Name = "xtraTabControlResultsPane";
             this.xtraTabControlResultsPane.SelectedTabPage = this.xtraTabPageResultsGrid;
-            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 298);
+            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 303);
             this.xtraTabControlResultsPane.TabIndex = 12;
             this.xtraTabControlResultsPane.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageResultsGrid,
@@ -278,7 +290,7 @@
             this.xtraTabPageResultsGrid.Controls.Add(this.gridControlResults);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
-            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
+            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(770, 272);
             this.xtraTabPageResultsGrid.Text = "Results";
             // 
             // gridControlResults
@@ -287,7 +299,7 @@
             this.gridControlResults.Location = new System.Drawing.Point(0, 0);
             this.gridControlResults.MainView = this.gridViewResults;
             this.gridControlResults.Name = "gridControlResults";
-            this.gridControlResults.Size = new System.Drawing.Size(774, 266);
+            this.gridControlResults.Size = new System.Drawing.Size(770, 272);
             this.gridControlResults.TabIndex = 12;
             this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewResults});
@@ -297,6 +309,8 @@
             this.gridViewResults.GridControl = this.gridControlResults;
             this.gridViewResults.Name = "gridViewResults";
             this.gridViewResults.OptionsBehavior.Editable = false;
+            this.gridViewResults.OptionsSelection.MultiSelect = true;
+            this.gridViewResults.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridViewResults.OptionsView.ColumnAutoWidth = false;
             // 
             // xtraTabPageMessages
@@ -304,7 +318,7 @@
             this.xtraTabPageMessages.Controls.Add(this.memoEditResults);
             this.xtraTabPageMessages.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageMessages.ImageOptions.Image")));
             this.xtraTabPageMessages.Name = "xtraTabPageMessages";
-            this.xtraTabPageMessages.Size = new System.Drawing.Size(774, 266);
+            this.xtraTabPageMessages.Size = new System.Drawing.Size(770, 272);
             this.xtraTabPageMessages.Text = "Messages";
             // 
             // memoEditResults
@@ -312,7 +326,7 @@
             this.memoEditResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEditResults.Location = new System.Drawing.Point(0, 0);
             this.memoEditResults.Name = "memoEditResults";
-            this.memoEditResults.Size = new System.Drawing.Size(774, 266);
+            this.memoEditResults.Size = new System.Drawing.Size(770, 272);
             this.memoEditResults.TabIndex = 0;
             // 
             // richEditControlQueryEditor
@@ -357,14 +371,14 @@
             this.splitterItemQueryEditor.AllowHotTrack = true;
             this.splitterItemQueryEditor.Location = new System.Drawing.Point(0, 268);
             this.splitterItemQueryEditor.Name = "splitterItemQueryEditor";
-            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 10);
+            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 5);
             // 
             // lcIResultsPane
             // 
             this.lcIResultsPane.Control = this.xtraTabControlResultsPane;
-            this.lcIResultsPane.Location = new System.Drawing.Point(0, 278);
+            this.lcIResultsPane.Location = new System.Drawing.Point(0, 273);
             this.lcIResultsPane.Name = "lcIResultsPane";
-            this.lcIResultsPane.Size = new System.Drawing.Size(780, 302);
+            this.lcIResultsPane.Size = new System.Drawing.Size(780, 307);
             this.lcIResultsPane.Text = "ResultsPane";
             this.lcIResultsPane.TextSize = new System.Drawing.Size(0, 0);
             this.lcIResultsPane.TextVisible = false;
@@ -429,8 +443,7 @@
         private System.Windows.Forms.BindingSource bindingSourceQueryControl;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlResultsPane;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageResultsGrid;
-        private DevExpress.XtraGrid.GridControl gridControlResults;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewResults;
+        private Databvase_Winforms.Controls.QueryGrid.QueryGridControl gridControlResults;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageMessages;
         private DevExpress.XtraLayout.LayoutControlItem lcIResultsPane;
         private DevExpress.XtraEditors.MemoEdit memoEditResults;
@@ -452,5 +465,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemPrintGrid;
         private DevExpress.XtraBars.BarEditItem barEditItemDatabaseList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditDatabaseList;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemExportToCSV;
+        private Controls.QueryGrid.QueryGridView gridViewResults;
     }
 }

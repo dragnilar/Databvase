@@ -22,6 +22,7 @@ namespace Databvase_Winforms.View_Models
             QueryRunning = false;
             CurrentDatabase = string.Empty;
             DatabasesList = SQLServerInterface.GetDatabaseNames();
+            AddIndicator = false;
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -31,6 +32,7 @@ namespace Databvase_Winforms.View_Models
         public virtual bool QueryRunning { get; set; }
         public virtual string CurrentDatabase { get; set; }
         public virtual List<string> DatabasesList { get; set; }
+        public virtual bool AddIndicator { get; set; }
 
 
         /// <summary>
@@ -69,7 +71,14 @@ namespace Databvase_Winforms.View_Models
                     GridSource = result.ResultsSet.Tables.Count > 0 ? result.ResultsSet.Tables[0] : null;
                     ClearGrid = false;
                     ResultsMessage = result.ResultsMessage;
+                    AddIndicatorColumn();
                 }
+        }
+
+        private void AddIndicatorColumn()
+        {
+            AddIndicator = true;
+            AddIndicator = false;
         }
 
         public void Update()
