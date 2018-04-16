@@ -87,41 +87,18 @@ namespace Databvase_Winforms.View_Models
 
         public void TestAndSave()
         {
-            if (!IsConnectionValid()) return;
 
-            if (IsNickNameADuplicate())
+            var connection = BuildConnection();
+            if (!connection.IsValid())
             {
-                MessageBoxService.ShowMessage(
-                    "Nickname is already being used by another saved string, please enter a different one.");
                 return;
             }
 
-            var connection = BuildConnection();
-
-            if (App.Connection.TestSavedConnection(connection))
+            if (!connection.TestConnection())
             {
-                var connectionToBeBuild = new SavedConnection
-                {
-                    NickName = NickName,
-                    Timeout = ConnectTimeout,
-                    Password = Password,
-                    Instance = DataSource,
-                    UserName = UserId,
-                    WindowsAuthentication = UseWindowsAuthentication
-                };
-
-                SaveConnectionToBeBuilt(connectionToBeBuild);
-
-
+                SaveConnectionToBeBuilt(connection);
                 WindowState = State.ConnectionStringManager;
             }
-        }
-
-        private bool IsNickNameADuplicate()
-        {
-            if (App.Config.ConnectionStrings.Any(r => r.NickName == NickName)) return true;
-
-            return false;
         }
 
         private void SaveConnectionToBeBuilt(SavedConnection connection)
@@ -156,7 +133,8 @@ namespace Databvase_Winforms.View_Models
             var connection = new SavedConnection
             {
                 Instance = DataSource,
-                Timeout = ConnectTimeout
+                Timeout = ConnectTimeout,
+                NickName = NickName
             };
 
             if (!UseWindowsAuthentication)
@@ -170,28 +148,6 @@ namespace Databvase_Winforms.View_Models
             }
 
             return connection;
-        }
-
-        private bool IsConnectionValid()
-        {
-            var errors = new List<string>();
-
-            if (string.IsNullOrEmpty(DataSource)) errors.Add("No server/instance specified");
-
-            if (ConnectTimeout < 1) errors.Add("Connection timeout must be at least 1 second");
-
-            if (!UseWindowsAuthentication)
-                if (string.IsNullOrEmpty(UserId))
-                    errors.Add("You must specify a User Id if you are not using Windows Authentication");
-
-            if (errors.Count <= 0) return true;
-            var errorBuilder =
-                new StringBuilder("There are errors with the connection string, please review them below: \n");
-            foreach (var error in errors) errorBuilder.AppendLine(error);
-            MessageBoxService.ShowMessage(errorBuilder.ToString(), "Error(s) Creating Connection String",
-                MessageButton.OK, MessageIcon.Error);
-
-            return false;
         }
     }
 }

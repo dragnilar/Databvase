@@ -88,15 +88,18 @@ namespace Databvase_Winforms.DAL
         {
             var instancesTable = SmoApplication.EnumAvailableSqlServers(false);
 
-            var instanceList = instancesTable.AsEnumerable().Select(x => new SQLServerInstance
-            {
-                InstanceName = x.Field<string>("Instance"),
-                IsClustered = x.Field<bool>("IsClustered"),
-                Name = x.Field<string>("Name"),
-                ServerName = x.Field<string>("Server"),
-                Version = x.Field<string>("Version"),
-                Local = x.Field<bool>("IsLocal")
-            }).ToList();
+            var instanceList = new List<SQLServerInstance>();
+            foreach (var instance in instancesTable.AsEnumerable()
+                .Select(x => new SQLServerInstance
+                {
+                    InstanceName = x.Field<string>("Instance"),
+                    IsClustered = x.Field<bool>("IsClustered"),
+                    Name = x.Field<string>("Name"),
+                    ServerName = x.Field<string>("Server"),
+                    Version = x.Field<string>("Version"),
+                    Local = x.Field<bool>("IsLocal")
+                }))
+                instanceList.Add(instance);
 
             return instanceList;
         }
