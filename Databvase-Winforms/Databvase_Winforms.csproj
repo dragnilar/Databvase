@@ -222,6 +222,7 @@
     </Compile>
     <Compile Include="Globals\GlobalStrings.cs" />
     <Compile Include="Messages\NewScriptMessage.cs" />
+    <Compile Include="Messages\SettingsUpdatedMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\SavedConnection.cs" />
@@ -270,6 +271,13 @@
     <Compile Include="View Models\MainViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\SettingsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SettingsView.Designer.cs">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Models\SettingsViewModel.cs" />
     <Compile Include="Views\WaitSplashyView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +313,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\SettingsView.resx">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\WaitSplashyView.resx">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>
     </EmbeddedResource>

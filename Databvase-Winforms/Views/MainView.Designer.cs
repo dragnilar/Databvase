@@ -45,6 +45,7 @@ namespace Databvase_Winforms.Views
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupSkins = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupWindows = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroupSettings = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.mvvmContextMain = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.tabbedViewMain = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.defaultLookAndFeelMain = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
@@ -56,8 +57,7 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer = new DevExpress.XtraBars.Docking.DockPanel();
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.ribbonPageGroupSettings = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barCheckItemShowRowNumbers = new DevExpress.XtraBars.BarCheckItem();
+            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).BeginInit();
@@ -66,6 +66,7 @@ namespace Databvase_Winforms.Views
             this.dockPanelMain.SuspendLayout();
             this.dockPanelObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControlMain
@@ -79,15 +80,16 @@ namespace Databvase_Winforms.Views
             this.barButtonItemNewQuery,
             this.barButtonItemConnect,
             this.barButtonItemObjectExplorer,
-            this.barButtonItemDisconnect,
-            this.barCheckItemShowRowNumbers});
+            this.barButtonItemDisconnect});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 12;
+            this.ribbonControlMain.MaxItemId = 13;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageDatabvase,
             this.ribbonPageView});
+            this.ribbonControlMain.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemSpinEdit1});
             this.ribbonControlMain.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlMain.Size = new System.Drawing.Size(1024, 162);
             // 
@@ -185,6 +187,11 @@ namespace Databvase_Winforms.Views
             this.ribbonPageGroupWindows.Name = "ribbonPageGroupWindows";
             this.ribbonPageGroupWindows.Text = "Windows";
             // 
+            // ribbonPageGroupSettings
+            // 
+            this.ribbonPageGroupSettings.Name = "ribbonPageGroupSettings";
+            this.ribbonPageGroupSettings.Text = "Settings";
+            // 
             // mvvmContextMain
             // 
             this.mvvmContextMain.ContainerControl = this;
@@ -281,18 +288,12 @@ namespace Databvase_Winforms.Views
             this.documentManagerMain.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedViewMain});
             // 
-            // ribbonPageGroupSettings
+            // repositoryItemSpinEdit1
             // 
-            this.ribbonPageGroupSettings.ItemLinks.Add(this.barCheckItemShowRowNumbers);
-            this.ribbonPageGroupSettings.Name = "ribbonPageGroupSettings";
-            this.ribbonPageGroupSettings.Text = "Settings";
-            // 
-            // barCheckItemShowRowNumbers
-            // 
-            this.barCheckItemShowRowNumbers.Caption = "Show Row Number Column";
-            this.barCheckItemShowRowNumbers.CheckBoxVisibility = DevExpress.XtraBars.CheckBoxVisibility.BeforeText;
-            this.barCheckItemShowRowNumbers.Id = 11;
-            this.barCheckItemShowRowNumbers.Name = "barCheckItemShowRowNumbers";
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
             // MainView
             // 
@@ -313,6 +314,7 @@ namespace Databvase_Winforms.Views
             this.dockPanelMain.ResumeLayout(false);
             this.dockPanelObjectExplorer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,8 +346,8 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupWindows;
         private DevExpress.XtraBars.BarButtonItem barButtonItemObjectExplorer;
         private DevExpress.XtraBars.BarButtonItem barButtonItemDisconnect;
-        private DevExpress.XtraBars.BarCheckItem barCheckItemShowRowNumbers;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupSettings;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
     }
 }
 

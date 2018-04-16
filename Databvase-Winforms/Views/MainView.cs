@@ -194,7 +194,6 @@ namespace Databvase_Winforms.Views
         {
             var fluent = mvvmContextMain.OfType<MainViewModel>();
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
-            fluent.SetBinding(barCheckItemShowRowNumbers, x => x.Checked, vm => vm.ShowRowNumberColumn);
         }
     }
 }
