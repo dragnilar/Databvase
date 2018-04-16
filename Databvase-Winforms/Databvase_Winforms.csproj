@@ -241,6 +241,7 @@
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
+    <Compile Include="Services\SettingsWindowService.cs" />
     <Compile Include="Utilities\GridUtilities.cs" />
     <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Models\QueryResult.cs" />

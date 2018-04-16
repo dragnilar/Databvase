@@ -29,8 +29,8 @@ namespace Databvase_Winforms.Views
             App.Skins.LoadSkinSettings();
             HookupEvents();
             RegisterMessages();
+            RegisterServices();
         }
-
 
 
         private void HookupEvents()
@@ -41,6 +41,7 @@ namespace Databvase_Winforms.Views
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
+            
 
 
             tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
@@ -53,6 +54,11 @@ namespace Databvase_Winforms.Views
         private void RegisterMessages()
         {
             Messenger.Default.Register<NewScriptMessage>(this, NewScriptMessage.NewScriptSender, CreateNewQueryPaneWithScript);
+        }
+
+        private void RegisterServices()
+        {
+            mvvmContextMain.RegisterService(new SettingsWindowService());
         }
 
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
@@ -157,6 +163,8 @@ namespace Databvase_Winforms.Views
         #endregion
 
 
+
+
         #region Skin Goodness
 
         private void Default_StyleChanged(object sender, EventArgs e)
@@ -194,6 +202,7 @@ namespace Databvase_Winforms.Views
         {
             var fluent = mvvmContextMain.OfType<MainViewModel>();
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
+            fluent.EventToCommand<ItemClickEventArgs>(barButtonItemShowSettings, "ItemClick", x => x.ShowSettings());
         }
     }
 }

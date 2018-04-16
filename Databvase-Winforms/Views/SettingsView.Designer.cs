@@ -36,56 +36,56 @@ namespace Databvase_Winforms.Views
             this.navigationPaneSettings = new DevExpress.XtraBars.Navigation.NavigationPane();
             this.navigationPageQuerySettings = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lclQuerySettings = new DevExpress.XtraLayout.LayoutControl();
+            this.spinEditNumberOfRowsForTopScript = new DevExpress.XtraEditors.SpinEdit();
+            this.checkEditShowRowNumberColumn = new DevExpress.XtraEditors.CheckEdit();
             this.lcgEnvironment = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcgQueryScripting = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciNumberOfRowsForSelectTop = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcgQueryExecution = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.lciNumberOfRowsForSelectTop = new DevExpress.XtraLayout.LayoutControlItem();
-            this.spinEditNumberOfRowsForTopScript = new DevExpress.XtraEditors.SpinEdit();
-            this.lcSettings = new DevExpress.XtraLayout.LayoutControl();
-            this.checkEditShowRowNumberColumn = new DevExpress.XtraEditors.CheckEdit();
-            this.lcgSettings = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.lciSettingsNavigationPane = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciShowRowNumberInGrid = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navigationPageTextEditor = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.navigationPageObjectExplorer = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.navigationPageEnvironment = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.simpleButtonSaveSettings = new DevExpress.XtraEditors.SimpleButton();
-            this.lciSaveSettingsButton = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcSettings = new DevExpress.XtraLayout.LayoutControl();
             this.simpleButtonCancelSaveSettings = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButtonSaveSettings = new DevExpress.XtraEditors.SimpleButton();
+            this.lcgSettings = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciSettingsNavigationPane = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciSaveSettingsButton = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciCancelSaveSettingsButton = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPaneSettings)).BeginInit();
             this.navigationPaneSettings.SuspendLayout();
             this.navigationPageQuerySettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lclQuerySettings)).BeginInit();
             this.lclQuerySettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditNumberOfRowsForTopScript.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditShowRowNumberColumn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgEnvironment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryScripting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryExecution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciShowRowNumberInGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditNumberOfRowsForTopScript.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcSettings)).BeginInit();
             this.lcSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditShowRowNumberColumn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSettingsNavigationPane)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciShowRowNumberInGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSaveSettingsButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancelSaveSettingsButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // mvvmContextSettingsView
@@ -96,8 +96,8 @@ namespace Databvase_Winforms.Views
             // navigationPaneSettings
             // 
             this.navigationPaneSettings.Controls.Add(this.navigationPageQuerySettings);
-            this.navigationPaneSettings.Controls.Add(this.navigationPageTextEditor);
             this.navigationPaneSettings.Controls.Add(this.navigationPageObjectExplorer);
+            this.navigationPaneSettings.Controls.Add(this.navigationPageTextEditor);
             this.navigationPaneSettings.Controls.Add(this.navigationPageEnvironment);
             this.navigationPaneSettings.Location = new System.Drawing.Point(12, 12);
             this.navigationPaneSettings.Name = "navigationPaneSettings";
@@ -134,6 +134,30 @@ namespace Databvase_Winforms.Views
             this.lclQuerySettings.TabIndex = 0;
             this.lclQuerySettings.Text = "layoutControl1";
             // 
+            // spinEditNumberOfRowsForTopScript
+            // 
+            this.spinEditNumberOfRowsForTopScript.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditNumberOfRowsForTopScript.Location = new System.Drawing.Point(221, 213);
+            this.spinEditNumberOfRowsForTopScript.Name = "spinEditNumberOfRowsForTopScript";
+            this.spinEditNumberOfRowsForTopScript.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditNumberOfRowsForTopScript.Size = new System.Drawing.Size(282, 20);
+            this.spinEditNumberOfRowsForTopScript.StyleController = this.lclQuerySettings;
+            this.spinEditNumberOfRowsForTopScript.TabIndex = 5;
+            // 
+            // checkEditShowRowNumberColumn
+            // 
+            this.checkEditShowRowNumberColumn.Location = new System.Drawing.Point(24, 49);
+            this.checkEditShowRowNumberColumn.Name = "checkEditShowRowNumberColumn";
+            this.checkEditShowRowNumberColumn.Properties.Caption = "Show Row Number Column In Query Results";
+            this.checkEditShowRowNumberColumn.Size = new System.Drawing.Size(589, 20);
+            this.checkEditShowRowNumberColumn.StyleController = this.lclQuerySettings;
+            this.checkEditShowRowNumberColumn.TabIndex = 4;
+            // 
             // lcgEnvironment
             // 
             this.lcgEnvironment.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -158,6 +182,8 @@ namespace Databvase_Winforms.Views
             // 
             // lcgQueryScripting
             // 
+            this.lcgQueryScripting.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgQueryScripting.CaptionImageOptions.SvgImage")));
+            this.lcgQueryScripting.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
             this.lcgQueryScripting.CustomizationFormText = "Query Scripting";
             this.lcgQueryScripting.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem3,
@@ -177,8 +203,26 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem3.Size = new System.Drawing.Size(593, 67);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // lciNumberOfRowsForSelectTop
+            // 
+            this.lciNumberOfRowsForSelectTop.Control = this.spinEditNumberOfRowsForTopScript;
+            this.lciNumberOfRowsForSelectTop.Location = new System.Drawing.Point(0, 0);
+            this.lciNumberOfRowsForSelectTop.Name = "lciNumberOfRowsForSelectTop";
+            this.lciNumberOfRowsForSelectTop.Size = new System.Drawing.Size(483, 24);
+            this.lciNumberOfRowsForSelectTop.Text = "Number Of Rows For Select Top * Script";
+            this.lciNumberOfRowsForSelectTop.TextSize = new System.Drawing.Size(192, 13);
+            // 
+            // emptySpaceItem7
+            // 
+            this.emptySpaceItem7.AllowHotTrack = false;
+            this.emptySpaceItem7.Location = new System.Drawing.Point(483, 0);
+            this.emptySpaceItem7.Name = "emptySpaceItem7";
+            this.emptySpaceItem7.Size = new System.Drawing.Size(110, 24);
+            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // lcgQueryExecution
             // 
+            this.lcgQueryExecution.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("lcgQueryExecution.CaptionImageOptions.Image")));
             this.lcgQueryExecution.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem4,
             this.lciShowRowNumberInGrid});
@@ -196,6 +240,15 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem4.Size = new System.Drawing.Size(593, 67);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // lciShowRowNumberInGrid
+            // 
+            this.lciShowRowNumberInGrid.Control = this.checkEditShowRowNumberColumn;
+            this.lciShowRowNumberInGrid.Location = new System.Drawing.Point(0, 0);
+            this.lciShowRowNumberInGrid.Name = "lciShowRowNumberInGrid";
+            this.lciShowRowNumberInGrid.Size = new System.Drawing.Size(593, 24);
+            this.lciShowRowNumberInGrid.TextSize = new System.Drawing.Size(0, 0);
+            this.lciShowRowNumberInGrid.TextVisible = false;
+            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
@@ -204,29 +257,26 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem2.Size = new System.Drawing.Size(617, 24);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // lciNumberOfRowsForSelectTop
+            // navigationPageTextEditor
             // 
-            this.lciNumberOfRowsForSelectTop.Control = this.spinEditNumberOfRowsForTopScript;
-            this.lciNumberOfRowsForSelectTop.Location = new System.Drawing.Point(0, 0);
-            this.lciNumberOfRowsForSelectTop.Name = "lciNumberOfRowsForSelectTop";
-            this.lciNumberOfRowsForSelectTop.Size = new System.Drawing.Size(483, 24);
-            this.lciNumberOfRowsForSelectTop.Text = "Number Of Rows For Select Top * Script";
-            this.lciNumberOfRowsForSelectTop.TextSize = new System.Drawing.Size(192, 13);
+            this.navigationPageTextEditor.Caption = "Text Editor";
+            this.navigationPageTextEditor.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageTextEditor.ImageOptions.Image")));
+            this.navigationPageTextEditor.Name = "navigationPageTextEditor";
+            this.navigationPageTextEditor.Size = new System.Drawing.Size(637, 463);
             // 
-            // spinEditNumberOfRowsForTopScript
+            // navigationPageObjectExplorer
             // 
-            this.spinEditNumberOfRowsForTopScript.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditNumberOfRowsForTopScript.Location = new System.Drawing.Point(221, 213);
-            this.spinEditNumberOfRowsForTopScript.Name = "spinEditNumberOfRowsForTopScript";
-            this.spinEditNumberOfRowsForTopScript.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditNumberOfRowsForTopScript.Size = new System.Drawing.Size(282, 20);
-            this.spinEditNumberOfRowsForTopScript.StyleController = this.lclQuerySettings;
-            this.spinEditNumberOfRowsForTopScript.TabIndex = 5;
+            this.navigationPageObjectExplorer.Caption = "Object Explorer";
+            this.navigationPageObjectExplorer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageObjectExplorer.ImageOptions.Image")));
+            this.navigationPageObjectExplorer.Name = "navigationPageObjectExplorer";
+            this.navigationPageObjectExplorer.Size = new System.Drawing.Size(637, 463);
+            // 
+            // navigationPageEnvironment
+            // 
+            this.navigationPageEnvironment.Caption = "Environment";
+            this.navigationPageEnvironment.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageEnvironment.ImageOptions.Image")));
+            this.navigationPageEnvironment.Name = "navigationPageEnvironment";
+            this.navigationPageEnvironment.Size = new System.Drawing.Size(637, 463);
             // 
             // lcSettings
             // 
@@ -241,14 +291,25 @@ namespace Databvase_Winforms.Views
             this.lcSettings.TabIndex = 1;
             this.lcSettings.Text = "layoutControl1";
             // 
-            // checkEditShowRowNumberColumn
+            // simpleButtonCancelSaveSettings
             // 
-            this.checkEditShowRowNumberColumn.Location = new System.Drawing.Point(24, 49);
-            this.checkEditShowRowNumberColumn.Name = "checkEditShowRowNumberColumn";
-            this.checkEditShowRowNumberColumn.Properties.Caption = "Show Row Number Column In Query Results";
-            this.checkEditShowRowNumberColumn.Size = new System.Drawing.Size(589, 20);
-            this.checkEditShowRowNumberColumn.StyleController = this.lclQuerySettings;
-            this.checkEditShowRowNumberColumn.TabIndex = 4;
+            this.simpleButtonCancelSaveSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancelSaveSettings.ImageOptions.Image")));
+            this.simpleButtonCancelSaveSettings.Location = new System.Drawing.Point(645, 527);
+            this.simpleButtonCancelSaveSettings.Name = "simpleButtonCancelSaveSettings";
+            this.simpleButtonCancelSaveSettings.Size = new System.Drawing.Size(127, 22);
+            this.simpleButtonCancelSaveSettings.StyleController = this.lcSettings;
+            this.simpleButtonCancelSaveSettings.TabIndex = 5;
+            this.simpleButtonCancelSaveSettings.Text = "Cancel";
+            // 
+            // simpleButtonSaveSettings
+            // 
+            this.simpleButtonSaveSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonSaveSettings.ImageOptions.Image")));
+            this.simpleButtonSaveSettings.Location = new System.Drawing.Point(466, 527);
+            this.simpleButtonSaveSettings.Name = "simpleButtonSaveSettings";
+            this.simpleButtonSaveSettings.Size = new System.Drawing.Size(144, 22);
+            this.simpleButtonSaveSettings.StyleController = this.lcSettings;
+            this.simpleButtonSaveSettings.TabIndex = 4;
+            this.simpleButtonSaveSettings.Text = "OK";
             // 
             // lcgSettings
             // 
@@ -273,46 +334,6 @@ namespace Databvase_Winforms.Views
             this.lciSettingsNavigationPane.TextSize = new System.Drawing.Size(0, 0);
             this.lciSettingsNavigationPane.TextVisible = false;
             // 
-            // lciShowRowNumberInGrid
-            // 
-            this.lciShowRowNumberInGrid.Control = this.checkEditShowRowNumberColumn;
-            this.lciShowRowNumberInGrid.Location = new System.Drawing.Point(0, 0);
-            this.lciShowRowNumberInGrid.Name = "lciShowRowNumberInGrid";
-            this.lciShowRowNumberInGrid.Size = new System.Drawing.Size(593, 24);
-            this.lciShowRowNumberInGrid.TextSize = new System.Drawing.Size(0, 0);
-            this.lciShowRowNumberInGrid.TextVisible = false;
-            // 
-            // navigationPageTextEditor
-            // 
-            this.navigationPageTextEditor.Caption = "Text Editor";
-            this.navigationPageTextEditor.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageTextEditor.ImageOptions.Image")));
-            this.navigationPageTextEditor.Name = "navigationPageTextEditor";
-            this.navigationPageTextEditor.Size = new System.Drawing.Size(637, 463);
-            // 
-            // navigationPageObjectExplorer
-            // 
-            this.navigationPageObjectExplorer.Caption = "Object Explorer";
-            this.navigationPageObjectExplorer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageObjectExplorer.ImageOptions.Image")));
-            this.navigationPageObjectExplorer.Name = "navigationPageObjectExplorer";
-            this.navigationPageObjectExplorer.Size = new System.Drawing.Size(637, 463);
-            // 
-            // navigationPageEnvironment
-            // 
-            this.navigationPageEnvironment.Caption = "Environment";
-            this.navigationPageEnvironment.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageEnvironment.ImageOptions.Image")));
-            this.navigationPageEnvironment.Name = "navigationPageEnvironment";
-            this.navigationPageEnvironment.Size = new System.Drawing.Size(637, 463);
-            // 
-            // simpleButtonSaveSettings
-            // 
-            this.simpleButtonSaveSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonSaveSettings.ImageOptions.Image")));
-            this.simpleButtonSaveSettings.Location = new System.Drawing.Point(466, 527);
-            this.simpleButtonSaveSettings.Name = "simpleButtonSaveSettings";
-            this.simpleButtonSaveSettings.Size = new System.Drawing.Size(144, 22);
-            this.simpleButtonSaveSettings.StyleController = this.lcSettings;
-            this.simpleButtonSaveSettings.TabIndex = 4;
-            this.simpleButtonSaveSettings.Text = "OK";
-            // 
             // lciSaveSettingsButton
             // 
             this.lciSaveSettingsButton.Control = this.simpleButtonSaveSettings;
@@ -321,16 +342,6 @@ namespace Databvase_Winforms.Views
             this.lciSaveSettingsButton.Size = new System.Drawing.Size(148, 26);
             this.lciSaveSettingsButton.TextSize = new System.Drawing.Size(0, 0);
             this.lciSaveSettingsButton.TextVisible = false;
-            // 
-            // simpleButtonCancelSaveSettings
-            // 
-            this.simpleButtonCancelSaveSettings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancelSaveSettings.ImageOptions.Image")));
-            this.simpleButtonCancelSaveSettings.Location = new System.Drawing.Point(645, 527);
-            this.simpleButtonCancelSaveSettings.Name = "simpleButtonCancelSaveSettings";
-            this.simpleButtonCancelSaveSettings.Size = new System.Drawing.Size(127, 22);
-            this.simpleButtonCancelSaveSettings.StyleController = this.lcSettings;
-            this.simpleButtonCancelSaveSettings.TabIndex = 5;
-            this.simpleButtonCancelSaveSettings.Text = "Cancel";
             // 
             // lciCancelSaveSettingsButton
             // 
@@ -357,14 +368,6 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem6.Size = new System.Drawing.Size(454, 26);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // emptySpaceItem7
-            // 
-            this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(483, 0);
-            this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(110, 24);
-            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,26 +383,26 @@ namespace Databvase_Winforms.Views
             this.navigationPageQuerySettings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lclQuerySettings)).EndInit();
             this.lclQuerySettings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditNumberOfRowsForTopScript.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditShowRowNumberColumn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgEnvironment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryScripting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryExecution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciShowRowNumberInGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditNumberOfRowsForTopScript.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcSettings)).EndInit();
             this.lcSettings.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditShowRowNumberColumn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSettingsNavigationPane)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciShowRowNumberInGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSaveSettingsButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancelSaveSettingsButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             this.ResumeLayout(false);
 
         }

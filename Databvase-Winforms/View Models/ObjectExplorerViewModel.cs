@@ -20,12 +20,13 @@ namespace Databvase_Winforms.View_Models
 
         public ObjectExplorerViewModel()
         {
-            SelectTopContextMenuItemDescription = GetSelectTopDescription();
+            GetSelectTopDescription();
+            RegisterForMessages();
         }
 
-        private string GetSelectTopDescription()
+        private void RegisterForMessages()
         {
-            return $"Generate Select Top {App.Config.NumberOfRowsForTopSelectScript} Rows";
+            Messenger.Default.Register<bool>(this, SettingsUpdatedMessage.SettingsUpdatedSender, OnSettingsUpdated );
         }
 
         public void ScriptSelectAllForTable(Table selectedTable)
@@ -51,6 +52,22 @@ namespace Databvase_Winforms.View_Models
             instancesList.Add(App.Connection.CurrentConnection.Instance);
             return instancesList;
         }
+
+
+        private void GetSelectTopDescription()
+        {
+            SelectTopContextMenuItemDescription = $"Generate Select Top {App.Config.NumberOfRowsForTopSelectScript} Rows";
+        }
+
+        private void OnSettingsUpdated(bool settingsUpdated)
+        {
+            if (settingsUpdated)
+            {
+                GetSelectTopDescription();
+            }
+        }
+
+
 
 
     }

@@ -1,4 +1,6 @@
-﻿using DevExpress.Mvvm.DataAnnotations;
+﻿using Databvase_Winforms.Messages;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -23,6 +25,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.ShowRowNumberColumn = ShowRowNumberColumn;
             App.Config.NumberOfRowsForTopSelectScript = NumberOfRowsForSelectTopScript;
             App.Config.Save();
+            Messenger.Default.Send(new SettingsUpdatedMessage(true), SettingsUpdatedMessage.SettingsUpdatedSender);
             State = WindowState.Close;
         }
 

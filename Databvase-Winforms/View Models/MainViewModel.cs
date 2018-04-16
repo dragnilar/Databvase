@@ -5,6 +5,7 @@ using DevExpress.Mvvm.POCO;
 using DevExpress.XtraBars.Docking2010.Views.Widget;
 using DevExpress.XtraEditors;
 using System.ComponentModel.DataAnnotations;
+using Databvase_Winforms.Services;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -43,6 +44,10 @@ namespace Databvase_Winforms.View_Models
 
         }
 
+        public void ShowSettings()
+        {
+            this.GetService<ISettingsWindowService>().ShowDialog();
+        }
     }
 
 }

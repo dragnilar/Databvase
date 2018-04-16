@@ -345,6 +345,35 @@
         CVz8I8xFxnlrmItMo4vInIch0hdRCTAWk6s4BWdonHMbvwRosIKKoCkYAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="barButtonItemShowSettings.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAANXRFWHRUaXRsZQBUZWNobm9s
+        b2d5O1NldHRpbmdzO09wdGlvbnM7Q3VzdG9taXo7UHJvcGVydGllcw+1A1wAAAC6SURBVDhPpZHRDcMg
+        DEQjZZDMkEEySf8zQBboOh0tUqW6d8i2HDAVaj6ewXAHJDeJiLMdrxms4NRxjvsZPoFYwA4e4KMje2y3
+        RqMUiHgzxW8aAuz32hQpBSI+lzfS9ASLjuy5vtZGoxQI+M18Ng2LrvEQ9lw/oylSCgS3X/DzH4BuGj5R
+        Q5oC6EbrE6MSdw81fXOAAdFQtI3RgGjox6ZmAsFQtKmZQHD7BUPRpmZDDf+lEIHBo73uyfQFCVeOvIOx
+        2kAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="barButtonItemShowSettings.ImageOptions.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAANXRFWHRUaXRsZQBUZWNobm9s
+        b2d5O1NldHRpbmdzO09wdGlvbnM7Q3VzdG9taXo7UHJvcGVydGllcw+1A1wAAAJbSURBVFhHxZY9TxVB
+        FIYJ0PhFKbHBH4BYQOz8C8bojzGx1UrxJ5gICQRjpY0araG38iNSaEusgShZ34fM2Zxz7t47d5UsxZPd
+        d+bMe2bmzpy9M03TnCudjUPS2TgkQdx59H4cV8RX0ZQnuivuFO9ZI4hktCwulPcVQXIDTTv9xPlxwbNG
+        EM7ksSDRJ7EkHhRtoGmnH038mU2AFflkf5Ie197uhPesEUQxuChsZdNCPOPOZALA9p4In2RfvC5P307c
+        ddGO9541gtDgy2JNPBQ+yTMxK4jhuS58P/GMO70d3rNGEBr8WXhjYMVzol2hYBJ5J+CLCJ41gkhmxhvh
+        kxu0d8UHzxpBaPC3ZAas1LbfQH8XOZbxwbNGEBrMb9h1Bp4KfwaeCN9vZ2BBBM8aQTC4wKnOt4AVcwvy
+        ykduwSR8PgiiBP13HZiEzwdBlKBpK2HeoZtiS/wSt8S8eCteiWti6glA/hbkM4HO3wJqyGHRu+J5eYd7
+        otcE4IawbR33NaT/trgrroofwsfBb0EfE5z1+SAIBYxj0v+BHWGJLOlx0kzsSGz5fBCEAv6Fj8ISwYZg
+        gqyYd9934PNBEH2QmUGZfiFIwKpJbH2XBLtB355YzT5B9EFmBgUIc5JwY/wEeLefgt2Yzz5B9EFmxoEg
+        gUEiEvMz5J/gQ/YJog8yM7YFB+ynsESs2rbeNM+X2SeIPsjMoOCw2kXhT77BDeAa3heL2SeIPsgsQwJL
+        uikoRrxTnNpzkX1GGqbFDB2UW8ruO8GuUI4py5Tn9nOefUYahqazcUg6G4eks3E4mpm/UNAxt/+18E0A
+        AAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="mvvmContextMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
