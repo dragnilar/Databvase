@@ -20,5 +20,7 @@ namespace Databvase_Winforms.Messages
         { 
             return SettingsUpdatedSender;
         }
+
+        
     }
 }

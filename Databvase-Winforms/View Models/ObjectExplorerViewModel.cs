@@ -26,7 +26,7 @@ namespace Databvase_Winforms.View_Models
 
         private void RegisterForMessages()
         {
-            Messenger.Default.Register<bool>(this, SettingsUpdatedMessage.SettingsUpdatedSender, OnSettingsUpdated );
+            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, OnSettingsUpdated );
         }
 
         public void ScriptSelectAllForTable(Table selectedTable)
@@ -59,9 +59,9 @@ namespace Databvase_Winforms.View_Models
             SelectTopContextMenuItemDescription = $"Generate Select Top {App.Config.NumberOfRowsForTopSelectScript} Rows";
         }
 
-        private void OnSettingsUpdated(bool settingsUpdated)
+        private void OnSettingsUpdated(SettingsUpdatedMessage settingsUpdated)
         {
-            if (settingsUpdated)
+            if ((settingsUpdated.Updated))
             {
                 GetSelectTopDescription();
             }
