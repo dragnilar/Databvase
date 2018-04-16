@@ -65,7 +65,13 @@ namespace Databvase_Winforms.View_Models
 
         public void Connect()
         {
-            if (App.Connection.SetAndTestConnection(SelectedConnection)) WindowState = State.Exit;
+            var result = App.Connection.SetAndTestConnection(SelectedConnection);
+            if (result.valid) WindowState = State.Exit;
+            else
+            {
+                ShowErrorMessage($"Error occurred connecting to Server instance \n {result.errorMessage}", "Connection Error");
+            }
+
         }
 
         public void Cancel()
@@ -94,7 +100,7 @@ namespace Databvase_Winforms.View_Models
                 return;
             }
 
-            if (!connection.TestConnection())
+            if (connection.TestConnection().valid)
             {
                 SaveConnectionToBeBuilt(connection);
                 WindowState = State.ConnectionStringManager;
@@ -123,8 +129,7 @@ namespace Databvase_Winforms.View_Models
             catch (Exception e)
             {
                 SplashScreenService.HideSplashScreen();
-
-                MessageBoxService.ShowMessage("An error occurred getting the instances: \n " + e);
+                ShowErrorMessage("An error occurred getting the instances: \n " + e, "Error");
             }
         }
 
@@ -148,6 +153,11 @@ namespace Databvase_Winforms.View_Models
             }
 
             return connection;
+        }
+
+        private void ShowErrorMessage(string message, string header)
+        {
+            MessageBoxService.ShowMessage(message, header, MessageButton.OK, MessageIcon.Error);
         }
     }
 }

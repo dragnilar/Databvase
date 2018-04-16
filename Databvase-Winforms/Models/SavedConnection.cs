@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Databvase_Winforms.Services;
+using DevExpress.Mvvm;
 
 namespace Databvase_Winforms.Models
 {
@@ -29,10 +30,7 @@ namespace Databvase_Winforms.Models
         {
             var errorMessageList = new List<string>();
 
-            if (App.Config.ConnectionStrings.Any(r => r.NickName == NickName))
-            {
-                errorMessageList.Add("Nickname is already being used by another saved string, please enter a different one.");
-            }
+            ValidateNickname(errorMessageList);
 
             if (string.IsNullOrEmpty(Instance)) errorMessageList.Add("No server/instance specified");
 
@@ -42,15 +40,28 @@ namespace Databvase_Winforms.Models
                 if (string.IsNullOrEmpty(UserName))
                     errorMessageList.Add("You must specify a User Id if you are not using Windows Authentication");
 
-            return new ValidatorService().CheckErrors(errorMessageList);
+            return new ValidatorService(new ServiceContainer(this)).CheckErrors(errorMessageList);
 
+        }
+
+        private void ValidateNickname(List<string> errorMessageList)
+        {
+            if (string.IsNullOrEmpty(NickName))
+            {
+                errorMessageList.Add("Nickname is required.");
+            }
+
+            if (App.Config.ConnectionStrings.Any(r => r.NickName == NickName))
+            {
+                errorMessageList.Add("Nickname is already being used by another saved string, please enter a different one.");
+            }
         }
 
         /// <summary>
         /// Returns true if it can make a successful connection to a SQL Server database.
         /// </summary>
         /// <returns></returns>
-        public bool TestConnection()
+        public (string errorMessage, bool valid) TestConnection()
         {
             return App.Connection.TestSavedConnection(this);
         }

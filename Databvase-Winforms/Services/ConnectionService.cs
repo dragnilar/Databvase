@@ -1,4 +1,5 @@
-﻿using Databvase_Winforms.Models;
+﻿using System;
+using Databvase_Winforms.Models;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Services
@@ -6,6 +7,7 @@ namespace Databvase_Winforms.Services
     public class ConnectionService
     {
         public string CurrentDatabase = string.Empty;
+        private (string, bool) NullConnectionTuple => ("Connection is null, please try again", false);
 
         public SavedConnection CurrentConnection { get; set; }
 
@@ -49,7 +51,7 @@ namespace Databvase_Winforms.Services
         }
 
 
-        public  bool SetAndTestConnection(SavedConnection savedConnection)
+        public  (string errorMessage, bool valid) SetAndTestConnection(SavedConnection savedConnection)
         {
             if (savedConnection != null)
             {
@@ -61,10 +63,10 @@ namespace Databvase_Winforms.Services
             }
 
             CurrentConnection = null;
-            return false;
+            return NullConnectionTuple;
         }
 
-        public  bool TestSavedConnection(SavedConnection savedConnection)
+        public (string errorMessage, bool valid) TestSavedConnection(SavedConnection savedConnection)
         {
             if (savedConnection != null)
             {
@@ -72,20 +74,21 @@ namespace Databvase_Winforms.Services
                 return TestServerConnection(server);
             }
 
-            return false;
+            return NullConnectionTuple;
         }
 
-        private  bool TestServerConnection(Server server)
+        private (string errorMessage, bool valid) TestServerConnection(Server server)
         {
             try
             {
                 server.ConnectionContext.Connect();
                 server.ConnectionContext.Disconnect();
-                return true;
+                return (string.Empty, true);
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+
+                return (ex.Message, false);
             }
         }
     }

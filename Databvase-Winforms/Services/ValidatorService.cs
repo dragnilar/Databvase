@@ -9,8 +9,18 @@ using DevExpress.Utils.MVVM.Services;
 
 namespace Databvase_Winforms.Services
 {
-    public class ValidatorService
+    /// <summary>
+    /// A support service that can be used for validation. Requires a service container object.
+    /// </summary>
+    public class ValidatorService : ISupportServices
     {
+        public IServiceContainer ServiceContainer { get; }
+
+        public ValidatorService(IServiceContainer serviceContainer)
+        {
+            ServiceContainer = serviceContainer;
+        }
+
         private IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
         public bool CheckErrors(List<string> errorMessageList)
@@ -28,6 +38,7 @@ namespace Databvase_Winforms.Services
 
             return false;
         }
+
 
     }
 }
