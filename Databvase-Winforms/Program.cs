@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Databvase_Winforms.Services;
@@ -37,6 +38,14 @@ namespace Databvase_Winforms
             {
                 DevExpress.XtraEditors.WindowsFormsSettings.ForceDirectXPaint();
             }
+        }
+
+        //TODO - See if this is actually feasible. This seems to cause display problems where the app doesn't use the default font.
+        private static void ChangeFonts()
+        {
+            DevExpress.XtraEditors.WindowsFormsSettings.DefaultFont = new Font("Comic Sans MS", 10);
+            DevExpress.XtraEditors.WindowsFormsSettings.DefaultMenuFont = new Font("Comic Sans MS", 10);
+            DevExpress.XtraEditors.WindowsFormsSettings.DefaultPrintFont = new Font("Comic Sans MS", 10);
         }
     }
 

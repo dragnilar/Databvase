@@ -127,6 +127,7 @@ namespace Databvase_Winforms.Modules
             fluent.SetBinding(memoEditResults, x => x.EditValue, y => y.ResultsMessage);
             fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
             fluent.SetBinding(barEditItemDatabaseList, x => x.EditValue, y => y.CurrentDatabase);
+            fluent.SetBinding(richEditControlQueryEditor.Appearance.Text, x => x.Font, vm => vm.DefaultTextEditorFont);
         }
 
         private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)

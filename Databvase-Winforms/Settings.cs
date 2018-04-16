@@ -15,6 +15,7 @@ namespace Databvase_Winforms
         public bool UseDirectX = false;
         public bool ShowRowNumberColumn = false;
         public int NumberOfRowsForTopSelectScript = 1000;
+        public Font DefaultTextEditorFont = new Font("Tahoma", 8.25f);
 
         public Settings()
         {

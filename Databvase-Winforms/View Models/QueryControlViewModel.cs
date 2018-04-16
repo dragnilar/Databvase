@@ -7,6 +7,7 @@ using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
+using System.Drawing;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -23,6 +24,7 @@ namespace Databvase_Winforms.View_Models
             CurrentDatabase = string.Empty;
             DatabasesList = SQLServerInterface.GetDatabaseNames();
             AddIndicator = false;
+            DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -33,6 +35,7 @@ namespace Databvase_Winforms.View_Models
         public virtual string CurrentDatabase { get; set; }
         public virtual List<string> DatabasesList { get; set; }
         public virtual bool AddIndicator { get; set; }
+        public virtual Font DefaultTextEditorFont { get; set; }
 
 
         /// <summary>
