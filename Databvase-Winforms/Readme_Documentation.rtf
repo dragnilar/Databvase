@@ -6,6 +6,22 @@
 \par
 Release Notes:\par
 \par
+\b\fs16 Rev 6 Changes\par
+\b0\par
+\ulnone - Made minor re-arrangements to the settings window\par
+\par
+- Added ability to configure the line number color and the background color of the query text editor.\par
+\par
+- Added ability to configure the background color and display value for null values showing in the grid.\par
+\par
+- Added SQL syntax highlighting to the text editor. Currently only a few words are supported but more will be added down the road along with the ability to make further customizations.\par
+\par
+- Fixed a bug where line numbers would not show up in the text editor when generating scripts from the object explorer.\par
+\par
+- Fixed a bug where you could enter invalid values into the "number of rows" setting for select top * scripts.\par
+\par
+- Removed the context menu options in the query text editor to add comments, hyperlinks, bullet point lists and bookmarks.\ul\fs24\par
+\par
 \b\fs16 Rev 5 Changes:\b0\fs24\par
 \par
 \ulnone\fs16 - Fixed bug where the connection wizard would not let you make a connection using a username and password.\par
@@ -80,6 +96,7 @@ Note: this setting requires an application restart.\ul\fs24\par
 \pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Features over 50+ different kinds of skins/themes, allowing for you to customize the appearance of the appplication. This includes the new vector based Bezier skin/theme.\par
 {\pntext\f3\'B7\tab}Ability to change the color palletes for the Bezier skin/theme via DevExpress' pallete selector.\par
 {\pntext\f3\'B7\tab}Ability to select certain colors for each theme via the color mixer.\par
+{\pntext\f3\'B7\tab}Ability to select the color of the query text editor as well as the line numbers.\par
 {\pntext\f3\'B7\tab}All color and theme settings are saved to the settings file.\par
 
 \pard\par
@@ -142,6 +159,7 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f0 iv.\tab}You can show the find and replace window by hitting ctrl+f in the text editor.\par
 {\pntext\f0 v.\tab}Queries (or any text for that matter) can be saved to a variety of different file formats (I.E. Text, RTF, etc)\par
 {\pntext\f0 vi.\tab}Query tabs can be renamed for easier identification.\par
+{\pntext\f0 vii.\tab}Keywords such as SELECT, WHERE, INSERT, etc are highlighted in colors as well as strings and other various SQL specific syntax.\par
 
 \pard\par
 \par
@@ -163,6 +181,7 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f0 v.\tab}Auto filter rows can be shown and hidden via the right click context menu on the column headers.\par
 {\pntext\f0 vi.\tab}The search/find panel can be shown in the grid by pressing ctrl+F or right clicking on the column headers and selecting "show find panel".\par
 {\pntext\f0 vii.\tab}You can show and hide columns via the column chooser in the right click menu or dragging columns off the screen.\par
+{\pntext\f0 viii.\tab}Null values are by default displayed in red with the text [NULL]. You can change what is shown in the settings window.\par
 
 \pard\par
 
@@ -217,9 +236,11 @@ Known Bugs/ Limitations\ulnone\par
 \par
 - Groups added to the quick access toolbar on the ribbon may show as boxes with X's in them and/or they may not function normally as if they were on the ribbon. The quick access toolbar may be removed down the road unless there is an interest in keeping it.\par
 \par
+- Syntax highlighting is incomplete and not customizable. It is a work in progress.\par
+\par
 - No intellisense (this is a very complex feature and as a result it is unlikely if it will be implemented). Also there have been some cases where people do not like the intellisense/auto complete of SSMS. \par
 \par
-- The query text editor allows you to add comments, bookmarks, hyperlinks, and insert images (becuase it is using a rich text edit control). While this may not cause any harm, these are features that do not seem appropriate for the software. These will probably be removed.\par
+- The query text editor allows you to add insert images (becuase it is using a very customizable rich edit control similar to Microsoft Word). There may be other features as well that are "unintentional" and they may be subject to removal.\par
 \par
 -  It is possible to get the object explorer to not properly dispose of its current data and retain duplicates between connections. This will be looked into. \par
 \par

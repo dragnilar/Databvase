@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lcgQueryExecution.CaptionImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAbdEVYdFRpdGxlAFZpZGVvO1BsYXk7U3RhcnQ7Q2xp
+        cPD1bmEAAABqSURBVDhPvZFhCsAgCEa9YJcaHmq3c/pR4fzRpkHB64u0RxQxs1TRQUOAtI1sYlHFCyyz
+        rAXtuptiCazZoz0aXTA2PXpIvCTW/wqmJNYzAkhi/dgNtt5g7xe+eAmqeME0ZhOLKhDYVEfoAQ1XmJlx
+        C+NGAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="navigationPageQuerySettings.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -172,15 +181,6 @@
         V2luZG93cztFfK0oAAAAjUlEQVQ4T2PwbdpBCIsAsQUQxwNxKxCvAuLzQPz1////DDBFkkBsCcSRQFwN
         xLOBGCT+Foj/48IwA76jS0AxSA6bOBzDDMAqCcQjyQCy8eDxAlZJIKafAT/RJaCYaAOYgFgGiO2AOA6I
         64F4PhCD5IjKC4SwEBCbAXEUENcB8WIgPgHEb8EGgAjy8X8GALZfWkppQmzBAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="lcgQueryExecution.CaptionImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAbdEVYdFRpdGxlAFZpZGVvO1BsYXk7U3RhcnQ7Q2xp
-        cPD1bmEAAABqSURBVDhPvZFhCsAgCEa9YJcaHmq3c/pR4fzRpkHB64u0RxQxs1TRQUOAtI1sYlHFCyyz
-        rAXtuptiCazZoz0aXTA2PXpIvCTW/wqmJNYzAkhi/dgNtt5g7xe+eAmqeME0ZhOLKhDYVEfoAQ1XmJlx
-        C+NGAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="simpleButtonCancelSaveSettings.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
