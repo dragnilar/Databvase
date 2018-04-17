@@ -8,6 +8,7 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using System.Drawing;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -80,6 +81,11 @@ namespace Databvase_Winforms.View_Models
                     }
                     
                 }
+        }
+
+        public void ExportGrid(GridView gridView, string fileType)
+        {
+
         }
 
         private void AddRowNumberColumn()

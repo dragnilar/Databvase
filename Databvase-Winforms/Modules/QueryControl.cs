@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Databvase_Winforms.Controls.QueryGrid;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
-using Databvase_Winforms.Utilities;
 using Databvase_Winforms.View_Models;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Utils;
@@ -70,19 +70,14 @@ namespace Databvase_Winforms.Modules
         private void SetupGridButtons()
         {
             barButtonItemPrintGrid.ItemClick += (sender, args) => gridViewResults.ShowRibbonPrintPreview();
-            barButtonItemExportGridToExcel.ItemClick += (sender, args) => ExportGrid("xls");
-            barButtonItemExportToXLSX.ItemClick += (sender, args) => ExportGrid("xlsx");
-            barButtonItemExportToHTML.ItemClick += (sender, args) => ExportGrid("html");
-            barButtonItemExportToMHT.ItemClick += (sender, args) => ExportGrid("mht");
-            barButtonItemExportToPDF.ItemClick += (sender, args) => ExportGrid("pdf");
-            barButtonItemExportToRTF.ItemClick += (sender, args) => ExportGrid("rtf");
-            barButtonItemExportToText.ItemClick += (sender, args) => ExportGrid("txt");
-            barButtonItemExportToCSV.ItemClick += (sender, args) => ExportGrid("csv");
-        }
-
-        private void ExportGrid(string fileType)
-        {
-            GridUtilities.ExportGridAsFileType(gridViewResults, fileType);
+            barButtonItemExportGridToExcel.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("xls");
+            barButtonItemExportToXLSX.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("xlsx");
+            barButtonItemExportToHTML.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("html");
+            barButtonItemExportToMHT.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("mht");
+            barButtonItemExportToPDF.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("pdf");
+            barButtonItemExportToRTF.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("rtf");
+            barButtonItemExportToText.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("txt");
+            barButtonItemExportToCSV.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("csv");
         }
 
         public void SetScriptToDatabase(NewScriptMessage message)
@@ -128,6 +123,7 @@ namespace Databvase_Winforms.Modules
             fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
             fluent.SetBinding(barEditItemDatabaseList, x => x.EditValue, y => y.CurrentDatabase);
             fluent.SetBinding(richEditControlQueryEditor.Appearance.Text, x => x.Font, vm => vm.DefaultTextEditorFont);
+
         }
 
         private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)
@@ -147,7 +143,10 @@ namespace Databvase_Winforms.Modules
                 }
 
             });
+
+
         }
+
 
         #endregion
     }
