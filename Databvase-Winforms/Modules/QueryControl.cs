@@ -116,9 +116,6 @@ namespace Databvase_Winforms.Modules
             fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
             fluent.SetBinding(barEditItemDatabaseList, x => x.EditValue, y => y.CurrentDatabase);
             fluent.SetBinding(queryTextEditor.Appearance.Text, x => x.Font, vm => vm.DefaultTextEditorFont);
-            fluent.SetBinding(queryTextEditor.ActiveView, x => x.BackColor, vm => vm.TextEditorBackgroundColor);
-            fluent.SetBinding(queryTextEditor.Document.CharacterStyles["Line Number"], x => x.ForeColor,
-                vm => vm.TextEditorLineNumberColor);
 
         }
 

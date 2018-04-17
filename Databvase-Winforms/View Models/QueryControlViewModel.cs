@@ -27,9 +27,6 @@ namespace Databvase_Winforms.View_Models
             DatabasesList = SQLServerInterface.GetDatabaseNames();
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
-            TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
-            TextEditorLineNumberColor = App.Config.TextEditorLineNumberColor;
-            RegisterMessages();
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -41,23 +38,6 @@ namespace Databvase_Winforms.View_Models
         public virtual List<string> DatabasesList { get; set; }
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
-        public virtual Color TextEditorBackgroundColor { get; set; }
-        public virtual Color TextEditorLineNumberColor { get; set; }
-
-
-
-        private void RegisterMessages()
-        {
-            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplysettingsUpdate);
-        }
-
-        private void ApplysettingsUpdate(SettingsUpdatedMessage message)
-        {
-            if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground)
-            {
-                TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
-            }
-        }
 
 
         /// <summary>
