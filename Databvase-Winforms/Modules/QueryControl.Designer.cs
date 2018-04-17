@@ -1,4 +1,7 @@
 ﻿
+
+using Databvase_Winforms.Controls.QueryTextEditor;
+
 namespace Databvase_Winforms.Modules
 {
     partial class QueryControl
@@ -58,7 +61,7 @@ namespace Databvase_Winforms.Modules
             this.gridViewResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridView();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
-            this.richEditControlQueryEditor = new DevExpress.XtraRichEdit.RichEditControl();
+            this.queryTextEditor = new QueryTextEditor();
             this.lcgQueryControl = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciQueryEditor = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
@@ -92,7 +95,7 @@ namespace Databvase_Winforms.Modules
             // 
             this.layoutControlQueryControl.Controls.Add(this.ribbonControlQueryControl);
             this.layoutControlQueryControl.Controls.Add(this.xtraTabControlResultsPane);
-            this.layoutControlQueryControl.Controls.Add(this.richEditControlQueryEditor);
+            this.layoutControlQueryControl.Controls.Add(this.queryTextEditor);
             this.layoutControlQueryControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControlQueryControl.Location = new System.Drawing.Point(0, 0);
             this.layoutControlQueryControl.Name = "layoutControlQueryControl";
@@ -365,16 +368,16 @@ namespace Databvase_Winforms.Modules
             // 
             // richEditControlQueryEditor
             // 
-            this.richEditControlQueryEditor.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
-            this.richEditControlQueryEditor.Location = new System.Drawing.Point(12, 36);
-            this.richEditControlQueryEditor.MenuManager = this.ribbonControlQueryControl;
-            this.richEditControlQueryEditor.Name = "richEditControlQueryEditor";
-            this.richEditControlQueryEditor.Size = new System.Drawing.Size(776, 240);
-            this.richEditControlQueryEditor.TabIndex = 10;
-            this.richEditControlQueryEditor.Views.DraftView.AllowDisplayLineNumbers = true;
-            this.richEditControlQueryEditor.Views.DraftView.Padding = new System.Windows.Forms.Padding(80, 4, 0, 0);
-            this.richEditControlQueryEditor.Views.SimpleView.AllowDisplayLineNumbers = true;
-            this.richEditControlQueryEditor.Views.SimpleView.Padding = new System.Windows.Forms.Padding(80, 4, 0, 0);
+            this.queryTextEditor.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.queryTextEditor.Location = new System.Drawing.Point(12, 36);
+            this.queryTextEditor.MenuManager = this.ribbonControlQueryControl;
+            this.queryTextEditor.Name = "queryTextEditor";
+            this.queryTextEditor.Size = new System.Drawing.Size(776, 240);
+            this.queryTextEditor.TabIndex = 10;
+            this.queryTextEditor.Views.DraftView.AllowDisplayLineNumbers = true;
+            this.queryTextEditor.Views.DraftView.Padding = new System.Windows.Forms.Padding(80, 4, 0, 0);
+            this.queryTextEditor.Views.SimpleView.AllowDisplayLineNumbers = true;
+            this.queryTextEditor.Views.SimpleView.Padding = new System.Windows.Forms.Padding(80, 4, 0, 0);
             // 
             // lcgQueryControl
             // 
@@ -392,7 +395,7 @@ namespace Databvase_Winforms.Modules
             // 
             // lciQueryEditor
             // 
-            this.lciQueryEditor.Control = this.richEditControlQueryEditor;
+            this.lciQueryEditor.Control = this.queryTextEditor;
             this.lciQueryEditor.Location = new System.Drawing.Point(0, 24);
             this.lciQueryEditor.Name = "lciQueryEditor";
             this.lciQueryEditor.Size = new System.Drawing.Size(780, 244);
@@ -478,7 +481,7 @@ namespace Databvase_Winforms.Modules
 
         private DevExpress.XtraLayout.LayoutControl layoutControlQueryControl;
         private DevExpress.XtraLayout.LayoutControlGroup lcgQueryControl;
-        private DevExpress.XtraRichEdit.RichEditControl richEditControlQueryEditor;
+        private Databvase_Winforms.Controls.QueryTextEditor.QueryTextEditor queryTextEditor;
         private DevExpress.XtraLayout.LayoutControlItem lciQueryEditor;
         private DevExpress.XtraLayout.SplitterItem splitterItemQueryEditor;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextQueryControl;

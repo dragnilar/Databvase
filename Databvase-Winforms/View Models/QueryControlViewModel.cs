@@ -8,6 +8,7 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using System.Drawing;
+using Databvase_Winforms.Messages;
 using DevExpress.XtraGrid.Views.Grid;
 
 namespace Databvase_Winforms.View_Models
@@ -26,6 +27,9 @@ namespace Databvase_Winforms.View_Models
             DatabasesList = SQLServerInterface.GetDatabaseNames();
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
+            TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
+            TextEditorLineNumberColor = App.Config.TextEditorLineNumberColor;
+            RegisterMessages();
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -37,6 +41,23 @@ namespace Databvase_Winforms.View_Models
         public virtual List<string> DatabasesList { get; set; }
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
+        public virtual Color TextEditorBackgroundColor { get; set; }
+        public virtual Color TextEditorLineNumberColor { get; set; }
+
+
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplysettingsUpdate);
+        }
+
+        private void ApplysettingsUpdate(SettingsUpdatedMessage message)
+        {
+            if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground)
+            {
+                TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
+            }
+        }
 
 
         /// <summary>
@@ -83,11 +104,6 @@ namespace Databvase_Winforms.View_Models
                 }
         }
 
-        public void ExportGrid(GridView gridView, string fileType)
-        {
-
-        }
-
         private void AddRowNumberColumn()
         {
             AddIndicator = true;
@@ -98,5 +114,7 @@ namespace Databvase_Winforms.View_Models
         {
             //TODO - Implement some kind of functionality if necessary, otherwise do nothing here since this is needed for the MVVM context
         }
+
+
     }
 }

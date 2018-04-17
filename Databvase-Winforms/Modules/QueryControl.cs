@@ -28,8 +28,6 @@ namespace Databvase_Winforms.Modules
             InitializeComponent();
             HookupEvents();
             SetupGridButtons();
-            ShowLineNumbers();
-            RegisterMessages();
             if (!mvvmContextQueryControl.IsDesignMode)
                 InitializeBindings();
         }
@@ -39,37 +37,20 @@ namespace Databvase_Winforms.Modules
 
         public RibbonControl Ribbon => ribbonControlQueryControl;
 
-        private void ShowLineNumbers()
-        {
-            //TODO - Line numbers do not show up if we create the query panel through SetScriptToDatabase, figure out why...
-            richEditControlQueryEditor.Document.Sections[0].LineNumbering.RestartType = LineNumberingRestart.Continuous;
-            richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
-            richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
-            richEditControlQueryEditor.Document.Sections[0].LineNumbering.Distance = 0.1f;
-
-        }
-
         private void HookupEvents()
         {
             SaveQueryButton.ItemClick += SaveQueryButton_ItemClick;
             gridViewResults.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
             barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
             barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
+            
         }
 
-        private void RegisterMessages()
+        public void ProcessNewScriptMessage(NewScriptMessage message)
         {
-            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplysettingsUpdate );
-        }
-
-        private void ApplysettingsUpdate(SettingsUpdatedMessage message)
-        {
-            if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground)
-            {
-                richEditControlQueryEditor.ActiveView.BackColor = App.Config.TextEditorBackgroundColor;
-                richEditControlQueryEditor.Document.CharacterStyles["Line Number"].ForeColor =
-                    App.Config.TextEditorLineNumberColor;
-            }
+            queryTextEditor.Text = message.Script;
+            barEditItemDatabaseList.EditValue = message.SelectedDatabase;
+            queryTextEditor.ShowLineNumbers();
         }
 
         private void GridViewResultsOnPopupMenuShowing(object o, PopupMenuShowingEventArgs e)
@@ -83,7 +64,7 @@ namespace Databvase_Winforms.Modules
         private void SaveQueryButton_ItemClick(object sender, ItemClickEventArgs e)
         {
             //Its probably better to leave this in the view because its using stuff baked into the view.
-            richEditControlQueryEditor.SaveDocumentAs();
+            queryTextEditor.SaveDocumentAs();
         }
 
         private void SetupGridButtons()
@@ -99,13 +80,6 @@ namespace Databvase_Winforms.Modules
             barButtonItemExportToCSV.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("csv");
         }
 
-        public void SetScriptToDatabase(NewScriptMessage message)
-        {
-            richEditControlQueryEditor.Document.Text = message.Script;
-            barEditItemDatabaseList.EditValue = message.SelectedDatabase;
-            ShowLineNumbers(); //TODO - This feels like a hack, there may be a better way to use ShowLineNumbers without having to call it again here
-        }
-
         #region MVVMContext
 
         private void InitializeBindings()
@@ -114,7 +88,7 @@ namespace Databvase_Winforms.Modules
             var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
 
             //Register services
-            mvvmContextQueryControl.RegisterService(new QueryEditorService(richEditControlQueryEditor));
+            mvvmContextQueryControl.RegisterService(new QueryEditorService(queryTextEditor));
 
             SetBindingSourceForQueryEditor(fluent);
 
@@ -122,7 +96,7 @@ namespace Databvase_Winforms.Modules
             fluent.EventToCommand<ItemClickEventArgs>(QueryButton, "ItemClick", x => x.AsynchronousQuery());
 
             //With Key events
-            fluent.WithKey(richEditControlQueryEditor, Keys.F5).KeyToCommand(x => x.AsynchronousQuery());
+            fluent.WithKey(queryTextEditor, Keys.F5).KeyToCommand(x => x.AsynchronousQuery());
 
             SetBindingForControls(fluent);
 
@@ -141,7 +115,10 @@ namespace Databvase_Winforms.Modules
             fluent.SetBinding(memoEditResults, x => x.EditValue, y => y.ResultsMessage);
             fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
             fluent.SetBinding(barEditItemDatabaseList, x => x.EditValue, y => y.CurrentDatabase);
-            fluent.SetBinding(richEditControlQueryEditor.Appearance.Text, x => x.Font, vm => vm.DefaultTextEditorFont);
+            fluent.SetBinding(queryTextEditor.Appearance.Text, x => x.Font, vm => vm.DefaultTextEditorFont);
+            fluent.SetBinding(queryTextEditor.ActiveView, x => x.BackColor, vm => vm.TextEditorBackgroundColor);
+            fluent.SetBinding(queryTextEditor.Document.CharacterStyles["Line Number"], x => x.ForeColor,
+                vm => vm.TextEditorLineNumberColor);
 
         }
 

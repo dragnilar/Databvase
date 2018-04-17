@@ -7,6 +7,7 @@ using DevExpress.XtraEditors;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 
 namespace Databvase_Winforms.View_Models
@@ -19,12 +20,15 @@ namespace Databvase_Winforms.View_Models
         public virtual int NumberOfQueries { get; set; }
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
-             
+        private bool Loading = true;
+
+
         public MainViewModel()
         {
             NumberOfQueries = 0;
             TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
             TextEditorLineNumberColor = App.Config.TextEditorLineNumberColor;
+            Loading = false;
         }
 
         public void AddNewTab()
@@ -57,8 +61,13 @@ namespace Databvase_Winforms.View_Models
 
         protected void SaveTextEditorColors()
         {
+            if (Loading)
+            {
+                return;
+            }
             App.Config.TextEditorBackgroundColor = TextEditorBackgroundColor;
             App.Config.TextEditorLineNumberColor = TextEditorLineNumberColor;
+            App.Config.Save();
             Messenger.Default.Send(new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground), 
                 SettingsUpdatedMessage.SettingsUpdatedSender);
         }

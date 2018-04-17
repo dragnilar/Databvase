@@ -155,7 +155,9 @@ namespace Databvase_Winforms.Views
         private void CreateNewQueryPaneWithScript(NewScriptMessage message)
         {
             mvvmContextMain.GetViewModel<MainViewModel>().AddNewTab();
-            ((QueryControl)tabbedViewMain.ActiveDocument.Control).SetScriptToDatabase(message);
+            ((QueryControl)tabbedViewMain.ActiveDocument.Control).ProcessNewScriptMessage(message);
+
+
         }
 
 

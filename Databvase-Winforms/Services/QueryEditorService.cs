@@ -1,6 +1,7 @@
-﻿using Databvase_Winforms.DAL;
+﻿using Databvase_Winforms.Controls.QueryTextEditor;
+using Databvase_Winforms.DAL;
 using Databvase_Winforms.Models;
-using DevExpress.XtraRichEdit;
+using DevExpress.Mvvm;
 
 namespace Databvase_Winforms.Services
 {
@@ -12,9 +13,9 @@ namespace Databvase_Winforms.Services
 
     internal class QueryEditorService : IQueryEditorService
     {
-        private readonly RichEditControl _queryPane;
+        private readonly QueryTextEditor _queryPane;
 
-        public QueryEditorService(RichEditControl queryPane)
+        public QueryEditorService(QueryTextEditor queryPane)
         {
             _queryPane = queryPane;
         }
@@ -43,5 +44,6 @@ namespace Databvase_Winforms.Services
 
             return sqlQuery;
         }
+
     }
 }
