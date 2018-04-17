@@ -198,11 +198,13 @@ namespace Databvase_Winforms.Views
         #endregion
 
 
-        private void InitializeBindings()
+        private void InitializeBindings() 
         {
             var fluent = mvvmContextMain.OfType<MainViewModel>();
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemShowSettings, "ItemClick", x => x.ShowSettings());
+            fluent.SetBinding(barEditItemTextEditorBG, x => x.EditValue, vm => vm.TextEditorBackgroundColor);
+            fluent.SetBinding(barEditItemTextEditorLineNumberColor, x => x.EditValue, vm => vm.TextEditorLineNumberColor);
         }
     }
 }

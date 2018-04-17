@@ -9,11 +9,11 @@ namespace Databvase_Winforms.Messages
     class SettingsUpdatedMessage
     {
         public const string SettingsUpdatedSender = "SettingsUpdatedSender";
-        public bool Updated { get; set; }
+        public SettingsUpdateType Type { get; set; }
 
-        public SettingsUpdatedMessage(bool updated)
+        public SettingsUpdatedMessage(SettingsUpdateType type)
         {
-            Updated = updated;
+            Type = type;
         }
          
         public override string ToString()
@@ -21,6 +21,11 @@ namespace Databvase_Winforms.Messages
             return SettingsUpdatedSender;
         }
 
+        public enum SettingsUpdateType
+        {
+            TextEditorBackground,
+            NumberOfRowsForTopSelectScript
+        }
         
     }
 }

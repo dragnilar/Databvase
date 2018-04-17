@@ -6,6 +6,7 @@ using Databvase_Winforms.Controls.QueryGrid;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Utils;
 using DevExpress.Utils.Drawing;
@@ -28,9 +29,11 @@ namespace Databvase_Winforms.Modules
             HookupEvents();
             SetupGridButtons();
             ShowLineNumbers();
+            RegisterMessages();
             if (!mvvmContextQueryControl.IsDesignMode)
                 InitializeBindings();
         }
+
 
 
 
@@ -43,6 +46,7 @@ namespace Databvase_Winforms.Modules
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Start = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.CountBy = 1;
             richEditControlQueryEditor.Document.Sections[0].LineNumbering.Distance = 0.1f;
+
         }
 
         private void HookupEvents()
@@ -51,6 +55,21 @@ namespace Databvase_Winforms.Modules
             gridViewResults.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
             barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
             barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
+        }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplysettingsUpdate );
+        }
+
+        private void ApplysettingsUpdate(SettingsUpdatedMessage message)
+        {
+            if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground)
+            {
+                richEditControlQueryEditor.ActiveView.BackColor = App.Config.TextEditorBackgroundColor;
+                richEditControlQueryEditor.Document.CharacterStyles["Line Number"].ForeColor =
+                    App.Config.TextEditorLineNumberColor;
+            }
         }
 
         private void GridViewResultsOnPopupMenuShowing(object o, PopupMenuShowingEventArgs e)

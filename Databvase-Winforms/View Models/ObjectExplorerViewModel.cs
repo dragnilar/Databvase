@@ -61,7 +61,7 @@ namespace Databvase_Winforms.View_Models
 
         private void OnSettingsUpdated(SettingsUpdatedMessage settingsUpdated)
         {
-            if ((settingsUpdated.Updated))
+            if ((settingsUpdated.Type == SettingsUpdatedMessage.SettingsUpdateType.NumberOfRowsForTopSelectScript))
             {
                 GetSelectTopDescription();
             }

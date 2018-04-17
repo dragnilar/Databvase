@@ -18,6 +18,8 @@ namespace Databvase_Winforms
         public Font DefaultTextEditorFont = new Font("Tahoma", 8.25f);
         public Color NullGridCellColor = Color.Red;
         public string NullGridText = "[NULL]";
+        public Color TextEditorBackgroundColor = Color.White;
+        public Color TextEditorLineNumberColor = Color.DeepSkyBlue;
 
         public Settings()
         {

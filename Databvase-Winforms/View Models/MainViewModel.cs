@@ -5,20 +5,26 @@ using DevExpress.Mvvm.POCO;
 using DevExpress.XtraBars.Docking2010.Views.Widget;
 using DevExpress.XtraEditors;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 
 namespace Databvase_Winforms.View_Models
 {
-    [POCOViewModel]
+    [MetadataType(typeof(MetaData))]
     public class MainViewModel
     {
 
         public IDocumentManagerService DocumentManagerService => this.GetRequiredService<IDocumentManagerService>();
         public virtual int NumberOfQueries { get; set; }
-
+        public virtual Color TextEditorBackgroundColor { get; set; }
+        public virtual Color TextEditorLineNumberColor { get; set; }
+             
         public MainViewModel()
         {
             NumberOfQueries = 0;
+            TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
+            TextEditorLineNumberColor = App.Config.TextEditorLineNumberColor;
         }
 
         public void AddNewTab()
@@ -47,6 +53,23 @@ namespace Databvase_Winforms.View_Models
         public void ShowSettings()
         {
             this.GetService<ISettingsWindowService>().ShowDialog();
+        }
+
+        protected void SaveTextEditorColors()
+        {
+            App.Config.TextEditorBackgroundColor = TextEditorBackgroundColor;
+            App.Config.TextEditorLineNumberColor = TextEditorLineNumberColor;
+            Messenger.Default.Send(new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground), 
+                SettingsUpdatedMessage.SettingsUpdatedSender);
+        }
+
+        public class MetaData : IMetadataProvider<MainViewModel>
+        {
+            public void BuildMetadata(MetadataBuilder<MainViewModel> builder)
+            {
+                builder.Property(x => x.TextEditorBackgroundColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
+                builder.Property(x => x.TextEditorLineNumberColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
+            }
         }
     }
 
