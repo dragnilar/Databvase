@@ -16,6 +16,8 @@ namespace Databvase_Winforms
         public bool ShowRowNumberColumn = false;
         public int NumberOfRowsForTopSelectScript = 1000;
         public Font DefaultTextEditorFont = new Font("Tahoma", 8.25f);
+        public Color NullGridCellColor = Color.Red;
+        public string NullGridText = "[NULL]";
 
         public Settings()
         {

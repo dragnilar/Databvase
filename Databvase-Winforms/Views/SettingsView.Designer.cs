@@ -32,7 +32,6 @@ namespace Databvase_Winforms.Views
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
-            this.mvvmContextSettingsView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.navigationPaneSettings = new DevExpress.XtraBars.Navigation.NavigationPane();
             this.navigationPageQuerySettings = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lclQuerySettings = new DevExpress.XtraLayout.LayoutControl();
@@ -63,7 +62,13 @@ namespace Databvase_Winforms.Views
             this.lciNumberOfRowsForSelectTop = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).BeginInit();
+            this.lcgQueryGrid = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.colorPickEditNullColor = new DevExpress.XtraEditors.ColorPickEdit();
+            this.lciNullColor = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.mvvmContextSettingsView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.textEditNullText = new DevExpress.XtraEditors.TextEdit();
+            this.lciNullText = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPaneSettings)).BeginInit();
             this.navigationPaneSettings.SuspendLayout();
             this.navigationPageQuerySettings.SuspendLayout();
@@ -94,12 +99,14 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgQueryGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditNullColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciNullColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditNullText.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciNullText)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mvvmContextSettingsView
-            // 
-            this.mvvmContextSettingsView.ContainerControl = this;
-            this.mvvmContextSettingsView.ViewModelType = typeof(Databvase_Winforms.View_Models.SettingsViewModel);
             // 
             // navigationPaneSettings
             // 
@@ -132,6 +139,8 @@ namespace Databvase_Winforms.Views
             // 
             // lclQuerySettings
             // 
+            this.lclQuerySettings.Controls.Add(this.textEditNullText);
+            this.lclQuerySettings.Controls.Add(this.colorPickEditNullColor);
             this.lclQuerySettings.Controls.Add(this.checkEditShowRowNumberColumn);
             this.lclQuerySettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lclQuerySettings.Location = new System.Drawing.Point(0, 0);
@@ -155,9 +164,9 @@ namespace Databvase_Winforms.Views
             this.lcgEnvironment.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.lcgEnvironment.GroupBordersVisible = false;
             this.lcgEnvironment.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
             this.lcgQueryExecution,
-            this.emptySpaceItem2});
+            this.emptySpaceItem2,
+            this.lcgQueryGrid});
             this.lcgEnvironment.Name = "Root";
             this.lcgEnvironment.OptionsItemText.TextToControlDistance = 5;
             this.lcgEnvironment.Size = new System.Drawing.Size(637, 463);
@@ -166,9 +175,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 164);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(617, 279);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(593, 214);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lcgQueryExecution
@@ -180,7 +189,7 @@ namespace Databvase_Winforms.Views
             this.lcgQueryExecution.Location = new System.Drawing.Point(0, 0);
             this.lcgQueryExecution.Name = "lcgQueryExecution";
             this.lcgQueryExecution.OptionsItemText.TextToControlDistance = 5;
-            this.lcgQueryExecution.Size = new System.Drawing.Size(617, 140);
+            this.lcgQueryExecution.Size = new System.Drawing.Size(617, 133);
             this.lcgQueryExecution.Text = "Query Execution";
             // 
             // emptySpaceItem4
@@ -188,7 +197,7 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(593, 67);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(593, 60);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lciShowRowNumberInGrid
@@ -203,9 +212,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 140);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 133);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(617, 24);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(617, 23);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navigationPageObjectExplorer
@@ -336,7 +345,8 @@ namespace Databvase_Winforms.Views
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lcgQueryScripting});
+            this.lcgQueryScripting,
+            this.emptySpaceItem8});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(637, 463);
             this.layoutControlGroup1.TextVisible = false;
@@ -352,7 +362,8 @@ namespace Databvase_Winforms.Views
             this.spinEditNumberOfRowsForTopScript.Name = "spinEditNumberOfRowsForTopScript";
             this.spinEditNumberOfRowsForTopScript.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditNumberOfRowsForTopScript.Size = new System.Drawing.Size(363, 20);
+            this.spinEditNumberOfRowsForTopScript.Properties.Mask.EditMask = "########0;";
+            this.spinEditNumberOfRowsForTopScript.Size = new System.Drawing.Size(206, 20);
             this.spinEditNumberOfRowsForTopScript.StyleController = this.lcObjectExplorerSettings;
             this.spinEditNumberOfRowsForTopScript.TabIndex = 5;
             // 
@@ -368,7 +379,7 @@ namespace Databvase_Winforms.Views
             this.lcgQueryScripting.Location = new System.Drawing.Point(0, 0);
             this.lcgQueryScripting.Name = "lcgQueryScripting";
             this.lcgQueryScripting.OptionsItemText.TextToControlDistance = 5;
-            this.lcgQueryScripting.Size = new System.Drawing.Size(617, 443);
+            this.lcgQueryScripting.Size = new System.Drawing.Size(617, 138);
             this.lcgQueryScripting.Text = "Query Scripting";
             // 
             // emptySpaceItem3
@@ -377,7 +388,7 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem3.CustomizationFormText = "emptySpaceItem3";
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(593, 370);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(593, 65);
             this.emptySpaceItem3.Text = "emptySpaceItem3";
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -387,7 +398,7 @@ namespace Databvase_Winforms.Views
             this.lciNumberOfRowsForSelectTop.CustomizationFormText = "Number Of Rows For Select Top * Script";
             this.lciNumberOfRowsForSelectTop.Location = new System.Drawing.Point(0, 0);
             this.lciNumberOfRowsForSelectTop.Name = "lciNumberOfRowsForSelectTop";
-            this.lciNumberOfRowsForSelectTop.Size = new System.Drawing.Size(571, 24);
+            this.lciNumberOfRowsForSelectTop.Size = new System.Drawing.Size(414, 24);
             this.lciNumberOfRowsForSelectTop.Text = "Number Of Rows For Select Top * Script";
             this.lciNumberOfRowsForSelectTop.TextSize = new System.Drawing.Size(192, 13);
             // 
@@ -409,6 +420,69 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem8.Size = new System.Drawing.Size(617, 305);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // lcgQueryGrid
+            // 
+            this.lcgQueryGrid.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem1,
+            this.lciNullColor,
+            this.emptySpaceItem9,
+            this.lciNullText});
+            this.lcgQueryGrid.Location = new System.Drawing.Point(0, 156);
+            this.lcgQueryGrid.Name = "lcgQueryGrid";
+            this.lcgQueryGrid.Size = new System.Drawing.Size(617, 287);
+            this.lcgQueryGrid.Text = "Query Results Grid";
+            // 
+            // colorPickEditNullColor
+            // 
+            this.colorPickEditNullColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditNullColor.Location = new System.Drawing.Point(184, 205);
+            this.colorPickEditNullColor.Name = "colorPickEditNullColor";
+            this.colorPickEditNullColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditNullColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditNullColor.Size = new System.Drawing.Size(130, 20);
+            this.colorPickEditNullColor.StyleController = this.lclQuerySettings;
+            this.colorPickEditNullColor.TabIndex = 5;
+            // 
+            // lciNullColor
+            // 
+            this.lciNullColor.Control = this.colorPickEditNullColor;
+            this.lciNullColor.Location = new System.Drawing.Point(0, 0);
+            this.lciNullColor.Name = "lciNullColor";
+            this.lciNullColor.Size = new System.Drawing.Size(294, 24);
+            this.lciNullColor.Text = "Background Color for Null Values";
+            this.lciNullColor.TextSize = new System.Drawing.Size(155, 13);
+            // 
+            // emptySpaceItem9
+            // 
+            this.emptySpaceItem9.AllowHotTrack = false;
+            this.emptySpaceItem9.Location = new System.Drawing.Point(294, 0);
+            this.emptySpaceItem9.Name = "emptySpaceItem9";
+            this.emptySpaceItem9.Size = new System.Drawing.Size(34, 24);
+            this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // mvvmContextSettingsView
+            // 
+            this.mvvmContextSettingsView.ContainerControl = this;
+            this.mvvmContextSettingsView.ViewModelType = typeof(Databvase_Winforms.View_Models.SettingsViewModel);
+            // 
+            // textEditNullText
+            // 
+            this.textEditNullText.Location = new System.Drawing.Point(512, 205);
+            this.textEditNullText.Name = "textEditNullText";
+            this.textEditNullText.Size = new System.Drawing.Size(101, 20);
+            this.textEditNullText.StyleController = this.lclQuerySettings;
+            this.textEditNullText.TabIndex = 6;
+            // 
+            // lciNullText
+            // 
+            this.lciNullText.Control = this.textEditNullText;
+            this.lciNullText.Location = new System.Drawing.Point(328, 0);
+            this.lciNullText.Name = "lciNullText";
+            this.lciNullText.Size = new System.Drawing.Size(265, 24);
+            this.lciNullText.Text = "Display Value For Nulls";
+            this.lciNullText.TextSize = new System.Drawing.Size(155, 13);
+            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,7 +492,6 @@ namespace Databvase_Winforms.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";
             this.Text = "Settings";
-            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPaneSettings)).EndInit();
             this.navigationPaneSettings.ResumeLayout(false);
             this.navigationPageQuerySettings.ResumeLayout(false);
@@ -449,6 +522,13 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgQueryGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditNullColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciNullColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditNullText.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciNullText)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -486,5 +566,11 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraLayout.LayoutControlItem lciNumberOfRowsForSelectTop;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
+        private DevExpress.XtraEditors.ColorPickEdit colorPickEditNullColor;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgQueryGrid;
+        private DevExpress.XtraLayout.LayoutControlItem lciNullColor;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
+        private DevExpress.XtraEditors.TextEdit textEditNullText;
+        private DevExpress.XtraLayout.LayoutControlItem lciNullText;
     }
 }

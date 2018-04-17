@@ -32,6 +32,8 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(checkEditShowRowNumberColumn, x => x.Checked, vm => vm.ShowRowNumberColumn);
             fluent.SetBinding(spinEditNumberOfRowsForTopScript, x => x.EditValue,
                 vm => vm.NumberOfRowsForSelectTopScript);
+            fluent.SetBinding(colorPickEditNullColor, x => x.Color, vm => vm.NullColor);
+            fluent.SetBinding(textEditNullText, x => x.EditValue, vm => vm.NullText);
 
             fluent.SetTrigger(model => model.State, state =>
             {

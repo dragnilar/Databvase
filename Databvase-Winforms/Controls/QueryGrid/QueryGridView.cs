@@ -34,7 +34,7 @@ namespace Databvase_Winforms.Controls.QueryGrid
         {
             if (e.Value == DBNull.Value)
             {
-                e.DisplayText = "[NULL]";
+                e.DisplayText = App.Config.NullGridText;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Databvase_Winforms.Controls.QueryGrid
         {
             if (e.CellValue == DBNull.Value)
             {
-                e.Appearance.BackColor = Color.Red;
+                e.Appearance.BackColor = App.Config.NullGridCellColor;
             }
         }
 
