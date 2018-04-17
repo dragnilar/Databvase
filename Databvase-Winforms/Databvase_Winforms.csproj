@@ -261,6 +261,7 @@
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
     <Compile Include="Services\SettingsWindowService.cs" />
+    <Compile Include="Services\SQLSyntaxHighlightingService.cs" />
     <Compile Include="Services\ValidatorService.cs" />
     <Compile Include="Controls\QueryGrid\GridExtensions.cs" />
     <Compile Include="Services\QueryEditorService.cs" />

@@ -1,9 +1,14 @@
 ﻿using System;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
+using DevExpress.XtraRichEdit.Commands;
+using DevExpress.XtraRichEdit.Menu;
+using DevExpress.CodeParser;
+using DevExpress.XtraRichEdit.Services;
 
 namespace Databvase_Winforms.Controls.QueryTextEditor
 {
@@ -13,21 +18,52 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
         public QueryTextEditor()
         {
             InitializeQueryTextEditor();
-            RegisterMessages();
+
         }
 
         private void InitializeQueryTextEditor()
         {
-            SetBackgroundColor();
             ShowLineNumbers();
-            Enter += OnEnter; //TODO -This feels kind of hack-ish, but its the closest we have to "Shown"
+            RegisterMessages();
+            RegisterServices();
+            HookUpEvents();
         }
 
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplySettingsUpdate);
+        }
+
+        private void RegisterServices()
+        {
+            ReplaceService<ISyntaxHighlightService>(new SQLSyntaxHighlightingService(Document));
+        }
+
+        private void HookUpEvents()
+        {
+            Enter += OnEnter; //TODO -This feels kind of hack-ish, but its the closest we have to "Shown"
+            PopupMenuShowing += QueryTextEditor_PopupMenuShowing;
+        }
+
+
+
+        #region events
         private void OnEnter(object sender, EventArgs eventArgs)
         {
             if (WasShown) return;
             SetBackgroundColor();
             WasShown = true;
+        }
+
+        private void QueryTextEditor_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == RichEditMenuType.Text)
+            {
+                e.Menu.RemoveMenuItem(RichEditCommandId.ShowNumberingListForm);
+                e.Menu.RemoveMenuItem(RichEditCommandId.CreateBookmark);
+                e.Menu.RemoveMenuItem(RichEditCommandId.CreateHyperlink);
+                e.Menu.RemoveMenuItem(RichEditCommandId.NewCommentContentMenu);
+            }
         }
 
         public void ShowLineNumbers()
@@ -49,12 +85,7 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
             Document.CharacterStyles["Line Number"].ForeColor = App.Config.TextEditorLineNumberColor;
         }
 
-        private void RegisterMessages()
-        {
-            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplysettingsUpdate);
-        }
-
-        private void ApplysettingsUpdate(SettingsUpdatedMessage message)
+        private void ApplySettingsUpdate(SettingsUpdatedMessage message)
         {
             if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground)
             {
@@ -62,5 +93,7 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
                 SetLineColor();
             }
         }
+
+        #endregion
     }
 }
