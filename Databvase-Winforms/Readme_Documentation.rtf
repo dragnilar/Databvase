@@ -2,7 +2,7 @@
 {\*\generator Riched20 10.0.16299}\viewkind4\uc1 
 \pard\ul\f0\fs44\lang1033 DATABVASE!!!! ReadMe\fs32\par
 \par
-\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 5)\ul\par
+\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 6)\ul\par
 \par
 Release Notes:\par
 \par
@@ -20,7 +20,9 @@ Release Notes:\par
 \par
 - Fixed a bug where you could enter invalid values into the "number of rows" setting for select top * scripts.\par
 \par
-- Removed the context menu options in the query text editor to add comments, hyperlinks, bullet point lists and bookmarks.\ul\fs24\par
+- Removed the context menu options in the query text editor to add comments, hyperlinks, bullet point lists and bookmarks.\par
+\par
+- Added ability to connect to multiple instances at once and retain connection to instances in individual query tabs (just like SQL Server Management Studio).\ul\fs24\par
 \par
 \b\fs16 Rev 5 Changes:\b0\fs24\par
 \par
@@ -217,8 +219,6 @@ Known Bugs/ Limitations\ulnone\par
 - No splash screen or about/information page is present. This will be changed.\par
 \par
 - Databvase can only display one table result at a time. For example, if you run two select statements at once, only one table's results will be returned. This may be looked into down the road, depending on demand / interest.\par
-\par
-- Databvase can only connect to one instance at a time currently. This will be looked into if there is demand/interest for being able to work with multiple instances at once. \par
 \par
 - Databvase does not currently use connection pooling or keep connections going while a query pane is open. It treats all database operations as one unit of work (connection > do the work > disconnect). This may or may not be ideal in some situations and it will be looked into if this can be toggled on or off down the road for those that may prefer to have a connection always going. \par
 \par
