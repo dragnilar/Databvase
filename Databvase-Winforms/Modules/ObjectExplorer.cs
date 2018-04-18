@@ -41,8 +41,6 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.BeforeExpand += TreeListObjExpOnBeforeExpand;
 
             barButtonItemCopy.ItemClick += CopyCell;
-            barButtonItemGenerateSelectAll.ItemClick += ScriptSelectAllForTable;
-            barButtonItemGenerateSelectTopStatement.ItemClick += ScriptSelectTopForTable;
 
         }
 
@@ -238,32 +236,32 @@ namespace Databvase_Winforms.Modules
 
         private string GetParentNodesParentFullName(TreeListNode parentNode)
         {
-            return parentNode.ParentNode.GetValue(treeListColumnFullName).ToString();
+            return parentNode.ParentNode?.GetValue(treeListColumnFullName).ToString();
         }
 
         private string GetFocusedNodeFullName()
         {
-            return treeListObjExp.FocusedNode.GetValue(treeListColumnFullName).ToString();
+            return treeListObjExp.FocusedNode?.GetValue(treeListColumnFullName).ToString();
         }
 
         private string GetFocusedNodeParentFullName()
         {
-            return treeListObjExp.FocusedNode.ParentNode.GetValue(treeListColumnFullName).ToString();
+            return treeListObjExp.FocusedNode?.ParentNode?.GetValue(treeListColumnFullName).ToString();
         }
 
         private Table GetFocusedNodeTable()
         {
-            return (Table)treeListObjExp.FocusedNode.GetValue(treeListColumnData);
+            return (Table)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
         private Column GetFocusedNodeColumn()
         {
-            return (Column)treeListObjExp.FocusedNode.GetValue(treeListColumnData);
+            return (Column)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
         private Database GetFocusedNodeDatabase()
         {
-            return (Database)treeListObjExp.FocusedNode.GetValue(treeListColumnData);
+            return (Database)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
         #endregion
@@ -276,25 +274,13 @@ namespace Databvase_Winforms.Modules
             Clipboard.SetText(GetFocusedNodeFullName());
         }
 
-        private void ScriptSelectAllForTable(object sender, EventArgs e)
-        {
-            var selectedTable = GetFocusedNodeTable();
-            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectAllForTable(selectedTable);
-        }
-
-        private void ScriptSelectTopForTable(object sender, EventArgs e)
-        {
-            var selectedTable = GetFocusedNodeTable();
-            mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().ScriptSelectTopForTable(selectedTable);
-        }
-
-
-
         private void InitializeBindings()
         {
             var fluent = mvvmContextObjectExplorer.OfType<ObjectExplorerViewModel>();
             fluent.SetBinding(barButtonItemGenerateSelectTopStatement, x => x.Caption,
                 y => y.SelectTopContextMenuItemDescription);
+            fluent.BindCommand(barButtonItemGenerateSelectAll, (x,p) => x.ScriptSelectAllForTable(p), x=>GetFocusedNodeTable());
+            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x,p) => x.ScriptSelectTopForTable(p), x=>GetFocusedNodeTable());
 
         }
     }
