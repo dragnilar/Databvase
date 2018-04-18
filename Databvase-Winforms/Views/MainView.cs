@@ -42,9 +42,6 @@ namespace Databvase_Winforms.Views
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
             
-
-
-            tabbedViewMain.QueryControl += TabbedViewMainOnQueryControl;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
 
@@ -139,11 +136,6 @@ namespace Databvase_Winforms.Views
             var dialogResult = renameTabDialog.ShowDialog();
             if (dialogResult == DialogResult.OK) tabbedViewMain.ActiveDocument.Caption = renameTabDialog.NewTabName;
             renameTabDialog.Dispose();
-        }
-
-        private void TabbedViewMainOnQueryControl(object sender, QueryControlEventArgs e)
-        {
-            e.Control = new QueryControl();
         }
 
         private void TabbedViewMainOnDocumentActivated(object sender, DocumentEventArgs e)
