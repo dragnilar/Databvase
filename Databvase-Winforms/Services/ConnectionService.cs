@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Databvase_Winforms.Models;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -6,22 +8,23 @@ namespace Databvase_Winforms.Services
 {
     public class ConnectionService
     {
-        public string CurrentDatabase = string.Empty;
         private (string, bool) NullConnectionTuple => ("Connection is null, please try again", false);
+        public List<SavedConnection> CurrentConnections = new List<SavedConnection>();
+        public string CurrentInstance = string.Empty;
 
-        public SavedConnection CurrentConnection { get; set; }
 
-        public Server GetServerAtCurrentDatabase()
+        public Server GetServerAtSpecificInstance(string instanceName, string dbName = null)
         {
-            return GetServerAtCurrentConnection(CurrentDatabase);
+            if (CurrentConnections.Any(x=>x.Instance == instanceName))
+            {
+                var connection = CurrentConnections.First(x => x.Instance == instanceName);
+                return GetServer(connection, dbName);
+            }
+
+            return null;
         }
 
-        public  Server GetServerAtCurrentConnection(string dbName = null)
-        {
-            return GetServer(CurrentConnection, dbName);
-        }
-
-        private  Server GetServerAtSpecificConnection(SavedConnection connection, string dbName = null)
+        public  Server GetServerAtSpecificConnection(SavedConnection connection, string dbName = null)
         {
             return GetServer(connection, dbName);
         }
@@ -50,19 +53,25 @@ namespace Databvase_Winforms.Services
             return server;
         }
 
-
-        public  (string errorMessage, bool valid) SetAndTestConnection(SavedConnection savedConnection)
+        public (string errorMessage, bool valid) SetAndTestConnection(SavedConnection savedConnection)
         {
             if (savedConnection != null)
             {
-                CurrentConnection = savedConnection;
+                var CurrentServer = GetServerAtSpecificConnection(savedConnection);
+                var result = TestServerConnection(CurrentServer);
 
-                var CurrentServer = GetServerAtCurrentConnection();
+                if (!result.valid) return result;
+                if (CurrentConnections.All(x => x.Instance != savedConnection.Instance))
+                {
+                    CurrentConnections.Add(savedConnection);
+                }
 
-                return TestServerConnection(CurrentServer);
+                CurrentInstance = savedConnection.Instance;
+
+                return result;
+
             }
 
-            CurrentConnection = null;
             return NullConnectionTuple;
         }
 
@@ -89,6 +98,16 @@ namespace Databvase_Winforms.Services
             {
 
                 return (ex.Message, false);
+            }
+        }
+
+        public void DisconnectCurrentInstance()
+        {
+            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == CurrentInstance);
+            if (connectionToRemove != null)
+            {
+                CurrentConnections.Remove(connectionToRemove);
+                CurrentInstance = !CurrentConnections.Any() ? string.Empty : CurrentConnections.First().Instance;
             }
         }
     }

@@ -8,6 +8,7 @@ using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using System.Drawing;
+using System.Linq;
 using Databvase_Winforms.Messages;
 using DevExpress.XtraGrid.Views.Grid;
 
@@ -19,14 +20,17 @@ namespace Databvase_Winforms.View_Models
 
         public QueryControlViewModel()
         {
+            CurrentInstanceName = App.Connection.CurrentInstance;
             Entity = new QueryDocumentEntity {DocumentText = string.Empty};
             GridSource = null;
             ResultsMessage = string.Empty;
             QueryRunning = false;
             CurrentDatabase = string.Empty;
-            DatabasesList = SQLServerInterface.GetDatabaseNames();
+            DatabasesList = SQLServerInterface.GetDatabaseNames(App.Connection.CurrentInstance);
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
+            QueryConnection = App.Connection.CurrentConnections.First(r => r.Instance == CurrentInstanceName);
+            //TODO - Get rid of current instance because it is probably not needed since current conenction has that on it.
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -38,6 +42,8 @@ namespace Databvase_Winforms.View_Models
         public virtual List<string> DatabasesList { get; set; }
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
+        protected virtual string CurrentInstanceName { get; set; }
+        public virtual SavedConnection QueryConnection { get; set; }
 
 
         /// <summary>
@@ -48,9 +54,8 @@ namespace Databvase_Winforms.View_Models
             if (QueryRunning) return;
 
             QueryRunning = true;
-            App.Connection.CurrentDatabase = CurrentDatabase;
             var sqlQuery = GetSQLQueryString();
-            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery)).ContinueWith(
+            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery, CurrentDatabase, QueryConnection )).ContinueWith(
                 x => ProcessResults(x.Result),
                 TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);
             QueryRunning = false;

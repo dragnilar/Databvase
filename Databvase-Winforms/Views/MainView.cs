@@ -72,35 +72,44 @@ namespace Databvase_Winforms.Views
 
         private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
-            Gonnection();
+            Connect();
         }
 
-        private void Gonnection()
+        private void Connect()
         {
-            //TODO - hacked shit here fix it jackass
             var window = new ConnectionStringView {StartPosition = FormStartPosition.CenterScreen};
             window.ShowDialog();
             window.Dispose();
-            UpdateConnectionStatusOnUi();
+            UpdateUIToShowConnections();
+        }
 
-            if (App.Connection.CurrentConnection != null)
+        private void UpdateUIToShowConnections()
+        {
+            if (App.Connection.CurrentConnections.Any() && (objectExplorerContainer.Controls.Count < 1))
+            {
+                UpdateConnectionStatusOnUi();
                 objectExplorerContainer.Controls.Add(new ObjectExplorer {Dock = DockStyle.Fill});
+
+            }
+            else
+            {
+                objectExplorerContainer.Panel.Show();
+            }
+
+            Messenger.Default.Send(new InstanceConnectedMessage(App.Connection.CurrentConnections.First().Instance), InstanceConnectedMessage.ConnectInstanceSender);
         }
 
         private void UpdateConnectionStatusOnUi()
         {
-            if (App.Connection.CurrentConnection != null)
+            if (App.Connection.CurrentConnections.Count > 0)
             {
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
-                barButtonItemConnect.Visibility = BarItemVisibility.Never;
             }
             else
             {
-                tabbedViewMain.Controller.CloseAll();
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
-                barButtonItemConnect.Visibility = BarItemVisibility.Always;
             }
         }
 
@@ -111,8 +120,8 @@ namespace Databvase_Winforms.Views
 
         private void Disconnect()
         {
-            App.Connection.CurrentConnection = null;
-            objectExplorerContainer.Controls.Clear();
+            Messenger.Default.Send(new DisconnectInstanceMessage(App.Connection.CurrentInstance), DisconnectInstanceMessage.DisconnectInstanceSender);
+            App.Connection.DisconnectCurrentInstance();
             UpdateConnectionStatusOnUi();
         }
 

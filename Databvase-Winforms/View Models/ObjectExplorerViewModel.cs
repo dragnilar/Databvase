@@ -47,9 +47,12 @@ namespace Databvase_Winforms.View_Models
 
         public List<string> GetInstancesList()
         {
-            //Only one instance at a time right now...
             var instancesList = new List<string>();
-            instancesList.Add(App.Connection.CurrentConnection.Instance);
+
+            foreach (var connection in App.Connection.CurrentConnections)
+            {
+                instancesList.Add(connection.Instance);
+            }
             return instancesList;
         }
 

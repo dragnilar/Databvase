@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Databvase_Winforms.DAL;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
@@ -66,7 +67,10 @@ namespace Databvase_Winforms.View_Models
         public void Connect()
         {
             var result = App.Connection.SetAndTestConnection(SelectedConnection);
-            if (result.valid) WindowState = State.Exit;
+            if (result.valid)
+            {
+                WindowState = State.Exit;
+            }
             else
             {
                 ShowErrorMessage($"Error occurred connecting to Server instance \n {result.errorMessage}", "Connection Error");
@@ -76,7 +80,6 @@ namespace Databvase_Winforms.View_Models
 
         public void Cancel()
         {
-            App.Connection.CurrentConnection = null;
             WindowState = State.Exit;
         }
 

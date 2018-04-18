@@ -184,19 +184,19 @@
   </data>
   <data name="barButtonItemGenerateSelectTopStatement.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAGXRFWHRUaXRsZQBWZXJ0aWNh
-        bGw7QWxpZ247VG9wL1gpnAAAAEVJREFUOE9jaGlp+U8uBgIGsAFly6czYMNAOTDGIY5hAIgmCg9CA0AM
-        UvBwNAAkgKyAEKaNAWTgQWYAWRhsAIggH/9nAAAmGH2L93pebgAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAZdEVYdFRpdGxlAFZlcnRpY2FsbDtBbGlnbjtUb3Av
+        WCmcAAAARUlEQVQ4T2NoaWn5Ty4GAgawAWXLpzNgw0A5MMYhjmEAiCYKD0IDQAxS8HA0ACSArIAQpo0B
+        ZOBBZgBZGGwAiCAf/2cAACYYfYv3el5uAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAGXRFWHRUaXRsZQBWZXJ0aWNh
-        bGw7QWxpZ247VG9wL1gpnAAAAF5JREFUWEftzrENgDAMRFFPzQTegREY08RILgC3uaT4xY+la/IsIpb2
-        PO4e6n6AGhS1gOM6bZR3avVf3gwAAABfwPQA7AuoQREAAAAAAADQAkZ5Ve0JkPYCrKwddYXdwfCzpNzM
-        3CUAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAZdEVYdFRpdGxlAFZlcnRpY2FsbDtBbGlnbjtUb3Av
+        WCmcAAAAXklEQVRYR+3OsQ2AMAxEUU/NBN6BERjTxEguALe5pPjFj6Vr8iwilvY87h7qfoAaFLWA4zpt
+        lHdq9V/eDAAAAF/A9ADsC6hBEQAAAAAAANACRnlV7QmQ9gKsrB11hd3B8LOk3MzcJQAAAABJRU5ErkJg
+        gg==
 </value>
   </data>
   <metadata name="popupMenuObjectExplorer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

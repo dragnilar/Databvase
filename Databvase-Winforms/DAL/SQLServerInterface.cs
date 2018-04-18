@@ -10,17 +10,6 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.DAL
 {
-    public class InClassName
-    {
-        public InClassName(string tableName, string databaseName)
-        {
-            TableName = tableName;
-            DatabaseName = databaseName;
-        }
-
-        public string TableName { get; private set; }
-        public string DatabaseName { get; private set; }
-    }
 
     public static class SQLServerInterface
     {
@@ -30,13 +19,13 @@ namespace Databvase_Winforms.DAL
         /// </summary>
         /// <param name="sqlQuery">A plain text sql query such as select * from tableName</param>
         /// <returns>QueryResult</returns>
-        public static QueryResult SendQueryAndGetResult(string sqlQuery)
+        public static QueryResult SendQueryAndGetResult(string sqlQuery, string dataBase, SavedConnection connection)
         {
             var result = new QueryResult();
             try
             {
-                var server = App.Connection.GetServerAtCurrentDatabase();
-                server.ConnectionContext.DatabaseName = App.Connection.CurrentDatabase;
+                var server = App.Connection.GetServerAtSpecificConnection(connection, dataBase);
+                server.ConnectionContext.DatabaseName = dataBase;
                 server.ConnectionContext.Connect();
                 var dataset = server.ConnectionContext.ExecuteWithResults(sqlQuery);
                 result = GetResult(dataset);
@@ -104,25 +93,18 @@ namespace Databvase_Winforms.DAL
             return instanceList;
         }
 
-
-        public static string GetServerName()
+        public static List<string> GetDatabaseNames(string instanceName)
         {
-            var server = App.Connection.GetServerAtCurrentConnection();
-            return server.Name;
-        }
-
-        public static List<string> GetDatabaseNames()
-        {
-            var server = App.Connection.GetServerAtCurrentConnection();
+            var server = App.Connection.GetServerAtSpecificInstance(instanceName, null);
             var list = new List<string>();
             foreach (Database db in server.Databases) list.Add(db.Name);
 
             return list;
         }
 
-        public static List<Table> GetTables(string databaseName)
+        public static List<Table> GetTables(string instanceName, string databaseName)
         {
-            var dbList = GetDatabases();
+            var dbList = GetDatabases(instanceName);
             var db = dbList.First(r => r.Name == databaseName);
             var tablesList = new List<Table>();
             foreach (Table table in db.Tables)
@@ -132,9 +114,9 @@ namespace Databvase_Winforms.DAL
             return tablesList;
         }
 
-        public static List<Column> GetColumns(string tableName, string  databaseName)
+        public static List<Column> GetColumns(string tableName, string  databaseName, string instanceName)
         {
-            var tablesList = GetTables(databaseName);
+            var tablesList = GetTables(instanceName, databaseName);
             var table = tablesList.First(r => r.Name == tableName);
             var columnsList = new List<Column>();
             foreach (Column col in table.Columns)
@@ -146,9 +128,9 @@ namespace Databvase_Winforms.DAL
         }
 
 
-        public static List<Database> GetDatabases()
+        public static List<Database> GetDatabases(string instanceName)
         {
-            var server = App.Connection.GetServerAtCurrentConnection();
+            var server = App.Connection.GetServerAtSpecificInstance(instanceName, null);
             var list = new List<Database>();
             foreach (Database db in server.Databases)
             {

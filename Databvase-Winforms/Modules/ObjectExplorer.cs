@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.DAL;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
@@ -30,8 +31,10 @@ namespace Databvase_Winforms.Modules
                 InitializeBindings();
 
             HookupEvents();
-            InitInstances();
+            RegisterMessages();
         }
+
+
 
         private void HookupEvents()
         {
@@ -39,15 +42,31 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
             treeListObjExp.BeforeExpand += TreeListObjExpOnBeforeExpand;
-
             barButtonItemCopy.ItemClick += CopyCell;
 
         }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<InstanceConnectedMessage>(this, InstanceConnectedMessage.ConnectInstanceSender, InitInstances);
+            Messenger.Default.Register<DisconnectInstanceMessage>(this, DisconnectInstanceMessage.DisconnectInstanceSender, DisconnectInstance);
+        }
+
+
 
         #region TreeList Methods
 
         private void TreeListObjExpOnMouseDown(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                var instanceName = GetFocusedNodeInstance();
+                if (instanceName != null)
+                {
+                    Messenger.Default.Send(new InstanceNameChangeMessage(instanceName), InstanceNameChangeMessage.NewInstanceNameSender);
+                }
+            }
+
             if (e.Button != MouseButtons.Right) return;
             var treeList = sender as TreeList;
             var info = treeList.CalcHitInfo(e.Location);
@@ -79,27 +98,48 @@ namespace Databvase_Winforms.Modules
 
         private void TreeListObjExpOnBeforeExpand(object sender, BeforeExpandEventArgs e)
         {
+
             switch (e.Node.Tag.ToString())
             {
                 case "Instance":
+                    if (e.Node.Nodes.Count > 0)
+                    {
+                        return;
+                    }
                     InitDatabases(e.Node);
                     break;
                 case "Database":
+                    if (e.Node.Nodes.Count > 0)
+                    {
+                        return;
+                    }
                     InitTables(e.Node);
                     break;
                 case "Table":
+                    if (e.Node.Nodes.Count > 0)
+                    {
+                        return;
+                    }
                     InitColumns(e.Node);
                     break;
             }
         }
 
-        private void InitInstances()
+        private void InitInstances(InstanceConnectedMessage message)
         {
+            if (message == null)
+            {
+                return;
+            }
             treeListObjExp.BeginUnboundLoad();
             try
             {
                 foreach (var instance in mvvmContextObjectExplorer.GetViewModel<ObjectExplorerViewModel>().GetInstancesList())
                 {
+                    if (InstanceAlreadyOnTree(instance))
+                    {
+                        continue;
+                    }
                     var node = treeListObjExp.AppendNode(new object[]
                     {
                         instance,
@@ -118,6 +158,32 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.EndUnboundLoad();
         }
 
+        private void DisconnectInstance(DisconnectInstanceMessage message)
+        {
+            if (message == null) return;
+            var nodes = treeListObjExp.Nodes.Where(r => r.Level == 0).ToList();
+
+            var instanceNode = nodes.FirstOrDefault(x =>
+                x.GetValue(treeListColumnFullName).ToString() == message.InstanceName);
+
+            if (instanceNode != null)
+            {
+                treeListObjExp.Nodes.Remove(instanceNode);
+            }
+        }
+
+        private bool InstanceAlreadyOnTree(string instance)
+        {
+            var nodes = treeListObjExp.Nodes.Where(r => r.Level == 0).ToList();
+
+            if (nodes.Any(x=>x.GetValue(treeListColumnFullName).ToString() == instance))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void InitDatabases(TreeListNode instanceNode)
         {
             treeListObjExp.BeginUnboundLoad();
@@ -134,8 +200,8 @@ namespace Databvase_Winforms.Modules
 
         private void GenerateDatabases(TreeListNode instanceNode)
         {
-            var dbList = SQLServerInterface.GetDatabases();
-            var instanceName = GetParentNodeFullName(instanceNode);
+            var instanceName = GetNodesFullName(instanceNode);
+            var dbList = SQLServerInterface.GetDatabases(instanceName);
             if (dbList.Any())
             {
                 foreach (var db in dbList)
@@ -145,7 +211,8 @@ namespace Databvase_Winforms.Modules
                         db.Name,
                         "Database",
                          instanceName,
-                        db
+                        db,
+                        instanceName
                     }, instanceNode);
                     node.StateImageIndex = 1;
                     node.HasChildren = true;
@@ -170,8 +237,9 @@ namespace Databvase_Winforms.Modules
 
         private void GenerateTables(TreeListNode databaseNode)
         {
-            var databaseName = GetParentNodeFullName(databaseNode);
-            var tableList = SQLServerInterface.GetTables(databaseName);
+            var databaseName = GetNodesFullName(databaseNode);
+            var instanceName = GetNodesFullName(databaseNode.ParentNode);
+            var tableList = SQLServerInterface.GetTables(instanceName, databaseName);
 
             if (tableList.Any())
             {
@@ -182,7 +250,8 @@ namespace Databvase_Winforms.Modules
                         table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
                         "Table",
                         databaseName,
-                        table
+                        table,
+                        table.Parent.Parent.Name
                     }, databaseNode);
                     node.StateImageIndex = 2;
                     node.HasChildren = true;
@@ -207,9 +276,10 @@ namespace Databvase_Winforms.Modules
 
         private void GenerateColumns(TreeListNode tableNode)
         {
-            var tableName = GetParentNodeFullName(tableNode);
-            var dbName = GetParentNodesParentFullName(tableNode);
-            var columnList = SQLServerInterface.GetColumns(tableName, dbName);
+            var tableName = GetNodesFullName(tableNode);
+            var dbName = GetNodesFullName(tableNode.ParentNode);
+            var instanceName = GetNodesFullName(tableNode.ParentNode.ParentNode);
+            var columnList = SQLServerInterface.GetColumns(tableName, dbName, instanceName);
 
             if (!columnList.Any()) return;
             foreach (var col in columnList)
@@ -219,7 +289,8 @@ namespace Databvase_Winforms.Modules
                     col.Name,
                     "Column",
                     tableName,
-                    col
+                    col,
+                    ((Table)col.Parent).Parent.Parent.Name
                 }, tableNode);
                 node.StateImageIndex = 3;
                 node.HasChildren = false;
@@ -229,24 +300,14 @@ namespace Databvase_Winforms.Modules
 
         #region Focused Node Methods
 
-        private string GetParentNodeFullName(TreeListNode parentNode)
+        private string GetNodesFullName(TreeListNode node)
         {
-            return parentNode.GetValue(treeListColumnFullName).ToString();
-        }
-
-        private string GetParentNodesParentFullName(TreeListNode parentNode)
-        {
-            return parentNode.ParentNode?.GetValue(treeListColumnFullName).ToString();
+            return node.GetValue(treeListColumnFullName).ToString();
         }
 
         private string GetFocusedNodeFullName()
         {
             return treeListObjExp.FocusedNode?.GetValue(treeListColumnFullName).ToString();
-        }
-
-        private string GetFocusedNodeParentFullName()
-        {
-            return treeListObjExp.FocusedNode?.ParentNode?.GetValue(treeListColumnFullName).ToString();
         }
 
         private Table GetFocusedNodeTable()
@@ -262,6 +323,11 @@ namespace Databvase_Winforms.Modules
         private Database GetFocusedNodeDatabase()
         {
             return (Database)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
+        }
+
+        private string GetFocusedNodeInstance()
+        {
+            return (string) treeListObjExp.FocusedNode?.GetValue(treeListColumnInstance);
         }
 
         #endregion

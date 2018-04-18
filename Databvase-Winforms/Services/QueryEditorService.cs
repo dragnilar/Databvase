@@ -7,7 +7,7 @@ namespace Databvase_Winforms.Services
 {
     internal interface IQueryEditorService
     {
-        QueryResult RunQuery(string sqlQuery);
+        QueryResult RunQuery(string sqlQuery, string dbName, SavedConnection connection);
         string GetSqlQueryFromQueryPane();
     }
 
@@ -20,9 +20,9 @@ namespace Databvase_Winforms.Services
             _queryPane = queryPane;
         }
 
-        public QueryResult RunQuery(string sqlQuery)
+        public QueryResult RunQuery(string sqlQuery, string dbName, SavedConnection connection)
         {
-            return sqlQuery == null ? null : SQLServerInterface.SendQueryAndGetResult(sqlQuery);
+            return sqlQuery == null ? null : SQLServerInterface.SendQueryAndGetResult(sqlQuery, dbName, connection);
         }
 
         public string GetSqlQueryFromQueryPane()

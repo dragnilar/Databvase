@@ -29,6 +29,38 @@ namespace Databvase_Winforms.View_Models
             TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
             TextEditorLineNumberColor = App.Config.TextEditorLineNumberColor;
             Loading = false;
+            RegisterMessages();
+        }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<InstanceConnectedMessage>(this, InstanceConnectedMessage.ConnectInstanceSender, ReceiveInstanceConnectedMessage);
+            Messenger.Default.Register<InstanceNameChangeMessage>(this, InstanceNameChangeMessage.NewInstanceNameSender, ReceiveInstanceNameChangedMessage);
+        }
+
+        private void ReceiveInstanceNameChangedMessage(InstanceNameChangeMessage message)
+        {
+            if (message != null)
+            {
+                ChangeInstanceName(message.InstanceName);
+            }
+        }
+
+        private void ReceiveInstanceConnectedMessage(InstanceConnectedMessage message)
+        {
+            if (message != null)
+            {
+                ChangeInstanceName(message.InstanceName);
+            }
+        }
+
+
+        private void ChangeInstanceName(string instanceName)
+        {
+            if (!string.IsNullOrEmpty(instanceName))
+            {
+                App.Connection.CurrentInstance = instanceName;
+            }
         }
 
         public void AddNewTab()
