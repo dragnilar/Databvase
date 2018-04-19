@@ -203,6 +203,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
@@ -232,7 +233,16 @@
     <Compile Include="Controls\QueryTextEditor\QueryTextEditor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dialogs\XtraFontDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DAL\SQLServerInterface.cs" />
+    <Compile Include="Dialogs\FontChangeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FontChangeDialog.Designer.cs">
+      <DependentUpon>FontChangeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\RenameTabDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +270,12 @@
     </Compile>
     <Compile Include="Modules\ObjectExplorer.Designer.cs">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TextEditorFontEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\TextEditorFontEdit.Designer.cs">
+      <DependentUpon>TextEditorFontEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
@@ -309,6 +325,9 @@
     <Compile Include="Views\WaitSplashyView.Designer.cs">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\FontChangeDialog.resx">
+      <DependentUpon>FontChangeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RenameTabDialog.resx">
       <DependentUpon>RenameTabDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\QueryControl.resx">
       <DependentUpon>QueryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\TextEditorFontEdit.resx">
+      <DependentUpon>TextEditorFontEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConnectionStringView.resx">
       <DependentUpon>ConnectionStringView.cs</DependentUpon>

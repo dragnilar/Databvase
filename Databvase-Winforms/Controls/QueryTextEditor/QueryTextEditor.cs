@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
@@ -10,6 +11,7 @@ using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.XtraRichEdit.Commands;
 using DevExpress.XtraRichEdit.Menu;
 using DevExpress.CodeParser;
+using DevExpress.Mvvm.POCO;
 using DevExpress.XtraRichEdit.Services;
 
 namespace Databvase_Winforms.Controls.QueryTextEditor
@@ -38,16 +40,41 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
 
         private void RegisterServices()
         {
+            if (!DesignMode)
+            {
+                RegisterSyntaxHighlightingService();
+            }
+           
+        }
+
+        private void RegisterSyntaxHighlightingService(bool forceExecute = false)
+        {
             ReplaceService<ISyntaxHighlightService>(new SQLSyntaxHighlightingService(Document));
+            if (forceExecute)
+            {
+                GetService<ISyntaxHighlightService>().ForceExecute();
+            }
         }
 
         private void HookUpEvents()
         {
             Enter += OnEnter; //TODO -This feels kind of hack-ish, but its the closest we have to "Shown"
             PopupMenuShowing += QueryTextEditor_PopupMenuShowing;
+            FontFormShowing += OnFontFormShowing;
 
             
         }
+
+        private void OnFontFormShowing(object sender, FontFormShowingEventArgs e)
+        {
+            e.Handled = true;
+            var dialog = new FontChangeDialog() {StartPosition = FormStartPosition.CenterScreen};
+            dialog.ShowDialog();
+            dialog.Dispose();
+            ApplyFontChange();
+        }
+
+
 
 
         #region events
@@ -95,6 +122,13 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
                 SetBackgroundColor();
                 SetLineColor();
             }
+        }
+
+
+        private void ApplyFontChange()
+        {
+            RegisterSyntaxHighlightingService(true);
+            Font = App.Config.DefaultTextEditorFont;
         }
 
         #endregion
