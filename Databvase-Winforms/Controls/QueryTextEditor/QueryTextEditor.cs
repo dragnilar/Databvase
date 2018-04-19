@@ -68,7 +68,7 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
         private void OnFontFormShowing(object sender, FontFormShowingEventArgs e)
         {
             e.Handled = true;
-            var dialog = new FontChangeDialog() {StartPosition = FormStartPosition.CenterScreen};
+            var dialog = new TextEditorFontChangeDialog() {StartPosition = FormStartPosition.CenterScreen};
             dialog.ShowDialog();
             dialog.Dispose();
             ApplyFontChange();
@@ -121,6 +121,10 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
             {
                 SetBackgroundColor();
                 SetLineColor();
+            }
+            else if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle)
+            {
+                ApplyFontChange();
             }
         }
 

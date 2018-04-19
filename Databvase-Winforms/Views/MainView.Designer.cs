@@ -43,6 +43,8 @@ namespace Databvase_Winforms.Views
             this.barButtonItemShowSettings = new DevExpress.XtraBars.BarButtonItem();
             this.barEditItemTextEditorBG = new DevExpress.XtraBars.BarEditItem();
             this.riColorPickEditTextBG = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
+            this.barEditItemTextEditorLineNumberColor = new DevExpress.XtraBars.BarEditItem();
+            this.riColorPickEditTextEditorLineNumberColor = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.ribbonPageDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -59,10 +61,10 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer = new DevExpress.XtraBars.Docking.DockPanel();
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.barEditItemTextEditorLineNumberColor = new DevExpress.XtraBars.BarEditItem();
-            this.riColorPickEditTextEditorLineNumberColor = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
+            this.barButtonItemTextEditorFontSettings = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerMain)).BeginInit();
@@ -70,7 +72,6 @@ namespace Databvase_Winforms.Views
             this.dockPanelMain.SuspendLayout();
             this.dockPanelObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControlMain
@@ -87,9 +88,10 @@ namespace Databvase_Winforms.Views
             this.barButtonItemDisconnect,
             this.barButtonItemShowSettings,
             this.barEditItemTextEditorBG,
-            this.barEditItemTextEditorLineNumberColor});
+            this.barEditItemTextEditorLineNumberColor,
+            this.barButtonItemTextEditorFontSettings});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 17;
+            this.ribbonControlMain.MaxItemId = 18;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -181,6 +183,22 @@ namespace Databvase_Winforms.Views
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.riColorPickEditTextBG.Name = "riColorPickEditTextBG";
             // 
+            // barEditItemTextEditorLineNumberColor
+            // 
+            this.barEditItemTextEditorLineNumberColor.Caption = "Text Editor Line Number Color";
+            this.barEditItemTextEditorLineNumberColor.Edit = this.riColorPickEditTextEditorLineNumberColor;
+            this.barEditItemTextEditorLineNumberColor.Id = 16;
+            this.barEditItemTextEditorLineNumberColor.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barEditItemTextEditorLineNumberColor.ImageOptions.SvgImage")));
+            this.barEditItemTextEditorLineNumberColor.Name = "barEditItemTextEditorLineNumberColor";
+            // 
+            // riColorPickEditTextEditorLineNumberColor
+            // 
+            this.riColorPickEditTextEditorLineNumberColor.AutoHeight = false;
+            this.riColorPickEditTextEditorLineNumberColor.AutomaticColor = System.Drawing.Color.Black;
+            this.riColorPickEditTextEditorLineNumberColor.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.riColorPickEditTextEditorLineNumberColor.Name = "riColorPickEditTextEditorLineNumberColor";
+            // 
             // ribbonPageDatabvase
             // 
             this.ribbonPageDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -209,7 +227,8 @@ namespace Databvase_Winforms.Views
             this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
             this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.barButtonItemColorMixer);
             this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.barButtonItemColorPalette);
-            this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.barEditItemTextEditorBG);
+            this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.barButtonItemTextEditorFontSettings);
+            this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.barEditItemTextEditorBG, true);
             this.ribbonPageGroupLookAndFeel.ItemLinks.Add(this.barEditItemTextEditorLineNumberColor);
             this.ribbonPageGroupLookAndFeel.Name = "ribbonPageGroupLookAndFeel";
             this.ribbonPageGroupLookAndFeel.Text = "Look And Feel";
@@ -317,21 +336,12 @@ namespace Databvase_Winforms.Views
             this.documentManagerMain.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedViewMain});
             // 
-            // barEditItemTextEditorLineNumberColor
+            // barButtonItemTextEditorFontSettings
             // 
-            this.barEditItemTextEditorLineNumberColor.Caption = "Text Editor Line Number Color";
-            this.barEditItemTextEditorLineNumberColor.Edit = this.riColorPickEditTextEditorLineNumberColor;
-            this.barEditItemTextEditorLineNumberColor.Id = 16;
-            this.barEditItemTextEditorLineNumberColor.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barEditItemTextEditorLineNumberColor.ImageOptions.SvgImage")));
-            this.barEditItemTextEditorLineNumberColor.Name = "barEditItemTextEditorLineNumberColor";
-            // 
-            // riColorPickEditTextEditorLineNumberColor
-            // 
-            this.riColorPickEditTextEditorLineNumberColor.AutoHeight = false;
-            this.riColorPickEditTextEditorLineNumberColor.AutomaticColor = System.Drawing.Color.Black;
-            this.riColorPickEditTextEditorLineNumberColor.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.riColorPickEditTextEditorLineNumberColor.Name = "riColorPickEditTextEditorLineNumberColor";
+            this.barButtonItemTextEditorFontSettings.Caption = "Text Editor Font Styles";
+            this.barButtonItemTextEditorFontSettings.Id = 17;
+            this.barButtonItemTextEditorFontSettings.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemTextEditorFontSettings.ImageOptions.SvgImage")));
+            this.barButtonItemTextEditorFontSettings.Name = "barButtonItemTextEditorFontSettings";
             // 
             // MainView
             // 
@@ -346,6 +356,7 @@ namespace Databvase_Winforms.Views
             this.Text = "Databvase";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedViewMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManagerMain)).EndInit();
@@ -353,7 +364,6 @@ namespace Databvase_Winforms.Views
             this.dockPanelMain.ResumeLayout(false);
             this.dockPanelObjectExplorer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,6 +400,7 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit riColorPickEditTextBG;
         private DevExpress.XtraBars.BarEditItem barEditItemTextEditorLineNumberColor;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit riColorPickEditTextEditorLineNumberColor;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemTextEditorFontSettings;
     }
 }
 

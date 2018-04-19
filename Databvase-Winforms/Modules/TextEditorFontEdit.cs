@@ -15,9 +15,23 @@ namespace Databvase_Winforms.Modules
     public partial class TextEditorFontEdit : XtraUserControl
     {
         public Font SelectedFont { get; set; }
-        public Color DefaultTextColor => colorPickEditDefaultTextColor.Color;
-        public Color DefaultKeywordColor => colorPickEditKeywordColor.Color;
-        public Color DefaultStringColor => colorPickEditStringColor.Color;
+        public Color DefaultTextColor
+        {
+            get => colorPickEditDefaultTextColor.Color;
+            set => colorPickEditDefaultTextColor.Color = value;
+        }
+
+        public Color DefaultKeywordColor
+        {
+            get => colorPickEditKeywordColor.Color;
+            set => colorPickEditKeywordColor.Color = value;
+        }
+
+        public Color DefaultStringColor
+        {
+            get => colorPickEditStringColor.Color;
+            set => colorPickEditStringColor.Color = value;
+        }
 
         public TextEditorFontEdit()
         {

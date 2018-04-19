@@ -41,6 +41,7 @@ namespace Databvase_Winforms.Views
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
+            barButtonItemTextEditorFontSettings.ItemClick += BarButtonItemTextEditorFontSettingsOnItemClick;
             
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
@@ -195,6 +196,16 @@ namespace Databvase_Winforms.Views
             using (var svgSkinSelector = new SvgSkinPaletteSelector(this))
             {
                 svgSkinSelector.ShowDialog();
+            }
+        }
+
+        private void BarButtonItemTextEditorFontSettingsOnItemClick(object sender, ItemClickEventArgs e)
+        {
+            using (var dialog = new TextEditorFontChangeDialog{StartPosition = FormStartPosition.CenterScreen} )
+            {
+                dialog.ShowDialog();
+                Messenger.Default.Send(new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle),
+                    SettingsUpdatedMessage.SettingsUpdatedSender);
             }
         }
 

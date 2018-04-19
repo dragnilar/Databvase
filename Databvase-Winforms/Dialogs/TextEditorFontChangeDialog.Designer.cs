@@ -5,7 +5,7 @@ using DevExpress.XtraRichEdit.Design;
 
 namespace Databvase_Winforms.Dialogs
 {
-    partial class FontChangeDialog
+    partial class TextEditorFontChangeDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace Databvase_Winforms.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FontChangeDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextEditorFontChangeDialog));
             this.lcFontDialog = new DevExpress.XtraLayout.LayoutControl();
             this.simpleButtonCancel = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonOK = new DevExpress.XtraEditors.SimpleButton();

@@ -13,10 +13,10 @@ using DevExpress.XtraRichEdit;
 
 namespace Databvase_Winforms.Dialogs
 {
-    public partial class FontChangeDialog : XtraForm
+    public partial class TextEditorFontChangeDialog : XtraForm
     {
 
-        public FontChangeDialog()
+        public TextEditorFontChangeDialog()
         {
             InitializeComponent();
             HookupEvents();

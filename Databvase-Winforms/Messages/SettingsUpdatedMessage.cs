@@ -24,6 +24,7 @@ namespace Databvase_Winforms.Messages
         public enum SettingsUpdateType
         {
             TextEditorBackground,
+            TextEditorFontStyle,
             NumberOfRowsForTopSelectScript
         }
         

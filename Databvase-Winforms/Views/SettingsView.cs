@@ -34,7 +34,6 @@ namespace Databvase_Winforms.Views
                 vm => vm.NumberOfRowsForSelectTopScript);
             fluent.SetBinding(colorPickEditNullColor, x => x.Color, vm => vm.NullColor);
             fluent.SetBinding(textEditNullText, x => x.EditValue, vm => vm.NullText);
-
             fluent.SetTrigger(model => model.State, state =>
             {
                 if (state == SettingsViewModel.WindowState.Close)
