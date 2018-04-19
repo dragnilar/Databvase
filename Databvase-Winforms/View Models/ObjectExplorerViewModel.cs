@@ -33,16 +33,19 @@ namespace Databvase_Winforms.View_Models
         {
             var selectStatement = new ScriptGeneratorService().GenerateSelectAllStatement(selectedTable);
             var scriptMessage = new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
-
-            Messenger.Default.Send(scriptMessage, NewScriptMessage.NewScriptSender);
+            SendNewScriptMessage(scriptMessage);
         }
 
         public void ScriptSelectTopForTable(Table selectedTable)
         {
             var selectStatement = new ScriptGeneratorService().GenerateSelectTopStatement(selectedTable);
             var scriptMessage = new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
+            SendNewScriptMessage(scriptMessage);
+        }
 
-            Messenger.Default.Send(scriptMessage, NewScriptMessage.NewScriptSender);
+        private void SendNewScriptMessage(NewScriptMessage message)
+        {
+            Messenger.Default.Send(message, NewScriptMessage.NewScriptSender);
         }
 
         public List<string> GetInstancesList()

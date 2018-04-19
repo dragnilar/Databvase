@@ -87,19 +87,19 @@ namespace Databvase_Winforms.Views
         {
             if (App.Connection.CurrentConnections.Any() && (objectExplorerContainer.Controls.Count < 1))
             {
-                UpdateConnectionStatusOnUi();
                 objectExplorerContainer.Controls.Add(new ObjectExplorer {Dock = DockStyle.Fill});
-
             }
             else
             {
                 objectExplorerContainer.Panel.Show();
             }
 
-            Messenger.Default.Send(new InstanceConnectedMessage(App.Connection.CurrentConnections.First().Instance), InstanceConnectedMessage.ConnectInstanceSender);
+            UpdateConnectionStatusOnRibbon();
+
+            Messenger.Default.Send(new InstanceConnectedMessage(App.Connection.CurrentConnections.Last().Instance), InstanceConnectedMessage.ConnectInstanceSender);
         }
 
-        private void UpdateConnectionStatusOnUi()
+        private void UpdateConnectionStatusOnRibbon()
         {
             if (App.Connection.CurrentConnections.Count > 0)
             {
@@ -122,7 +122,7 @@ namespace Databvase_Winforms.Views
         {
             Messenger.Default.Send(new DisconnectInstanceMessage(App.Connection.CurrentInstance), DisconnectInstanceMessage.DisconnectInstanceSender);
             App.Connection.DisconnectCurrentInstance();
-            UpdateConnectionStatusOnUi();
+            UpdateConnectionStatusOnRibbon();
         }
 
 

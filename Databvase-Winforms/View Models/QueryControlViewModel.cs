@@ -26,7 +26,7 @@ namespace Databvase_Winforms.View_Models
             ResultsMessage = string.Empty;
             QueryRunning = false;
             CurrentDatabase = string.Empty;
-            DatabasesList = SQLServerInterface.GetDatabaseNames(App.Connection.CurrentInstance);
+            DatabasesList = SQLServerInterface.GetDatabaseNames(Databvase_Winforms.App.Connection.CurrentInstance);
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
             QueryConnection = App.Connection.CurrentConnections.First(r => r.Instance == CurrentInstanceName);

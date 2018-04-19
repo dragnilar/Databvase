@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.XtraRichEdit.Services;
 
@@ -16,13 +17,13 @@ namespace Databvase_Winforms.Services
         private readonly Document document;
 
         private readonly SyntaxHighlightProperties defaultSettings =
-            new SyntaxHighlightProperties {ForeColor = Color.Black};
+            new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorDefaultColor };
 
         private readonly SyntaxHighlightProperties keywordSettings =
-            new SyntaxHighlightProperties {ForeColor = Color.Blue};
+            new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorKeywordColor };
 
         private readonly SyntaxHighlightProperties stringSettings =
-            new SyntaxHighlightProperties {ForeColor = Color.Green};
+            new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorStringColor };
 
         private readonly string[] keywords =
         {

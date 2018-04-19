@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
@@ -43,8 +45,9 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
         {
             Enter += OnEnter; //TODO -This feels kind of hack-ish, but its the closest we have to "Shown"
             PopupMenuShowing += QueryTextEditor_PopupMenuShowing;
-        }
 
+            
+        }
 
 
         #region events

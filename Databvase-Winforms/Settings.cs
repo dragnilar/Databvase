@@ -20,6 +20,9 @@ namespace Databvase_Winforms
         public string NullGridText = "[NULL]";
         public Color TextEditorBackgroundColor = Color.White;
         public Color TextEditorLineNumberColor = Color.DeepSkyBlue;
+        public Color TextEditorDefaultColor = Color.Black;
+        public Color TextEditorKeywordColor = Color.Blue;
+        public Color TextEditorStringColor = Color.Red;
 
         public Settings()
         {
