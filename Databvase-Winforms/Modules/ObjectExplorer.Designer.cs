@@ -36,6 +36,7 @@
             this.treeListColumnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnParentName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnData = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnInstance = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.imageCollectionObjectExplorer = new DevExpress.Utils.ImageCollection(this.components);
             this.lcgObjectExplorer = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -50,7 +51,7 @@
             this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemGenerateSelectTopStatement = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.treeListColumnInstance = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -128,6 +129,12 @@
             this.treeListColumnData.OptionsColumn.ShowInCustomizationForm = false;
             this.treeListColumnData.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             // 
+            // treeListColumnInstance
+            // 
+            this.treeListColumnInstance.Caption = "Instance";
+            this.treeListColumnInstance.FieldName = "InstanceName";
+            this.treeListColumnInstance.Name = "treeListColumnInstance";
+            // 
             // imageCollectionObjectExplorer
             // 
             this.imageCollectionObjectExplorer.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionObjectExplorer.ImageStream")));
@@ -189,8 +196,9 @@
             this.barManagerObjectExplorer.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItemCopy,
             this.barButtonItemGenerateSelectAll,
-            this.barButtonItemGenerateSelectTopStatement});
-            this.barManagerObjectExplorer.MaxItemId = 4;
+            this.barButtonItemGenerateSelectTopStatement,
+            this.barButtonItem1});
+            this.barManagerObjectExplorer.MaxItemId = 5;
             // 
             // barDockControlTop
             // 
@@ -249,11 +257,11 @@
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
             this.popupMenuTable.Name = "popupMenuTable";
             // 
-            // treeListColumnInstance
+            // barButtonItem1
             // 
-            this.treeListColumnInstance.Caption = "Instance";
-            this.treeListColumnInstance.FieldName = "InstanceName";
-            this.treeListColumnInstance.Name = "treeListColumnInstance";
+            this.barButtonItem1.Caption = "New Query";
+            this.barButtonItem1.Id = 4;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ObjectExplorer
             // 
@@ -304,5 +312,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnData;
         private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectTopStatement;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnInstance;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }
