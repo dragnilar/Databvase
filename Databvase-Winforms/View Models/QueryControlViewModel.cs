@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Databvase_Winforms.DAL;
@@ -20,17 +21,15 @@ namespace Databvase_Winforms.View_Models
 
         public QueryControlViewModel()
         {
-            CurrentInstanceName = App.Connection.CurrentInstance;
             Entity = new QueryDocumentEntity {DocumentText = string.Empty};
             GridSource = null;
             ResultsMessage = string.Empty;
             QueryRunning = false;
-            CurrentDatabase = string.Empty;
-            DatabasesList = SQLServerInterface.GetDatabaseNames(Databvase_Winforms.App.Connection.CurrentInstance);
+            CurrentDatabase = GetCurrentDatabaseFromTracker();
+            DatabasesList = SQLServerInterface.GetDatabaseNames(App.Connection.InstanceTracker.InstanceName);
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
-            QueryConnection = App.Connection.CurrentConnections.First(r => r.Instance == CurrentInstanceName);
-            //TODO - Get rid of current instance because it is probably not needed since current conenction has that on it.
+            QueryConnection = App.Connection.GetCurrentConnection();
         }
 
         public virtual QueryDocumentEntity Entity { get; set; }
@@ -42,7 +41,6 @@ namespace Databvase_Winforms.View_Models
         public virtual List<string> DatabasesList { get; set; }
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
-        protected virtual string CurrentInstanceName { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
 
 
@@ -98,6 +96,11 @@ namespace Databvase_Winforms.View_Models
         public void Update()
         {
             //TODO - Implement some kind of functionality if necessary, otherwise do nothing here since this is needed for the MVVM context
+        }
+
+        private string GetCurrentDatabaseFromTracker()
+        {
+            return App.Connection.InstanceTracker.DatabaseObject != null ? App.Connection.InstanceTracker.DatabaseObject.Name : string.Empty;
         }
 
 

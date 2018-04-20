@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Databvase_Winforms.Models;
 
 namespace Databvase_Winforms.Messages
 {
@@ -10,11 +11,11 @@ namespace Databvase_Winforms.Messages
     {
         public const string ConnectInstanceSender = "ConnectInstanceSender";
 
-        public string InstanceName { get; set; }
+        public InstanceAndDatabaseTracker Tracker { get; set; }
 
-        public InstanceConnectedMessage(string instanceName)
+        public InstanceConnectedMessage(InstanceAndDatabaseTracker tracker)
         {
-            InstanceName = instanceName;
+            Tracker = tracker;
         }
 
         public override string ToString()

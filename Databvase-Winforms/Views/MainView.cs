@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Models;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
@@ -96,8 +97,13 @@ namespace Databvase_Winforms.Views
             }
 
             UpdateConnectionStatusOnRibbon();
+            var tracker = new InstanceAndDatabaseTracker
+            {
+                InstanceName = App.Connection.CurrentConnections.Last().Instance,
+                DatabaseObject = null
+            };
 
-            Messenger.Default.Send(new InstanceConnectedMessage(App.Connection.CurrentConnections.Last().Instance), InstanceConnectedMessage.ConnectInstanceSender);
+            Messenger.Default.Send(new InstanceConnectedMessage(tracker), InstanceConnectedMessage.ConnectInstanceSender);
         }
 
         private void UpdateConnectionStatusOnRibbon()
@@ -121,7 +127,7 @@ namespace Databvase_Winforms.Views
 
         private void Disconnect()
         {
-            Messenger.Default.Send(new DisconnectInstanceMessage(App.Connection.CurrentInstance), DisconnectInstanceMessage.DisconnectInstanceSender);
+            Messenger.Default.Send(new DisconnectInstanceMessage(App.Connection.InstanceTracker.InstanceName), DisconnectInstanceMessage.DisconnectInstanceSender);
             App.Connection.DisconnectCurrentInstance();
             UpdateConnectionStatusOnRibbon();
         }

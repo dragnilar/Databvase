@@ -7,6 +7,7 @@ using DevExpress.XtraEditors;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Models;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 
@@ -21,6 +22,7 @@ namespace Databvase_Winforms.View_Models
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
         private bool Loading = true;
+
 
 
         public MainViewModel()
@@ -42,7 +44,7 @@ namespace Databvase_Winforms.View_Models
         {
             if (message != null)
             {
-                ChangeInstanceName(message.InstanceName);
+                ChangeInstanceName(message.Tracker);
             }
         }
 
@@ -50,16 +52,17 @@ namespace Databvase_Winforms.View_Models
         {
             if (message != null)
             {
-                ChangeInstanceName(message.InstanceName);
+                ChangeInstanceName(message.Tracker);
             }
         }
 
 
-        private void ChangeInstanceName(string instanceName)
+        private void ChangeInstanceName(InstanceAndDatabaseTracker tracker)
         {
-            if (!string.IsNullOrEmpty(instanceName))
+            if (tracker != null && !string.IsNullOrEmpty(tracker.InstanceName))
             {
-                App.Connection.CurrentInstance = instanceName;
+                App.Connection.InstanceTracker = tracker;
+
             }
         }
 

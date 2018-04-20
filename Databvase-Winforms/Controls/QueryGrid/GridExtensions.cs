@@ -59,7 +59,7 @@ namespace Databvase_Winforms.Controls.QueryGrid
 
         private static void ExportGridAsPdf(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.PDFFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.PDFFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToPdf(exportFileName);
         }
 
@@ -75,43 +75,43 @@ namespace Databvase_Winforms.Controls.QueryGrid
 
         private static void ExportGridAsXls(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.XLSFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.XLSFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToXls(exportFileName);
         }
 
         private static void ExportGridAsXlsx(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.XLSXFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.XLSXFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToXlsx(exportFileName);
         }
 
         private static void ExportGridAsRtf(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.RTFFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.RTFFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToRtf(exportFileName);
         }
 
         private static void ExportGridAsTxt(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.TXTFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.TXTFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToText(exportFileName);
         }
 
         private static void ExportGridAsHtml(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.HTMLFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.HTMLFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToHtml(exportFileName);
         }
 
         private static void ExportGridAsMht(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.MHTFilter);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.MHTFilter);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToMht(exportFileName);
         }
 
         private static void ExportGridAsCsv(this BaseView gridView, string fileType)
         {
-            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.CSVFILTER);
+            var exportFileName = GetFileNameViaSavePrompt(fileType, GlobalStrings.FileFilters.CSVFILTER);
             if (!string.IsNullOrEmpty(exportFileName)) gridView.ExportToCsv(exportFileName);
         }
     }

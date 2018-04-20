@@ -10,7 +10,7 @@ namespace Databvase_Winforms.Services
     {
         private (string, bool) NullConnectionTuple => ("Connection is null, please try again", false);
         public List<SavedConnection> CurrentConnections = new List<SavedConnection>();
-        public string CurrentInstance = string.Empty;
+        public InstanceAndDatabaseTracker InstanceTracker = new InstanceAndDatabaseTracker();
 
 
         public Server GetServerAtSpecificInstance(string instanceName, string dbName = null)
@@ -66,7 +66,8 @@ namespace Databvase_Winforms.Services
                     CurrentConnections.Add(savedConnection);
                 }
 
-                CurrentInstance = savedConnection.Instance;
+                InstanceTracker.InstanceName = savedConnection.Instance;
+                InstanceTracker.DatabaseObject = null;
 
                 return result;
 
@@ -103,12 +104,18 @@ namespace Databvase_Winforms.Services
 
         public void DisconnectCurrentInstance()
         {
-            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == CurrentInstance);
+            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == InstanceTracker.InstanceName);
             if (connectionToRemove != null)
             {
                 CurrentConnections.Remove(connectionToRemove);
-                CurrentInstance = !CurrentConnections.Any() ? string.Empty : CurrentConnections.First().Instance;
+                InstanceTracker.InstanceName = !CurrentConnections.Any() ? string.Empty : CurrentConnections.First().Instance;
+                InstanceTracker.DatabaseObject = null;
             }
+        }
+
+        public SavedConnection GetCurrentConnection()
+        {
+            return CurrentConnections.First(r => r.Instance == InstanceTracker.InstanceName);
         }
     }
 }

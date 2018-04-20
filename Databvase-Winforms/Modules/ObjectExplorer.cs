@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.DAL;
+using Databvase_Winforms.Globals;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
@@ -42,6 +43,7 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
             treeListObjExp.BeforeExpand += TreeListObjExpOnBeforeExpand;
+            treeListObjExp.FocusedNodeChanged += TreeListObjExpOnFocusedNodeChanged;
             barButtonItemCopy.ItemClick += CopyCell;
 
         }
@@ -58,14 +60,6 @@ namespace Databvase_Winforms.Modules
 
         private void TreeListObjExpOnMouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                var instanceName = GetFocusedNodeInstance();
-                if (instanceName != null)
-                {
-                    Messenger.Default.Send(new InstanceNameChangeMessage(instanceName), InstanceNameChangeMessage.NewInstanceNameSender);
-                }
-            }
 
             if (e.Button != MouseButtons.Right) return;
             var treeList = sender as TreeList;
@@ -82,7 +76,7 @@ namespace Databvase_Winforms.Modules
 
             switch (focusedNodeType)
             {
-                case "Table":
+                case GlobalStrings.ObjectExplorerTypes.Table:
                     popupMenuTable.ShowPopup(MousePosition);
                     break;
                 default:
@@ -91,6 +85,15 @@ namespace Databvase_Winforms.Modules
             }
 
         }
+
+        private void TreeListObjExpOnFocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
+        {
+            if (e.Node == null) return;
+            if (e.OldNode == null)return;   
+            SendInstanceNameChangedMessage();
+        }
+
+
 
         #endregion
 
@@ -101,21 +104,21 @@ namespace Databvase_Winforms.Modules
 
             switch (e.Node.Tag.ToString())
             {
-                case "Instance":
+                case GlobalStrings.ObjectExplorerTypes.Instance:
                     if (e.Node.Nodes.Count > 0)
                     {
                         return;
                     }
                     InitDatabases(e.Node);
                     break;
-                case "Database":
+                case GlobalStrings.ObjectExplorerTypes.Database:
                     if (e.Node.Nodes.Count > 0)
                     {
                         return;
                     }
                     InitTables(e.Node);
                     break;
-                case "Table":
+                case GlobalStrings.ObjectExplorerTypes.Table:
                     if (e.Node.Nodes.Count > 0)
                     {
                         return;
@@ -131,6 +134,11 @@ namespace Databvase_Winforms.Modules
             {
                 return;
             }
+            GenerateInstances();
+        }
+
+        private void GenerateInstances()
+        {
             treeListObjExp.BeginUnboundLoad();
             try
             {
@@ -140,22 +148,31 @@ namespace Databvase_Winforms.Modules
                     {
                         continue;
                     }
-                    var node = treeListObjExp.AppendNode(new object[]
-                    {
-                        instance,
-                        "Instance",
-                        string.Empty
-                    }, null);
-                    node.StateImageIndex = 0;
-                    node.HasChildren = true;
-                    node.Tag = "Instance";
+
+                    CreateInstanceNode(instance);
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
             treeListObjExp.EndUnboundLoad();
+        }
+
+        private void CreateInstanceNode(string instance)
+        {
+            var node = treeListObjExp.AppendNode(new object[]
+            {
+                instance,
+                GlobalStrings.ObjectExplorerTypes.Instance,
+                string.Empty,
+                null,
+                instance
+            }, null);
+            node.StateImageIndex = 0;
+            node.HasChildren = true;
+            node.Tag = GlobalStrings.ObjectExplorerTypes.Instance;
         }
 
         private void DisconnectInstance(DisconnectInstanceMessage message)
@@ -209,14 +226,14 @@ namespace Databvase_Winforms.Modules
                     var node = treeListObjExp.AppendNode(new object[]
                     {
                         db.Name,
-                        "Database",
+                        GlobalStrings.ObjectExplorerTypes.Database,
                          instanceName,
                         db,
                         instanceName
                     }, instanceNode);
                     node.StateImageIndex = 1;
                     node.HasChildren = true;
-                    node.Tag = "Database";
+                    node.Tag = GlobalStrings.ObjectExplorerTypes.Database;
                 }
             }
         }
@@ -245,19 +262,24 @@ namespace Databvase_Winforms.Modules
             {
                 foreach (var table in tableList)
                 {
-                    var node = treeListObjExp.AppendNode(new object[]
-                    {
-                        table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
-                        "Table",
-                        databaseName,
-                        table,
-                        table.Parent.Parent.Name
-                    }, databaseNode);
-                    node.StateImageIndex = 2;
-                    node.HasChildren = true;
-                    node.Tag = "Table";
+                    CreateTableNode(databaseNode, table, databaseName);
                 }
             }
+        }
+
+        private void CreateTableNode(TreeListNode databaseNode, Table table, string databaseName)
+        {
+            var node = treeListObjExp.AppendNode(new object[]
+            {
+                table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
+                GlobalStrings.ObjectExplorerTypes.Table,
+                databaseName,
+                table,
+                table.Parent.Parent.Name
+            }, databaseNode);
+            node.StateImageIndex = 2;
+            node.HasChildren = true;
+            node.Tag = GlobalStrings.ObjectExplorerTypes.Table;
         }
 
         private void InitColumns(TreeListNode tableNode)
@@ -282,20 +304,25 @@ namespace Databvase_Winforms.Modules
             var columnList = SQLServerInterface.GetColumns(tableName, dbName, instanceName);
 
             if (!columnList.Any()) return;
-            foreach (var col in columnList)
+            foreach (var column in columnList)
             {
-                var node = treeListObjExp.AppendNode(new object[]
-                {
-                    col.Name,
-                    "Column",
-                    tableName,
-                    col,
-                    ((Table)col.Parent).Parent.Parent.Name
-                }, tableNode);
-                node.StateImageIndex = 3;
-                node.HasChildren = false;
-                node.Tag = "Column";
+                CreateColumnNode(tableNode, column, tableName);
             }
+        }
+
+        private void CreateColumnNode(TreeListNode tableNode, Column column, string tableName)
+        {
+            var node = treeListObjExp.AppendNode(new object[]
+            {
+                column.Name,
+                GlobalStrings.ObjectExplorerTypes.Column,
+                tableName,
+                column,
+                ((Table) column.Parent).Parent.Parent.Name
+            }, tableNode);
+            node.StateImageIndex = 3;
+            node.HasChildren = false;
+            node.Tag = GlobalStrings.ObjectExplorerTypes.Column;
         }
 
         #region Focused Node Methods
@@ -334,6 +361,21 @@ namespace Databvase_Winforms.Modules
 
 
         #endregion
+
+        private void SendInstanceNameChangedMessage()
+        {
+            var instanceName = GetFocusedNodeInstance();
+            var database = GetFocusedNodeDatabase();
+            if (instanceName == null) return;
+            var tracker = new InstanceAndDatabaseTracker()
+            {
+                InstanceName = instanceName,
+                DatabaseObject = database
+
+            };
+            Messenger.Default.Send(new InstanceNameChangeMessage(tracker),
+                InstanceNameChangeMessage.NewInstanceNameSender);
+        }
 
         private void CopyCell(object sender, EventArgs e)
         {
