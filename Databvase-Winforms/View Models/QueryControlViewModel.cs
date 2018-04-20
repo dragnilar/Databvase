@@ -42,6 +42,7 @@ namespace Databvase_Winforms.View_Models
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
+        //TODO - See if perhaps we can use a server object in here instead of having to keep a saved connection...
 
 
         /// <summary>
