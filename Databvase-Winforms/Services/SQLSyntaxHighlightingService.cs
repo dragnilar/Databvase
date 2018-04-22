@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.XtraRichEdit.Services;
@@ -25,6 +26,9 @@ namespace Databvase_Winforms.Services
         private readonly SyntaxHighlightProperties stringSettings =
             new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorStringColor };
 
+        private readonly SyntaxHighlightProperties commentSettings =
+            new SyntaxHighlightProperties{ForeColor = App.Config.TextEditorCommentsColor};
+
         private readonly string[] keywords =
         {
             "INSERT", "SELECT", "CREATE", "TABLE", "USE", "IDENTITY", "ON", "OFF", "NOT", "NULL", "WITH", "SET",
@@ -42,20 +46,31 @@ namespace Databvase_Winforms.Services
         private List<SyntaxHighlightToken> ParseTokens()
         {
             var tokens = new List<SyntaxHighlightToken>();
-            DocumentRange[] ranges = null;
-            // search for quotation marks
-            ranges = document.FindAll("'", SearchOptions.None);
-            for (var i = 0; i < ranges.Length / 2; i++)
-                tokens.Add(new SyntaxHighlightToken(ranges[i * 2].Start.ToInt(),
-                    ranges[i * 2 + 1].Start.ToInt() - ranges[i * 2].Start.ToInt() + 1, stringSettings));
-            // search for keywords
-            for (var i = 0; i < keywords.Length; i++)
-            {
-                ranges = document.FindAll(keywords[i], SearchOptions.None | SearchOptions.WholeWord);
+            DocumentRange[] documentRanges = null;
 
-                for (var j = 0; j < ranges.Length; j++)
-                    if (!IsRangeInTokens(ranges[j], tokens))
-                        tokens.Add(new SyntaxHighlightToken(ranges[j].Start.ToInt(), ranges[j].Length,
+            // search for comments
+            var regularExpression = new Regex(@"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(--.*)");
+            documentRanges = document.FindAll(regularExpression);
+            foreach (var range in documentRanges)
+            {
+                if (!IsRangeInTokens(range, tokens))
+                {
+                    tokens.Add(new SyntaxHighlightToken(range.Start.ToInt(), range.Length, commentSettings));
+                }
+            }
+            // search for quotation marks
+            documentRanges = document.FindAll("'", SearchOptions.None);
+            for (var i = 0; i < documentRanges.Length / 2; i++)
+                tokens.Add(new SyntaxHighlightToken(documentRanges[i * 2].Start.ToInt(),
+                    documentRanges[i * 2 + 1].Start.ToInt() - documentRanges[i * 2].Start.ToInt() + 1, stringSettings));
+            // search for keywords
+            foreach (var keywordRange in keywords)
+            {
+                documentRanges = document.FindAll(keywordRange, SearchOptions.None | SearchOptions.WholeWord);
+
+                foreach (var range in documentRanges)
+                    if (!IsRangeInTokens(range, tokens))
+                        tokens.Add(new SyntaxHighlightToken(range.Start.ToInt(), range.Length,
                             keywordSettings));
             }
 
