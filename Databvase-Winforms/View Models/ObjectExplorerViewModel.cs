@@ -222,6 +222,12 @@ namespace Databvase_Winforms.View_Models
             new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
         }
 
+        public void NewQueryScript(Database selectedDatabase)
+        {
+            var selectedDatabaseName = selectedDatabase == null ? string.Empty : selectedDatabase.Name;
+            new NewScriptMessage(string.Empty, selectedDatabaseName);
+        }
+
         #endregion
     }
 }

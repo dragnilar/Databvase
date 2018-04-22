@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.View_Models;
+using DevExpress.Utils.MVVM;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
 using Microsoft.SqlServer.Management.Smo;
@@ -62,18 +63,36 @@ namespace Databvase_Winforms.Modules
         private void InitializeBindings()
         {
             var fluent = mvvmContextObjectExplorer.OfType<ObjectExplorerViewModel>();
+            SetBindings(fluent);
+            BindCommands(fluent);
+            BindEvents(fluent);
+
+        }
+
+        private void SetBindings(MVVMContextFluentAPI<ObjectExplorerViewModel> fluent)
+        {
             fluent.SetBinding(barButtonItemGenerateSelectTopStatement, x => x.Caption,
                 y => y.SelectTopContextMenuItemDescription);
-            fluent.BindCommand(barButtonItemGenerateSelectAll, (x, p) => x.ScriptSelectAllForTable(p),
-                x => GetFocusedNodeTable());
-            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForTable(p),
-                x => GetFocusedNodeTable());
+            fluent.SetBinding(treeListObjExp, x => x.DataSource, vm => vm.ObjectExplorerSource);
+        }
+
+        private void BindEvents(MVVMContextFluentAPI<ObjectExplorerViewModel> fluent)
+        {
             fluent.EventToCommand<BeforeExpandEventArgs>(treeListObjExp, "BeforeExpand",
                 x => x.ObjectExplorer_OnBeforeExpand(null));
             fluent.EventToCommand<FocusedNodeChangedEventArgs>(treeListObjExp, "FocusedNodeChanged",
                 x => x.FocusedNodeChanged(null));
-            fluent.SetBinding(treeListObjExp, x => x.DataSource, vm => vm.ObjectExplorerSource);
         }
+
+        private void BindCommands(MVVMContextFluentAPI<ObjectExplorerViewModel> fluent)
+        {
+            fluent.BindCommand(barButtonItemGenerateSelectAll, (x, p) => x.ScriptSelectAllForTable(p),
+                x => GetFocusedNodeTable());
+            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForTable(p),
+                x => GetFocusedNodeTable());
+            fluent.BindCommand(barButtonItemNewQuery, (x,p) => x.NewQueryScript(p), x=> GetFocusedNodeDatabase());
+        }
+
 
         #region TreeList Methods
 
@@ -114,6 +133,24 @@ namespace Databvase_Winforms.Modules
             return (Table) treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
+        private Database GetFocusedNodeDatabase()
+        {
+            var data = treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
+            switch (data)
+            {
+                case Database _:
+                    return data as Database;
+                case Server _:
+                    return null;
+                case Column _:
+                    var column = data as Column;
+                    return ((Table) column?.Parent)?.Parent;
+                default:
+                    return null;
+            }
+        }
+
         #endregion
+
     }
 }

@@ -43,6 +43,7 @@
             this.mvvmContextObjectExplorer = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.popupMenuObjectExplorer = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barButtonItemCopy = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemNewQuery = new DevExpress.XtraBars.BarButtonItem();
             this.barManagerObjectExplorer = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -50,7 +51,6 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemGenerateSelectTopStatement = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
@@ -176,7 +176,8 @@
             // popupMenuObjectExplorer
             // 
             this.popupMenuObjectExplorer.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopy)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopy),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery)});
             this.popupMenuObjectExplorer.Manager = this.barManagerObjectExplorer;
             this.popupMenuObjectExplorer.Name = "popupMenuObjectExplorer";
             // 
@@ -187,6 +188,14 @@
             this.barButtonItemCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.Image")));
             this.barButtonItemCopy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.LargeImage")));
             this.barButtonItemCopy.Name = "barButtonItemCopy";
+            // 
+            // barButtonItemNewQuery
+            // 
+            this.barButtonItemNewQuery.Caption = "New Query";
+            this.barButtonItemNewQuery.Id = 6;
+            this.barButtonItemNewQuery.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemNewQuery.ImageOptions.SvgImage")));
+            this.barButtonItemNewQuery.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.barButtonItemNewQuery.Name = "barButtonItemNewQuery";
             // 
             // barManagerObjectExplorer
             // 
@@ -199,8 +208,8 @@
             this.barButtonItemCopy,
             this.barButtonItemGenerateSelectAll,
             this.barButtonItemGenerateSelectTopStatement,
-            this.barButtonItem1});
-            this.barManagerObjectExplorer.MaxItemId = 5;
+            this.barButtonItemNewQuery});
+            this.barManagerObjectExplorer.MaxItemId = 7;
             // 
             // barDockControlTop
             // 
@@ -249,12 +258,6 @@
             this.barButtonItemGenerateSelectTopStatement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectTopStatement.ImageOptions.Image")));
             this.barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage")));
             this.barButtonItemGenerateSelectTopStatement.Name = "barButtonItemGenerateSelectTopStatement";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "New Query";
-            this.barButtonItem1.Id = 4;
-            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // popupMenuTable
             // 
@@ -314,6 +317,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnData;
         private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectTopStatement;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnInstance;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemNewQuery;
     }
 }
