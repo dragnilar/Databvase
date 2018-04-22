@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.Mvvm;
+using DevExpress.XtraLayout.Resizing;
 
 namespace Databvase_Winforms.Messages
 {
     class SettingsUpdatedMessage
     {
-        public const string SettingsUpdatedSender = "SettingsUpdatedSender";
         public SettingsUpdateType Type { get; set; }
 
         public SettingsUpdatedMessage(SettingsUpdateType type)
         {
             Type = type;
+            SendMessage();
         }
-         
-        public override string ToString()
-        { 
-            return SettingsUpdatedSender;
+
+        private void SendMessage()
+        {
+            Messenger.Default.Send(this, GetType().Name);
         }
+        
 
         public enum SettingsUpdateType
         {

@@ -43,12 +43,12 @@ namespace Databvase_Winforms.View_Models
 
         private void RegisterForMessages()
         {
-            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender,
+            Messenger.Default.Register<SettingsUpdatedMessage>(this, typeof(SettingsUpdatedMessage).Name,
                 OnSettingsUpdated);
-            Messenger.Default.Register<InstanceConnectedMessage>(this, InstanceConnectedMessage.ConnectInstanceSender,
+            Messenger.Default.Register<InstanceConnectedMessage>(this, typeof(InstanceConnectedMessage).Name,
                 InitInstances);
             Messenger.Default.Register<DisconnectInstanceMessage>(this,
-                DisconnectInstanceMessage.DisconnectInstanceSender, DisconnectInstance);
+                typeof(DisconnectInstanceMessage).Name, DisconnectInstance);
         }
 
         private void OnSettingsUpdated(SettingsUpdatedMessage settingsUpdated)
@@ -213,20 +213,13 @@ namespace Databvase_Winforms.View_Models
         public void ScriptSelectAllForTable(Table selectedTable)
         {
             var selectStatement = new ScriptGeneratorService().GenerateSelectAllStatement(selectedTable);
-            var scriptMessage = new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
-            SendNewScriptMessage(scriptMessage);
+            new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
         }
 
         public void ScriptSelectTopForTable(Table selectedTable)
         {
             var selectStatement = new ScriptGeneratorService().GenerateSelectTopStatement(selectedTable);
-            var scriptMessage = new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
-            SendNewScriptMessage(scriptMessage);
-        }
-
-        private void SendNewScriptMessage(NewScriptMessage message)
-        {
-            Messenger.Default.Send(message, NewScriptMessage.NewScriptSender);
+            new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
         }
 
         #endregion

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.Mvvm;
 
 namespace Databvase_Winforms.Messages
 {
     public class NewScriptMessage
     {
-        public const string NewScriptSender = "NewScriptSender";
         public string Script { get; set; }
         public string SelectedDatabase { get; set; }
 
@@ -17,11 +17,12 @@ namespace Databvase_Winforms.Messages
 
             Script = script;
             SelectedDatabase = selectedDatabase;
+            SendMessage();
         }
 
-        public override string ToString()
+        private void SendMessage()
         {
-            return NewScriptSender;
+            Messenger.Default.Send(this, GetType().Name);
         }
     }
 }

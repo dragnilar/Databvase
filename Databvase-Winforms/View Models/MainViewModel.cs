@@ -36,8 +36,8 @@ namespace Databvase_Winforms.View_Models
 
         private void RegisterMessages()
         {
-            Messenger.Default.Register<InstanceConnectedMessage>(this, InstanceConnectedMessage.ConnectInstanceSender, ReceiveInstanceConnectedMessage);
-            Messenger.Default.Register<InstanceNameChangeMessage>(this, InstanceNameChangeMessage.NewInstanceNameSender, ReceiveInstanceNameChangedMessage);
+            Messenger.Default.Register<InstanceConnectedMessage>(this, typeof(InstanceConnectedMessage).Name, ReceiveInstanceConnectedMessage);
+            Messenger.Default.Register<InstanceNameChangeMessage>(this, typeof(InstanceNameChangeMessage).Name, ReceiveInstanceNameChangedMessage);
         }
 
         private void ReceiveInstanceNameChangedMessage(InstanceNameChangeMessage message)
@@ -103,8 +103,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.TextEditorBackgroundColor = TextEditorBackgroundColor;
             App.Config.TextEditorLineNumberColor = TextEditorLineNumberColor;
             App.Config.Save();
-            Messenger.Default.Send(new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground), 
-                SettingsUpdatedMessage.SettingsUpdatedSender);
+            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground);
         }
 
         public class MetaData : IMetadataProvider<MainViewModel>

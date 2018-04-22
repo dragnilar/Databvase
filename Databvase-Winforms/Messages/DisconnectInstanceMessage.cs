@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.Mvvm;
 
 namespace Databvase_Winforms.Messages
 {
     class DisconnectInstanceMessage
     {
-        public const string DisconnectInstanceSender = "DisconnectInstanceSender";
-
-        public string InstanceName { get; set; }
+        public string InstanceName { get; }
 
         public DisconnectInstanceMessage(string instanceName)
         {
             InstanceName = instanceName;
+            SendMessage();
         }
 
-        public override string ToString()
+        private void SendMessage()
         {
-            return DisconnectInstanceSender;
+            Messenger.Default.Send(this, GetType().Name);
         }
     }
 }

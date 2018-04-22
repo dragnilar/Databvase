@@ -57,7 +57,7 @@ namespace Databvase_Winforms.Views
 
         private void RegisterMessages()
         {
-            Messenger.Default.Register<NewScriptMessage>(this, NewScriptMessage.NewScriptSender, CreateNewQueryPaneWithScript);
+            Messenger.Default.Register<NewScriptMessage>(this, typeof(NewScriptMessage).Name, CreateNewQueryPaneWithScript);
         }
 
         private void RegisterServices()
@@ -99,8 +99,8 @@ namespace Databvase_Winforms.Views
                 InstanceName = App.Connection.CurrentConnections.Last().Instance,
                 DatabaseObject = null
             };
+            new InstanceConnectedMessage(tracker);
 
-            Messenger.Default.Send(new InstanceConnectedMessage(tracker), InstanceConnectedMessage.ConnectInstanceSender);
         }
 
         private void UpdateConnectionStatusOnRibbon()
@@ -124,7 +124,7 @@ namespace Databvase_Winforms.Views
 
         private void Disconnect()
         {
-            Messenger.Default.Send(new DisconnectInstanceMessage(App.Connection.InstanceTracker.InstanceName), DisconnectInstanceMessage.DisconnectInstanceSender);
+            new DisconnectInstanceMessage(App.Connection.InstanceTracker.InstanceName);
             UpdateConnectionStatusOnRibbon();
         }
 
@@ -206,8 +206,7 @@ namespace Databvase_Winforms.Views
             using (var dialog = new TextEditorFontChangeDialog{StartPosition = FormStartPosition.CenterScreen} )
             {
                 dialog.ShowDialog();
-                Messenger.Default.Send(new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle),
-                    SettingsUpdatedMessage.SettingsUpdatedSender);
+                new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);
             }
         }
 

@@ -11,8 +11,6 @@ namespace Databvase_Winforms.Messages
 {
     public class InstanceNameChangeMessage
     {
-        public const string NewInstanceNameSender = "NewInstanceNameSender";
-
         public InstanceAndDatabaseTracker Tracker { get; set; }
 
         public InstanceNameChangeMessage(string instanceName, Database database)
@@ -28,7 +26,7 @@ namespace Databvase_Winforms.Messages
         private void SendMessage()
         {
             Messenger.Default.Send(this,
-                NewInstanceNameSender);
+                GetType().Name);
         }
     }
 }

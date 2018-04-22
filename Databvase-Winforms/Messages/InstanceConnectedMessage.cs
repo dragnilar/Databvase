@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Databvase_Winforms.Models;
+using DevExpress.Mvvm;
 
 namespace Databvase_Winforms.Messages
 {
     class InstanceConnectedMessage
     {
-        public const string ConnectInstanceSender = "ConnectInstanceSender";
-
-        public InstanceAndDatabaseTracker Tracker { get; set; }
+        public InstanceAndDatabaseTracker Tracker { get; private set; }
 
         public InstanceConnectedMessage(InstanceAndDatabaseTracker tracker)
         {
+            Tracker = new InstanceAndDatabaseTracker();
             Tracker = tracker;
+            SendMessage();
         }
 
-        public override string ToString()
+        private void SendMessage()
         {
-            return ConnectInstanceSender;
+            Messenger.Default.Send(this, GetType().Name);
         }
     }
 }

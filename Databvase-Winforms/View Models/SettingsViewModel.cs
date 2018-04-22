@@ -32,8 +32,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.NullGridCellColor = NullColor;
             App.Config.NullGridText = NullText;
             App.Config.Save();
-            Messenger.Default.Send(new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.NumberOfRowsForTopSelectScript),
-                SettingsUpdatedMessage.SettingsUpdatedSender);
+            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.NumberOfRowsForTopSelectScript);
             State = WindowState.Close;
         }
 

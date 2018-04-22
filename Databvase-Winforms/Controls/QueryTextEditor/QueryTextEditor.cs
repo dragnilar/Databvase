@@ -35,7 +35,7 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
 
         private void RegisterMessages()
         {
-            Messenger.Default.Register<SettingsUpdatedMessage>(this, SettingsUpdatedMessage.SettingsUpdatedSender, ApplySettingsUpdate);
+            Messenger.Default.Register<SettingsUpdatedMessage>(this, typeof(SettingsUpdatedMessage).Name, ApplySettingsUpdate);
         }
 
         private void RegisterServices()
