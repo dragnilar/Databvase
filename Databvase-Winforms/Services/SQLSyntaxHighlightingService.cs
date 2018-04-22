@@ -28,7 +28,10 @@ namespace Databvase_Winforms.Services
         private readonly string[] keywords =
         {
             "INSERT", "SELECT", "CREATE", "TABLE", "USE", "IDENTITY", "ON", "OFF", "NOT", "NULL", "WITH", "SET",
-            "FROM", "WHERE", "JOIN", "DBCC"
+            "FROM", "WHERE", "JOIN", "DBCC", "AND", "OR", "ALTER", "AS", "BETWEEN", "DATABASE", "INDEX", "VIEW",
+            "DELETE", "DROP", "EXISTS", "GROUP BY", "HAVING", "IN", "INTO", "INNER JOIN", "LEFT JOIN",
+            "RIGHT JOIN", "FULL JOIN", "LIKE", "ORDER BY", "SELECT *", "SELECT DISTINCT", "SELECT",
+            "SELECT TOP", "TRUNCATE TABLE", "UNION ALL", "UPDATE", "EXEC"
         };
 
         public SQLSyntaxHighlightingService(Document document)
