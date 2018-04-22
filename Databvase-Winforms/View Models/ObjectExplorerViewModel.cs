@@ -111,7 +111,7 @@ namespace Databvase_Winforms.View_Models
                 InstanceNameChangeMessage.NewInstanceNameSender);
         }
 
-        public List<string> GetInstancesList()
+        private IEnumerable<string> GetInstancesList()
         {
             var instancesList = new List<string>();
 
@@ -136,28 +136,13 @@ namespace Databvase_Winforms.View_Models
                 {
                     if (InstanceAlreadyOnTree(instance)) continue;
 
-                    CreateInstanceNode(instance);
+                    ObjectExplorerSource.Add(new ObjectExplorerModel(GetNewNodeId(), instance));
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-        }
-
-        private void CreateInstanceNode(string instance)
-        {
-            ObjectExplorerSource.Add(new ObjectExplorerModel
-            {
-                ParentId = 0,
-                Id = GetNewNodeId(),
-                InstanceName = instance,
-                Type = GlobalStrings.ObjectExplorerTypes.Instance,
-                Data = App.Connection.GetServerAtSpecificInstance(instance),
-                FullName = instance,
-                ParentName = string.Empty,
-                ImageIndex = 0
-            });
         }
 
         private bool InstanceAlreadyOnTree(string instance)
@@ -176,13 +161,13 @@ namespace Databvase_Winforms.View_Models
             switch (e.Node.GetValue(1))
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
-                    InitDatabases(model);
+                    CreateDatabaseNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Database:
-                    InitTables(model);
+                    CreateTableNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
-                    InitColumns(model);
+                    CreateColumnNodes(model);
                     break;
             }
         }
@@ -193,13 +178,13 @@ namespace Databvase_Winforms.View_Models
             return model;
         }
 
-        private void InitDatabases(ObjectExplorerModel model)
+        private void CreateDatabaseNodes(ObjectExplorerModel model)
         {
             try
             {
                 if (!(model.Data is Server server)) return;
                 if (server.Databases.Count <= 0) return;
-                foreach (Database db in server.Databases) CreateDatabaseNode(model, server, db);
+                foreach (Database db in server.Databases) ObjectExplorerSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, db));
             }
             catch (Exception e)
             {
@@ -207,28 +192,13 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
-        private void CreateDatabaseNode(ObjectExplorerModel model, Server server, Database db)
-        {
-            ObjectExplorerSource.Add(new ObjectExplorerModel
-            {
-                ParentId = model.Id,
-                Id = GetNewNodeId(),
-                InstanceName = server.Name,
-                Type = GlobalStrings.ObjectExplorerTypes.Database,
-                Data = db,
-                FullName = db.Name,
-                ParentName = server.Name,
-                ImageIndex = 1
-            });
-        }
-
-        private void InitTables(ObjectExplorerModel model)
+        private void CreateTableNodes(ObjectExplorerModel model)
         {
             try
             {
                 if (!(model.Data is Database database)) return;
                 if (database.Tables.Count <= 0) return;
-                foreach (Table table in database.Tables) CreateTableNode(table, model.Id);
+                foreach (Table table in database.Tables) ObjectExplorerSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, table));
             }
             catch (Exception e)
             {
@@ -236,50 +206,19 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
-        private void CreateTableNode(Table table, int databaseId)
-        {
-            ObjectExplorerSource.Add(new ObjectExplorerModel
-            {
-                ParentId = databaseId,
-                Id = GetNewNodeId(),
-                InstanceName = table.Parent.Parent.Name,
-                Type = GlobalStrings.ObjectExplorerTypes.Table,
-                Data = table,
-                FullName = table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
-                ParentName = table.Parent.Name,
-                ImageIndex = 2
-            });
-        }
-
-        private void InitColumns(ObjectExplorerModel model)
+        private void CreateColumnNodes(ObjectExplorerModel model)
         {
             try
             {
                 if (!(model.Data is Table table)) return;
                 if (table.Columns.Count <= 0) return;
-                var tableFullName = table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name;
                 if (table.Columns.Count <= 0) return;
-                foreach (Column column in table.Columns) CreateColumnNode(column, tableFullName, model.Id);
+                foreach (Column column in table.Columns) ObjectExplorerSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, column));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-        }
-
-        private void CreateColumnNode(Column column, string tableFullName, int tableId)
-        {
-            ObjectExplorerSource.Add(new ObjectExplorerModel
-            {
-                ParentId = tableId,
-                Id = GetNewNodeId(),
-                InstanceName = ((Table) column.Parent).Parent.Parent.Name,
-                Type = GlobalStrings.ObjectExplorerTypes.Column,
-                Data = column,
-                FullName = column.Name,
-                ParentName = tableFullName,
-                ImageIndex = 3
-            });
         }
 
         #endregion
