@@ -27,12 +27,17 @@ namespace Databvase_Winforms.Views
             InitializeComponent();
             if (!mvvmContextMain.IsDesignMode)
                 InitializeBindings();
+            AddObjectExplorerToUi();
             App.Skins.LoadSkinSettings();
             HookupEvents();
             RegisterMessages();
             RegisterServices();
         }
 
+        private void AddObjectExplorerToUi()
+        {
+            objectExplorerContainer.Controls.Add(new ObjectExplorer {Dock = DockStyle.Fill});
+        }
 
         private void HookupEvents()
         {
@@ -87,15 +92,7 @@ namespace Databvase_Winforms.Views
 
         private void UpdateUIToShowConnections()
         {
-            if (App.Connection.CurrentConnections.Any() && (objectExplorerContainer.Controls.Count < 1))
-            {
-                objectExplorerContainer.Controls.Add(new ObjectExplorer {Dock = DockStyle.Fill});
-            }
-            else
-            {
-                objectExplorerContainer.Panel.Show();
-            }
-
+            objectExplorerContainer.Show();
             UpdateConnectionStatusOnRibbon();
             var tracker = new InstanceAndDatabaseTracker
             {
@@ -128,7 +125,6 @@ namespace Databvase_Winforms.Views
         private void Disconnect()
         {
             Messenger.Default.Send(new DisconnectInstanceMessage(App.Connection.InstanceTracker.InstanceName), DisconnectInstanceMessage.DisconnectInstanceSender);
-            App.Connection.DisconnectCurrentInstance();
             UpdateConnectionStatusOnRibbon();
         }
 

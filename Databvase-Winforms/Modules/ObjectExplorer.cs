@@ -42,7 +42,6 @@ namespace Databvase_Winforms.Modules
 
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
-            treeListObjExp.FocusedNodeChanged += TreeListObjExpOnFocusedNodeChanged;
             barButtonItemCopy.ItemClick += CopyCell;
 
         }
@@ -71,7 +70,7 @@ namespace Databvase_Winforms.Modules
 
         private void TreeListObjectExplorerOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            var focusedNodeType = treeListObjExp.FocusedNode.GetValue(treeListColumnType).ToString();
+            var focusedNodeType = treeListObjExp.FocusedNode?.GetValue(treeListColumnType).ToString();
 
             switch (focusedNodeType)
             {
@@ -83,13 +82,6 @@ namespace Databvase_Winforms.Modules
                     break;
             }
 
-        }
-
-        private void TreeListObjExpOnFocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
-        {
-            if (e.Node == null) return;
-            if (e.OldNode == null)return;   
-            SendInstanceNameChangedMessage();
         }
 
 
@@ -153,7 +145,8 @@ namespace Databvase_Winforms.Modules
 
             if (instanceNode != null)
             {
-                treeListObjExp.Nodes.Remove(instanceNode);
+                App.Connection.DisconnectCurrentInstance(); //TODO - This doesn't feel right...
+                treeListObjExp.Nodes.Remove(instanceNode); 
             }
         }
 
@@ -181,47 +174,9 @@ namespace Databvase_Winforms.Modules
             return (Table)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
-        private Database GetFocusedNodeDatabase()
-        {
-            var focusedNode = treeListObjExp.FocusedNode;
-            if (focusedNode == null) return null;
-            switch (focusedNode.GetValue(treeListColumnType))
-            {
-                case GlobalStrings.ObjectExplorerTypes.Instance:
-                    return null;
-                case GlobalStrings.ObjectExplorerTypes.Database:
-                    return (Database) focusedNode.GetValue(treeListColumnData);
-                case GlobalStrings.ObjectExplorerTypes.Table:
-                    return ((Table) focusedNode.GetValue(treeListColumnData)).Parent;
-                case GlobalStrings.ObjectExplorerTypes.Column:
-                    if (((Column) focusedNode.GetValue(treeListColumnData)).Parent is Table table) return table.Parent;
-                    break;
-            }
-
-            return null;
-        }
-
-        private string GetFocusedNodeInstance()
-        {
-            return (string) treeListObjExp.FocusedNode?.GetValue(treeListColumnInstance);
-        }
-
         #endregion
 
-        private void SendInstanceNameChangedMessage()
-        {
-            var instanceName = GetFocusedNodeInstance();
-            var database = GetFocusedNodeDatabase();
-            if (instanceName == null) return;
-            var tracker = new InstanceAndDatabaseTracker()
-            {
-                InstanceName = instanceName,
-                DatabaseObject = database
 
-            };
-            Messenger.Default.Send(new InstanceNameChangeMessage(tracker),
-                InstanceNameChangeMessage.NewInstanceNameSender);
-        }
 
         private void CopyCell(object sender, EventArgs e)
         {
@@ -237,7 +192,8 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x,p) => x.ScriptSelectTopForTable(p), x=>GetFocusedNodeTable());
             fluent.EventToCommand<BeforeExpandEventArgs>(treeListObjExp, "BeforeExpand",
                 x => x.ObjectExplorer_OnBeforeExpand(null));
-
+            fluent.EventToCommand<FocusedNodeChangedEventArgs>(treeListObjExp, "FocusedNodeChanged",
+                x => x.FocusedNodeChanged(null));
         }
     }
 }

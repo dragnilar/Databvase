@@ -180,6 +180,58 @@ namespace Databvase_Winforms.View_Models
         }
         #endregion
 
+        public void FocusedNodeChanged(FocusedNodeChangedEventArgs e)
+        {
+            if (e.Node == null) return;
+            if (e.OldNode == null)return;
+            var instanceName = e.Node.GetValue(4) as string;
+
+            var database = GetDatabaseFromNode(e.Node);
+            if (instanceName == App.Connection.InstanceTracker.InstanceName)
+            {
+                if (database != null)
+                {
+                    if (database.Name == App.Connection.InstanceTracker.DatabaseObject?.Name)
+                    {
+                        return;
+                    }
+                }
+            }
+            SendInstanceNameChangedMessage(instanceName, database);
+        }
+
+        private Database GetDatabaseFromNode(TreeListNode node)
+        {
+            if (node == null) return null;
+            switch (node.GetValue(1))
+            {
+                case GlobalStrings.ObjectExplorerTypes.Instance:
+                    return null;
+                case GlobalStrings.ObjectExplorerTypes.Database:
+                    return (Database) node.GetValue(3);
+                case GlobalStrings.ObjectExplorerTypes.Table:
+                    return ((Table) node.GetValue(3)).Parent;
+                case GlobalStrings.ObjectExplorerTypes.Column:
+                    if (((Column) node.GetValue(3)).Parent is Table table) return table.Parent;
+                    break;
+            }
+
+            return null;
+        }
+
+        private void SendInstanceNameChangedMessage(string instanceName, Database database)
+        {
+            if (instanceName == null) return;
+            var tracker = new InstanceAndDatabaseTracker()
+            {
+                InstanceName = instanceName,
+                DatabaseObject = database
+
+            };
+            Messenger.Default.Send(new InstanceNameChangeMessage(tracker),
+                InstanceNameChangeMessage.NewInstanceNameSender);
+        }
+
         public List<string> GetInstancesList()
         {
             var instancesList = new List<string>();
