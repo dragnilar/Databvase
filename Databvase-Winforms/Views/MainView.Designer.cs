@@ -45,6 +45,7 @@ namespace Databvase_Winforms.Views
             this.riColorPickEditTextBG = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.barEditItemTextEditorLineNumberColor = new DevExpress.XtraBars.BarEditItem();
             this.riColorPickEditTextEditorLineNumberColor = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
+            this.barButtonItemTextEditorFontSettings = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -61,7 +62,6 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer = new DevExpress.XtraBars.Docking.DockPanel();
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.barButtonItemTextEditorFontSettings = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
@@ -199,6 +199,13 @@ namespace Databvase_Winforms.Views
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.riColorPickEditTextEditorLineNumberColor.Name = "riColorPickEditTextEditorLineNumberColor";
             // 
+            // barButtonItemTextEditorFontSettings
+            // 
+            this.barButtonItemTextEditorFontSettings.Caption = "Text Editor Font Styles";
+            this.barButtonItemTextEditorFontSettings.Id = 17;
+            this.barButtonItemTextEditorFontSettings.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemTextEditorFontSettings.ImageOptions.SvgImage")));
+            this.barButtonItemTextEditorFontSettings.Name = "barButtonItemTextEditorFontSettings";
+            // 
             // ribbonPageDatabvase
             // 
             this.ribbonPageDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -316,15 +323,15 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer.ID = new System.Guid("d1cabde8-1e60-4ff1-aba0-b217eab0dd67");
             this.dockPanelObjectExplorer.Location = new System.Drawing.Point(0, 162);
             this.dockPanelObjectExplorer.Name = "dockPanelObjectExplorer";
-            this.dockPanelObjectExplorer.OriginalSize = new System.Drawing.Size(255, 200);
-            this.dockPanelObjectExplorer.Size = new System.Drawing.Size(255, 606);
+            this.dockPanelObjectExplorer.OriginalSize = new System.Drawing.Size(350, 200);
+            this.dockPanelObjectExplorer.Size = new System.Drawing.Size(350, 606);
             this.dockPanelObjectExplorer.Text = "Object Explorer";
             // 
             // objectExplorerContainer
             // 
             this.objectExplorerContainer.Location = new System.Drawing.Point(3, 30);
             this.objectExplorerContainer.Name = "objectExplorerContainer";
-            this.objectExplorerContainer.Size = new System.Drawing.Size(248, 573);
+            this.objectExplorerContainer.Size = new System.Drawing.Size(343, 573);
             this.objectExplorerContainer.TabIndex = 0;
             // 
             // documentManagerMain
@@ -335,13 +342,6 @@ namespace Databvase_Winforms.Views
             this.documentManagerMain.View = this.tabbedViewMain;
             this.documentManagerMain.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedViewMain});
-            // 
-            // barButtonItemTextEditorFontSettings
-            // 
-            this.barButtonItemTextEditorFontSettings.Caption = "Text Editor Font Styles";
-            this.barButtonItemTextEditorFontSettings.Id = 17;
-            this.barButtonItemTextEditorFontSettings.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemTextEditorFontSettings.ImageOptions.SvgImage")));
-            this.barButtonItemTextEditorFontSettings.Name = "barButtonItemTextEditorFontSettings";
             // 
             // MainView
             // 
@@ -354,6 +354,7 @@ namespace Databvase_Winforms.Views
             this.Name = "MainView";
             this.Ribbon = this.ribbonControlMain;
             this.Text = "Databvase";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).EndInit();

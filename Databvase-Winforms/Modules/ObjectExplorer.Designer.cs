@@ -37,6 +37,7 @@
             this.treeListColumnParentName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnData = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnInstance = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnProperties = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.imageCollectionObjectExplorer = new DevExpress.Utils.ImageCollection(this.components);
             this.lcgObjectExplorer = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -71,7 +72,7 @@
             this.lcObjectExplorer.Location = new System.Drawing.Point(0, 0);
             this.lcObjectExplorer.Name = "lcObjectExplorer";
             this.lcObjectExplorer.Root = this.lcgObjectExplorer;
-            this.lcObjectExplorer.Size = new System.Drawing.Size(250, 600);
+            this.lcObjectExplorer.Size = new System.Drawing.Size(350, 600);
             this.lcObjectExplorer.TabIndex = 0;
             this.lcObjectExplorer.Text = "layoutControl1";
             // 
@@ -82,21 +83,21 @@
             this.treeListColumnType,
             this.treeListColumnParentName,
             this.treeListColumnData,
-            this.treeListColumnInstance});
+            this.treeListColumnInstance,
+            this.treeListColumnProperties});
             this.treeListObjExp.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeListObjExp.DataSource = null;
             this.treeListObjExp.KeyFieldName = "Id";
             this.treeListObjExp.Location = new System.Drawing.Point(12, 12);
             this.treeListObjExp.Name = "treeListObjExp";
-            this.treeListObjExp.OptionsBehavior.EditorShowMode = DevExpress.XtraTreeList.TreeListEditorShowMode.DoubleClick;
-            this.treeListObjExp.OptionsBehavior.ReadOnly = true;
+            this.treeListObjExp.OptionsBehavior.Editable = false;
             this.treeListObjExp.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.treeListObjExp.OptionsView.ShowFirstLines = false;
             this.treeListObjExp.OptionsView.ShowHorzLines = false;
             this.treeListObjExp.OptionsView.ShowVertLines = false;
             this.treeListObjExp.ParentFieldName = "ParentId";
             this.treeListObjExp.SelectImageList = this.imageCollectionObjectExplorer;
-            this.treeListObjExp.Size = new System.Drawing.Size(226, 576);
+            this.treeListObjExp.Size = new System.Drawing.Size(326, 576);
             this.treeListObjExp.TabIndex = 4;
             // 
             // treeListColumnFullName
@@ -107,6 +108,7 @@
             this.treeListColumnFullName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.treeListColumnFullName.Visible = true;
             this.treeListColumnFullName.VisibleIndex = 0;
+            this.treeListColumnFullName.Width = 195;
             // 
             // treeListColumnType
             // 
@@ -137,6 +139,15 @@
             this.treeListColumnInstance.FieldName = "InstanceName";
             this.treeListColumnInstance.Name = "treeListColumnInstance";
             // 
+            // treeListColumnProperties
+            // 
+            this.treeListColumnProperties.Caption = "Properties";
+            this.treeListColumnProperties.FieldName = "Properties";
+            this.treeListColumnProperties.Name = "treeListColumnProperties";
+            this.treeListColumnProperties.Visible = true;
+            this.treeListColumnProperties.VisibleIndex = 1;
+            this.treeListColumnProperties.Width = 103;
+            // 
             // imageCollectionObjectExplorer
             // 
             this.imageCollectionObjectExplorer.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionObjectExplorer.ImageStream")));
@@ -156,7 +167,7 @@
             this.lcgObjectExplorer.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
             this.lcgObjectExplorer.Name = "lcgObjectExplorer";
-            this.lcgObjectExplorer.Size = new System.Drawing.Size(250, 600);
+            this.lcgObjectExplorer.Size = new System.Drawing.Size(350, 600);
             this.lcgObjectExplorer.TextVisible = false;
             // 
             // layoutControlItem1
@@ -164,7 +175,7 @@
             this.layoutControlItem1.Control = this.treeListObjExp;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(230, 580);
+            this.layoutControlItem1.Size = new System.Drawing.Size(330, 580);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -217,7 +228,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManagerObjectExplorer;
-            this.barDockControlTop.Size = new System.Drawing.Size(250, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(350, 0);
             // 
             // barDockControlBottom
             // 
@@ -225,7 +236,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 600);
             this.barDockControlBottom.Manager = this.barManagerObjectExplorer;
-            this.barDockControlBottom.Size = new System.Drawing.Size(250, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(350, 0);
             // 
             // barDockControlLeft
             // 
@@ -239,7 +250,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(250, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(350, 0);
             this.barDockControlRight.Manager = this.barManagerObjectExplorer;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 600);
             // 
@@ -278,7 +289,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "ObjectExplorer";
-            this.Size = new System.Drawing.Size(250, 600);
+            this.Size = new System.Drawing.Size(350, 600);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).EndInit();
             this.lcObjectExplorer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).EndInit();
@@ -318,5 +329,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectTopStatement;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnInstance;
         private DevExpress.XtraBars.BarButtonItem barButtonItemNewQuery;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnProperties;
     }
 }

@@ -120,8 +120,8 @@ namespace Databvase_Winforms.View_Models
                 foreach (var instance in App.Connection.CurrentConnections.Select(x=>x.Instance).ToList())
                 {
                     if (InstanceAlreadyOnTree(instance)) continue;
-
-                    ObjectExplorerSource.Add(new ObjectExplorerModel(GetNewNodeId(), instance));
+                    var serverInstance = App.Connection.GetServerAtSpecificInstance(instance);
+                    ObjectExplorerSource.Add(new ObjectExplorerModel(GetNewNodeId(), serverInstance));
                 }
             }
             catch (Exception e)
