@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Databvase_Winforms.Models;
+using DevExpress.Mvvm;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Messages
 {
@@ -13,14 +15,20 @@ namespace Databvase_Winforms.Messages
 
         public InstanceAndDatabaseTracker Tracker { get; set; }
 
-        public InstanceNameChangeMessage(InstanceAndDatabaseTracker tracker)
+        public InstanceNameChangeMessage(string instanceName, Database database)
         {
-            Tracker = tracker;
+            Tracker = new InstanceAndDatabaseTracker
+            {
+                InstanceName = instanceName,
+                DatabaseObject = database
+            };
+            SendMessage();
         }
 
-        public override string ToString()
+        private void SendMessage()
         {
-            return NewInstanceNameSender;
+            Messenger.Default.Send(this,
+                NewInstanceNameSender);
         }
     }
 }

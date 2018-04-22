@@ -17,7 +17,7 @@ namespace Databvase_Winforms.View_Models
     [POCOViewModel]
     public class ObjectExplorerViewModel
     {
-        private int NodeId;
+        private int _nodeId;
 
         public ObjectExplorerViewModel()
         {
@@ -31,8 +31,8 @@ namespace Databvase_Winforms.View_Models
 
         private int GetNewNodeId()
         {
-            NodeId++;
-            return NodeId;
+            _nodeId++;
+            return _nodeId;
         }
 
         private void GetSelectTopDescriptionForPopupMenu()
@@ -70,14 +70,14 @@ namespace Databvase_Winforms.View_Models
         {
             if (e.Node == null) return;
             if (e.OldNode == null) return;
-            var instanceName = e.Node.GetValue(4) as string;
+            var instanceName = GetInstanceNameFromNode(e.Node);
 
             var database = GetDatabaseFromNode(e.Node);
             if (instanceName == App.Connection.InstanceTracker.InstanceName)
                 if (database != null)
                     if (database.Name == App.Connection.InstanceTracker.DatabaseObject?.Name)
                         return;
-            SendInstanceNameChangedMessage(instanceName, database);
+            new InstanceNameChangeMessage(instanceName, database);
         }
 
         private Database GetDatabaseFromNode(TreeListNode node)
@@ -99,27 +99,12 @@ namespace Databvase_Winforms.View_Models
             return null;
         }
 
-        private void SendInstanceNameChangedMessage(string instanceName, Database database)
+        private string GetInstanceNameFromNode(TreeListNode node)
         {
-            if (instanceName == null) return;
-            var tracker = new InstanceAndDatabaseTracker
-            {
-                InstanceName = instanceName,
-                DatabaseObject = database
-            };
-            Messenger.Default.Send(new InstanceNameChangeMessage(tracker),
-                InstanceNameChangeMessage.NewInstanceNameSender);
+            if (node == null) return null;
+            var model = GetModelForNode(node);
+            return model.InstanceName;
         }
-
-        private IEnumerable<string> GetInstancesList()
-        {
-            var instancesList = new List<string>();
-
-            foreach (var connection in App.Connection.CurrentConnections) instancesList.Add(connection.Instance);
-            return instancesList;
-        }
-
-
         #region Adding Instance Node Methods
 
         private void InitInstances(InstanceConnectedMessage message)
@@ -132,7 +117,7 @@ namespace Databvase_Winforms.View_Models
         {
             try
             {
-                foreach (var instance in GetInstancesList())
+                foreach (var instance in App.Connection.CurrentConnections.Select(x=>x.Instance).ToList())
                 {
                     if (InstanceAlreadyOnTree(instance)) continue;
 
