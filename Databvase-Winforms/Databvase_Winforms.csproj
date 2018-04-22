@@ -257,6 +257,7 @@
     <Compile Include="Messages\SettingsUpdatedMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\InstanceAndDatabaseTracker.cs" />
+    <Compile Include="Models\ObjectExplorerModel.cs" />
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\SavedConnection.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Modules\TextEditorFontEdit.Designer.cs">
       <DependentUpon>TextEditorFontEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
     <Compile Include="Services\SettingsWindowService.cs" />

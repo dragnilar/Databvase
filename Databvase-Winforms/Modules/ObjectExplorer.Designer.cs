@@ -50,8 +50,8 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemGenerateSelectTopStatement = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -85,6 +85,7 @@
             this.treeListColumnInstance});
             this.treeListObjExp.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeListObjExp.DataSource = null;
+            this.treeListObjExp.KeyFieldName = "Id";
             this.treeListObjExp.Location = new System.Drawing.Point(12, 12);
             this.treeListObjExp.Name = "treeListObjExp";
             this.treeListObjExp.OptionsBehavior.EditorShowMode = DevExpress.XtraTreeList.TreeListEditorShowMode.DoubleClick;
@@ -93,14 +94,15 @@
             this.treeListObjExp.OptionsView.ShowFirstLines = false;
             this.treeListObjExp.OptionsView.ShowHorzLines = false;
             this.treeListObjExp.OptionsView.ShowVertLines = false;
+            this.treeListObjExp.ParentFieldName = "ParentId";
+            this.treeListObjExp.SelectImageList = this.imageCollectionObjectExplorer;
             this.treeListObjExp.Size = new System.Drawing.Size(226, 576);
-            this.treeListObjExp.StateImageList = this.imageCollectionObjectExplorer;
             this.treeListObjExp.TabIndex = 4;
             // 
             // treeListColumnFullName
             // 
             this.treeListColumnFullName.Caption = "Name";
-            this.treeListColumnFullName.FieldName = "Name";
+            this.treeListColumnFullName.FieldName = "FullName";
             this.treeListColumnFullName.Name = "treeListColumnFullName";
             this.treeListColumnFullName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.treeListColumnFullName.Visible = true;
@@ -248,6 +250,12 @@
             this.barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage")));
             this.barButtonItemGenerateSelectTopStatement.Name = "barButtonItemGenerateSelectTopStatement";
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "New Query";
+            this.barButtonItem1.Id = 4;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
             // popupMenuTable
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -256,12 +264,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement)});
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
             this.popupMenuTable.Name = "popupMenuTable";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Caption = "New Query";
-            this.barButtonItem1.Id = 4;
-            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ObjectExplorer
             // 
