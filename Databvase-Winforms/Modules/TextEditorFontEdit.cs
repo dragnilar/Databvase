@@ -8,12 +8,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Databvase_Winforms.Controls;
+using Databvase_Winforms.Services;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.POCO;
 using DevExpress.XtraEditors;
 
 namespace Databvase_Winforms.Modules
 {
     public partial class TextEditorFontEdit : XtraUserControl
     {
+        
         public Font SelectedFont { get; set; }
         public Color DefaultTextColor
         {
@@ -69,7 +73,7 @@ namespace Databvase_Winforms.Modules
         }
         private void ShowFontDialog()
         {
-            
+
             XtraFontDialog fontDialog = new XtraFontDialog(SelectedFont);
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
@@ -78,7 +82,8 @@ namespace Databvase_Winforms.Modules
             }
 
             fontDialog.Dispose();
-            
+
         }
+
     }
 }

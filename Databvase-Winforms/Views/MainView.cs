@@ -87,20 +87,7 @@ namespace Databvase_Winforms.Views
             var window = new ConnectionStringView {StartPosition = FormStartPosition.CenterScreen};
             window.ShowDialog();
             window.Dispose();
-            UpdateUIToShowConnections();
-        }
-
-        private void UpdateUIToShowConnections()
-        {
-            objectExplorerContainer.Show();
             UpdateConnectionStatusOnRibbon();
-            var tracker = new InstanceAndDatabaseTracker
-            {
-                InstanceName = App.Connection.CurrentConnections.Last().Instance,
-                DatabaseObject = null
-            };
-            new InstanceConnectedMessage(tracker);
-
         }
 
         private void UpdateConnectionStatusOnRibbon()

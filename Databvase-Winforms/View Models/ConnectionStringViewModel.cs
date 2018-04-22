@@ -69,6 +69,7 @@ namespace Databvase_Winforms.View_Models
             var result = App.Connection.SetAndTestConnection(SelectedConnection);
             if (result.valid)
             {
+                new InstanceConnectedMessage(App.Connection.InstanceTracker);
                 WindowState = State.Exit;
             }
             else

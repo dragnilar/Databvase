@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextEditorFontEdit));
             this.lcFontDialog = new DevExpress.XtraLayout.LayoutControl();
+            this.colorPickEditCommentsColor = new DevExpress.XtraEditors.ColorPickEdit();
             this.colorPickEditStringColor = new DevExpress.XtraEditors.ColorPickEdit();
             this.colorPickEditKeywordColor = new DevExpress.XtraEditors.ColorPickEdit();
             this.colorPickEditDefaultTextColor = new DevExpress.XtraEditors.ColorPickEdit();
@@ -37,13 +38,13 @@
             this.lcgFontDialog = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lcgFontOptions = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciFontPicker = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciStringColor = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciKeywordsColor = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciDefaultTextColor = new DevExpress.XtraLayout.LayoutControlItem();
-            this.colorPickEditCommentsColor = new DevExpress.XtraEditors.ColorPickEdit();
             this.lciColorPickComments = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciStringColor = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcFontDialog)).BeginInit();
             this.lcFontDialog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditCommentsColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditStringColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditKeywordColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultTextColor.Properties)).BeginInit();
@@ -51,11 +52,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgFontDialog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgFontOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciFontPicker)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciStringColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciKeywordsColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditCommentsColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciColorPickComments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciStringColor)).BeginInit();
             this.SuspendLayout();
             // 
             // lcFontDialog
@@ -73,6 +73,18 @@
             this.lcFontDialog.Size = new System.Drawing.Size(475, 172);
             this.lcFontDialog.TabIndex = 2;
             this.lcFontDialog.Text = "layoutControl1";
+            // 
+            // colorPickEditCommentsColor
+            // 
+            this.colorPickEditCommentsColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditCommentsColor.Location = new System.Drawing.Point(151, 111);
+            this.colorPickEditCommentsColor.Name = "colorPickEditCommentsColor";
+            this.colorPickEditCommentsColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditCommentsColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditCommentsColor.Size = new System.Drawing.Size(310, 20);
+            this.colorPickEditCommentsColor.StyleController = this.lcFontDialog;
+            this.colorPickEditCommentsColor.TabIndex = 10;
             // 
             // colorPickEditStringColor
             // 
@@ -156,15 +168,6 @@
             this.lciFontPicker.Text = "Text Editor Font";
             this.lciFontPicker.TextSize = new System.Drawing.Size(134, 13);
             // 
-            // lciStringColor
-            // 
-            this.lciStringColor.Control = this.colorPickEditStringColor;
-            this.lciStringColor.Location = new System.Drawing.Point(0, 96);
-            this.lciStringColor.Name = "lciStringColor";
-            this.lciStringColor.Size = new System.Drawing.Size(451, 27);
-            this.lciStringColor.Text = "Text Editor String Color";
-            this.lciStringColor.TextSize = new System.Drawing.Size(134, 13);
-            // 
             // lciKeywordsColor
             // 
             this.lciKeywordsColor.Control = this.colorPickEditKeywordColor;
@@ -183,18 +186,6 @@
             this.lciDefaultTextColor.Text = "Text Editor Default Font";
             this.lciDefaultTextColor.TextSize = new System.Drawing.Size(134, 13);
             // 
-            // colorPickEditCommentsColor
-            // 
-            this.colorPickEditCommentsColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditCommentsColor.Location = new System.Drawing.Point(151, 111);
-            this.colorPickEditCommentsColor.Name = "colorPickEditCommentsColor";
-            this.colorPickEditCommentsColor.Properties.AutomaticColor = System.Drawing.Color.Black;
-            this.colorPickEditCommentsColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditCommentsColor.Size = new System.Drawing.Size(310, 20);
-            this.colorPickEditCommentsColor.StyleController = this.lcFontDialog;
-            this.colorPickEditCommentsColor.TabIndex = 10;
-            // 
             // lciColorPickComments
             // 
             this.lciColorPickComments.Control = this.colorPickEditCommentsColor;
@@ -203,6 +194,15 @@
             this.lciColorPickComments.Size = new System.Drawing.Size(451, 24);
             this.lciColorPickComments.Text = "Text Editor Comments Color";
             this.lciColorPickComments.TextSize = new System.Drawing.Size(134, 13);
+            // 
+            // lciStringColor
+            // 
+            this.lciStringColor.Control = this.colorPickEditStringColor;
+            this.lciStringColor.Location = new System.Drawing.Point(0, 96);
+            this.lciStringColor.Name = "lciStringColor";
+            this.lciStringColor.Size = new System.Drawing.Size(451, 27);
+            this.lciStringColor.Text = "Text Editor String Color";
+            this.lciStringColor.TextSize = new System.Drawing.Size(134, 13);
             // 
             // TextEditorFontEdit
             // 
@@ -213,6 +213,7 @@
             this.Size = new System.Drawing.Size(475, 172);
             ((System.ComponentModel.ISupportInitialize)(this.lcFontDialog)).EndInit();
             this.lcFontDialog.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditCommentsColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditStringColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditKeywordColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultTextColor.Properties)).EndInit();
@@ -220,11 +221,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgFontDialog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgFontOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciFontPicker)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciStringColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciKeywordsColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditCommentsColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciColorPickComments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciStringColor)).EndInit();
             this.ResumeLayout(false);
 
         }

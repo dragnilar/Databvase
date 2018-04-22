@@ -281,6 +281,7 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\FontDialogService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
     <Compile Include="Services\SettingsWindowService.cs" />
     <Compile Include="Services\SQLSyntaxHighlightingService.cs" />

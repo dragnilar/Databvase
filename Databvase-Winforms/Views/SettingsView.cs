@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
 using DevExpress.XtraEditors;
 
@@ -19,6 +20,12 @@ namespace Databvase_Winforms.Views
             InitializeComponent();
             if (!mvvmContextSettingsView.IsDesignMode)
                 InitializeBindings();
+            RegisterServices();
+        }
+
+        private void RegisterServices()
+        {
+            mvvmContextSettingsView.RegisterService(new FontDialogService());
         }
 
         void InitializeBindings()
@@ -28,7 +35,13 @@ namespace Databvase_Winforms.Views
 
             fluent.BindCommand(simpleButtonCancelSaveSettings, x=>x.Cancel());
             fluent.BindCommand(simpleButtonSaveSettings, x=>x.Save());
+            fluent.EventToCommand<EventArgs>(fontEditDefaultFont, "Click", model => model.ShowFontDialog());
 
+            fluent.SetBinding(colorPickEditDefaultTextColor, x => x.Color, vm => vm.DefaultTextColor);
+            fluent.SetBinding(colorPickEditDefaultCommentColor, x => x.Color, vm => vm.DefaultCommentColor);
+            fluent.SetBinding(colorPickEditDefaultKeywordColor, x => x.Color, vm => vm.DefaultKeywordColor);
+            fluent.SetBinding(colorPickEditDefaultStringColor, x => x.Color, vm => vm.DefaultStringColor);
+            fluent.SetBinding(fontEditDefaultFont, x => x.EditValue, x => x.DefaultFontName);
             fluent.SetBinding(checkEditShowRowNumberColumn, x => x.Checked, vm => vm.ShowRowNumberColumn);
             fluent.SetBinding(spinEditNumberOfRowsForTopScript, x => x.EditValue,
                 vm => vm.NumberOfRowsForSelectTopScript);
