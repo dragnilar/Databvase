@@ -39,6 +39,7 @@ namespace Databvase_Winforms.Dialogs
             App.Config.TextEditorDefaultColor = textEditorFontEdit.DefaultTextColor;
             App.Config.TextEditorKeywordColor = textEditorFontEdit.DefaultKeywordColor;
             App.Config.TextEditorStringColor = textEditorFontEdit.DefaultStringColor;
+            App.Config.TextEditorCommentsColor = textEditorFontEdit.DefaultCommentColor;
             App.Config.Save();
             Close();
         }

@@ -33,6 +33,12 @@ namespace Databvase_Winforms.Modules
             set => colorPickEditStringColor.Color = value;
         }
 
+        public Color DefaultCommentColor
+        {
+            get => colorPickEditCommentsColor.Color;
+            set => colorPickEditCommentsColor.Color = value;
+        }
+
         public TextEditorFontEdit()
         {
             InitializeComponent();
@@ -43,10 +49,11 @@ namespace Databvase_Winforms.Modules
         private void GetDefaultSettings()
         {
             SelectedFont = App.Config.DefaultTextEditorFont;
-                fontEditDefaultFont.EditValue = App.Config.DefaultTextEditorFont.Name;
-                colorPickEditDefaultTextColor.Color = App.Config.TextEditorDefaultColor;
-                colorPickEditKeywordColor.Color = App.Config.TextEditorKeywordColor;
-                colorPickEditStringColor.Color = App.Config.TextEditorStringColor;
+            fontEditDefaultFont.EditValue = App.Config.DefaultTextEditorFont.Name;
+            colorPickEditDefaultTextColor.Color = App.Config.TextEditorDefaultColor;
+            colorPickEditKeywordColor.Color = App.Config.TextEditorKeywordColor;
+            colorPickEditStringColor.Color = App.Config.TextEditorStringColor;
+            colorPickEditCommentsColor.Color = App.Config.TextEditorCommentsColor;
 
         }
 

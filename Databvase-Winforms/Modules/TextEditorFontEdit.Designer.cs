@@ -40,6 +40,8 @@
             this.lciStringColor = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciKeywordsColor = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciDefaultTextColor = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colorPickEditCommentsColor = new DevExpress.XtraEditors.ColorPickEdit();
+            this.lciColorPickComments = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcFontDialog)).BeginInit();
             this.lcFontDialog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditStringColor.Properties)).BeginInit();
@@ -52,10 +54,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciStringColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciKeywordsColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditCommentsColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciColorPickComments)).BeginInit();
             this.SuspendLayout();
             // 
             // lcFontDialog
             // 
+            this.lcFontDialog.Controls.Add(this.colorPickEditCommentsColor);
             this.lcFontDialog.Controls.Add(this.colorPickEditStringColor);
             this.lcFontDialog.Controls.Add(this.colorPickEditKeywordColor);
             this.lcFontDialog.Controls.Add(this.colorPickEditDefaultTextColor);
@@ -72,47 +77,47 @@
             // colorPickEditStringColor
             // 
             this.colorPickEditStringColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditStringColor.Location = new System.Drawing.Point(148, 110);
+            this.colorPickEditStringColor.Location = new System.Drawing.Point(151, 135);
             this.colorPickEditStringColor.Name = "colorPickEditStringColor";
             this.colorPickEditStringColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditStringColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditStringColor.Size = new System.Drawing.Size(313, 20);
+            this.colorPickEditStringColor.Size = new System.Drawing.Size(310, 20);
             this.colorPickEditStringColor.StyleController = this.lcFontDialog;
             this.colorPickEditStringColor.TabIndex = 9;
             // 
             // colorPickEditKeywordColor
             // 
             this.colorPickEditKeywordColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditKeywordColor.Location = new System.Drawing.Point(148, 86);
+            this.colorPickEditKeywordColor.Location = new System.Drawing.Point(151, 87);
             this.colorPickEditKeywordColor.Name = "colorPickEditKeywordColor";
             this.colorPickEditKeywordColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditKeywordColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditKeywordColor.Size = new System.Drawing.Size(313, 20);
+            this.colorPickEditKeywordColor.Size = new System.Drawing.Size(310, 20);
             this.colorPickEditKeywordColor.StyleController = this.lcFontDialog;
             this.colorPickEditKeywordColor.TabIndex = 8;
             // 
             // colorPickEditDefaultTextColor
             // 
             this.colorPickEditDefaultTextColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditDefaultTextColor.Location = new System.Drawing.Point(148, 62);
+            this.colorPickEditDefaultTextColor.Location = new System.Drawing.Point(151, 63);
             this.colorPickEditDefaultTextColor.Name = "colorPickEditDefaultTextColor";
             this.colorPickEditDefaultTextColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditDefaultTextColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditDefaultTextColor.Size = new System.Drawing.Size(313, 20);
+            this.colorPickEditDefaultTextColor.Size = new System.Drawing.Size(310, 20);
             this.colorPickEditDefaultTextColor.StyleController = this.lcFontDialog;
             this.colorPickEditDefaultTextColor.TabIndex = 7;
             // 
             // fontEditDefaultFont
             // 
-            this.fontEditDefaultFont.Location = new System.Drawing.Point(148, 38);
+            this.fontEditDefaultFont.Location = new System.Drawing.Point(151, 39);
             this.fontEditDefaultFont.Name = "fontEditDefaultFont";
             this.fontEditDefaultFont.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.fontEditDefaultFont.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
-            this.fontEditDefaultFont.Size = new System.Drawing.Size(313, 20);
+            this.fontEditDefaultFont.Size = new System.Drawing.Size(310, 20);
             this.fontEditDefaultFont.StyleController = this.lcFontDialog;
             this.fontEditDefaultFont.TabIndex = 6;
             // 
@@ -133,9 +138,10 @@
             this.lcgFontOptions.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
             this.lcgFontOptions.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lciFontPicker,
-            this.lciStringColor,
             this.lciKeywordsColor,
-            this.lciDefaultTextColor});
+            this.lciDefaultTextColor,
+            this.lciColorPickComments,
+            this.lciStringColor});
             this.lcgFontOptions.Location = new System.Drawing.Point(0, 0);
             this.lcgFontOptions.Name = "lcgFontOptions";
             this.lcgFontOptions.Size = new System.Drawing.Size(475, 172);
@@ -148,16 +154,16 @@
             this.lciFontPicker.Name = "lciFontPicker";
             this.lciFontPicker.Size = new System.Drawing.Size(451, 24);
             this.lciFontPicker.Text = "Text Editor Font";
-            this.lciFontPicker.TextSize = new System.Drawing.Size(131, 13);
+            this.lciFontPicker.TextSize = new System.Drawing.Size(134, 13);
             // 
             // lciStringColor
             // 
             this.lciStringColor.Control = this.colorPickEditStringColor;
-            this.lciStringColor.Location = new System.Drawing.Point(0, 72);
+            this.lciStringColor.Location = new System.Drawing.Point(0, 96);
             this.lciStringColor.Name = "lciStringColor";
-            this.lciStringColor.Size = new System.Drawing.Size(451, 52);
+            this.lciStringColor.Size = new System.Drawing.Size(451, 27);
             this.lciStringColor.Text = "Text Editor String Color";
-            this.lciStringColor.TextSize = new System.Drawing.Size(131, 13);
+            this.lciStringColor.TextSize = new System.Drawing.Size(134, 13);
             // 
             // lciKeywordsColor
             // 
@@ -166,7 +172,7 @@
             this.lciKeywordsColor.Name = "lciKeywordsColor";
             this.lciKeywordsColor.Size = new System.Drawing.Size(451, 24);
             this.lciKeywordsColor.Text = "Text Editor Keywords Color";
-            this.lciKeywordsColor.TextSize = new System.Drawing.Size(131, 13);
+            this.lciKeywordsColor.TextSize = new System.Drawing.Size(134, 13);
             // 
             // lciDefaultTextColor
             // 
@@ -175,7 +181,28 @@
             this.lciDefaultTextColor.Name = "lciDefaultTextColor";
             this.lciDefaultTextColor.Size = new System.Drawing.Size(451, 24);
             this.lciDefaultTextColor.Text = "Text Editor Default Font";
-            this.lciDefaultTextColor.TextSize = new System.Drawing.Size(131, 13);
+            this.lciDefaultTextColor.TextSize = new System.Drawing.Size(134, 13);
+            // 
+            // colorPickEditCommentsColor
+            // 
+            this.colorPickEditCommentsColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditCommentsColor.Location = new System.Drawing.Point(151, 111);
+            this.colorPickEditCommentsColor.Name = "colorPickEditCommentsColor";
+            this.colorPickEditCommentsColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditCommentsColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditCommentsColor.Size = new System.Drawing.Size(310, 20);
+            this.colorPickEditCommentsColor.StyleController = this.lcFontDialog;
+            this.colorPickEditCommentsColor.TabIndex = 10;
+            // 
+            // lciColorPickComments
+            // 
+            this.lciColorPickComments.Control = this.colorPickEditCommentsColor;
+            this.lciColorPickComments.Location = new System.Drawing.Point(0, 72);
+            this.lciColorPickComments.Name = "lciColorPickComments";
+            this.lciColorPickComments.Size = new System.Drawing.Size(451, 24);
+            this.lciColorPickComments.Text = "Text Editor Comments Color";
+            this.lciColorPickComments.TextSize = new System.Drawing.Size(134, 13);
             // 
             // TextEditorFontEdit
             // 
@@ -196,6 +223,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciStringColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciKeywordsColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditCommentsColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciColorPickComments)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +242,7 @@
         private DevExpress.XtraEditors.ColorPickEdit colorPickEditKeywordColor;
         private DevExpress.XtraEditors.ColorPickEdit colorPickEditDefaultTextColor;
         private DevExpress.XtraEditors.FontEdit fontEditDefaultFont;
+        private DevExpress.XtraEditors.ColorPickEdit colorPickEditCommentsColor;
+        private DevExpress.XtraLayout.LayoutControlItem lciColorPickComments;
     }
 }
