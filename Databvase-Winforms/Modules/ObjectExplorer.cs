@@ -42,7 +42,6 @@ namespace Databvase_Winforms.Modules
 
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
-            treeListObjExp.BeforeExpand += TreeListObjExpOnBeforeExpand;
             treeListObjExp.FocusedNodeChanged += TreeListObjExpOnFocusedNodeChanged;
             barButtonItemCopy.ItemClick += CopyCell;
 
@@ -96,37 +95,6 @@ namespace Databvase_Winforms.Modules
 
 
         #endregion
-
-        #region Tree List Unbound Methods
-
-        private void TreeListObjExpOnBeforeExpand(object sender, BeforeExpandEventArgs e)
-        {
-
-            switch (e.Node.Tag.ToString())
-            {
-                case GlobalStrings.ObjectExplorerTypes.Instance:
-                    if (e.Node.Nodes.Count > 0)
-                    {
-                        return;
-                    }
-                    InitDatabases(e.Node);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Database:
-                    if (e.Node.Nodes.Count > 0)
-                    {
-                        return;
-                    }
-                    InitTables(e.Node);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Table:
-                    if (e.Node.Nodes.Count > 0)
-                    {
-                        return;
-                    }
-                    InitColumns(e.Node);
-                    break;
-            }
-        }
 
         private void InitInstances(InstanceConnectedMessage message)
         {
@@ -201,136 +169,7 @@ namespace Databvase_Winforms.Modules
             return false;
         }
 
-        private void InitDatabases(TreeListNode instanceNode)
-        {
-            treeListObjExp.BeginUnboundLoad();
-            try
-            {
-                GenerateDatabases(instanceNode);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            treeListObjExp.EndUnboundLoad();
-        }
-
-        private void GenerateDatabases(TreeListNode instanceNode)
-        {
-            var instanceName = GetNodesFullName(instanceNode);
-            var dbList = SQLServerInterface.GetDatabases(instanceName);
-            if (dbList.Any())
-            {
-                foreach (var db in dbList)
-                {
-                    var node = treeListObjExp.AppendNode(new object[]
-                    {
-                        db.Name,
-                        GlobalStrings.ObjectExplorerTypes.Database,
-                         instanceName,
-                        db,
-                        instanceName
-                    }, instanceNode);
-                    node.StateImageIndex = 1;
-                    node.HasChildren = true;
-                    node.Tag = GlobalStrings.ObjectExplorerTypes.Database;
-                }
-            }
-        }
-
-        private void InitTables(TreeListNode databaseNode)
-        {
-            treeListObjExp.BeginUnboundLoad();
-            try
-            {
-                GenerateTables(databaseNode);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            treeListObjExp.EndUnboundLoad();
-        }
-
-        private void GenerateTables(TreeListNode databaseNode)
-        {
-            var databaseName = GetNodesFullName(databaseNode);
-            var instanceName = GetNodesFullName(databaseNode.ParentNode);
-            var tableList = SQLServerInterface.GetTables(instanceName, databaseName);
-
-            if (tableList.Any())
-            {
-                foreach (var table in tableList)
-                {
-                    CreateTableNode(databaseNode, table, databaseName);
-                }
-            }
-        }
-
-        private void CreateTableNode(TreeListNode databaseNode, Table table, string databaseName)
-        {
-            var node = treeListObjExp.AppendNode(new object[]
-            {
-                table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name,
-                GlobalStrings.ObjectExplorerTypes.Table,
-                databaseName,
-                table,
-                table.Parent.Parent.Name
-            }, databaseNode);
-            node.StateImageIndex = 2;
-            node.HasChildren = true;
-            node.Tag = GlobalStrings.ObjectExplorerTypes.Table;
-        }
-
-        private void InitColumns(TreeListNode tableNode)
-        {
-            treeListObjExp.BeginUnboundLoad();
-            try
-            {
-                GenerateColumns(tableNode);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
-            treeListObjExp.EndUnboundLoad();
-        }
-
-        private void GenerateColumns(TreeListNode tableNode)
-        {
-            var tableName = GetNodesFullName(tableNode);
-            var dbName = GetNodesFullName(tableNode.ParentNode);
-            var instanceName = GetNodesFullName(tableNode.ParentNode.ParentNode);
-            var columnList = SQLServerInterface.GetColumns(tableName, dbName, instanceName);
-
-            if (!columnList.Any()) return;
-            foreach (var column in columnList)
-            {
-                CreateColumnNode(tableNode, column, tableName);
-            }
-        }
-
-        private void CreateColumnNode(TreeListNode tableNode, Column column, string tableName)
-        {
-            var node = treeListObjExp.AppendNode(new object[]
-            {
-                column.Name,
-                GlobalStrings.ObjectExplorerTypes.Column,
-                tableName,
-                column,
-                ((Table) column.Parent).Parent.Parent.Name
-            }, tableNode);
-            node.StateImageIndex = 3;
-            node.HasChildren = false;
-            node.Tag = GlobalStrings.ObjectExplorerTypes.Column;
-        }
-
         #region Focused Node Methods
-
-        private string GetNodesFullName(TreeListNode node)
-        {
-            return node.GetValue(treeListColumnFullName).ToString();
-        }
 
         private string GetFocusedNodeFullName()
         {
@@ -342,23 +181,30 @@ namespace Databvase_Winforms.Modules
             return (Table)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
-        private Column GetFocusedNodeColumn()
-        {
-            return (Column)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
-        }
-
         private Database GetFocusedNodeDatabase()
         {
-            return (Database)treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
+            var focusedNode = treeListObjExp.FocusedNode;
+            if (focusedNode == null) return null;
+            switch (focusedNode.GetValue(treeListColumnType))
+            {
+                case GlobalStrings.ObjectExplorerTypes.Instance:
+                    return null;
+                case GlobalStrings.ObjectExplorerTypes.Database:
+                    return (Database) focusedNode.GetValue(treeListColumnData);
+                case GlobalStrings.ObjectExplorerTypes.Table:
+                    return ((Table) focusedNode.GetValue(treeListColumnData)).Parent;
+                case GlobalStrings.ObjectExplorerTypes.Column:
+                    if (((Column) focusedNode.GetValue(treeListColumnData)).Parent is Table table) return table.Parent;
+                    break;
+            }
+
+            return null;
         }
 
         private string GetFocusedNodeInstance()
         {
             return (string) treeListObjExp.FocusedNode?.GetValue(treeListColumnInstance);
         }
-
-        #endregion
-
 
         #endregion
 
@@ -389,6 +235,8 @@ namespace Databvase_Winforms.Modules
                 y => y.SelectTopContextMenuItemDescription);
             fluent.BindCommand(barButtonItemGenerateSelectAll, (x,p) => x.ScriptSelectAllForTable(p), x=>GetFocusedNodeTable());
             fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x,p) => x.ScriptSelectTopForTable(p), x=>GetFocusedNodeTable());
+            fluent.EventToCommand<BeforeExpandEventArgs>(treeListObjExp, "BeforeExpand",
+                x => x.ObjectExplorer_OnBeforeExpand(null));
 
         }
     }

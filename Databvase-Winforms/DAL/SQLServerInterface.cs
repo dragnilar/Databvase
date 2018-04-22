@@ -102,32 +102,6 @@ namespace Databvase_Winforms.DAL
             return list;
         }
 
-        public static List<Table> GetTables(string instanceName, string databaseName)
-        {
-            var dbList = GetDatabases(instanceName);
-            var db = dbList.First(r => r.Name == databaseName);
-            var tablesList = new List<Table>();
-            foreach (Table table in db.Tables)
-            {
-                tablesList.Add(table);
-            }
-            return tablesList;
-        }
-
-        public static List<Column> GetColumns(string tableName, string  databaseName, string instanceName)
-        {
-            var tablesList = GetTables(instanceName, databaseName);
-            var table = tablesList.First(r => r.Name == tableName);
-            var columnsList = new List<Column>();
-            foreach (Column col in table.Columns)
-            {
-                columnsList.Add(col);
-            }
-
-            return columnsList;
-        }
-
-
         public static List<Database> GetDatabases(string instanceName)
         {
             var server = App.Connection.GetServerAtSpecificInstance(instanceName, null);
