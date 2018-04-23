@@ -2,9 +2,35 @@
 {\*\generator Riched20 10.0.16299}\viewkind4\uc1 
 \pard\ul\f0\fs44\lang1033 DATABVASE!!!! ReadMe\fs32\par
 \par
-\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 7)\ul\par
+\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 8)\ul\par
 \par
 Release Notes:\par
+\par
+\b\fs16 Rev 8 Changes\fs24\par
+\ulnone\b0\fs16 - Fixed some bugs related to disconnecting and changing the focused instance/database.\par
+\par
+- Fixed a bug where the object explorer may sometimes show duplicate instances if you used a specific pattern of connect > disconnect > reconnect.\par
+\par
+- Refactored much of the code behind the object explorer to allow for further extension down the road.\par
+\par
+- Adjusted the internal messaging to use reflection instead of constant strings to allow for faster development.\par
+\par
+- Added ability to create new query tabs by right clicking on databases and instances\par
+\par
+- Added ability to see stored procedures, functions and views in the object explorer.\par
+\par
+- Added ability to script select * and select all from views.\par
+\par
+- Increased vocabulary of the syntax highlighting service (I.E. More types of joins, drops, alters, as, etc.)\par
+\par
+- Added comment syntax highlighting\par
+\par
+- Added ability to change comment coloring\par
+\par
+- Added text coloring options to the settings window\par
+\par
+- Added properties column to the object explorer (shows instance edition and column data types)\par
+\ul\fs24\par
 \par
 \b\fs16 Rev 7 Changes\b0\fs24\par
 \ulnone\fs16\par
@@ -20,8 +46,7 @@ Release Notes:\par
 - Replaced the default font dialog with one that is more stripped down but appropriate for the purposes of the application. \par
 \par
 - Added ability to access the new font dialog from either the text editor right click menu or the ribbon.\ul\fs24\par
-
-\pard\par
+\par
 \b\fs16 Rev 6 Changes\par
 \b0\par
 \ulnone - Made minor re-arrangements to the settings window\par
@@ -125,7 +150,7 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f3\'B7\tab}\b0 The ribbon can be minimized and moved (to a certain degree).\b\par
 {\pntext\f3\'B7\tab}\b0 All query panes and the object explorer can be dragged off the main window and placed elsewhere.\par
 {\pntext\f3\'B7\tab}Visual Studio/Management Studio style docking and floating of queries within the main window.\par
-{\pntext\f3\'B7\tab}Visual Studio/Management Studio style pinning of \par
+{\pntext\f3\'B7\tab}Visual Studio/Management Studio style pinning of the object explorer.\par
 {\pntext\f3\'B7\tab}Individual query panes can be opened and closed.\par
 {\pntext\f3\'B7\tab}The object explorer can be closed (and shown again via a button on the ribbon).\par
 {\pntext\f3\'B7\tab}Semi-Responsive layout - Databvase resizes itself appropriately (within reason) to the size of your monitor and window size. \par
@@ -138,13 +163,13 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f3\'B7\tab}Able to scan the network for any SQL Server instances that are visible (note that this scan can be time consuming, thus it is optional. You may type in a server address if you already know it).\par
 {\pntext\f3\'B7\tab}Able to connect using either Windows Authentication or using a Username and Password.\par
 {\pntext\f3\'B7\tab}Saves all used connections to the settings file for later reuse.\par
-{\pntext\f3\'B7\tab}When you connect to a database, you may open and start running queries.\par
+{\pntext\f3\'B7\tab}When you connect to a database, you may open query tabs and start running queries.\par
 {\pntext\f3\'B7\tab}When you disconnect from a database, all queries are retained and can still be run if desired.\par
 
 \pard\par
 \b Object Explorer\par
 
-\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Allows you to filter the database instances/tables/columns via right click menus.\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Allows you to filter the database instances/tables/columns/views/stored procedures/functions via right click menus.\par
 {\pntext\f3\'B7\tab}Allows you to search using the find panel (CTRL + F or right click the column header and select show find panel).\par
 {\pntext\f3\'B7\tab}Displays current databases/tables/columns that you can see in your current instances.\par
 {\pntext\f3\'B7\tab}Able to right click and copy the name of the currently focused object.\par
@@ -253,13 +278,11 @@ Known Bugs/ Limitations\ulnone\par
 \par
 - Groups added to the quick access toolbar on the ribbon may show as boxes with X's in them and/or they may not function normally as if they were on the ribbon. The quick access toolbar may be removed down the road unless there is an interest in keeping it.\par
 \par
-- Syntax highlighting is not entirely complete (does not support all key words/scenarios).\par
+- Syntax highlighting is mostly complete but it doesn't parse comments out as well as it should. \par
 \par
 - No intellisense (this is a very complex feature and as a result it is unlikely if it will be implemented). Also there have been some cases where people do not like the intellisense/auto complete of SSMS. \par
 \par
 - The query text editor allows you to add insert images (becuase it is using a very customizable rich edit control similar to Microsoft Word). There may be other features as well that are "unintentional" and they may be subject to removal.\par
-\par
--  It is possible to get the object explorer to not properly dispose of its current data and retain duplicates between connections. This will be looked into. \par
 \par
 - High DPI support is currently not implemented. The application may display distorted on computers that have DPIs set higher than the standard 100%.\par
 \par
