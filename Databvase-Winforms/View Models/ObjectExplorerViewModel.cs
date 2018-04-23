@@ -143,7 +143,7 @@ namespace Databvase_Winforms.View_Models
         {
             if (e.Node.Nodes.Count > 0) return;
             var model = GetModelForNode(e.Node);
-            switch (e.Node.GetValue(1))
+            switch (model.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
                     CreateDatabaseNodes(model);
