@@ -26,7 +26,18 @@ namespace Databvase_Winforms.Globals
             public const string Database = "Database";
             public const string Table = "Table";
             public const string Column = "Column";
+            public const string Folder = "Folder";
+            public const string View = "View";
         }
+
+        public static class FolderTypes
+        {
+            public const string TableFolder = "Tables";
+            public const string ViewFolder = "Views";
+            public const string StoreProcedureFolder = "Stored Procedures";
+            public const string FunctionsFolder = "Functions";
+        }
+
 
     }
 }

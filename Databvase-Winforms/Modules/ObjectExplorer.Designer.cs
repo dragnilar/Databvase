@@ -159,6 +159,8 @@
             this.imageCollectionObjectExplorer.Images.SetKeyName(2, "grid_16x16.png");
             this.imageCollectionObjectExplorer.InsertGalleryImage("groupfooter_16x16.png", "office2013/reports/groupfooter_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/reports/groupfooter_16x16.png"), 3);
             this.imageCollectionObjectExplorer.Images.SetKeyName(3, "groupfooter_16x16.png");
+            this.imageCollectionObjectExplorer.Images.SetKeyName(4, "Folder_16px.png");
+            this.imageCollectionObjectExplorer.Images.SetKeyName(5, "Layers_16px.png");
             // 
             // lcgObjectExplorer
             // 

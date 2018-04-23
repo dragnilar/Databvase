@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Databvase_Winforms.Annotations;
@@ -27,7 +28,6 @@ namespace Databvase_Winforms.Models
             Properties = serverInstance.Edition;
 
         }
-
 
         /// <summary>
         ///   Creates a new object for a Database data type
@@ -84,6 +84,41 @@ namespace Databvase_Winforms.Models
             ParentName = GetTableFullName((Table) column.Parent);
             ImageIndex = 3;
             Properties = BuildColumnProperties(column);
+        }
+
+        /// <summary>
+        /// Creates a new object for a Folder data type
+        /// </summary>
+        public ObjectExplorerModel(int folderId, string folderType, ObjectExplorerModel parentModel)
+        {
+            ParentId = parentModel.Id;
+            Id = folderId;
+            InstanceName = ((Database)parentModel.Data).Parent.Name;
+            Type = GlobalStrings.ObjectExplorerTypes.Folder;
+            Data = parentModel.Data;
+            FullName = folderType;
+            ParentName = parentModel.FullName;
+            ImageIndex = 4;
+            Properties = null;
+        }
+
+        /// <summary>
+        /// Creates a new object for a View data type
+        /// </summary>
+        /// <param name="viewId"></param>
+        /// <param name="folderId"></param>
+        /// <param name="database"></param>
+        public ObjectExplorerModel(int viewId, int folderId, View view)
+        {
+            ParentId = folderId;
+            Id = viewId;
+            InstanceName = view.Parent.Parent.Name;
+            Type = GlobalStrings.ObjectExplorerTypes.View;
+            Data = view;
+            FullName = view.Name;
+            ParentName = view.Parent.Name;
+            ImageIndex = 5;
+            Properties = string.Empty;
         }
 
         public int Id { get; set; }

@@ -46,6 +46,9 @@ namespace Databvase_Winforms.Modules
                 case GlobalStrings.ObjectExplorerTypes.Database:
                     e.Node.HasChildren = true;
                     break;
+                case GlobalStrings.ObjectExplorerTypes.Folder:
+                    e.Node.HasChildren = true;
+                    break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     e.Node.HasChildren = true;
                     break;
