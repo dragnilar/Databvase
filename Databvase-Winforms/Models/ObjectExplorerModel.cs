@@ -86,9 +86,13 @@ namespace Databvase_Winforms.Models
             Properties = BuildColumnProperties(column);
         }
 
+
         /// <summary>
         /// Creates a new object for a Folder data type
         /// </summary>
+        /// <param name="folderId"></param>
+        /// <param name="folderType"></param>
+        /// <param name="parentModel"></param>
         public ObjectExplorerModel(int folderId, string folderType, ObjectExplorerModel parentModel)
         {
             ParentId = parentModel.Id;
@@ -107,7 +111,7 @@ namespace Databvase_Winforms.Models
         /// </summary>
         /// <param name="viewId"></param>
         /// <param name="folderId"></param>
-        /// <param name="database"></param>
+        /// <param name="view"></param>
         public ObjectExplorerModel(int viewId, int folderId, View view)
         {
             ParentId = folderId;
@@ -115,7 +119,7 @@ namespace Databvase_Winforms.Models
             InstanceName = view.Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.View;
             Data = view;
-            FullName = view.Name;
+            FullName = $"{view.Schema}.{view.Name}";
             ParentName = view.Parent.Name;
             ImageIndex = 5;
             Properties = string.Empty;

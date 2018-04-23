@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Databvase_Winforms.Globals;
-using DevExpress.XtraTreeList.Nodes;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
@@ -24,9 +20,9 @@ namespace Databvase_Winforms.Models
         {
             try
             {
-                foreach (var instance in App.Connection.CurrentConnections.Select(x=>x.Instance).ToList())
+                foreach (var instance in App.Connection.CurrentConnections.Select(x => x.Instance).ToList())
                 {
-                    if (InstanceAlreadyOnTree(instance)) continue;
+                    if (InstanceAlreadyInDataSource(instance)) continue;
                     var serverInstance = App.Connection.GetServerAtSpecificInstance(instance);
                     ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), serverInstance));
                 }
@@ -37,7 +33,7 @@ namespace Databvase_Winforms.Models
             }
         }
 
-        private bool InstanceAlreadyOnTree(string instance)
+        private bool InstanceAlreadyInDataSource(string instance)
         {
             return ObjectExplorerDataSource.Any(x => x.InstanceName == instance);
         }
@@ -49,7 +45,8 @@ namespace Databvase_Winforms.Models
             {
                 if (!(model.Data is Server server)) return;
                 if (server.Databases.Count <= 0) return;
-                foreach (Database db in server.Databases) ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, db));
+                foreach (Database db in server.Databases)
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, db));
             }
             catch (Exception e)
             {
@@ -59,21 +56,27 @@ namespace Databvase_Winforms.Models
 
         public void CreateFolderNodesForDatabase(ObjectExplorerModel model)
         {
-            if (!(model.Data is Database database)) return;
-            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(),  GlobalStrings.FolderTypes.TableFolder, model));
-            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(),  GlobalStrings.FolderTypes.ViewFolder, model));
-            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), GlobalStrings.FolderTypes.StoreProcedureFolder, model));
-            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(),  GlobalStrings.FolderTypes.FunctionsFolder, model));
+            if (!(model.Data is Database)) return;
+            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), GlobalStrings.FolderTypes.TableFolder,
+                model));
+            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), GlobalStrings.FolderTypes.ViewFolder,
+                model));
+            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(),
+                GlobalStrings.FolderTypes.StoreProcedureFolder, model));
+            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(),
+                GlobalStrings.FolderTypes.FunctionsFolder, model));
         }
 
+        
         public void CreateFolderChildrenNodes(ObjectExplorerModel model)
-        {
+        { //TODO - See if there is a way to make this more "generic"
             switch (model.FullName)
             {
                 case GlobalStrings.FolderTypes.TableFolder:
                     CreateTableNodes(model);
                     break;
                 case GlobalStrings.FolderTypes.ViewFolder:
+                    CreateViewNodes(model);
                     break;
                 case GlobalStrings.FolderTypes.StoreProcedureFolder:
                     break;
@@ -88,12 +91,30 @@ namespace Databvase_Winforms.Models
             {
                 if (!(model.Data is Database database)) return;
                 if (database.Tables.Count <= 0) return;
-                foreach (Table table in database.Tables) ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, table));
+                foreach (Table table in database.Tables)
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, table));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+        }
+
+        private void CreateViewNodes(ObjectExplorerModel model)
+        {
+            try
+            {
+                if (!(model.Data is Database database)) return;
+                if ((database.Views.Count <= 0)) return;
+                foreach (View view in database.Views)
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, view));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+
         }
 
         public void CreateColumnNodes(ObjectExplorerModel model)
@@ -102,8 +123,8 @@ namespace Databvase_Winforms.Models
             {
                 if (!(model.Data is Table table)) return;
                 if (table.Columns.Count <= 0) return;
-                if (table.Columns.Count <= 0) return;
-                foreach (Column column in table.Columns) ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, column));
+                foreach (Column column in table.Columns)
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, column));
             }
             catch (Exception e)
             {
@@ -117,6 +138,6 @@ namespace Databvase_Winforms.Models
             _nodeId++;
             return _nodeId;
         }
-
     }
+
 }

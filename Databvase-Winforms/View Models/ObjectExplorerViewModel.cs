@@ -18,14 +18,14 @@ namespace Databvase_Winforms.View_Models
     public class ObjectExplorerViewModel
     {
 
-        private ObjectExplorerDataSourceModel DataSourceModel;
+        private ObjectExplorerDataSourceModel _dataSourceModel;
 
         public ObjectExplorerViewModel()
         {
             GetSelectTopDescriptionForPopupMenu();
             RegisterForMessages();
-            DataSourceModel = new ObjectExplorerDataSourceModel();
-            ObjectExplorerSource = DataSourceModel.ObjectExplorerDataSource;
+            _dataSourceModel = new ObjectExplorerDataSourceModel();
+            ObjectExplorerSource = _dataSourceModel.ObjectExplorerDataSource;
         }
 
         public virtual string SelectTopContextMenuItemDescription { get; set; }
@@ -42,7 +42,7 @@ namespace Databvase_Winforms.View_Models
             Messenger.Default.Register<SettingsUpdatedMessage>(this, typeof(SettingsUpdatedMessage).Name,
                 OnSettingsUpdated);
             Messenger.Default.Register<InstanceConnectedMessage>(this, typeof(InstanceConnectedMessage).Name,
-                InitInstances);
+                GetInstances);
             Messenger.Default.Register<DisconnectInstanceMessage>(this,
                 typeof(DisconnectInstanceMessage).Name, DisconnectInstance);
         }
@@ -61,19 +61,13 @@ namespace Databvase_Winforms.View_Models
             foreach (var item in instanceTree) ObjectExplorerSource.Remove(item);
         }
 
-        #region Adding Instance Node Methods
+        #region Object Explorer On Demand Data Methods
 
-        private void InitInstances(InstanceConnectedMessage message)
+        private void GetInstances(InstanceConnectedMessage message)
         {
             if (message == null) return;
-            DataSourceModel.GenerateInstances();
+            _dataSourceModel.GenerateInstances();
         }
-
-
-
-        #endregion
-
-        #region Object Explorer On Demand Data Methods
 
         public void ObjectExplorer_OnBeforeExpand(BeforeExpandEventArgs e)
         {
@@ -82,16 +76,16 @@ namespace Databvase_Winforms.View_Models
             switch (model.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
-                    DataSourceModel.CreateDatabaseNodes(model);
+                    _dataSourceModel.CreateDatabaseNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Database:
-                    DataSourceModel.CreateFolderNodesForDatabase(model);
+                    _dataSourceModel.CreateFolderNodesForDatabase(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Folder:
-                    DataSourceModel.CreateFolderChildrenNodes(model);
+                    _dataSourceModel.CreateFolderChildrenNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
-                    DataSourceModel.CreateColumnNodes(model);
+                    _dataSourceModel.CreateColumnNodes(model);
                     break;
             }
         }
