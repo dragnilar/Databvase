@@ -89,9 +89,9 @@ namespace Databvase_Winforms.Modules
 
         private void BindCommands(MVVMContextFluentAPI<ObjectExplorerViewModel> fluent)
         {
-            fluent.BindCommand(barButtonItemGenerateSelectAll, (x, p) => x.ScriptSelectAllForTable(p),
+            fluent.BindCommand(barButtonItemGenerateSelectAll, (x, p) => x.ScriptSelectAllForObjectExplorerData(p),
                 x => GetFocusedNodeTable());
-            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForTable(p),
+            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForObjectExplorerData(p),
                 x => GetFocusedNodeTable());
             fluent.BindCommand(barButtonItemNewQuery, (x,p) => x.NewQueryScript(p), x=> GetFocusedNodeDatabase());
         }
@@ -116,6 +116,9 @@ namespace Databvase_Winforms.Modules
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     popupMenuTable.ShowPopup(MousePosition);
                     break;
+                case GlobalStrings.ObjectExplorerTypes.View:
+                    popupMenuTable.ShowPopup(MousePosition);
+                    break;
                 default:
                     popupMenuObjectExplorer.ShowPopup(MousePosition);
                     break;
@@ -131,9 +134,9 @@ namespace Databvase_Winforms.Modules
             return treeListObjExp.FocusedNode?.GetValue(treeListColumnFullName).ToString();
         }
 
-        private Table GetFocusedNodeTable()
+        private object GetFocusedNodeTable()
         {
-            return (Table) treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
+            return treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }
 
         private Database GetFocusedNodeDatabase()

@@ -103,16 +103,17 @@ namespace Databvase_Winforms.View_Models
 
         #region Scripting
 
-        public void ScriptSelectAllForTable(Table selectedTable)
+
+        public void ScriptSelectTopForObjectExplorerData(object objectExplorerModelData)
         {
-            var selectStatement = new ScriptGeneratorService().GenerateSelectAllStatement(selectedTable);
-            new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
+            var response = new ScriptGeneratorService().GenerateSelectTopStatement(objectExplorerModelData);
+            new NewScriptMessage(response.script, response.parentName);
         }
 
-        public void ScriptSelectTopForTable(Table selectedTable)
+        public void ScriptSelectAllForObjectExplorerData(object objectExplorerModelData)
         {
-            var selectStatement = new ScriptGeneratorService().GenerateSelectTopStatement(selectedTable);
-            new NewScriptMessage(selectStatement, selectedTable.Parent.Name);
+            var response = new ScriptGeneratorService().GenerateSelectAllStatement(objectExplorerModelData);
+            new NewScriptMessage(response.script, response.parentName);
         }
 
         public void NewQueryScript(Database selectedDatabase)
