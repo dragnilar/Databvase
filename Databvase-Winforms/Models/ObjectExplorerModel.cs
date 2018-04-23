@@ -125,6 +125,45 @@ namespace Databvase_Winforms.Models
             Properties = string.Empty;
         }
 
+        /// <summary>
+        /// Creates a new object for a Stored Procedure data type
+        /// </summary>
+        /// <param name="storedProcedureId"></param>
+        /// <param name="folderId"></param>
+        /// <param name="storedProcedure"></param>
+        public ObjectExplorerModel(int storedProcedureId, int folderId, StoredProcedure storedProcedure)
+        {
+            ParentId = folderId;
+            Id = storedProcedureId;
+            InstanceName = storedProcedure.Parent.Parent.Name;
+            Type = GlobalStrings.ObjectExplorerTypes.View;
+            Data = storedProcedure;
+            FullName = $"{storedProcedure.Schema}.{storedProcedure.Name}";
+            ParentName = storedProcedure.Parent.Name;
+            ImageIndex = 5;
+            Properties = string.Empty;
+        }
+
+        /// <summary>
+        /// Creates a new object for a User Defined Function
+        /// </summary>
+        /// <param name="functionId"></param>
+        /// <param name="folderId"></param>
+        /// <param name="function"></param>
+        public ObjectExplorerModel(int functionId, int folderId, UserDefinedFunction function)
+        {
+            //TODO - Test to see if this the same thing as a "Function" in SQL or is it specifically for a type of function.
+            ParentId = folderId;
+            Id = functionId;
+            InstanceName = function.Parent.Parent.Name;
+            Type = GlobalStrings.ObjectExplorerTypes.View;
+            Data = function;
+            FullName = $"{function.Schema}.{function.Name}";
+            ParentName = function.Parent.Name;
+            ImageIndex = 5;
+            Properties = string.Empty;
+        }
+
         public int Id { get; set; }
         public int ParentId { get; set; }
         public string FullName { get; set; }

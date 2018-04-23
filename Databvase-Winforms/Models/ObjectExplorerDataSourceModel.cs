@@ -79,8 +79,10 @@ namespace Databvase_Winforms.Models
                     CreateViewNodes(model);
                     break;
                 case GlobalStrings.FolderTypes.StoreProcedureFolder:
+                    CreateStoredProcedureNodes(model);
                     break;
                 case GlobalStrings.FolderTypes.FunctionsFolder:
+                    CreateFunctionNodes(model);
                     break;
             }
         }
@@ -117,6 +119,36 @@ namespace Databvase_Winforms.Models
 
         }
 
+        private void CreateStoredProcedureNodes(ObjectExplorerModel model)
+        {
+            try
+            {
+                if (!(model.Data is Database database)) return;
+                if ((database.StoredProcedures.Count <= 0)) return;
+                foreach (StoredProcedure storedProcedure in database.StoredProcedures)
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, storedProcedure));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        private void CreateFunctionNodes(ObjectExplorerModel model)
+        {
+            try
+            {
+                if (!(model.Data is Database database)) return;
+                if ((database.UserDefinedFunctions.Count <= 0)) return;
+                foreach (UserDefinedFunction function in database.UserDefinedFunctions)
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, function));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
         public void CreateColumnNodes(ObjectExplorerModel model)
         {
             try
@@ -131,6 +163,8 @@ namespace Databvase_Winforms.Models
                 Console.WriteLine(e);
             }
         }
+
+
 
 
         private int GetNewNodeId()
