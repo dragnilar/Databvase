@@ -30,10 +30,12 @@ namespace Databvase_Winforms.Modules
         }
 
         private void TreeListObjExpOnNodeChanged(object sender, NodeChangedEventArgs e)
-        {
-            if (e.ChangeType != NodeChangeTypeEnum.Add) return;
-            if (!(e.Node.TreeList.GetRow(e.Node.Id) is ObjectExplorerModel model)) return;
-            SetHasChildrenForNode(e, model);
+        {   //TODO - This event is firing even when a node is already added, which may mean that this may not be the best way to flag a node as having children...
+            if (e.ChangeType == NodeChangeTypeEnum.Add)
+            {
+                if (!(e.Node.TreeList.GetRow(e.Node.Id) is ObjectExplorerModel model)) return;
+                SetHasChildrenForNode(e, model);
+            }
         }
 
         private static void SetHasChildrenForNode(NodeChangedEventArgs e, ObjectExplorerModel objectExplorerModel)
@@ -52,7 +54,7 @@ namespace Databvase_Winforms.Modules
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     e.Node.HasChildren = true;
                     break;
-                case GlobalStrings.ObjectExplorerTypes.Column:
+                default:
                     e.Node.HasChildren = false;
                     break;
             }
@@ -94,6 +96,21 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForObjectExplorerData(p),
                 x => GetFocusedNodeTable());
             fluent.BindCommand(barButtonItemNewQuery, (x,p) => x.NewQueryScript(p), x=> GetFocusedNodeDatabase());
+            fluent.SetTrigger(vm => vm.UnboundLoad, TriggerAction);
+        }
+
+        private void TriggerAction(bool useUnboundLoad)
+        {
+            if (useUnboundLoad)
+            {
+                treeListObjExp.BeginUnboundLoad();
+            }
+            else
+            {
+                treeListObjExp.EndUnboundLoad();
+                treeListObjExp.FocusedNode.Expand();
+                
+            }
         }
 
 
@@ -101,7 +118,6 @@ namespace Databvase_Winforms.Modules
 
         private void TreeListObjExpOnMouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Right) return;
             var treeList = sender as TreeList;
             var info = treeList.CalcHitInfo(e.Location);
             if (info?.Node != null) treeListObjExp.FocusedNode = info.Node;

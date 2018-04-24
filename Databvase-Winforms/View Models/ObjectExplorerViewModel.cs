@@ -20,7 +20,7 @@ namespace Databvase_Winforms.View_Models
     {
 
         private ObjectExplorerDataSourceModel _dataSourceModel;
-        private bool Disconnecting = false;
+        public virtual bool UnboundLoad { get; set; }
         public virtual string SelectTopContextMenuItemDescription { get; set; }
         public virtual BindingList<ObjectExplorerModel> ObjectExplorerSource { get; set; }
 
@@ -30,6 +30,7 @@ namespace Databvase_Winforms.View_Models
             RegisterForMessages();
             _dataSourceModel = new ObjectExplorerDataSourceModel();
             ObjectExplorerSource = _dataSourceModel.ObjectExplorerDataSource;
+            UnboundLoad = false;
         }
 
         private void GetSelectTopDescriptionForPopupMenu()
@@ -57,39 +58,39 @@ namespace Databvase_Winforms.View_Models
         private void DisconnectInstance(DisconnectInstanceMessage message)
         {
             if (message == null) return;
-            Disconnecting = true;
+            UnboundLoad = true;
             App.Connection.DisconnectCurrentInstance(); //TODO - See if there's a better way to do this...
             var instanceTree =  _dataSourceModel.ObjectExplorerDataSource.Where(r => r.InstanceName == message.InstanceName).ToList();
             foreach (var item in instanceTree)  _dataSourceModel.ObjectExplorerDataSource.Remove(item);
-            Disconnecting = false;
+            UnboundLoad = false;
         }
-
-        //TODO - This doesn't work, need to look into a way to update the tree list faster when disconnecting...
-        //private async void DisconnectAsync(DisconnectInstanceMessage message)
-        //{
-        //    if (message == null) return;
-        //    Disconnecting = true;
-        //    App.Connection.DisconnectCurrentInstance();
-        //    await Task.Run(() =>
-        //    {
-        //        var instanceTree = _dataSourceModel.ObjectExplorerDataSource.Where(r => r.InstanceName == message.InstanceName).ToList();
-        //        foreach (var item in instanceTree) _dataSourceModel.ObjectExplorerDataSource.Remove(item);
-        //    });
-        //    Disconnecting = false;
-        //}
 
         #region Object Explorer On Demand Data Methods
 
         private void GetInstances(InstanceConnectedMessage message)
         {
             if (message == null) return;
+            UnboundLoad = true;
             _dataSourceModel.GenerateInstances();
+            UnboundLoad = false;
         }
 
         public void ObjectExplorer_OnBeforeExpand(BeforeExpandEventArgs e)
         {
-            if (e.Node.Nodes.Count > 0 || Disconnecting) return;
-            var model = GetModelForNode(e.Node);
+            if (e.Node.Nodes.Count <= 0)
+            {
+                var model = GetModelForNode(e.Node);
+                LoadDataForObjectExplorerDynamically(model);
+            };
+            //UnboundLoad = true;
+
+            // UnboundLoad = false;
+            //e.Node.Expand();
+        }
+
+        private void LoadDataForObjectExplorerDynamically(ObjectExplorerModel model)
+        {
+            UnboundLoad = true;
             switch (model.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
@@ -98,13 +99,14 @@ namespace Databvase_Winforms.View_Models
                 case GlobalStrings.ObjectExplorerTypes.Database:
                     _dataSourceModel.CreateFolderNodesForDatabase(model);
                     break;
-                case GlobalStrings.ObjectExplorerTypes.Folder:
+                case GlobalStrings.ObjectExplorerTypes.Folder: 
                     _dataSourceModel.CreateFolderChildrenNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     _dataSourceModel.CreateColumnNodes(model);
                     break;
             }
+            UnboundLoad = false;
         }
 
 
