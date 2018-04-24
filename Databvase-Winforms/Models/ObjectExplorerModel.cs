@@ -145,14 +145,13 @@ namespace Databvase_Winforms.Models
         }
 
         /// <summary>
-        /// Creates a new object for a User Defined Function
+        /// Creates a new object for a User Defined Function (Note: This is the same thing as a function in SQL)
         /// </summary>
         /// <param name="functionId"></param>
         /// <param name="folderId"></param>
         /// <param name="function"></param>
         public ObjectExplorerModel(int functionId, int folderId, UserDefinedFunction function)
         {
-            //TODO - Test to see if this the same thing as a "Function" in SQL or is it specifically for a type of function.
             ParentId = folderId;
             Id = functionId;
             InstanceName = function.Parent.Parent.Name;
@@ -161,6 +160,24 @@ namespace Databvase_Winforms.Models
             FullName = $"{function.Schema}.{function.Name}";
             ParentName = function.Parent.Name;
             ImageIndex = 5;
+            Properties = string.Empty;
+        }
+
+        /// <summary>
+        /// Creates a nothing/empty node to signify that nothing was found or is available (most likely due to login permissions)
+        /// </summary>
+        /// <param name="emptyNodeId"></param>
+        /// <param name="parentModel"></param>
+        public ObjectExplorerModel(int emptyNodeId, ObjectExplorerModel parentModel)
+        {
+            ParentId = parentModel.Id;
+            Id = emptyNodeId;
+            InstanceName = parentModel.InstanceName;
+            Type = GlobalStrings.ObjectExplorerTypes.Nothing;
+            Data = null;
+            FullName = "Nothing available";
+            ParentName = parentModel.FullName;
+            ImageIndex = 0;
             Properties = string.Empty;
         }
 

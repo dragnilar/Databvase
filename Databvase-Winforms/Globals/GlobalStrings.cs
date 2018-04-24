@@ -28,6 +28,7 @@ namespace Databvase_Winforms.Globals
             public const string Column = "Column";
             public const string Folder = "Folder";
             public const string View = "View";
+            public const string Nothing = "Nothing";
         }
 
         public static class FolderTypes

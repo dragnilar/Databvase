@@ -293,6 +293,7 @@
     <Compile Include="Services\SkinService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Utilities\SMOChecker.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Views\ConnectionStringView.cs">
@@ -415,9 +416,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7">
       <Visible>False</Visible>

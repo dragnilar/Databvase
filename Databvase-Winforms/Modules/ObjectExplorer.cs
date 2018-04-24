@@ -108,8 +108,9 @@ namespace Databvase_Winforms.Modules
             else
             {
                 treeListObjExp.EndUnboundLoad();
-                treeListObjExp.FocusedNode.Expand();
-                
+                treeListObjExp.FocusedNode?.Expand();
+
+
             }
         }
 
