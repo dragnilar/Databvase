@@ -30,6 +30,10 @@ Release Notes:\par
 - Added text coloring options to the settings window\par
 \par
 - Added properties column to the object explorer (shows instance edition and column data types)\par
+\par
+- Increased the performance of the object explorer when connecting, disconnecting and building nodes.\par
+\par
+- Added ability to see see if a node has no children nodes in the object explorer (I.E. If a database has no tables, a "Nothing available" node will appear. This is typically in situations where there actually is nothing there or your SQL login does not have permission to see the data.) \par
 \ul\fs24\par
 \par
 \b\fs16 Rev 7 Changes\b0\fs24\par
@@ -255,6 +259,8 @@ NOTE: Pretty much all dependencies are embedded in the executable file to keep t
 Known Bugs/ Limitations\ulnone\par
 \par
 - The settings window does not expose very many settings at this point. This window will be built upon as time permits.\par
+\par
+- Nothing nodes, stored procedures and functions do not have their own unique icons on the object explorer.\par
 \par
 - Grid exporting and printing performance can be slow with large data sets and may cause excessive memory consumption when using certain file formats (I.E. PDF). This is more or less a limitation of the "out of box" functionality of the DevExpress grid. This may or may not be looked into improving upon down the road, depending on the level of interest.\par
 \par
