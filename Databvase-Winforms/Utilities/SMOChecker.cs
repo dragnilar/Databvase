@@ -7,40 +7,24 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Utilities
 {
-    public static class SMOChecker
+    public class SMOChecker
     {
-        //TODO - Work in progress...
-        static bool _returnValue;
-
-        public static bool HasChildren(object smoObject)
+        public bool SqlObjectHasChildren(object t)
         {
-            var action = SMOActionDictionary[smoObject.GetType()];
-            action(smoObject);
-            return _returnValue;
+            switch (t)
+            {
+                case Table table:
+                    return table.Columns.Count > 0;
+                case Database database:
+                    return database.Tables.Count > 0;
+                case Server server:
+                    return server.Databases.Count > 0;
+                    default:
+                        return false;
+            }
         }
 
-
-        private static void TableHasColumns(object smoObject)
-        {
-            _returnValue = ((Table) smoObject).Columns.Count > 0;
-        }
-
-        private static void DatabaseHasTables(object smoObject)
-        {
-            _returnValue = ((Database) smoObject).Tables.Count > 0;
-        }
-
-        private static void ServerHasDatabases(object smoObject)
-        {
-            _returnValue = ((Server) smoObject).Databases.Count > 0;
-        }
-
-        private static Dictionary<Type, Action<object>> SMOActionDictionary = new Dictionary<Type, Action<object>>
-        {
-            {typeof(Table), TableHasColumns},
-            {typeof(Database), DatabaseHasTables},
-            {typeof(Server), ServerHasDatabases}
-        };
+        
     }
 
       

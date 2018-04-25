@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Media.Media3D;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Utilities;
 using Microsoft.SqlServer.Management.Smo;
@@ -9,9 +11,24 @@ namespace Databvase_Winforms.Models
 {
     public class ObjectExplorerDataSourceModel
     {
-        //TODO - The nothing node creation routine is causing a lot of duplication.
         private int _nodeId;
         public BindingList<ObjectExplorerModel> ObjectExplorerDataSource { get; set; }
+        private Dictionary<string, Action<ObjectExplorerModel>> _folderActionDictionary = null;
+
+        private Dictionary<string, Action<ObjectExplorerModel>> FolderActionDictionary
+        {
+            get
+            {
+                return _folderActionDictionary ?? (_folderActionDictionary =
+                           new Dictionary<string, Action<ObjectExplorerModel>>()
+                           {
+                               {GlobalStrings.FolderTypes.StoreProcedureFolder, CreateStoredProcedureNodes},
+                               {GlobalStrings.FolderTypes.FunctionsFolder, CreateFunctionNodes},
+                               {GlobalStrings.FolderTypes.TableFolder, CreateTableNodes},
+                               {GlobalStrings.FolderTypes.ViewFolder, CreateViewNodes},
+                           });
+            }
+        }
 
         public ObjectExplorerDataSourceModel()
         {
@@ -76,22 +93,9 @@ namespace Databvase_Winforms.Models
 
         
         public void CreateFolderChildrenNodes(ObjectExplorerModel model)
-        { //TODO - See if there is a way to make this more "generic"
-            switch (model.FullName)
-            {
-                case GlobalStrings.FolderTypes.TableFolder:
-                    CreateTableNodes(model);
-                    break;
-                case GlobalStrings.FolderTypes.ViewFolder:
-                    CreateViewNodes(model);
-                    break;
-                case GlobalStrings.FolderTypes.StoreProcedureFolder:
-                    CreateStoredProcedureNodes(model);
-                    break;
-                case GlobalStrings.FolderTypes.FunctionsFolder:
-                    CreateFunctionNodes(model);
-                    break;
-            }
+        {
+            var createFolderNodeAction = FolderActionDictionary[model.FullName];
+            createFolderNodeAction.Invoke(model);
         }
 
         private void CreateTableNodes(ObjectExplorerModel model)
