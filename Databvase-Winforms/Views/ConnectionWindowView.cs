@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Databvase_Winforms.View_Models;
 using DevExpress.Utils.MVVM;
 using DevExpress.Utils.MVVM.Services;
@@ -9,6 +10,7 @@ namespace Databvase_Winforms.Views
 {
     public partial class ConnectionWindowView : XtraForm
     {
+        
         //TODO this is just plain nasty, clean it up
         public ConnectionWindowView()
         {
@@ -18,6 +20,27 @@ namespace Databvase_Winforms.Views
             MVVMContext.RegisterXtraMessageBoxService();
 
             HackControls();
+            HookupEvents();
+        }
+
+        private void HookupEvents()
+        {
+            simpleButtonShowPassword.Click += SimpleButtonShowPasswordOnClick;
+        }
+
+        private void SimpleButtonShowPasswordOnClick(object sender, EventArgs e)
+        {
+            if (simpleButtonShowPassword.Text == "Show Password")
+            {
+
+                textEditPassword.Properties.PasswordChar = '\0';
+                simpleButtonShowPassword.Text = "Hide Password";
+            }
+            else
+            {
+                textEditPassword.Properties.PasswordChar = '*';
+                simpleButtonShowPassword.Text = "Show Password";
+            }
         }
 
         //Hacks to enable feature on controls that are not natively supported by DX
@@ -65,6 +88,7 @@ namespace Databvase_Winforms.Views
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
             fluent.SetBinding(comboBoxEditInstances, x => x.EditValue, vm => vm.DataSource);
             fluent.SetBinding(simpleButtonConnect, x => x.Enabled, vm => vm.CanConnect);
+            fluent.SetBinding(checkEditShowOnStartup, x => x.Checked, x => x.ShowOnStartup);
 
 
             fluent.SetTrigger(x => x.WindowState, state =>

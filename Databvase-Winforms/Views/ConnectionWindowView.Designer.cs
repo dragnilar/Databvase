@@ -34,26 +34,38 @@ namespace Databvase_Winforms.Views
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionWindowView));
             this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPageConnectionStringManager = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.lcFrame1 = new DevExpress.XtraLayout.LayoutControl();
+            this.lcFrameConnectionStringManager = new DevExpress.XtraLayout.LayoutControl();
+            this.pictureEditLogo = new DevExpress.XtraEditors.PictureEdit();
+            this.checkEditShowOnStartup = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControlHeaderLabel = new DevExpress.XtraEditors.LabelControl();
             this.simpleButtonCancel = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonCreateNewString = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonConnect = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpEditConnectionStrings = new DevExpress.XtraEditors.LookUpEdit();
-            this.lcgFrame1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lcgFrameConnectionManager = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lcConnectionStringsLookUp = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciConnectButton = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciCreateNewConnection = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciMainHeader = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem27 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.simpleSeparatorConnectionManagerHeader = new DevExpress.XtraLayout.SimpleSeparator();
+            this.emptySpaceItem30 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciConnectButton = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleSeparatorConnectionManagerButtons = new DevExpress.XtraLayout.SimpleSeparator();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem31 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.cliLogo = new DevExpress.XtraLayout.LayoutControlItem();
             this.navigationPageConnetionStringBuilder = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lciConnectionStringBuilder = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButtonShowPassword = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonSaveAndTest = new DevExpress.XtraEditors.SimpleButton();
             this.labelControlNote = new DevExpress.XtraEditors.LabelControl();
             this.simpleButtonCancelCreateConnection = new DevExpress.XtraEditors.SimpleButton();
@@ -97,27 +109,39 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem32 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.splashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true);
             this.mvvmContextConnectionStringView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.navigationPageConnectionStringManager.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lcFrame1)).BeginInit();
-            this.lcFrame1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lcFrameConnectionStringManager)).BeginInit();
+            this.lcFrameConnectionStringManager.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditShowOnStartup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditConnectionStrings.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgFrame1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgFrameConnectionManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcConnectionStringsLookUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciConnectButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCreateNewConnection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMainHeader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparatorConnectionManagerHeader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciConnectButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparatorConnectionManagerButtons)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cliLogo)).BeginInit();
             this.navigationPageConnetionStringBuilder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lciConnectionStringBuilder)).BeginInit();
             this.lciConnectionStringBuilder.SuspendLayout();
@@ -160,6 +184,8 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextConnectionStringView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,33 +206,77 @@ namespace Databvase_Winforms.Views
             // 
             // navigationPageConnectionStringManager
             // 
-            this.navigationPageConnectionStringManager.Controls.Add(this.lcFrame1);
+            this.navigationPageConnectionStringManager.Caption = "navigationPageConnectionStringManager";
+            this.navigationPageConnectionStringManager.Controls.Add(this.lcFrameConnectionStringManager);
             this.navigationPageConnectionStringManager.Name = "navigationPageConnectionStringManager";
             this.navigationPageConnectionStringManager.Size = new System.Drawing.Size(609, 353);
             // 
-            // lcFrame1
+            // lcFrameConnectionStringManager
             // 
-            this.lcFrame1.Controls.Add(this.simpleButtonCancel);
-            this.lcFrame1.Controls.Add(this.simpleButtonCreateNewString);
-            this.lcFrame1.Controls.Add(this.simpleButtonConnect);
-            this.lcFrame1.Controls.Add(this.lookUpEditConnectionStrings);
-            this.lcFrame1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lcFrame1.Location = new System.Drawing.Point(0, 0);
-            this.lcFrame1.Name = "lcFrame1";
-            this.lcFrame1.Root = this.lcgFrame1;
-            this.lcFrame1.Size = new System.Drawing.Size(609, 353);
-            this.lcFrame1.TabIndex = 0;
-            this.lcFrame1.Text = "layoutControl1";
+            this.lcFrameConnectionStringManager.Controls.Add(this.pictureEditLogo);
+            this.lcFrameConnectionStringManager.Controls.Add(this.checkEditShowOnStartup);
+            this.lcFrameConnectionStringManager.Controls.Add(this.labelControlHeaderLabel);
+            this.lcFrameConnectionStringManager.Controls.Add(this.simpleButtonCancel);
+            this.lcFrameConnectionStringManager.Controls.Add(this.simpleButtonCreateNewString);
+            this.lcFrameConnectionStringManager.Controls.Add(this.simpleButtonConnect);
+            this.lcFrameConnectionStringManager.Controls.Add(this.lookUpEditConnectionStrings);
+            this.lcFrameConnectionStringManager.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcFrameConnectionStringManager.Location = new System.Drawing.Point(0, 0);
+            this.lcFrameConnectionStringManager.Name = "lcFrameConnectionStringManager";
+            this.lcFrameConnectionStringManager.Root = this.lcgFrameConnectionManager;
+            this.lcFrameConnectionStringManager.Size = new System.Drawing.Size(609, 353);
+            this.lcFrameConnectionStringManager.TabIndex = 0;
+            this.lcFrameConnectionStringManager.Text = "layoutControl1";
+            // 
+            // pictureEditLogo
+            // 
+            this.pictureEditLogo.EditValue = ((object)(resources.GetObject("pictureEditLogo.EditValue")));
+            this.pictureEditLogo.Location = new System.Drawing.Point(180, 50);
+            this.pictureEditLogo.Name = "pictureEditLogo";
+            this.pictureEditLogo.Properties.AllowFocused = false;
+            this.pictureEditLogo.Properties.AllowScrollOnMouseWheel = DevExpress.Utils.DefaultBoolean.False;
+            this.pictureEditLogo.Properties.AllowZoomOnMouseWheel = DevExpress.Utils.DefaultBoolean.False;
+            this.pictureEditLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEditLogo.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEditLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEditLogo.Properties.PictureInterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            this.pictureEditLogo.Properties.ReadOnly = true;
+            this.pictureEditLogo.Properties.ShowMenu = false;
+            this.pictureEditLogo.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.False;
+            this.pictureEditLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            this.pictureEditLogo.Size = new System.Drawing.Size(55, 39);
+            this.pictureEditLogo.StyleController = this.lcFrameConnectionStringManager;
+            this.pictureEditLogo.TabIndex = 10;
+            // 
+            // checkEditShowOnStartup
+            // 
+            this.checkEditShowOnStartup.Location = new System.Drawing.Point(393, 322);
+            this.checkEditShowOnStartup.Name = "checkEditShowOnStartup";
+            this.checkEditShowOnStartup.Properties.Caption = "Always show this window on startup";
+            this.checkEditShowOnStartup.Size = new System.Drawing.Size(204, 19);
+            this.checkEditShowOnStartup.StyleController = this.lcFrameConnectionStringManager;
+            this.checkEditShowOnStartup.TabIndex = 9;
+            // 
+            // labelControlHeaderLabel
+            // 
+            this.labelControlHeaderLabel.Appearance.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlHeaderLabel.Appearance.Options.UseFont = true;
+            this.labelControlHeaderLabel.Location = new System.Drawing.Point(239, 50);
+            this.labelControlHeaderLabel.Name = "labelControlHeaderLabel";
+            this.labelControlHeaderLabel.Size = new System.Drawing.Size(182, 39);
+            this.labelControlHeaderLabel.StyleController = this.lcFrameConnectionStringManager;
+            this.labelControlHeaderLabel.TabIndex = 8;
+            this.labelControlHeaderLabel.Text = "Databvase!!!";
             // 
             // simpleButtonCancel
             // 
             this.simpleButtonCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCancel.Appearance.Options.UseFont = true;
             this.simpleButtonCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancel.ImageOptions.Image")));
-            this.simpleButtonCancel.Location = new System.Drawing.Point(497, 283);
+            this.simpleButtonCancel.Location = new System.Drawing.Point(491, 250);
             this.simpleButtonCancel.Name = "simpleButtonCancel";
-            this.simpleButtonCancel.Size = new System.Drawing.Size(90, 23);
-            this.simpleButtonCancel.StyleController = this.lcFrame1;
+            this.simpleButtonCancel.Size = new System.Drawing.Size(86, 23);
+            this.simpleButtonCancel.StyleController = this.lcFrameConnectionStringManager;
             this.simpleButtonCancel.TabIndex = 7;
             this.simpleButtonCancel.Text = "Cancel";
             // 
@@ -215,28 +285,28 @@ namespace Databvase_Winforms.Views
             this.simpleButtonCreateNewString.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCreateNewString.Appearance.Options.UseFont = true;
             this.simpleButtonCreateNewString.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCreateNewString.ImageOptions.Image")));
-            this.simpleButtonCreateNewString.Location = new System.Drawing.Point(260, 283);
+            this.simpleButtonCreateNewString.Location = new System.Drawing.Point(262, 250);
             this.simpleButtonCreateNewString.Name = "simpleButtonCreateNewString";
-            this.simpleButtonCreateNewString.Size = new System.Drawing.Size(212, 23);
-            this.simpleButtonCreateNewString.StyleController = this.lcFrame1;
+            this.simpleButtonCreateNewString.Size = new System.Drawing.Size(204, 23);
+            this.simpleButtonCreateNewString.StyleController = this.lcFrameConnectionStringManager;
             this.simpleButtonCreateNewString.TabIndex = 6;
-            this.simpleButtonCreateNewString.Text = "Create A New Connection String";
+            this.simpleButtonCreateNewString.Text = "Create A New Connection";
             // 
             // simpleButtonConnect
             // 
             this.simpleButtonConnect.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonConnect.Appearance.Options.UseFont = true;
             this.simpleButtonConnect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonConnect.ImageOptions.Image")));
-            this.simpleButtonConnect.Location = new System.Drawing.Point(103, 283);
+            this.simpleButtonConnect.Location = new System.Drawing.Point(109, 250);
             this.simpleButtonConnect.Name = "simpleButtonConnect";
-            this.simpleButtonConnect.Size = new System.Drawing.Size(125, 23);
-            this.simpleButtonConnect.StyleController = this.lcFrame1;
+            this.simpleButtonConnect.Size = new System.Drawing.Size(126, 23);
+            this.simpleButtonConnect.StyleController = this.lcFrameConnectionStringManager;
             this.simpleButtonConnect.TabIndex = 5;
             this.simpleButtonConnect.Text = "Connect!";
             // 
             // lookUpEditConnectionStrings
             // 
-            this.lookUpEditConnectionStrings.Location = new System.Drawing.Point(12, 99);
+            this.lookUpEditConnectionStrings.Location = new System.Drawing.Point(12, 143);
             this.lookUpEditConnectionStrings.Name = "lookUpEditConnectionStrings";
             this.lookUpEditConnectionStrings.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEditConnectionStrings.Properties.Appearance.Options.UseFont = true;
@@ -244,98 +314,89 @@ namespace Databvase_Winforms.Views
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpEditConnectionStrings.Properties.NullText = "";
             this.lookUpEditConnectionStrings.Size = new System.Drawing.Size(585, 30);
-            this.lookUpEditConnectionStrings.StyleController = this.lcFrame1;
+            this.lookUpEditConnectionStrings.StyleController = this.lcFrameConnectionStringManager;
             this.lookUpEditConnectionStrings.TabIndex = 4;
             // 
-            // lcgFrame1
+            // lcgFrameConnectionManager
             // 
-            this.lcgFrame1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.lcgFrame1.GroupBordersVisible = false;
-            this.lcgFrame1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lcgFrameConnectionManager.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.lcgFrameConnectionManager.GroupBordersVisible = false;
+            this.lcgFrameConnectionManager.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lcConnectionStringsLookUp,
-            this.lciConnectButton,
-            this.emptySpaceItem2,
-            this.layoutControlItem1,
+            this.lciCreateNewConnection,
             this.emptySpaceItem3,
             this.emptySpaceItem1,
             this.emptySpaceItem5,
             this.emptySpaceItem6,
             this.layoutControlItem2,
             this.emptySpaceItem7,
-            this.simpleSeparator1,
-            this.emptySpaceItem19});
-            this.lcgFrame1.Name = "Root";
-            this.lcgFrame1.Size = new System.Drawing.Size(609, 353);
-            this.lcgFrame1.TextVisible = false;
+            this.emptySpaceItem19,
+            this.lciMainHeader,
+            this.emptySpaceItem23,
+            this.emptySpaceItem27,
+            this.emptySpaceItem2,
+            this.simpleSeparatorConnectionManagerHeader,
+            this.emptySpaceItem30,
+            this.lciConnectButton,
+            this.simpleSeparatorConnectionManagerButtons,
+            this.layoutControlItem1,
+            this.emptySpaceItem31,
+            this.cliLogo});
+            this.lcgFrameConnectionManager.Name = "lcgFrameConnectionManager";
+            this.lcgFrameConnectionManager.Size = new System.Drawing.Size(609, 353);
+            this.lcgFrameConnectionManager.TextVisible = false;
             // 
             // lcConnectionStringsLookUp
             // 
             this.lcConnectionStringsLookUp.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcConnectionStringsLookUp.AppearanceItemCaption.Options.UseFont = true;
             this.lcConnectionStringsLookUp.Control = this.lookUpEditConnectionStrings;
-            this.lcConnectionStringsLookUp.Location = new System.Drawing.Point(0, 65);
+            this.lcConnectionStringsLookUp.Location = new System.Drawing.Point(0, 109);
             this.lcConnectionStringsLookUp.Name = "lcConnectionStringsLookUp";
             this.lcConnectionStringsLookUp.Size = new System.Drawing.Size(589, 56);
-            this.lcConnectionStringsLookUp.Text = "Saved Connection Strings";
+            this.lcConnectionStringsLookUp.Text = "Saved Connections";
             this.lcConnectionStringsLookUp.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lcConnectionStringsLookUp.TextSize = new System.Drawing.Size(180, 19);
+            this.lcConnectionStringsLookUp.TextSize = new System.Drawing.Size(133, 19);
             // 
-            // lciConnectButton
+            // lciCreateNewConnection
             // 
-            this.lciConnectButton.Control = this.simpleButtonConnect;
-            this.lciConnectButton.Location = new System.Drawing.Point(91, 271);
-            this.lciConnectButton.Name = "lciConnectButton";
-            this.lciConnectButton.Size = new System.Drawing.Size(129, 27);
-            this.lciConnectButton.TextSize = new System.Drawing.Size(0, 0);
-            this.lciConnectButton.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(589, 65);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.simpleButtonCreateNewString;
-            this.layoutControlItem1.Location = new System.Drawing.Point(248, 271);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(216, 27);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
+            this.lciCreateNewConnection.Control = this.simpleButtonCreateNewString;
+            this.lciCreateNewConnection.Location = new System.Drawing.Point(250, 238);
+            this.lciCreateNewConnection.Name = "lciCreateNewConnection";
+            this.lciCreateNewConnection.Size = new System.Drawing.Size(208, 27);
+            this.lciCreateNewConnection.TextSize = new System.Drawing.Size(0, 0);
+            this.lciCreateNewConnection.TextVisible = false;
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(220, 271);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(227, 238);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(28, 27);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(23, 27);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 121);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 165);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(589, 148);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(589, 71);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem3";
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 298);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 265);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(589, 35);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(589, 45);
             this.emptySpaceItem5.Text = "emptySpaceItem3";
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(464, 271);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(458, 238);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(21, 27);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -343,43 +404,128 @@ namespace Databvase_Winforms.Views
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.simpleButtonCancel;
-            this.layoutControlItem2.Location = new System.Drawing.Point(485, 271);
+            this.layoutControlItem2.Location = new System.Drawing.Point(479, 238);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(94, 27);
+            this.layoutControlItem2.Size = new System.Drawing.Size(90, 27);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(579, 271);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(569, 238);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(10, 27);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(20, 27);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleSeparator1
-            // 
-            this.simpleSeparator1.AllowHotTrack = false;
-            this.simpleSeparator1.Location = new System.Drawing.Point(91, 269);
-            this.simpleSeparator1.Name = "simpleSeparator1";
-            this.simpleSeparator1.Size = new System.Drawing.Size(498, 2);
             // 
             // emptySpaceItem19
             // 
             this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 269);
+            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 238);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(91, 29);
+            this.emptySpaceItem19.Size = new System.Drawing.Size(97, 27);
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciMainHeader
+            // 
+            this.lciMainHeader.Control = this.labelControlHeaderLabel;
+            this.lciMainHeader.Location = new System.Drawing.Point(227, 38);
+            this.lciMainHeader.Name = "lciMainHeader";
+            this.lciMainHeader.Size = new System.Drawing.Size(186, 43);
+            this.lciMainHeader.TextSize = new System.Drawing.Size(0, 0);
+            this.lciMainHeader.TextVisible = false;
+            // 
+            // emptySpaceItem23
+            // 
+            this.emptySpaceItem23.AllowHotTrack = false;
+            this.emptySpaceItem23.Location = new System.Drawing.Point(0, 38);
+            this.emptySpaceItem23.Name = "emptySpaceItem23";
+            this.emptySpaceItem23.Size = new System.Drawing.Size(168, 43);
+            this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem27
+            // 
+            this.emptySpaceItem27.AllowHotTrack = false;
+            this.emptySpaceItem27.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem27.Name = "emptySpaceItem27";
+            this.emptySpaceItem27.Size = new System.Drawing.Size(589, 38);
+            this.emptySpaceItem27.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 81);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(589, 26);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // simpleSeparatorConnectionManagerHeader
+            // 
+            this.simpleSeparatorConnectionManagerHeader.AllowHotTrack = false;
+            this.simpleSeparatorConnectionManagerHeader.Location = new System.Drawing.Point(0, 107);
+            this.simpleSeparatorConnectionManagerHeader.Name = "simpleSeparatorConnectionManagerHeader";
+            this.simpleSeparatorConnectionManagerHeader.Size = new System.Drawing.Size(589, 2);
+            // 
+            // emptySpaceItem30
+            // 
+            this.emptySpaceItem30.AllowHotTrack = false;
+            this.emptySpaceItem30.Location = new System.Drawing.Point(413, 38);
+            this.emptySpaceItem30.Name = "emptySpaceItem30";
+            this.emptySpaceItem30.Size = new System.Drawing.Size(176, 43);
+            this.emptySpaceItem30.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciConnectButton
+            // 
+            this.lciConnectButton.Control = this.simpleButtonConnect;
+            this.lciConnectButton.Location = new System.Drawing.Point(97, 238);
+            this.lciConnectButton.Name = "lciConnectButton";
+            this.lciConnectButton.Size = new System.Drawing.Size(130, 27);
+            this.lciConnectButton.TextSize = new System.Drawing.Size(0, 0);
+            this.lciConnectButton.TextVisible = false;
+            // 
+            // simpleSeparatorConnectionManagerButtons
+            // 
+            this.simpleSeparatorConnectionManagerButtons.AllowHotTrack = false;
+            this.simpleSeparatorConnectionManagerButtons.Location = new System.Drawing.Point(0, 236);
+            this.simpleSeparatorConnectionManagerButtons.Name = "simpleSeparatorConnectionManagerButtons";
+            this.simpleSeparatorConnectionManagerButtons.Size = new System.Drawing.Size(589, 2);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.checkEditShowOnStartup;
+            this.layoutControlItem1.Location = new System.Drawing.Point(381, 310);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(208, 23);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // emptySpaceItem31
+            // 
+            this.emptySpaceItem31.AllowHotTrack = false;
+            this.emptySpaceItem31.Location = new System.Drawing.Point(0, 310);
+            this.emptySpaceItem31.Name = "emptySpaceItem31";
+            this.emptySpaceItem31.Size = new System.Drawing.Size(381, 23);
+            this.emptySpaceItem31.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // cliLogo
+            // 
+            this.cliLogo.Control = this.pictureEditLogo;
+            this.cliLogo.Location = new System.Drawing.Point(168, 38);
+            this.cliLogo.Name = "cliLogo";
+            this.cliLogo.Size = new System.Drawing.Size(59, 43);
+            this.cliLogo.TextSize = new System.Drawing.Size(0, 0);
+            this.cliLogo.TextVisible = false;
             // 
             // navigationPageConnetionStringBuilder
             // 
+            this.navigationPageConnetionStringBuilder.Caption = "navigationPageConnetionStringBuilder";
             this.navigationPageConnetionStringBuilder.Controls.Add(this.lciConnectionStringBuilder);
             this.navigationPageConnetionStringBuilder.Name = "navigationPageConnetionStringBuilder";
             this.navigationPageConnetionStringBuilder.Size = new System.Drawing.Size(609, 353);
             // 
             // lciConnectionStringBuilder
             // 
+            this.lciConnectionStringBuilder.Controls.Add(this.simpleButtonShowPassword);
             this.lciConnectionStringBuilder.Controls.Add(this.simpleButtonSaveAndTest);
             this.lciConnectionStringBuilder.Controls.Add(this.labelControlNote);
             this.lciConnectionStringBuilder.Controls.Add(this.simpleButtonCancelCreateConnection);
@@ -397,6 +543,16 @@ namespace Databvase_Winforms.Views
             this.lciConnectionStringBuilder.Size = new System.Drawing.Size(609, 353);
             this.lciConnectionStringBuilder.TabIndex = 6;
             this.lciConnectionStringBuilder.Text = "layoutControl1";
+            // 
+            // simpleButtonShowPassword
+            // 
+            this.simpleButtonShowPassword.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonShowPassword.ImageOptions.Image")));
+            this.simpleButtonShowPassword.Location = new System.Drawing.Point(447, 178);
+            this.simpleButtonShowPassword.Name = "simpleButtonShowPassword";
+            this.simpleButtonShowPassword.Size = new System.Drawing.Size(108, 22);
+            this.simpleButtonShowPassword.StyleController = this.lciConnectionStringBuilder;
+            this.simpleButtonShowPassword.TabIndex = 10;
+            this.simpleButtonShowPassword.Text = "Show Password";
             // 
             // simpleButtonSaveAndTest
             // 
@@ -435,7 +591,7 @@ namespace Databvase_Winforms.Views
             // 
             // textEditNickName
             // 
-            this.textEditNickName.Location = new System.Drawing.Point(181, 249);
+            this.textEditNickName.Location = new System.Drawing.Point(181, 250);
             this.textEditNickName.Name = "textEditNickName";
             this.textEditNickName.Size = new System.Drawing.Size(249, 20);
             this.textEditNickName.StyleController = this.lciConnectionStringBuilder;
@@ -445,6 +601,7 @@ namespace Databvase_Winforms.Views
             // 
             this.textEditPassword.Location = new System.Drawing.Point(181, 178);
             this.textEditPassword.Name = "textEditPassword";
+            this.textEditPassword.Properties.PasswordChar = '*';
             this.textEditPassword.Size = new System.Drawing.Size(249, 20);
             this.textEditPassword.StyleController = this.lciConnectionStringBuilder;
             this.textEditPassword.TabIndex = 1;
@@ -487,7 +644,7 @@ namespace Databvase_Winforms.Views
             0,
             0,
             0});
-            this.spinEditConnectionTimeout.Location = new System.Drawing.Point(181, 212);
+            this.spinEditConnectionTimeout.Location = new System.Drawing.Point(181, 214);
             this.spinEditConnectionTimeout.Name = "spinEditConnectionTimeout";
             this.spinEditConnectionTimeout.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -541,7 +698,9 @@ namespace Databvase_Winforms.Views
             this.lciTimeout,
             this.emptySpaceItem8,
             this.emptySpaceItem9,
-            this.emptySpaceItem12});
+            this.emptySpaceItem12,
+            this.emptySpaceItem32,
+            this.layoutControlItem3});
             this.lcgConnectionStringBuilder.Name = "lcgConnectionStringBuilder";
             this.lcgConnectionStringBuilder.Size = new System.Drawing.Size(609, 353);
             this.lcgConnectionStringBuilder.TextVisible = false;
@@ -586,7 +745,7 @@ namespace Databvase_Winforms.Views
             this.lciPassword.CustomizationFormText = "Password";
             this.lciPassword.Location = new System.Drawing.Point(0, 166);
             this.lciPassword.Name = "lciPassword";
-            this.lciPassword.Size = new System.Drawing.Size(422, 24);
+            this.lciPassword.Size = new System.Drawing.Size(422, 26);
             this.lciPassword.Text = "Password";
             this.lciPassword.TextSize = new System.Drawing.Size(166, 16);
             // 
@@ -595,7 +754,7 @@ namespace Databvase_Winforms.Views
             this.lciNickname.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lciNickname.AppearanceItemCaption.Options.UseFont = true;
             this.lciNickname.Control = this.textEditNickName;
-            this.lciNickname.Location = new System.Drawing.Point(0, 237);
+            this.lciNickname.Location = new System.Drawing.Point(0, 238);
             this.lciNickname.Name = "lciNickname";
             this.lciNickname.Size = new System.Drawing.Size(422, 24);
             this.lciNickname.Text = "Connection String NickName:";
@@ -637,7 +796,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem14
             // 
             this.emptySpaceItem14.AllowHotTrack = false;
-            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 190);
+            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 192);
             this.emptySpaceItem14.Name = "emptySpaceItem14";
             this.emptySpaceItem14.Size = new System.Drawing.Size(589, 10);
             this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
@@ -645,9 +804,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem15
             // 
             this.emptySpaceItem15.AllowHotTrack = false;
-            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 261);
+            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 262);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(589, 31);
+            this.emptySpaceItem15.Size = new System.Drawing.Size(589, 30);
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem16
@@ -678,7 +837,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem20
             // 
             this.emptySpaceItem20.AllowHotTrack = false;
-            this.emptySpaceItem20.Location = new System.Drawing.Point(422, 237);
+            this.emptySpaceItem20.Location = new System.Drawing.Point(422, 238);
             this.emptySpaceItem20.Name = "emptySpaceItem20";
             this.emptySpaceItem20.Size = new System.Drawing.Size(167, 24);
             this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
@@ -686,9 +845,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem21
             // 
             this.emptySpaceItem21.AllowHotTrack = false;
-            this.emptySpaceItem21.Location = new System.Drawing.Point(422, 166);
+            this.emptySpaceItem21.Location = new System.Drawing.Point(547, 166);
             this.emptySpaceItem21.Name = "emptySpaceItem21";
-            this.emptySpaceItem21.Size = new System.Drawing.Size(167, 24);
+            this.emptySpaceItem21.Size = new System.Drawing.Size(42, 26);
             this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem24
@@ -792,7 +951,7 @@ namespace Databvase_Winforms.Views
             this.lciTimeout.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lciTimeout.AppearanceItemCaption.Options.UseFont = true;
             this.lciTimeout.Control = this.spinEditConnectionTimeout;
-            this.lciTimeout.Location = new System.Drawing.Point(0, 200);
+            this.lciTimeout.Location = new System.Drawing.Point(0, 202);
             this.lciTimeout.Name = "lciTimeout";
             this.lciTimeout.Size = new System.Drawing.Size(422, 24);
             this.lciTimeout.Text = "Connection Timeout";
@@ -801,17 +960,17 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(422, 200);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(422, 202);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(167, 37);
+            this.emptySpaceItem8.Size = new System.Drawing.Size(167, 36);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(0, 224);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(0, 226);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(422, 13);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(422, 12);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem12
@@ -821,6 +980,23 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem12.Name = "emptySpaceItem12";
             this.emptySpaceItem12.Size = new System.Drawing.Size(589, 30);
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem32
+            // 
+            this.emptySpaceItem32.AllowHotTrack = false;
+            this.emptySpaceItem32.Location = new System.Drawing.Point(422, 166);
+            this.emptySpaceItem32.Name = "emptySpaceItem32";
+            this.emptySpaceItem32.Size = new System.Drawing.Size(13, 26);
+            this.emptySpaceItem32.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.simpleButtonShowPassword;
+            this.layoutControlItem3.Location = new System.Drawing.Point(435, 166);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(112, 26);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
             // splashScreenManager
             // 
@@ -846,22 +1022,32 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).EndInit();
             this.navigationFrame.ResumeLayout(false);
             this.navigationPageConnectionStringManager.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lcFrame1)).EndInit();
-            this.lcFrame1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lcFrameConnectionStringManager)).EndInit();
+            this.lcFrameConnectionStringManager.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEditLogo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditShowOnStartup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEditConnectionStrings.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgFrame1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgFrameConnectionManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcConnectionStringsLookUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciConnectButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCreateNewConnection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciMainHeader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparatorConnectionManagerHeader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciConnectButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparatorConnectionManagerButtons)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cliLogo)).EndInit();
             this.navigationPageConnetionStringBuilder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lciConnectionStringBuilder)).EndInit();
             this.lciConnectionStringBuilder.ResumeLayout(false);
@@ -904,6 +1090,8 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextConnectionStringView)).EndInit();
             this.ResumeLayout(false);
 
@@ -915,15 +1103,15 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageConnectionStringManager;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageConnetionStringBuilder;
-        private DevExpress.XtraLayout.LayoutControl lcFrame1;
-        private DevExpress.XtraLayout.LayoutControlGroup lcgFrame1;
+        private DevExpress.XtraLayout.LayoutControl lcFrameConnectionStringManager;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgFrameConnectionManager;
         private DevExpress.XtraEditors.LookUpEdit lookUpEditConnectionStrings;
         private DevExpress.XtraLayout.LayoutControlItem lcConnectionStringsLookUp;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.SimpleButton simpleButtonConnect;
         private DevExpress.XtraLayout.LayoutControlItem lciConnectButton;
         private DevExpress.XtraEditors.SimpleButton simpleButtonCreateNewString;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem lciCreateNewConnection;
         private DevExpress.XtraEditors.SimpleButton simpleButtonCancel;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.TextEdit textEditPassword;
@@ -961,7 +1149,6 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem24;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem25;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem26;
-        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
         private DevExpress.XtraEditors.CheckEdit checkEditWindowsAuthentication;
         private DevExpress.XtraLayout.SimpleSeparator simpleSeparator2;
         private DevExpress.XtraLayout.LayoutControlItem lciWindowsAuthentication;
@@ -978,5 +1165,20 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraEditors.ImageComboBoxEdit comboBoxEditInstances;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
+        private DevExpress.XtraEditors.LabelControl labelControlHeaderLabel;
+        private DevExpress.XtraLayout.LayoutControlItem lciMainHeader;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem27;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparatorConnectionManagerHeader;
+        private DevExpress.XtraEditors.CheckEdit checkEditShowOnStartup;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem30;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparatorConnectionManagerButtons;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem31;
+        private DevExpress.XtraEditors.PictureEdit pictureEditLogo;
+        private DevExpress.XtraLayout.LayoutControlItem cliLogo;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem32;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonShowPassword;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }
