@@ -82,10 +82,6 @@ namespace Databvase_Winforms.View_Models
                 var model = GetModelForNode(e.Node);
                 LoadDataForObjectExplorerDynamically(model);
             };
-            //UnboundLoad = true;
-
-            // UnboundLoad = false;
-            //e.Node.Expand();
         }
 
         private void LoadDataForObjectExplorerDynamically(ObjectExplorerModel model)
