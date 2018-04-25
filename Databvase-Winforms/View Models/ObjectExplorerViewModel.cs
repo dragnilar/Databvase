@@ -137,6 +137,18 @@ namespace Databvase_Winforms.View_Models
             new NewScriptMessage(string.Empty, selectedDatabaseName);
         }
 
+        public void ScriptModifyForObjectExplorerData(object objectExplorerModelData)
+        {
+            var response = new ScriptGeneratorService().GenerateModifyScript(objectExplorerModelData);
+            new NewScriptMessage(response.script, response.parentName);
+        }
+
+        public void ScriptAlterForObjectExplorerData(object objectExplorerModelData)
+        {
+            var response = new ScriptGeneratorService().GenerateAlterScript(objectExplorerModelData);
+            new NewScriptMessage(response.script, response.parentName);
+        }
+
         #endregion
 
         #region Focused Node Changed

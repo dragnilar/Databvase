@@ -136,7 +136,7 @@ namespace Databvase_Winforms.Models
             ParentId = folderId;
             Id = functionId;
             InstanceName = function.Parent.Parent.Name;
-            Type = GlobalStrings.ObjectExplorerTypes.View;
+            Type = GlobalStrings.ObjectExplorerTypes.Function;
             Data = function;
             FullName = $"{function.Schema}.{function.Name}";
             ParentName = function.Parent.Name;
@@ -155,7 +155,7 @@ namespace Databvase_Winforms.Models
             ParentId = folderId;
             Id = storedProcedureId;
             InstanceName = storedProcedure.Parent.Parent.Name;
-            Type = GlobalStrings.ObjectExplorerTypes.View;
+            Type = GlobalStrings.ObjectExplorerTypes.StoredProcedure;
             Data = storedProcedure;
             FullName = $"{storedProcedure.Schema}.{storedProcedure.Name}";
             ParentName = storedProcedure.Parent.Name;

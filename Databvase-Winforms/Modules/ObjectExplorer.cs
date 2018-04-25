@@ -92,9 +92,11 @@ namespace Databvase_Winforms.Modules
         private void BindCommands(MVVMContextFluentAPI<ObjectExplorerViewModel> fluent)
         {
             fluent.BindCommand(barButtonItemGenerateSelectAll, (x, p) => x.ScriptSelectAllForObjectExplorerData(p),
-                x => GetFocusedNodeTable());
+                x => GetFocusedNodeData());
             fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForObjectExplorerData(p),
-                x => GetFocusedNodeTable());
+                x => GetFocusedNodeData());
+            fluent.BindCommand(barButtonItemAlterScript, (x, p) => x.ScriptModifyForObjectExplorerData(p), x=> GetFocusedNodeData());
+            fluent.BindCommand(barButtonItemViewFunction, (x, p) => x.ScriptAlterForObjectExplorerData(p), x=> GetFocusedNodeData());
             fluent.BindCommand(barButtonItemNewQuery, (x,p) => x.NewQueryScript(p), x=> GetFocusedNodeDatabase());
             fluent.SetTrigger(vm => vm.UnboundLoad, TriggerAction);
         }
@@ -136,6 +138,12 @@ namespace Databvase_Winforms.Modules
                 case GlobalStrings.ObjectExplorerTypes.View:
                     popupMenuTable.ShowPopup(MousePosition);
                     break;
+                case GlobalStrings.ObjectExplorerTypes.Function:
+                    popupMenuFunction.ShowPopup(MousePosition);
+                    break;
+                case GlobalStrings.ObjectExplorerTypes.StoredProcedure:
+                    popupMenuStoredProcedure.ShowPopup(MousePosition);
+                    break;
                 case GlobalStrings.ObjectExplorerTypes.Nothing:
                     break;
                 default:
@@ -153,7 +161,7 @@ namespace Databvase_Winforms.Modules
             return treeListObjExp.FocusedNode?.GetValue(treeListColumnFullName).ToString();
         }
 
-        private object GetFocusedNodeTable()
+        private object GetFocusedNodeData()
         {
             return treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
         }

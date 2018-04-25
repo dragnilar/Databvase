@@ -28,6 +28,8 @@ namespace Databvase_Winforms.Globals
             public const string Column = "Column";
             public const string Folder = "Folder";
             public const string View = "View";
+            public const string StoredProcedure = "StoredProcedure";
+            public const string Function = "Function";
             public const string Nothing = "Nothing";
         }
 

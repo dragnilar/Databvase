@@ -52,7 +52,11 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItemGenerateSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemGenerateSelectTopStatement = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemViewFunction = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemAlterScript = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -63,6 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuObjectExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerObjectExplorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuFunction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuStoredProcedure)).BeginInit();
             this.SuspendLayout();
             // 
             // lcObjectExplorer
@@ -223,8 +229,10 @@
             this.barButtonItemCopy,
             this.barButtonItemGenerateSelectAll,
             this.barButtonItemGenerateSelectTopStatement,
-            this.barButtonItemNewQuery});
-            this.barManagerObjectExplorer.MaxItemId = 7;
+            this.barButtonItemNewQuery,
+            this.barButtonItemViewFunction,
+            this.barButtonItemAlterScript});
+            this.barManagerObjectExplorer.MaxItemId = 9;
             // 
             // barDockControlTop
             // 
@@ -274,6 +282,22 @@
             this.barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemGenerateSelectTopStatement.ImageOptions.LargeImage")));
             this.barButtonItemGenerateSelectTopStatement.Name = "barButtonItemGenerateSelectTopStatement";
             // 
+            // barButtonItemViewFunction
+            // 
+            this.barButtonItemViewFunction.Caption = "View In Query Pane (Create Script)";
+            this.barButtonItemViewFunction.Id = 7;
+            this.barButtonItemViewFunction.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemViewFunction.ImageOptions.SvgImage")));
+            this.barButtonItemViewFunction.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.barButtonItemViewFunction.Name = "barButtonItemViewFunction";
+            // 
+            // barButtonItemAlterScript
+            // 
+            this.barButtonItemAlterScript.Caption = "Modify (Generate Script)";
+            this.barButtonItemAlterScript.Id = 8;
+            this.barButtonItemAlterScript.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemModifyFunction.ImageOptions.SvgImage")));
+            this.barButtonItemAlterScript.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.barButtonItemAlterScript.Name = "barButtonItemAlterScript";
+            // 
             // popupMenuTable
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -282,6 +306,22 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement)});
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
             this.popupMenuTable.Name = "popupMenuTable";
+            // 
+            // popupMenuFunction
+            // 
+            this.popupMenuFunction.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript)});
+            this.popupMenuFunction.Manager = this.barManagerObjectExplorer;
+            this.popupMenuFunction.Name = "popupMenuFunction";
+            // 
+            // popupMenuStoredProcedure
+            // 
+            this.popupMenuStoredProcedure.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript)});
+            this.popupMenuStoredProcedure.Manager = this.barManagerObjectExplorer;
+            this.popupMenuStoredProcedure.Name = "popupMenuStoredProcedure";
             // 
             // ObjectExplorer
             // 
@@ -304,6 +344,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuObjectExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManagerObjectExplorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuFunction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuStoredProcedure)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,5 +376,9 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnInstance;
         private DevExpress.XtraBars.BarButtonItem barButtonItemNewQuery;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnProperties;
+        private DevExpress.XtraBars.PopupMenu popupMenuFunction;
+        private DevExpress.XtraBars.PopupMenu popupMenuStoredProcedure;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemViewFunction;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemAlterScript;
     }
 }
