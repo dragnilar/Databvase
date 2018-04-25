@@ -48,11 +48,11 @@ namespace Databvase_Winforms.Views
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
             barButtonItemTextEditorFontSettings.ItemClick += BarButtonItemTextEditorFontSettingsOnItemClick;
-            
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
 
             defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
+            Shown += OnShown;
         }
 
         private void RegisterMessages()
@@ -63,6 +63,20 @@ namespace Databvase_Winforms.Views
         private void RegisterServices()
         {
             mvvmContextMain.RegisterService(new SettingsWindowService());
+        }
+
+
+        private void OnShown(object sender, EventArgs e)
+        {
+            CheckToShowConnectionWindow();
+        }
+
+        private void CheckToShowConnectionWindow()
+        {
+            if (App.Config.ShowConnectionWindowOnStartup)
+            {
+                Connect();
+            }
         }
 
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
@@ -84,7 +98,7 @@ namespace Databvase_Winforms.Views
 
         private void Connect()
         {
-            var window = new ConnectionStringView {StartPosition = FormStartPosition.CenterScreen};
+            var window = new ConnectionWindowView {StartPosition = FormStartPosition.CenterScreen};
             window.ShowDialog();
             window.Dispose();
             UpdateConnectionStatusOnRibbon();

@@ -2,7 +2,7 @@
 
 namespace Databvase_Winforms.Views
 {
-    partial class ConnectionStringView
+    partial class ConnectionWindowView
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace Databvase_Winforms.Views
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionStringView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionWindowView));
             this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPageConnectionStringManager = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lcFrame1 = new DevExpress.XtraLayout.LayoutControl();
@@ -180,7 +180,6 @@ namespace Databvase_Winforms.Views
             // 
             // navigationPageConnectionStringManager
             // 
-            this.navigationPageConnectionStringManager.Caption = "navigationPage1";
             this.navigationPageConnectionStringManager.Controls.Add(this.lcFrame1);
             this.navigationPageConnectionStringManager.Name = "navigationPageConnectionStringManager";
             this.navigationPageConnectionStringManager.Size = new System.Drawing.Size(609, 353);
@@ -204,7 +203,7 @@ namespace Databvase_Winforms.Views
             this.simpleButtonCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCancel.Appearance.Options.UseFont = true;
             this.simpleButtonCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancel.ImageOptions.Image")));
-            this.simpleButtonCancel.Location = new System.Drawing.Point(497, 268);
+            this.simpleButtonCancel.Location = new System.Drawing.Point(497, 283);
             this.simpleButtonCancel.Name = "simpleButtonCancel";
             this.simpleButtonCancel.Size = new System.Drawing.Size(90, 23);
             this.simpleButtonCancel.StyleController = this.lcFrame1;
@@ -216,7 +215,7 @@ namespace Databvase_Winforms.Views
             this.simpleButtonCreateNewString.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCreateNewString.Appearance.Options.UseFont = true;
             this.simpleButtonCreateNewString.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCreateNewString.ImageOptions.Image")));
-            this.simpleButtonCreateNewString.Location = new System.Drawing.Point(260, 268);
+            this.simpleButtonCreateNewString.Location = new System.Drawing.Point(260, 283);
             this.simpleButtonCreateNewString.Name = "simpleButtonCreateNewString";
             this.simpleButtonCreateNewString.Size = new System.Drawing.Size(212, 23);
             this.simpleButtonCreateNewString.StyleController = this.lcFrame1;
@@ -228,7 +227,7 @@ namespace Databvase_Winforms.Views
             this.simpleButtonConnect.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonConnect.Appearance.Options.UseFont = true;
             this.simpleButtonConnect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonConnect.ImageOptions.Image")));
-            this.simpleButtonConnect.Location = new System.Drawing.Point(103, 268);
+            this.simpleButtonConnect.Location = new System.Drawing.Point(103, 283);
             this.simpleButtonConnect.Name = "simpleButtonConnect";
             this.simpleButtonConnect.Size = new System.Drawing.Size(125, 23);
             this.simpleButtonConnect.StyleController = this.lcFrame1;
@@ -237,7 +236,7 @@ namespace Databvase_Winforms.Views
             // 
             // lookUpEditConnectionStrings
             // 
-            this.lookUpEditConnectionStrings.Location = new System.Drawing.Point(12, 117);
+            this.lookUpEditConnectionStrings.Location = new System.Drawing.Point(12, 99);
             this.lookUpEditConnectionStrings.Name = "lookUpEditConnectionStrings";
             this.lookUpEditConnectionStrings.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEditConnectionStrings.Properties.Appearance.Options.UseFont = true;
@@ -274,7 +273,7 @@ namespace Databvase_Winforms.Views
             this.lcConnectionStringsLookUp.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcConnectionStringsLookUp.AppearanceItemCaption.Options.UseFont = true;
             this.lcConnectionStringsLookUp.Control = this.lookUpEditConnectionStrings;
-            this.lcConnectionStringsLookUp.Location = new System.Drawing.Point(0, 83);
+            this.lcConnectionStringsLookUp.Location = new System.Drawing.Point(0, 65);
             this.lcConnectionStringsLookUp.Name = "lcConnectionStringsLookUp";
             this.lcConnectionStringsLookUp.Size = new System.Drawing.Size(589, 56);
             this.lcConnectionStringsLookUp.Text = "Saved Connection Strings";
@@ -284,7 +283,7 @@ namespace Databvase_Winforms.Views
             // lciConnectButton
             // 
             this.lciConnectButton.Control = this.simpleButtonConnect;
-            this.lciConnectButton.Location = new System.Drawing.Point(91, 256);
+            this.lciConnectButton.Location = new System.Drawing.Point(91, 271);
             this.lciConnectButton.Name = "lciConnectButton";
             this.lciConnectButton.Size = new System.Drawing.Size(129, 27);
             this.lciConnectButton.TextSize = new System.Drawing.Size(0, 0);
@@ -295,13 +294,13 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(589, 83);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(589, 65);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.simpleButtonCreateNewString;
-            this.layoutControlItem1.Location = new System.Drawing.Point(248, 256);
+            this.layoutControlItem1.Location = new System.Drawing.Point(248, 271);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(216, 27);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -310,7 +309,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(220, 256);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(220, 271);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(28, 27);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -318,25 +317,25 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 139);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 121);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(589, 115);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(589, 148);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem3";
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 283);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 298);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(589, 50);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(589, 35);
             this.emptySpaceItem5.Text = "emptySpaceItem3";
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(464, 256);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(464, 271);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(21, 27);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -344,7 +343,7 @@ namespace Databvase_Winforms.Views
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.simpleButtonCancel;
-            this.layoutControlItem2.Location = new System.Drawing.Point(485, 256);
+            this.layoutControlItem2.Location = new System.Drawing.Point(485, 271);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(94, 27);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -353,7 +352,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(579, 256);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(579, 271);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
             this.emptySpaceItem7.Size = new System.Drawing.Size(10, 27);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
@@ -361,21 +360,20 @@ namespace Databvase_Winforms.Views
             // simpleSeparator1
             // 
             this.simpleSeparator1.AllowHotTrack = false;
-            this.simpleSeparator1.Location = new System.Drawing.Point(91, 254);
+            this.simpleSeparator1.Location = new System.Drawing.Point(91, 269);
             this.simpleSeparator1.Name = "simpleSeparator1";
             this.simpleSeparator1.Size = new System.Drawing.Size(498, 2);
             // 
             // emptySpaceItem19
             // 
             this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 254);
+            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 269);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
             this.emptySpaceItem19.Size = new System.Drawing.Size(91, 29);
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navigationPageConnetionStringBuilder
             // 
-            this.navigationPageConnetionStringBuilder.Caption = "navigationPageConnetionStringBuilder";
             this.navigationPageConnetionStringBuilder.Controls.Add(this.lciConnectionStringBuilder);
             this.navigationPageConnetionStringBuilder.Name = "navigationPageConnetionStringBuilder";
             this.navigationPageConnetionStringBuilder.Size = new System.Drawing.Size(609, 353);
@@ -831,9 +829,9 @@ namespace Databvase_Winforms.Views
             // mvvmContextConnectionStringView
             // 
             this.mvvmContextConnectionStringView.ContainerControl = this;
-            this.mvvmContextConnectionStringView.ViewModelType = typeof(Databvase_Winforms.View_Models.ConnectionStringViewModel);
+            this.mvvmContextConnectionStringView.ViewModelType = typeof(Databvase_Winforms.View_Models.ConnectionWindowViewModel);
             // 
-            // ConnectionStringView
+            // ConnectionWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -843,7 +841,7 @@ namespace Databvase_Winforms.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ConnectionStringView";
+            this.Name = "ConnectionWindowView";
             this.Text = "Connect To A Server";
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).EndInit();
             this.navigationFrame.ResumeLayout(false);
@@ -867,7 +865,6 @@ namespace Databvase_Winforms.Views
             this.navigationPageConnetionStringBuilder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lciConnectionStringBuilder)).EndInit();
             this.lciConnectionStringBuilder.ResumeLayout(false);
-            this.lciConnectionStringBuilder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEditNickName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditUserName.Properties)).EndInit();

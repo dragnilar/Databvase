@@ -13,7 +13,7 @@ using DevExpress.Mvvm.POCO;
 namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel]
-    public class ConnectionStringViewModel
+    public class ConnectionWindowViewModel
     {
         public enum State
         {
@@ -24,7 +24,7 @@ namespace Databvase_Winforms.View_Models
         }
 
 
-        public ConnectionStringViewModel()
+        public ConnectionWindowViewModel()
         {
             InitalizeValues();
             SelectedConnection = null;
@@ -43,6 +43,7 @@ namespace Databvase_Winforms.View_Models
         public virtual SavedConnection SelectedConnection { get; set; }
         public virtual List<SavedConnection> SavedConnectionStrings { get; set; }
         public virtual bool CanConnect { get; set; }
+        public virtual bool ShowOnStartup { get; set; }
 
 
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
@@ -56,12 +57,20 @@ namespace Databvase_Winforms.View_Models
             UserId = string.Empty;
             Password = string.Empty;
             WindowState = State.Open;
+            ShowOnStartup = App.Config.ShowConnectionWindowOnStartup;
         }
 
         //Simple Dependency For SelectedConnectionString, binds at runtime
         protected void OnSelectedConnectionChanged()
         {
             CanConnect = SelectedConnection != null;
+        }
+
+        //Simple Dependency For ShowOnStartUp, binds at runtime
+        protected void OnShowOnStartUpChanged()
+        {
+            App.Config.ShowConnectionWindowOnStartup = ShowOnStartup;
+            App.Config.Save();
         }
 
         public void Connect()

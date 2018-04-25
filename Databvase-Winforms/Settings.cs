@@ -24,6 +24,7 @@ namespace Databvase_Winforms
         public Color TextEditorKeywordColor = Color.Blue;
         public Color TextEditorStringColor = Color.Red;
         public Color TextEditorCommentsColor = Color.Green;
+        public bool ShowConnectionWindowOnStartup = true;
 
         public Settings()
         {

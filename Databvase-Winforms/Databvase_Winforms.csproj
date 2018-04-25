@@ -296,11 +296,11 @@
     <Compile Include="Utilities\SMOChecker.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
-    <Compile Include="Views\ConnectionStringView.cs">
+    <Compile Include="Views\ConnectionWindowView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ConnectionStringView.Designer.cs">
-      <DependentUpon>ConnectionStringView.cs</DependentUpon>
+    <Compile Include="Views\ConnectionWindowView.Designer.cs">
+      <DependentUpon>ConnectionWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\QueryControl.cs">
       <SubType>UserControl</SubType>
@@ -308,7 +308,7 @@
     <Compile Include="Modules\QueryControl.Designer.cs">
       <DependentUpon>QueryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View Models\ConnectionStringViewModel.cs" />
+    <Compile Include="View Models\ConnectionWindowViewModel.cs" />
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -349,8 +349,8 @@
     <EmbeddedResource Include="Modules\TextEditorFontEdit.resx">
       <DependentUpon>TextEditorFontEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ConnectionStringView.resx">
-      <DependentUpon>ConnectionStringView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ConnectionWindowView.resx">
+      <DependentUpon>ConnectionWindowView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

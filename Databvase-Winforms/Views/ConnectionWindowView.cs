@@ -7,10 +7,10 @@ using DevExpress.XtraEditors.Controls;
 
 namespace Databvase_Winforms.Views
 {
-    public partial class ConnectionStringView : XtraForm
+    public partial class ConnectionWindowView : XtraForm
     {
         //TODO this is just plain nasty, clean it up
-        public ConnectionStringView()
+        public ConnectionWindowView()
         {
             InitializeComponent();
             if (!mvvmContextConnectionStringView.IsDesignMode)
@@ -41,7 +41,7 @@ namespace Databvase_Winforms.Views
 
         private void InitializeBindings()
         {
-            var fluent = mvvmContextConnectionStringView.OfType<ConnectionStringViewModel>();
+            var fluent = mvvmContextConnectionStringView.OfType<ConnectionWindowViewModel>();
 
             mvvmContextConnectionStringView.RegisterService(SplashScreenService.Create(splashScreenManager));
 
@@ -71,15 +71,15 @@ namespace Databvase_Winforms.Views
             {
                 switch (state)
                 {
-                    case ConnectionStringViewModel.State.Open:
+                    case ConnectionWindowViewModel.State.Open:
                         break;
-                    case ConnectionStringViewModel.State.ConnectionStringManager:
+                    case ConnectionWindowViewModel.State.ConnectionStringManager:
                         ShowConnectionStringManager();
                         break;
-                    case ConnectionStringViewModel.State.ConnectionStringBuilder:
+                    case ConnectionWindowViewModel.State.ConnectionStringBuilder:
                         ShowConnectionStringBuilder();
                         break;
-                    case ConnectionStringViewModel.State.Exit:
+                    case ConnectionWindowViewModel.State.Exit:
                         Close();
                         break;
                     default:
