@@ -136,6 +136,8 @@ namespace Databvase_Winforms.Modules
                 case GlobalStrings.ObjectExplorerTypes.View:
                     popupMenuTable.ShowPopup(MousePosition);
                     break;
+                case GlobalStrings.ObjectExplorerTypes.Nothing:
+                    break;
                 default:
                     popupMenuObjectExplorer.ShowPopup(MousePosition);
                     break;

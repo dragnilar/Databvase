@@ -126,25 +126,6 @@ namespace Databvase_Winforms.Models
         }
 
         /// <summary>
-        /// Creates a new object for a Stored Procedure data type
-        /// </summary>
-        /// <param name="storedProcedureId"></param>
-        /// <param name="folderId"></param>
-        /// <param name="storedProcedure"></param>
-        public ObjectExplorerModel(int storedProcedureId, int folderId, StoredProcedure storedProcedure)
-        {
-            ParentId = folderId;
-            Id = storedProcedureId;
-            InstanceName = storedProcedure.Parent.Parent.Name;
-            Type = GlobalStrings.ObjectExplorerTypes.View;
-            Data = storedProcedure;
-            FullName = $"{storedProcedure.Schema}.{storedProcedure.Name}";
-            ParentName = storedProcedure.Parent.Name;
-            ImageIndex = 5;
-            Properties = string.Empty;
-        }
-
-        /// <summary>
         /// Creates a new object for a User Defined Function (Note: This is the same thing as a function in SQL)
         /// </summary>
         /// <param name="functionId"></param>
@@ -159,7 +140,26 @@ namespace Databvase_Winforms.Models
             Data = function;
             FullName = $"{function.Schema}.{function.Name}";
             ParentName = function.Parent.Name;
-            ImageIndex = 5;
+            ImageIndex = 6;
+            Properties = string.Empty;
+        }
+
+        /// <summary>
+        /// Creates a new object for a Stored Procedure data type
+        /// </summary>
+        /// <param name="storedProcedureId"></param>
+        /// <param name="folderId"></param>
+        /// <param name="storedProcedure"></param>
+        public ObjectExplorerModel(int storedProcedureId, int folderId, StoredProcedure storedProcedure)
+        {
+            ParentId = folderId;
+            Id = storedProcedureId;
+            InstanceName = storedProcedure.Parent.Parent.Name;
+            Type = GlobalStrings.ObjectExplorerTypes.View;
+            Data = storedProcedure;
+            FullName = $"{storedProcedure.Schema}.{storedProcedure.Name}";
+            ParentName = storedProcedure.Parent.Name;
+            ImageIndex = 7;
             Properties = string.Empty;
         }
 
@@ -177,7 +177,7 @@ namespace Databvase_Winforms.Models
             Data = null;
             FullName = "Nothing available";
             ParentName = parentModel.FullName;
-            ImageIndex = 0;
+            ImageIndex = 8;
             Properties = string.Empty;
         }
 

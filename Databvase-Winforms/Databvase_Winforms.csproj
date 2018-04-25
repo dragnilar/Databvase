@@ -395,13 +395,17 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
     <Content Include="icons8_Database_Administrator.ico" />
+    <Content Include="Images\Database View_16px.png" />
     <Content Include="Images\Folder_16px.png" />
+    <Content Include="Images\Function_16px.png" />
     <Content Include="Images\icons8_Database_Administrator.ico" />
     <Content Include="Images\icons8_Database_Administrator_16.png" />
     <Content Include="Images\icons8_Database_Administrator_32.png" />
     <Content Include="Images\icons8_Database_Administrator_48.png" />
     <Content Include="Images\icons8_Database_Administrator_64.png" />
     <Content Include="Images\Layers_16px.png" />
+    <Content Include="Images\Select Column_16px.png" />
+    <Content Include="Images\StoredProcedure_16px.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
