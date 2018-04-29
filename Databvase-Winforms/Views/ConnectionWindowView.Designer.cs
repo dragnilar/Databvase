@@ -250,10 +250,10 @@ namespace Databvase_Winforms.Views
             // 
             // checkEditShowOnStartup
             // 
-            this.checkEditShowOnStartup.Location = new System.Drawing.Point(393, 322);
+            this.checkEditShowOnStartup.Location = new System.Drawing.Point(393, 321);
             this.checkEditShowOnStartup.Name = "checkEditShowOnStartup";
             this.checkEditShowOnStartup.Properties.Caption = "Always show this window on startup";
-            this.checkEditShowOnStartup.Size = new System.Drawing.Size(204, 19);
+            this.checkEditShowOnStartup.Size = new System.Drawing.Size(204, 20);
             this.checkEditShowOnStartup.StyleController = this.lcFrameConnectionStringManager;
             this.checkEditShowOnStartup.TabIndex = 9;
             // 
@@ -273,9 +273,9 @@ namespace Databvase_Winforms.Views
             this.simpleButtonCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCancel.Appearance.Options.UseFont = true;
             this.simpleButtonCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancel.ImageOptions.Image")));
-            this.simpleButtonCancel.Location = new System.Drawing.Point(491, 250);
+            this.simpleButtonCancel.Location = new System.Drawing.Point(491, 248);
             this.simpleButtonCancel.Name = "simpleButtonCancel";
-            this.simpleButtonCancel.Size = new System.Drawing.Size(86, 23);
+            this.simpleButtonCancel.Size = new System.Drawing.Size(86, 22);
             this.simpleButtonCancel.StyleController = this.lcFrameConnectionStringManager;
             this.simpleButtonCancel.TabIndex = 7;
             this.simpleButtonCancel.Text = "Cancel";
@@ -285,9 +285,9 @@ namespace Databvase_Winforms.Views
             this.simpleButtonCreateNewString.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCreateNewString.Appearance.Options.UseFont = true;
             this.simpleButtonCreateNewString.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCreateNewString.ImageOptions.Image")));
-            this.simpleButtonCreateNewString.Location = new System.Drawing.Point(262, 250);
+            this.simpleButtonCreateNewString.Location = new System.Drawing.Point(262, 248);
             this.simpleButtonCreateNewString.Name = "simpleButtonCreateNewString";
-            this.simpleButtonCreateNewString.Size = new System.Drawing.Size(204, 23);
+            this.simpleButtonCreateNewString.Size = new System.Drawing.Size(204, 22);
             this.simpleButtonCreateNewString.StyleController = this.lcFrameConnectionStringManager;
             this.simpleButtonCreateNewString.TabIndex = 6;
             this.simpleButtonCreateNewString.Text = "Create A New Connection";
@@ -297,16 +297,16 @@ namespace Databvase_Winforms.Views
             this.simpleButtonConnect.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonConnect.Appearance.Options.UseFont = true;
             this.simpleButtonConnect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonConnect.ImageOptions.Image")));
-            this.simpleButtonConnect.Location = new System.Drawing.Point(109, 250);
+            this.simpleButtonConnect.Location = new System.Drawing.Point(109, 248);
             this.simpleButtonConnect.Name = "simpleButtonConnect";
-            this.simpleButtonConnect.Size = new System.Drawing.Size(126, 23);
+            this.simpleButtonConnect.Size = new System.Drawing.Size(126, 22);
             this.simpleButtonConnect.StyleController = this.lcFrameConnectionStringManager;
             this.simpleButtonConnect.TabIndex = 5;
             this.simpleButtonConnect.Text = "Connect!";
             // 
             // lookUpEditConnectionStrings
             // 
-            this.lookUpEditConnectionStrings.Location = new System.Drawing.Point(12, 143);
+            this.lookUpEditConnectionStrings.Location = new System.Drawing.Point(12, 142);
             this.lookUpEditConnectionStrings.Name = "lookUpEditConnectionStrings";
             this.lookUpEditConnectionStrings.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEditConnectionStrings.Properties.Appearance.Options.UseFont = true;
@@ -351,7 +351,7 @@ namespace Databvase_Winforms.Views
             this.lcConnectionStringsLookUp.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcConnectionStringsLookUp.AppearanceItemCaption.Options.UseFont = true;
             this.lcConnectionStringsLookUp.Control = this.lookUpEditConnectionStrings;
-            this.lcConnectionStringsLookUp.Location = new System.Drawing.Point(0, 109);
+            this.lcConnectionStringsLookUp.Location = new System.Drawing.Point(0, 108);
             this.lcConnectionStringsLookUp.Name = "lcConnectionStringsLookUp";
             this.lcConnectionStringsLookUp.Size = new System.Drawing.Size(589, 56);
             this.lcConnectionStringsLookUp.Text = "Saved Connections";
@@ -361,24 +361,24 @@ namespace Databvase_Winforms.Views
             // lciCreateNewConnection
             // 
             this.lciCreateNewConnection.Control = this.simpleButtonCreateNewString;
-            this.lciCreateNewConnection.Location = new System.Drawing.Point(250, 238);
+            this.lciCreateNewConnection.Location = new System.Drawing.Point(250, 236);
             this.lciCreateNewConnection.Name = "lciCreateNewConnection";
-            this.lciCreateNewConnection.Size = new System.Drawing.Size(208, 27);
+            this.lciCreateNewConnection.Size = new System.Drawing.Size(208, 26);
             this.lciCreateNewConnection.TextSize = new System.Drawing.Size(0, 0);
             this.lciCreateNewConnection.TextVisible = false;
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(227, 238);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(227, 236);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(23, 27);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(23, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 165);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 164);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(589, 71);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -387,43 +387,43 @@ namespace Databvase_Winforms.Views
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem3";
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 265);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 262);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(589, 45);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(589, 47);
             this.emptySpaceItem5.Text = "emptySpaceItem3";
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(458, 238);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(458, 236);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(21, 27);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(21, 26);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.simpleButtonCancel;
-            this.layoutControlItem2.Location = new System.Drawing.Point(479, 238);
+            this.layoutControlItem2.Location = new System.Drawing.Point(479, 236);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(90, 27);
+            this.layoutControlItem2.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(569, 238);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(569, 236);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(20, 27);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(20, 26);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem19
             // 
             this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 238);
+            this.emptySpaceItem19.Location = new System.Drawing.Point(0, 236);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(97, 27);
+            this.emptySpaceItem19.Size = new System.Drawing.Size(97, 26);
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lciMainHeader
@@ -464,7 +464,7 @@ namespace Databvase_Winforms.Views
             this.simpleSeparatorConnectionManagerHeader.AllowHotTrack = false;
             this.simpleSeparatorConnectionManagerHeader.Location = new System.Drawing.Point(0, 107);
             this.simpleSeparatorConnectionManagerHeader.Name = "simpleSeparatorConnectionManagerHeader";
-            this.simpleSeparatorConnectionManagerHeader.Size = new System.Drawing.Size(589, 2);
+            this.simpleSeparatorConnectionManagerHeader.Size = new System.Drawing.Size(589, 1);
             // 
             // emptySpaceItem30
             // 
@@ -477,34 +477,34 @@ namespace Databvase_Winforms.Views
             // lciConnectButton
             // 
             this.lciConnectButton.Control = this.simpleButtonConnect;
-            this.lciConnectButton.Location = new System.Drawing.Point(97, 238);
+            this.lciConnectButton.Location = new System.Drawing.Point(97, 236);
             this.lciConnectButton.Name = "lciConnectButton";
-            this.lciConnectButton.Size = new System.Drawing.Size(130, 27);
+            this.lciConnectButton.Size = new System.Drawing.Size(130, 26);
             this.lciConnectButton.TextSize = new System.Drawing.Size(0, 0);
             this.lciConnectButton.TextVisible = false;
             // 
             // simpleSeparatorConnectionManagerButtons
             // 
             this.simpleSeparatorConnectionManagerButtons.AllowHotTrack = false;
-            this.simpleSeparatorConnectionManagerButtons.Location = new System.Drawing.Point(0, 236);
+            this.simpleSeparatorConnectionManagerButtons.Location = new System.Drawing.Point(0, 235);
             this.simpleSeparatorConnectionManagerButtons.Name = "simpleSeparatorConnectionManagerButtons";
-            this.simpleSeparatorConnectionManagerButtons.Size = new System.Drawing.Size(589, 2);
+            this.simpleSeparatorConnectionManagerButtons.Size = new System.Drawing.Size(589, 1);
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.checkEditShowOnStartup;
-            this.layoutControlItem1.Location = new System.Drawing.Point(381, 310);
+            this.layoutControlItem1.Location = new System.Drawing.Point(381, 309);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(208, 23);
+            this.layoutControlItem1.Size = new System.Drawing.Size(208, 24);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem31
             // 
             this.emptySpaceItem31.AllowHotTrack = false;
-            this.emptySpaceItem31.Location = new System.Drawing.Point(0, 310);
+            this.emptySpaceItem31.Location = new System.Drawing.Point(0, 309);
             this.emptySpaceItem31.Name = "emptySpaceItem31";
-            this.emptySpaceItem31.Size = new System.Drawing.Size(381, 23);
+            this.emptySpaceItem31.Size = new System.Drawing.Size(381, 24);
             this.emptySpaceItem31.TextSize = new System.Drawing.Size(0, 0);
             // 
             // cliLogo
@@ -547,7 +547,7 @@ namespace Databvase_Winforms.Views
             // simpleButtonShowPassword
             // 
             this.simpleButtonShowPassword.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonShowPassword.ImageOptions.Image")));
-            this.simpleButtonShowPassword.Location = new System.Drawing.Point(447, 178);
+            this.simpleButtonShowPassword.Location = new System.Drawing.Point(447, 176);
             this.simpleButtonShowPassword.Name = "simpleButtonShowPassword";
             this.simpleButtonShowPassword.Size = new System.Drawing.Size(108, 22);
             this.simpleButtonShowPassword.StyleController = this.lciConnectionStringBuilder;
@@ -559,9 +559,9 @@ namespace Databvase_Winforms.Views
             this.simpleButtonSaveAndTest.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonSaveAndTest.Appearance.Options.UseFont = true;
             this.simpleButtonSaveAndTest.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonSaveAndTest.ImageOptions.Image")));
-            this.simpleButtonSaveAndTest.Location = new System.Drawing.Point(88, 306);
+            this.simpleButtonSaveAndTest.Location = new System.Drawing.Point(88, 307);
             this.simpleButtonSaveAndTest.Name = "simpleButtonSaveAndTest";
-            this.simpleButtonSaveAndTest.Size = new System.Drawing.Size(182, 23);
+            this.simpleButtonSaveAndTest.Size = new System.Drawing.Size(182, 22);
             this.simpleButtonSaveAndTest.StyleController = this.lciConnectionStringBuilder;
             this.simpleButtonSaveAndTest.TabIndex = 7;
             this.simpleButtonSaveAndTest.Text = "Test And Save!";
@@ -582,16 +582,16 @@ namespace Databvase_Winforms.Views
             this.simpleButtonCancelCreateConnection.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonCancelCreateConnection.Appearance.Options.UseFont = true;
             this.simpleButtonCancelCreateConnection.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancelCreateConnection.ImageOptions.Image")));
-            this.simpleButtonCancelCreateConnection.Location = new System.Drawing.Point(334, 306);
+            this.simpleButtonCancelCreateConnection.Location = new System.Drawing.Point(334, 307);
             this.simpleButtonCancelCreateConnection.Name = "simpleButtonCancelCreateConnection";
-            this.simpleButtonCancelCreateConnection.Size = new System.Drawing.Size(157, 23);
+            this.simpleButtonCancelCreateConnection.Size = new System.Drawing.Size(157, 22);
             this.simpleButtonCancelCreateConnection.StyleController = this.lciConnectionStringBuilder;
             this.simpleButtonCancelCreateConnection.TabIndex = 2;
             this.simpleButtonCancelCreateConnection.Text = "Cancel";
             // 
             // textEditNickName
             // 
-            this.textEditNickName.Location = new System.Drawing.Point(181, 250);
+            this.textEditNickName.Location = new System.Drawing.Point(181, 249);
             this.textEditNickName.Name = "textEditNickName";
             this.textEditNickName.Size = new System.Drawing.Size(249, 20);
             this.textEditNickName.StyleController = this.lciConnectionStringBuilder;
@@ -599,7 +599,7 @@ namespace Databvase_Winforms.Views
             // 
             // textEditPassword
             // 
-            this.textEditPassword.Location = new System.Drawing.Point(181, 178);
+            this.textEditPassword.Location = new System.Drawing.Point(181, 176);
             this.textEditPassword.Name = "textEditPassword";
             this.textEditPassword.Properties.PasswordChar = '*';
             this.textEditPassword.Size = new System.Drawing.Size(249, 20);
@@ -608,7 +608,7 @@ namespace Databvase_Winforms.Views
             // 
             // textEditUserName
             // 
-            this.textEditUserName.Location = new System.Drawing.Point(181, 144);
+            this.textEditUserName.Location = new System.Drawing.Point(181, 142);
             this.textEditUserName.Name = "textEditUserName";
             this.textEditUserName.Size = new System.Drawing.Size(249, 20);
             this.textEditUserName.StyleController = this.lciConnectionStringBuilder;
@@ -619,16 +619,16 @@ namespace Databvase_Winforms.Views
             this.simpleButtonQueryInstances.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButtonQueryInstances.Appearance.Options.UseFont = true;
             this.simpleButtonQueryInstances.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonQueryInstances.ImageOptions.Image")));
-            this.simpleButtonQueryInstances.Location = new System.Drawing.Point(447, 73);
+            this.simpleButtonQueryInstances.Location = new System.Drawing.Point(447, 72);
             this.simpleButtonQueryInstances.Name = "simpleButtonQueryInstances";
-            this.simpleButtonQueryInstances.Size = new System.Drawing.Size(108, 23);
+            this.simpleButtonQueryInstances.Size = new System.Drawing.Size(108, 22);
             this.simpleButtonQueryInstances.StyleController = this.lciConnectionStringBuilder;
             this.simpleButtonQueryInstances.TabIndex = 3;
             this.simpleButtonQueryInstances.Text = "Get Instances";
             // 
             // checkEditWindowsAuthentication
             // 
-            this.checkEditWindowsAuthentication.Location = new System.Drawing.Point(185, 110);
+            this.checkEditWindowsAuthentication.Location = new System.Drawing.Point(185, 108);
             this.checkEditWindowsAuthentication.Name = "checkEditWindowsAuthentication";
             this.checkEditWindowsAuthentication.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkEditWindowsAuthentication.Properties.Appearance.Options.UseFont = true;
@@ -644,7 +644,7 @@ namespace Databvase_Winforms.Views
             0,
             0,
             0});
-            this.spinEditConnectionTimeout.Location = new System.Drawing.Point(181, 214);
+            this.spinEditConnectionTimeout.Location = new System.Drawing.Point(181, 212);
             this.spinEditConnectionTimeout.Name = "spinEditConnectionTimeout";
             this.spinEditConnectionTimeout.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -654,7 +654,7 @@ namespace Databvase_Winforms.Views
             // 
             // comboBoxEditInstances
             // 
-            this.comboBoxEditInstances.Location = new System.Drawing.Point(181, 73);
+            this.comboBoxEditInstances.Location = new System.Drawing.Point(181, 72);
             this.comboBoxEditInstances.Name = "comboBoxEditInstances";
             this.comboBoxEditInstances.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -710,18 +710,18 @@ namespace Databvase_Winforms.Views
             this.lciInstances.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lciInstances.AppearanceItemCaption.Options.UseFont = true;
             this.lciInstances.Control = this.comboBoxEditInstances;
-            this.lciInstances.Location = new System.Drawing.Point(0, 61);
+            this.lciInstances.Location = new System.Drawing.Point(0, 60);
             this.lciInstances.Name = "lciInstances";
-            this.lciInstances.Size = new System.Drawing.Size(422, 27);
+            this.lciInstances.Size = new System.Drawing.Size(422, 26);
             this.lciInstances.Text = "Server Instance";
             this.lciInstances.TextSize = new System.Drawing.Size(166, 16);
             // 
             // lciGetInstances
             // 
             this.lciGetInstances.Control = this.simpleButtonQueryInstances;
-            this.lciGetInstances.Location = new System.Drawing.Point(435, 61);
+            this.lciGetInstances.Location = new System.Drawing.Point(435, 60);
             this.lciGetInstances.Name = "lciGetInstances";
-            this.lciGetInstances.Size = new System.Drawing.Size(112, 27);
+            this.lciGetInstances.Size = new System.Drawing.Size(112, 26);
             this.lciGetInstances.Text = "Get Instances";
             this.lciGetInstances.TextSize = new System.Drawing.Size(0, 0);
             this.lciGetInstances.TextVisible = false;
@@ -731,7 +731,7 @@ namespace Databvase_Winforms.Views
             this.lciUserName.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lciUserName.AppearanceItemCaption.Options.UseFont = true;
             this.lciUserName.Control = this.textEditUserName;
-            this.lciUserName.Location = new System.Drawing.Point(0, 132);
+            this.lciUserName.Location = new System.Drawing.Point(0, 130);
             this.lciUserName.Name = "lciUserName";
             this.lciUserName.Size = new System.Drawing.Size(422, 24);
             this.lciUserName.Text = "User Name";
@@ -743,7 +743,7 @@ namespace Databvase_Winforms.Views
             this.lciPassword.AppearanceItemCaption.Options.UseFont = true;
             this.lciPassword.Control = this.textEditPassword;
             this.lciPassword.CustomizationFormText = "Password";
-            this.lciPassword.Location = new System.Drawing.Point(0, 166);
+            this.lciPassword.Location = new System.Drawing.Point(0, 164);
             this.lciPassword.Name = "lciPassword";
             this.lciPassword.Size = new System.Drawing.Size(422, 26);
             this.lciPassword.Text = "Password";
@@ -754,7 +754,7 @@ namespace Databvase_Winforms.Views
             this.lciNickname.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lciNickname.AppearanceItemCaption.Options.UseFont = true;
             this.lciNickname.Control = this.textEditNickName;
-            this.lciNickname.Location = new System.Drawing.Point(0, 238);
+            this.lciNickname.Location = new System.Drawing.Point(0, 237);
             this.lciNickname.Name = "lciNickname";
             this.lciNickname.Size = new System.Drawing.Size(422, 24);
             this.lciNickname.Text = "Connection String NickName:";
@@ -763,9 +763,9 @@ namespace Databvase_Winforms.Views
             // lciCancel
             // 
             this.lciCancel.Control = this.simpleButtonCancelCreateConnection;
-            this.lciCancel.Location = new System.Drawing.Point(322, 294);
+            this.lciCancel.Location = new System.Drawing.Point(322, 295);
             this.lciCancel.Name = "lciCancel";
-            this.lciCancel.Size = new System.Drawing.Size(161, 27);
+            this.lciCancel.Size = new System.Drawing.Size(161, 26);
             this.lciCancel.TextSize = new System.Drawing.Size(0, 0);
             this.lciCancel.TextVisible = false;
             // 
@@ -780,15 +780,15 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem11
             // 
             this.emptySpaceItem11.AllowHotTrack = false;
-            this.emptySpaceItem11.Location = new System.Drawing.Point(422, 61);
+            this.emptySpaceItem11.Location = new System.Drawing.Point(422, 60);
             this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(13, 27);
+            this.emptySpaceItem11.Size = new System.Drawing.Size(13, 26);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem13
             // 
             this.emptySpaceItem13.AllowHotTrack = false;
-            this.emptySpaceItem13.Location = new System.Drawing.Point(0, 156);
+            this.emptySpaceItem13.Location = new System.Drawing.Point(0, 154);
             this.emptySpaceItem13.Name = "emptySpaceItem13";
             this.emptySpaceItem13.Size = new System.Drawing.Size(589, 10);
             this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
@@ -796,7 +796,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem14
             // 
             this.emptySpaceItem14.AllowHotTrack = false;
-            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 192);
+            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 190);
             this.emptySpaceItem14.Name = "emptySpaceItem14";
             this.emptySpaceItem14.Size = new System.Drawing.Size(589, 10);
             this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
@@ -804,9 +804,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem15
             // 
             this.emptySpaceItem15.AllowHotTrack = false;
-            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 262);
+            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 261);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(589, 30);
+            this.emptySpaceItem15.Size = new System.Drawing.Size(589, 33);
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem16
@@ -820,16 +820,16 @@ namespace Databvase_Winforms.Views
             // lciTestAndSave
             // 
             this.lciTestAndSave.Control = this.simpleButtonSaveAndTest;
-            this.lciTestAndSave.Location = new System.Drawing.Point(76, 294);
+            this.lciTestAndSave.Location = new System.Drawing.Point(76, 295);
             this.lciTestAndSave.Name = "lciTestAndSave";
-            this.lciTestAndSave.Size = new System.Drawing.Size(186, 27);
+            this.lciTestAndSave.Size = new System.Drawing.Size(186, 26);
             this.lciTestAndSave.TextSize = new System.Drawing.Size(0, 0);
             this.lciTestAndSave.TextVisible = false;
             // 
             // emptySpaceItem18
             // 
             this.emptySpaceItem18.AllowHotTrack = false;
-            this.emptySpaceItem18.Location = new System.Drawing.Point(0, 88);
+            this.emptySpaceItem18.Location = new System.Drawing.Point(0, 86);
             this.emptySpaceItem18.Name = "emptySpaceItem18";
             this.emptySpaceItem18.Size = new System.Drawing.Size(589, 10);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
@@ -837,7 +837,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem20
             // 
             this.emptySpaceItem20.AllowHotTrack = false;
-            this.emptySpaceItem20.Location = new System.Drawing.Point(422, 238);
+            this.emptySpaceItem20.Location = new System.Drawing.Point(422, 237);
             this.emptySpaceItem20.Name = "emptySpaceItem20";
             this.emptySpaceItem20.Size = new System.Drawing.Size(167, 24);
             this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
@@ -845,7 +845,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem21
             // 
             this.emptySpaceItem21.AllowHotTrack = false;
-            this.emptySpaceItem21.Location = new System.Drawing.Point(547, 166);
+            this.emptySpaceItem21.Location = new System.Drawing.Point(547, 164);
             this.emptySpaceItem21.Name = "emptySpaceItem21";
             this.emptySpaceItem21.Size = new System.Drawing.Size(42, 26);
             this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
@@ -853,46 +853,46 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem24
             // 
             this.emptySpaceItem24.AllowHotTrack = false;
-            this.emptySpaceItem24.Location = new System.Drawing.Point(547, 61);
+            this.emptySpaceItem24.Location = new System.Drawing.Point(547, 60);
             this.emptySpaceItem24.Name = "emptySpaceItem24";
-            this.emptySpaceItem24.Size = new System.Drawing.Size(42, 27);
+            this.emptySpaceItem24.Size = new System.Drawing.Size(42, 26);
             this.emptySpaceItem24.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem25
             // 
             this.emptySpaceItem25.AllowHotTrack = false;
-            this.emptySpaceItem25.Location = new System.Drawing.Point(262, 294);
+            this.emptySpaceItem25.Location = new System.Drawing.Point(262, 295);
             this.emptySpaceItem25.Name = "emptySpaceItem25";
-            this.emptySpaceItem25.Size = new System.Drawing.Size(60, 27);
+            this.emptySpaceItem25.Size = new System.Drawing.Size(60, 26);
             this.emptySpaceItem25.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem17
             // 
             this.emptySpaceItem17.AllowHotTrack = false;
-            this.emptySpaceItem17.Location = new System.Drawing.Point(0, 294);
+            this.emptySpaceItem17.Location = new System.Drawing.Point(0, 295);
             this.emptySpaceItem17.Name = "emptySpaceItem17";
-            this.emptySpaceItem17.Size = new System.Drawing.Size(76, 27);
+            this.emptySpaceItem17.Size = new System.Drawing.Size(76, 26);
             this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem26
             // 
             this.emptySpaceItem26.AllowHotTrack = false;
-            this.emptySpaceItem26.Location = new System.Drawing.Point(483, 294);
+            this.emptySpaceItem26.Location = new System.Drawing.Point(483, 295);
             this.emptySpaceItem26.Name = "emptySpaceItem26";
-            this.emptySpaceItem26.Size = new System.Drawing.Size(106, 27);
+            this.emptySpaceItem26.Size = new System.Drawing.Size(106, 26);
             this.emptySpaceItem26.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleSeparator2
             // 
             this.simpleSeparator2.AllowHotTrack = false;
-            this.simpleSeparator2.Location = new System.Drawing.Point(0, 292);
+            this.simpleSeparator2.Location = new System.Drawing.Point(0, 294);
             this.simpleSeparator2.Name = "simpleSeparator2";
-            this.simpleSeparator2.Size = new System.Drawing.Size(589, 2);
+            this.simpleSeparator2.Size = new System.Drawing.Size(589, 1);
             // 
             // lciWindowsAuthentication
             // 
             this.lciWindowsAuthentication.Control = this.checkEditWindowsAuthentication;
-            this.lciWindowsAuthentication.Location = new System.Drawing.Point(173, 98);
+            this.lciWindowsAuthentication.Location = new System.Drawing.Point(173, 96);
             this.lciWindowsAuthentication.Name = "lciWindowsAuthentication";
             this.lciWindowsAuthentication.Size = new System.Drawing.Size(249, 24);
             this.lciWindowsAuthentication.TextSize = new System.Drawing.Size(0, 0);
@@ -901,7 +901,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(422, 132);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(422, 130);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(167, 24);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -909,7 +909,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem22
             // 
             this.emptySpaceItem22.AllowHotTrack = false;
-            this.emptySpaceItem22.Location = new System.Drawing.Point(0, 122);
+            this.emptySpaceItem22.Location = new System.Drawing.Point(0, 120);
             this.emptySpaceItem22.Name = "emptySpaceItem22";
             this.emptySpaceItem22.Size = new System.Drawing.Size(589, 10);
             this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
@@ -917,7 +917,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem28
             // 
             this.emptySpaceItem28.AllowHotTrack = false;
-            this.emptySpaceItem28.Location = new System.Drawing.Point(0, 98);
+            this.emptySpaceItem28.Location = new System.Drawing.Point(0, 96);
             this.emptySpaceItem28.Name = "emptySpaceItem28";
             this.emptySpaceItem28.Size = new System.Drawing.Size(173, 24);
             this.emptySpaceItem28.TextSize = new System.Drawing.Size(0, 0);
@@ -925,7 +925,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem29
             // 
             this.emptySpaceItem29.AllowHotTrack = false;
-            this.emptySpaceItem29.Location = new System.Drawing.Point(422, 98);
+            this.emptySpaceItem29.Location = new System.Drawing.Point(422, 96);
             this.emptySpaceItem29.Name = "emptySpaceItem29";
             this.emptySpaceItem29.Size = new System.Drawing.Size(167, 24);
             this.emptySpaceItem29.TextSize = new System.Drawing.Size(0, 0);
@@ -935,7 +935,7 @@ namespace Databvase_Winforms.Views
             this.simpleSeparator3.AllowHotTrack = false;
             this.simpleSeparator3.Location = new System.Drawing.Point(0, 59);
             this.simpleSeparator3.Name = "simpleSeparator3";
-            this.simpleSeparator3.Size = new System.Drawing.Size(589, 2);
+            this.simpleSeparator3.Size = new System.Drawing.Size(589, 1);
             // 
             // lciNote
             // 
@@ -951,7 +951,7 @@ namespace Databvase_Winforms.Views
             this.lciTimeout.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lciTimeout.AppearanceItemCaption.Options.UseFont = true;
             this.lciTimeout.Control = this.spinEditConnectionTimeout;
-            this.lciTimeout.Location = new System.Drawing.Point(0, 202);
+            this.lciTimeout.Location = new System.Drawing.Point(0, 200);
             this.lciTimeout.Name = "lciTimeout";
             this.lciTimeout.Size = new System.Drawing.Size(422, 24);
             this.lciTimeout.Text = "Connection Timeout";
@@ -960,17 +960,17 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(422, 202);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(422, 200);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(167, 36);
+            this.emptySpaceItem8.Size = new System.Drawing.Size(167, 37);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(0, 226);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(0, 224);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(422, 12);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(422, 13);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem12
@@ -984,7 +984,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem32
             // 
             this.emptySpaceItem32.AllowHotTrack = false;
-            this.emptySpaceItem32.Location = new System.Drawing.Point(422, 166);
+            this.emptySpaceItem32.Location = new System.Drawing.Point(422, 164);
             this.emptySpaceItem32.Name = "emptySpaceItem32";
             this.emptySpaceItem32.Size = new System.Drawing.Size(13, 26);
             this.emptySpaceItem32.TextSize = new System.Drawing.Size(0, 0);
@@ -992,7 +992,7 @@ namespace Databvase_Winforms.Views
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.simpleButtonShowPassword;
-            this.layoutControlItem3.Location = new System.Drawing.Point(435, 166);
+            this.layoutControlItem3.Location = new System.Drawing.Point(435, 164);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(112, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
