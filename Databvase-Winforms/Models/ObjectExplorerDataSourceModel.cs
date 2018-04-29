@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Databvase_Winforms.Globals;
+using DevExpress.Data.Helpers;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
 {
-    //TODO - When an exception occurs creating database nodes, we need to display a message so that the user does not cause the program to freeze from numerous mouse clicks.
     public class ObjectExplorerDataSourceModel
     {
         private int _nodeId;
         public BindingList<ObjectExplorerModel> ObjectExplorerDataSource { get; set; }
         private Dictionary<string, Action<ObjectExplorerModel>> _folderActionDictionary = null;
+
+        private List<string> systemDatabaseNames => new List<string>
+        {
+            "master",
+            "model",
+            "msdb",
+            "tempdb"
+        };
 
         private Dictionary<string, Action<ObjectExplorerModel>> FolderActionDictionary
         {
@@ -25,6 +33,7 @@ namespace Databvase_Winforms.Models
                                {GlobalStrings.FolderTypes.FunctionsFolder, CreateFunctionNodes},
                                {GlobalStrings.FolderTypes.TableFolder, CreateTableNodes},
                                {GlobalStrings.FolderTypes.ViewFolder, CreateViewNodes},
+                               {GlobalStrings.FolderTypes.SystemDatabaseFolder, CreateSystemDatabaseNodes }
                            });
             }
         }
@@ -52,7 +61,7 @@ namespace Databvase_Winforms.Models
         }
 
 
-        public void CreateDatabaseNodes(ObjectExplorerModel model)
+        public void CreateUserDatabaseNodes(ObjectExplorerModel model)
         {
 
             if (!(model.Data is Server server)) return;
@@ -62,9 +71,27 @@ namespace Databvase_Winforms.Models
                 return;
             }
 
-            foreach (Database db in server.Databases)
-                ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, db));
+            ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), GlobalStrings.FolderTypes.SystemDatabaseFolder, model));
 
+            foreach (Database db in server.Databases) //TODO - This is probably not the most elegant way to handle this...
+            {
+                if (!systemDatabaseNames.Contains(db.Name))
+                {
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, db));
+                }
+            }
+        }
+
+        private void CreateSystemDatabaseNodes(ObjectExplorerModel model)
+        {
+            if (!(model.Data is Server server)) return;
+            foreach (Database db in server.Databases)
+            {
+                if (systemDatabaseNames.Contains(db.Name)) //TODO - This is probably not the most elegant way to handle this...
+                {
+                    ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, db));
+                }
+            }
         }
 
         public void CreateFolderNodesForDatabase(ObjectExplorerModel model)

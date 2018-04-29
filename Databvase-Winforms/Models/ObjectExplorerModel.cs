@@ -98,7 +98,7 @@ namespace Databvase_Winforms.Models
         {
             ParentId = parentModel.Id;
             Id = folderId;
-            InstanceName = ((Database)parentModel.Data).Parent.Name;
+            InstanceName = parentModel.InstanceName;
             Type = GlobalStrings.ObjectExplorerTypes.Folder;
             Data = parentModel.Data;
             FullName = folderType;

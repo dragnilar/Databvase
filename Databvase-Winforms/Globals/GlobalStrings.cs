@@ -39,6 +39,7 @@ namespace Databvase_Winforms.Globals
             public const string ViewFolder = "Views";
             public const string StoreProcedureFolder = "Stored Procedures";
             public const string FunctionsFolder = "Functions";
+            public const string SystemDatabaseFolder = "System Databases";
         }
 
 

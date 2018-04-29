@@ -119,7 +119,7 @@ namespace Databvase_Winforms.View_Models
             switch (model.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
-                    _dataSourceModel.CreateDatabaseNodes(model);
+                    _dataSourceModel.CreateUserDatabaseNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Database:
                     _dataSourceModel.CreateFolderNodesForDatabase(model);
@@ -204,8 +204,10 @@ namespace Databvase_Winforms.View_Models
                     return null;
                 case GlobalStrings.ObjectExplorerTypes.Database:
                     return (Database) model.Data;
+                case GlobalStrings.ObjectExplorerTypes.Folder when model.Data is Database database:
+                    return database;
                 case GlobalStrings.ObjectExplorerTypes.Folder:
-                    return (Database) model.Data;
+                    return null;
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     return ((Table) model.Data).Parent;
                 case GlobalStrings.ObjectExplorerTypes.Column:
