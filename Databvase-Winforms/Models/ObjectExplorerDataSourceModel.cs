@@ -9,6 +9,7 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
 {
+    //TODO - When an exception occurs creating database nodes, we need to display a message so that the user does not cause the program to freeze from numerous mouse clicks.
     public class ObjectExplorerDataSourceModel
     {
         private int _nodeId;

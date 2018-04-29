@@ -113,10 +113,16 @@ namespace Databvase_Winforms.View_Models
                 return;
             }
 
-            if (connection.TestConnection().valid)
+            var testResult = connection.TestConnection();
+            if (testResult.valid)
             {
                 SaveConnectionToBeBuilt(connection);
                 WindowState = State.ConnectionStringManager;
+            }
+            else
+            {
+                ShowErrorMessage($"{testResult.errorMessage}",
+                    "Connection Test Failed");
             }
         }
 

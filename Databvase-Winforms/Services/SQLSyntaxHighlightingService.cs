@@ -2,14 +2,16 @@
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.XtraRichEdit.Services;
 
 namespace Databvase_Winforms.Services
 {
     /// <summary>
-    /// Source: https://www.devexpress.com/Support/Center/Example/Details/E4139/how-to-implement-t-sql-language-syntax-highlighting-by-creating-syntax-highlight-tokens
+    ///     Original Source:
+    ///     https://www.devexpress.com/Support/Center/Example/Details/E4139/how-to-implement-t-sql-language-syntax-highlighting-by-creating-syntax-highlight-tokens
+    ///     Corrections courtesy of Ingvar from DevExpress here:
+    ///     https://www.devexpress.com/Support/Center/Question/Details/T535524/syntax-highlighting-crashes-on-some-phrases-using-ticket-id-e4139-sample-code
     /// </summary>
     internal class SQLSyntaxHighlightingService : ISyntaxHighlightService
     {
@@ -18,24 +20,53 @@ namespace Databvase_Winforms.Services
         private readonly Document document;
 
         private readonly SyntaxHighlightProperties defaultSettings =
-            new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorDefaultColor };
+            new SyntaxHighlightProperties { ForeColor = App.Config.TextEditorDefaultColor };
 
         private readonly SyntaxHighlightProperties keywordSettings =
-            new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorKeywordColor };
+            new SyntaxHighlightProperties { ForeColor = App.Config.TextEditorKeywordColor };
 
         private readonly SyntaxHighlightProperties stringSettings =
-            new SyntaxHighlightProperties {ForeColor = App.Config.TextEditorStringColor };
+            new SyntaxHighlightProperties { ForeColor = App.Config.TextEditorStringColor };
+
+        private readonly SyntaxHighlightProperties beginEndSettings =
+            new SyntaxHighlightProperties { ForeColor = Color.DarkViolet };
+
+        private readonly SyntaxHighlightProperties datetypeSettings =
+            new SyntaxHighlightProperties { ForeColor = Color.Brown };
+
+        private readonly SyntaxHighlightProperties functionSettings =
+            new SyntaxHighlightProperties { ForeColor = Color.DarkViolet };
+
+        private readonly SyntaxHighlightProperties variableSettings =
+            new SyntaxHighlightProperties { ForeColor = Color.DarkGreen };
 
         private readonly SyntaxHighlightProperties commentSettings =
-            new SyntaxHighlightProperties{ForeColor = App.Config.TextEditorCommentsColor};
+            new SyntaxHighlightProperties { ForeColor = App.Config.TextEditorCommentsColor };
+
+        private readonly SyntaxHighlightProperties numericSettings =
+            new SyntaxHighlightProperties { ForeColor = Color.Brown };
 
         private readonly string[] keywords =
         {
-            "INSERT", "SELECT", "CREATE", "TABLE", "USE", "IDENTITY", "ON", "OFF", "NOT", "NULL", "WITH", "SET",
-            "FROM", "WHERE", "JOIN", "DBCC", "AND", "OR", "ALTER", "AS", "BETWEEN", "DATABASE", "INDEX", "VIEW",
-            "DELETE", "DROP", "EXISTS", "GROUP BY", "HAVING", "IN", "INTO", "INNER JOIN", "LEFT JOIN",
-            "RIGHT JOIN", "FULL JOIN", "LIKE", "ORDER BY", "SELECT *", "SELECT DISTINCT", "SELECT",
-            "SELECT TOP", "TRUNCATE TABLE", "UNION ALL", "UPDATE", "EXEC"
+            "INSERT", "INTO", "DECLARE", "DISTINCT", "SELECT", "CREATE", "TABLE", "USE", "IDENTITY", "ON", "OFF", "NOT",
+            "NULL",
+            "WITH", "SET", "FROM", "WHERE", "CASE", "WHEN", "AS", "PROC", "PROCEDURE", "AND", "OR", "LIKE", "UPDATE",
+            "DELETE",
+            "DROP", "WHILE", "EXEC", "EXECUTE", "IF", "ELSE"
+        };
+
+        private readonly string[] beginEnd = { "BEGIN", "END", "TRAN", "TRANSACTION", "ROLLBACK", "COMMIT", "SAVE" };
+
+        private readonly string[] datetype =
+        {
+            "INT", "INTEGER", "TEXT", "IMAGE", "DECIMAL", "BIT", "INT", "NUMERIC", "TINYINT", "CHAR", "VARCHAR",
+            "UNSIGNED"
+        };
+
+        private readonly string[] function =
+        {
+            "GETDATE", "DATEPART", "DATEADD", "DATEDIFF", "ISNULL", "SUM", "COUNT", "MIN", "MAX", "LIST", "SUBSTRING",
+            "CHAR_LENGTH", "RTRIM", "LTRIM", "SUBSTRING", "CONVERT", "AVG"
         };
 
         public SQLSyntaxHighlightingService(Document document)
@@ -46,33 +77,96 @@ namespace Databvase_Winforms.Services
         private List<SyntaxHighlightToken> ParseTokens()
         {
             var tokens = new List<SyntaxHighlightToken>();
-            DocumentRange[] documentRanges = null;
+            DocumentRange[] ranges = null;
+            //TODO - Unfortunately Regex is not sufficient for parsing SQL comments.
+            //TODO - Will need to look into using an actual SQL Parser to handle comments more like SSMS.
+            var expr = new Regex(@"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(--.*)");
+            ranges = document.FindAll(expr);
+            foreach (var t in ranges)
+                if (!IsRangeInTokens(t, tokens))
+                    tokens.Add(new SyntaxHighlightToken(t.Start.ToInt(), t.Length, commentSettings));
 
-            // search for comments
-            var regularExpression = new Regex(@"(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(--.*)");
-            documentRanges = document.FindAll(regularExpression);
-            foreach (var range in documentRanges)
+            // search for quotation marks
+            ranges = document.FindAll("'", SearchOptions.None);
+            var rangeIndex = 0;
+
+            while (rangeIndex < ranges.Length - 1)
             {
-                if (!IsRangeInTokens(range, tokens))
+                var range = document.CreateRange(ranges[rangeIndex].Start.ToInt(),
+                    ranges[rangeIndex + 1].End.ToInt() - ranges[rangeIndex].Start.ToInt());
+                if (IsRangeInTokens(range, tokens))
                 {
-                    tokens.Add(new SyntaxHighlightToken(range.Start.ToInt(), range.Length, commentSettings));
+                    rangeIndex++;
+                }
+                else
+                {
+                    tokens.Add(new SyntaxHighlightToken(range.Start.ToInt(), range.Length, stringSettings));
+                    rangeIndex += 2;
                 }
             }
-            // search for quotation marks
-            documentRanges = document.FindAll("'", SearchOptions.None);
-            for (var i = 0; i < documentRanges.Length / 2; i++)
-                tokens.Add(new SyntaxHighlightToken(documentRanges[i * 2].Start.ToInt(),
-                    documentRanges[i * 2 + 1].Start.ToInt() - documentRanges[i * 2].Start.ToInt() + 1, stringSettings));
-            // search for keywords
-            foreach (var keywordRange in keywords)
+            //search for strings
+            ranges = document.FindAll("\"", SearchOptions.None);
+            for (var i = 0; i < ranges.Length / 2; i++)
             {
-                documentRanges = document.FindAll(keywordRange, SearchOptions.None | SearchOptions.WholeWord);
+                var range = document.CreateRange(ranges[i * 2].Start.ToInt(),
+                    ranges[i * 2 + 1].Start.ToInt() - ranges[i * 2].Start.ToInt() + 1);
+                if (!IsRangeInTokens(range, tokens))
+                    tokens.Add(new SyntaxHighlightToken(range.Start.ToInt(), range.Length, stringSettings));
+            }
 
-                foreach (var range in documentRanges)
-                    if (!IsRangeInTokens(range, tokens))
-                        tokens.Add(new SyntaxHighlightToken(range.Start.ToInt(), range.Length,
+            // search for keywords
+            foreach (var t in keywords)
+            {
+                ranges = document.FindAll(t, SearchOptions.None | SearchOptions.WholeWord);
+
+                for (var j = 0; j < ranges.Length; j++)
+                    if (!IsRangeInTokens(ranges[j], tokens))
+                        tokens.Add(new SyntaxHighlightToken(ranges[j].Start.ToInt(), ranges[j].Length,
                             keywordSettings));
             }
+            //search for beginEnd
+            foreach (var t in beginEnd)
+            {
+                ranges = document.FindAll(t, SearchOptions.None | SearchOptions.WholeWord);
+
+                for (var j = 0; j < ranges.Length; j++)
+                    if (!IsRangeInTokens(ranges[j], tokens))
+                        tokens.Add(
+                            new SyntaxHighlightToken(ranges[j].Start.ToInt(), ranges[j].Length, beginEndSettings));
+            }
+            //search for date types
+            foreach (var t in datetype)
+            {
+                ranges = document.FindAll(t, SearchOptions.None | SearchOptions.WholeWord);
+
+                for (var j = 0; j < ranges.Length; j++)
+                    if (!IsRangeInTokens(ranges[j], tokens))
+                        tokens.Add(
+                            new SyntaxHighlightToken(ranges[j].Start.ToInt(), ranges[j].Length, datetypeSettings));
+            }
+            //search for functions
+            foreach (var t in function)
+            {
+                ranges = document.FindAll(t, SearchOptions.None | SearchOptions.WholeWord);
+
+                foreach (var t1 in ranges)
+                    if (!IsRangeInTokens(t1, tokens))
+                        tokens.Add(
+                            new SyntaxHighlightToken(t1.Start.ToInt(), t1.Length, functionSettings));
+            }
+            //search for variables
+            expr = new Regex(@"(@\w*)");
+            ranges = document.FindAll(expr);
+            for (var i = 0; i < ranges.Length; i++)
+                if (!IsRangeInTokens(ranges[i], tokens))
+                    tokens.Add(new SyntaxHighlightToken(ranges[i].Start.ToInt(), ranges[i].Length, variableSettings));
+
+            //search for numerics
+            expr = new Regex(@"( [0-9].[0-9]\w*)|( [0-9]\w*)");
+            ranges = document.FindAll(expr);
+            foreach (var t in ranges)
+                if (!IsRangeInTokens(t, tokens))
+                    tokens.Add(new SyntaxHighlightToken(t.Start.ToInt(), t.Length, numericSettings));
 
             // order tokens by their start position
             tokens.Sort(new SyntaxHighlightTokenComparer());
@@ -90,12 +184,20 @@ namespace Databvase_Winforms.Services
                 return;
             }
 
-            tokens.Insert(0, new SyntaxHighlightToken(0, tokens[0].Start, defaultSettings));
-            for (var i = 1; i < count; i++)
-                tokens.Insert(i * 2, new SyntaxHighlightToken(tokens[i * 2 - 1].End,
-                    tokens[i * 2].Start - tokens[i * 2 - 1].End, defaultSettings));
-            tokens.Add(new SyntaxHighlightToken(tokens[count * 2 - 1].End,
-                document.Range.End.ToInt() - tokens[count * 2 - 1].End, defaultSettings));
+            if (tokens[0].Start > 0)
+                tokens.Insert(0, new SyntaxHighlightToken(0, tokens[0].Start, defaultSettings));
+
+            for (var i = count - 1; i > 0; i--)
+            {
+                var token = tokens[i];
+                var prevToken = tokens[i - 1];
+                if (token.Start - prevToken.End >= 0)
+                    tokens.Insert(i,
+                        new SyntaxHighlightToken(prevToken.End, token.Start - prevToken.End, defaultSettings));
+            }
+
+            tokens.Add(new SyntaxHighlightToken(tokens[tokens.Count - 1].End,
+                document.Range.End.ToInt() - tokens[tokens.Count - 1].End, defaultSettings));
         }
 
         private bool IsRangeInTokens(DocumentRange range, List<SyntaxHighlightToken> tokens)
@@ -111,6 +213,8 @@ namespace Databvase_Winforms.Services
             var end = range.End.ToInt() - 1;
             if (end >= token.Start && end < token.End)
                 return true;
+            if (start < token.Start && end >= token.End)
+                return true;
             return false;
         }
 
@@ -125,7 +229,8 @@ namespace Databvase_Winforms.Services
 
         public void Execute()
         {
-            document.ApplySyntaxHighlight(ParseTokens());
+            var tokens = ParseTokens();
+            document.ApplySyntaxHighlight(tokens);
         }
 
         #endregion #ISyntaxHighlightServiceMembers

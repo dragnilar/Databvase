@@ -39,17 +39,20 @@ namespace Databvase_Winforms.Services
 
         public (string script, string parentName) GenerateModifyScript(object selectedObjectExplorerData)
         {
+            var scriptBuilder = new StringBuilder();
             switch (selectedObjectExplorerData)
             {
                 case UserDefinedFunction function:
                 {
-                    var script = function.ScriptHeader(true);
-                    return (script, function.Parent.Name);
+                    scriptBuilder.Append(function.ScriptHeader(true));
+                    scriptBuilder.Append(function.TextBody);
+                    return (scriptBuilder.ToString(), function.Parent.Name);
                 }
                 case StoredProcedure storedProcedure:
                 {
-                    var script = storedProcedure.ScriptHeader(true);
-                    return (script, storedProcedure.Parent.Name);
+                    scriptBuilder.Append(storedProcedure.ScriptHeader(true));
+                    scriptBuilder.Append(storedProcedure.TextBody);
+                    return (scriptBuilder.ToString(), storedProcedure.Parent.Name);
                 }
             }
 
@@ -58,17 +61,20 @@ namespace Databvase_Winforms.Services
 
         public (string script, string parentName) GenerateAlterScript(object selectedObjectExplorerData)
         {
+            var scriptBuilder = new StringBuilder();
             switch (selectedObjectExplorerData)
             {
                 case UserDefinedFunction function:
                 {
-                    var script = function.ScriptHeader(false);
-                    return (script, function.Parent.Name);
+                    scriptBuilder.Append(function.ScriptHeader(false));
+                    scriptBuilder.Append(function.TextBody);
+                    return (scriptBuilder.ToString(), function.Parent.Name);
                 }
                 case StoredProcedure storedProcedure:
                 {
-                    var script = storedProcedure.ScriptHeader(false);
-                    return (script, storedProcedure.Parent.Name);
+                    scriptBuilder.Append(storedProcedure.ScriptHeader(false));
+                    scriptBuilder.Append(storedProcedure.TextBody);
+                    return (scriptBuilder.ToString(), storedProcedure.Parent.Name);
                 }
             }
 
