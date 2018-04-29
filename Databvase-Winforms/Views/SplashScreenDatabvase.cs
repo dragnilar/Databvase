@@ -9,9 +9,9 @@ using DevExpress.XtraSplashScreen;
 
 namespace Databvase_Winforms.Views
 {
-    public partial class SplashScreen1 : SplashScreen
+    public partial class SplashScreenDatabvase : SplashScreen
     {
-        public SplashScreen1()
+        public SplashScreenDatabvase()
         {
             InitializeComponent();
         }
