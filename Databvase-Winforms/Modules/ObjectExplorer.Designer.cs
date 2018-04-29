@@ -57,6 +57,7 @@
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.splashScreenManagerObjectExplorer = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true, typeof(System.Windows.Forms.UserControl));
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -294,7 +295,7 @@
             // 
             this.barButtonItemAlterScript.Caption = "Modify (Generate Script)";
             this.barButtonItemAlterScript.Id = 8;
-            this.barButtonItemAlterScript.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemModifyFunction.ImageOptions.SvgImage")));
+            this.barButtonItemAlterScript.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemAlterScript.ImageOptions.SvgImage")));
             this.barButtonItemAlterScript.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
             this.barButtonItemAlterScript.Name = "barButtonItemAlterScript";
             // 
@@ -322,6 +323,10 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript)});
             this.popupMenuStoredProcedure.Manager = this.barManagerObjectExplorer;
             this.popupMenuStoredProcedure.Name = "popupMenuStoredProcedure";
+            // 
+            // splashScreenManagerObjectExplorer
+            // 
+            this.splashScreenManagerObjectExplorer.ClosingDelay = 500;
             // 
             // ObjectExplorer
             // 
@@ -380,5 +385,6 @@
         private DevExpress.XtraBars.PopupMenu popupMenuStoredProcedure;
         private DevExpress.XtraBars.BarButtonItem barButtonItemViewFunction;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAlterScript;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManagerObjectExplorer;
     }
 }

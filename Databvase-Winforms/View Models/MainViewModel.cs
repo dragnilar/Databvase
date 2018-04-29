@@ -18,10 +18,12 @@ namespace Databvase_Winforms.View_Models
     {
 
         public IDocumentManagerService DocumentManagerService => this.GetRequiredService<IDocumentManagerService>();
+        protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
         public virtual int NumberOfQueries { get; set; }
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
         private bool Loading = true;
+
 
 
 
@@ -68,6 +70,7 @@ namespace Databvase_Winforms.View_Models
 
         public void AddNewTab()
         {
+            ShowSplashScreen();
             NumberOfQueries++;
             var vm = new QueryControlViewModel();
             var docInfo = new DocumentInfo
@@ -79,6 +82,8 @@ namespace Databvase_Winforms.View_Models
             document.Title = docInfo.DocumentTitle;
             document.DestroyOnClose = true;
             document.Show();
+            HideSplashScreen();
+
         }
 
 
@@ -96,7 +101,7 @@ namespace Databvase_Winforms.View_Models
 
         protected void SaveTextEditorColors()
         {
-            if (Loading)
+            if (Loading)  //TODO - This was necessary because this event can get fired prematurely, see if there is a way to avoid having to do this
             {
                 return;
             }
@@ -113,6 +118,16 @@ namespace Databvase_Winforms.View_Models
                 builder.Property(x => x.TextEditorBackgroundColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
                 builder.Property(x => x.TextEditorLineNumberColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
             }
+        }
+
+        public void ShowSplashScreen()
+        {
+            SplashScreenService.ShowSplashScreen();
+        }
+
+        public void HideSplashScreen()
+        {
+            SplashScreenService.HideSplashScreen();
         }
     }
 

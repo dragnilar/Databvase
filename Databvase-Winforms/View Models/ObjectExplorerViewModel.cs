@@ -20,7 +20,8 @@ namespace Databvase_Winforms.View_Models
     {
 
         private ObjectExplorerDataSourceModel _dataSourceModel;
-        public virtual bool UnboundLoad { get; set; }
+        //public virtual bool UnboundLoad { get; set; }
+        public virtual UnboundLoadModes LoadingMode { get; set; }
         public virtual string SelectTopContextMenuItemDescription { get; set; }
         public virtual BindingList<ObjectExplorerModel> ObjectExplorerSource { get; set; }
 
@@ -30,7 +31,7 @@ namespace Databvase_Winforms.View_Models
             RegisterForMessages();
             _dataSourceModel = new ObjectExplorerDataSourceModel();
             ObjectExplorerSource = _dataSourceModel.ObjectExplorerDataSource;
-            UnboundLoad = false;
+            LoadingMode = UnboundLoadModes.NotLoading;
         }
 
         private void GetSelectTopDescriptionForPopupMenu()
@@ -58,11 +59,11 @@ namespace Databvase_Winforms.View_Models
         private void DisconnectInstance(DisconnectInstanceMessage message)
         {
             if (message == null) return;
-            UnboundLoad = true;
+            LoadingMode = UnboundLoadModes.BeginUnboundLoad;
             App.Connection.DisconnectCurrentInstance(); //TODO - See if there's a better way to do this...
             var instanceTree =  _dataSourceModel.ObjectExplorerDataSource.Where(r => r.InstanceName == message.InstanceName).ToList();
             foreach (var item in instanceTree)  _dataSourceModel.ObjectExplorerDataSource.Remove(item);
-            UnboundLoad = false;
+            FinishUnboundLoad();
         }
 
         #region Object Explorer On Demand Data Methods
@@ -70,9 +71,9 @@ namespace Databvase_Winforms.View_Models
         private void GetInstances(InstanceConnectedMessage message)
         {
             if (message == null) return;
-            UnboundLoad = true;
+            LoadingMode = UnboundLoadModes.BeginUnboundLoad;
             _dataSourceModel.GenerateInstances();
-            UnboundLoad = false;
+            FinishUnboundLoad();
         }
 
         public void ObjectExplorer_OnBeforeExpand(BeforeExpandEventArgs e)
@@ -86,7 +87,7 @@ namespace Databvase_Winforms.View_Models
 
         private void LoadDataForObjectExplorerDynamically(ObjectExplorerModel model)
         {
-            UnboundLoad = true;
+            LoadingMode = UnboundLoadModes.BeginUnboundLoad;
             switch (model.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
@@ -102,7 +103,7 @@ namespace Databvase_Winforms.View_Models
                     _dataSourceModel.CreateColumnNodes(model);
                     break;
             }
-            UnboundLoad = false;
+            FinishUnboundLoad();
         }
 
 
@@ -196,5 +197,18 @@ namespace Databvase_Winforms.View_Models
         }
 
         #endregion
+
+        private void FinishUnboundLoad()
+        {
+            LoadingMode = UnboundLoadModes.FinishUnboundLoad;
+            LoadingMode = UnboundLoadModes.NotLoading;
+        }
+
+        public enum UnboundLoadModes
+        {
+            NotLoading,
+            BeginUnboundLoad,
+            FinishUnboundLoad
+        }
     }
 }

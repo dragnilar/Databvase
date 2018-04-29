@@ -11,6 +11,7 @@ using DevExpress.Customization;
 using DevExpress.LookAndFeel;
 using DevExpress.Mvvm;
 using DevExpress.Utils.Menu;
+using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Ribbon;
@@ -63,6 +64,7 @@ namespace Databvase_Winforms.Views
         private void RegisterServices()
         {
             mvvmContextMain.RegisterService(new SettingsWindowService());
+            mvvmContextMain.RegisterService(SplashScreenService.Create(splashScreenManagerMainWait));
         }
 
 

@@ -98,21 +98,22 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemAlterScript, (x, p) => x.ScriptModifyForObjectExplorerData(p), x=> GetFocusedNodeData());
             fluent.BindCommand(barButtonItemViewFunction, (x, p) => x.ScriptAlterForObjectExplorerData(p), x=> GetFocusedNodeData());
             fluent.BindCommand(barButtonItemNewQuery, (x,p) => x.NewQueryScript(p), x=> GetFocusedNodeDatabase());
-            fluent.SetTrigger(vm => vm.UnboundLoad, TriggerAction);
+            fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);
         }
 
-        private void TriggerAction(bool useUnboundLoad)
+        private void TriggerAction(ObjectExplorerViewModel.UnboundLoadModes unboundLoadMode)
         {
-            if (useUnboundLoad)
+            switch (unboundLoadMode)
             {
-                treeListObjExp.BeginUnboundLoad();
-            }
-            else
-            {
-                treeListObjExp.EndUnboundLoad();
-                treeListObjExp.FocusedNode?.Expand();
-
-
+                case ObjectExplorerViewModel.UnboundLoadModes.BeginUnboundLoad:
+                    treeListObjExp.BeginUnboundLoad();
+                    splashScreenManagerObjectExplorer.ShowWaitForm();
+                    break;
+                case ObjectExplorerViewModel.UnboundLoadModes.FinishUnboundLoad:
+                    splashScreenManagerObjectExplorer.CloseWaitForm();
+                    treeListObjExp.EndUnboundLoad();
+                    treeListObjExp.FocusedNode?.Expand();
+                    break;
             }
         }
 

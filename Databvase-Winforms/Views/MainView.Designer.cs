@@ -31,6 +31,7 @@ namespace Databvase_Winforms.Views
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManagerMainSplashy = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.SplashScreen1), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.ribbonControlMain = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
@@ -62,6 +63,7 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer = new DevExpress.XtraBars.Docking.DockPanel();
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+            this.splashScreenManagerMainWait = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
@@ -73,6 +75,10 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.documentManagerMain)).BeginInit();
             this.SuspendLayout();
+            // 
+            // splashScreenManagerMainSplashy
+            // 
+            splashScreenManagerMainSplashy.ClosingDelay = 500;
             // 
             // ribbonControlMain
             // 
@@ -343,6 +349,10 @@ namespace Databvase_Winforms.Views
             this.documentManagerMain.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedViewMain});
             // 
+            // splashScreenManagerMainWait
+            // 
+            this.splashScreenManagerMainWait.ClosingDelay = 500;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,6 +412,7 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraBars.BarEditItem barEditItemTextEditorLineNumberColor;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit riColorPickEditTextEditorLineNumberColor;
         private DevExpress.XtraBars.BarButtonItem barButtonItemTextEditorFontSettings;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManagerMainWait;
     }
 }
 

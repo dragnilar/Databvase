@@ -344,6 +344,12 @@
       <DependentUpon>SettingsView.cs</DependentUpon>
     </Compile>
     <Compile Include="View Models\SettingsViewModel.cs" />
+    <Compile Include="Views\SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WaitSplashyView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +396,9 @@
     </Compile>
     <EmbeddedResource Include="Views\SettingsView.resx">
       <DependentUpon>SettingsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WaitSplashyView.resx">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>
