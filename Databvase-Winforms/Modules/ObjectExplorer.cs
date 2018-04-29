@@ -17,7 +17,7 @@ namespace Databvase_Winforms.Modules
             InitializeComponent();
             if (!mvvmContextObjectExplorer.IsDesignMode)
                 InitializeBindings();
-
+            MVVMContext.RegisterXtraDialogService();
             HookupEvents();
         }
 

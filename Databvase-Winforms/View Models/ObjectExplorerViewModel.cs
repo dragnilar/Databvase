@@ -9,6 +9,7 @@ using Databvase_Winforms.Models;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using Microsoft.SqlServer.Management.Smo;
@@ -20,10 +21,10 @@ namespace Databvase_Winforms.View_Models
     {
 
         private ObjectExplorerDataSourceModel _dataSourceModel;
-        //public virtual bool UnboundLoad { get; set; }
         public virtual UnboundLoadModes LoadingMode { get; set; }
         public virtual string SelectTopContextMenuItemDescription { get; set; }
         public virtual BindingList<ObjectExplorerModel> ObjectExplorerSource { get; set; }
+        protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
         public ObjectExplorerViewModel()
         {
@@ -71,9 +72,19 @@ namespace Databvase_Winforms.View_Models
         private void GetInstances(InstanceConnectedMessage message)
         {
             if (message == null) return;
-            LoadingMode = UnboundLoadModes.BeginUnboundLoad;
-            _dataSourceModel.GenerateInstances();
-            FinishUnboundLoad();
+            try
+            {
+                LoadingMode = UnboundLoadModes.BeginUnboundLoad;
+                _dataSourceModel.GenerateInstances();
+            }
+            catch (Exception e)
+            {
+                DisplayErrorMessage(e.Message);
+            }
+            finally
+            {
+                FinishUnboundLoad();
+            }
         }
 
         public void ObjectExplorer_OnBeforeExpand(BeforeExpandEventArgs e)
@@ -88,6 +99,23 @@ namespace Databvase_Winforms.View_Models
         private void LoadDataForObjectExplorerDynamically(ObjectExplorerModel model)
         {
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
+            try
+            {
+                GetNodes(model);
+            }
+            catch (Exception e)
+            {
+                DisplayErrorMessage(e.Message);
+            }
+            finally
+            {
+                FinishUnboundLoad();
+            }
+
+        }
+
+        private void GetNodes(ObjectExplorerModel model)
+        {
             switch (model.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
@@ -96,16 +124,14 @@ namespace Databvase_Winforms.View_Models
                 case GlobalStrings.ObjectExplorerTypes.Database:
                     _dataSourceModel.CreateFolderNodesForDatabase(model);
                     break;
-                case GlobalStrings.ObjectExplorerTypes.Folder: 
+                case GlobalStrings.ObjectExplorerTypes.Folder:
                     _dataSourceModel.CreateFolderChildrenNodes(model);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     _dataSourceModel.CreateColumnNodes(model);
                     break;
             }
-            FinishUnboundLoad();
         }
-
 
         private ObjectExplorerModel GetModelForNode(TreeListNode node)
         {
@@ -197,6 +223,11 @@ namespace Databvase_Winforms.View_Models
         }
 
         #endregion
+
+        private void DisplayErrorMessage(string message)
+        {
+            MessageBoxService.ShowMessage(message, "Error Getting Objects", MessageButton.OK, MessageIcon.Error);
+        }
 
         private void FinishUnboundLoad()
         {
