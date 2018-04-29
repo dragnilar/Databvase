@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Media.Media3D;
 using Databvase_Winforms.Globals;
-using Databvase_Winforms.Utilities;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
@@ -101,7 +99,6 @@ namespace Databvase_Winforms.Models
 
             foreach (Table table in database.Tables)
                 ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model.Id, table));
-
         }
 
 

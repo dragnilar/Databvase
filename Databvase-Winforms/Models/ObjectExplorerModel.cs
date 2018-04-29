@@ -8,6 +8,7 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
 {
+    //TODO - Possibly replace all these constructors with a builder???
     public class ObjectExplorerModel : INotifyPropertyChanged
     {
         /// <summary>
