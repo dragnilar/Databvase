@@ -20,7 +20,13 @@ namespace Databvase_Winforms.Views
             InitializeComponent();
             if (!mvvmContextSettingsView.IsDesignMode)
                 InitializeBindings();
+            HookUpEvents();
             RegisterServices();
+        }
+
+        private void HookUpEvents()
+        {
+            fontEditDefaultFont.QueryPopUp += (sender, args) => args.Cancel = true; //Disables showing the popup window because we don't need to see it.
         }
 
         private void RegisterServices()

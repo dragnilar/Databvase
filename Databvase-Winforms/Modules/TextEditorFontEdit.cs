@@ -85,5 +85,9 @@ namespace Databvase_Winforms.Modules
 
         }
 
+        private void fontEditDefaultFont_QueryPopUp(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true; //Disables showing the popup window because we don't need to see it.
+        }
     }
 }

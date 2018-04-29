@@ -77,7 +77,7 @@
             // colorPickEditCommentsColor
             // 
             this.colorPickEditCommentsColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditCommentsColor.Location = new System.Drawing.Point(151, 111);
+            this.colorPickEditCommentsColor.Location = new System.Drawing.Point(151, 110);
             this.colorPickEditCommentsColor.Name = "colorPickEditCommentsColor";
             this.colorPickEditCommentsColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditCommentsColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -89,7 +89,7 @@
             // colorPickEditStringColor
             // 
             this.colorPickEditStringColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditStringColor.Location = new System.Drawing.Point(151, 135);
+            this.colorPickEditStringColor.Location = new System.Drawing.Point(151, 134);
             this.colorPickEditStringColor.Name = "colorPickEditStringColor";
             this.colorPickEditStringColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditStringColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -101,7 +101,7 @@
             // colorPickEditKeywordColor
             // 
             this.colorPickEditKeywordColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditKeywordColor.Location = new System.Drawing.Point(151, 87);
+            this.colorPickEditKeywordColor.Location = new System.Drawing.Point(151, 86);
             this.colorPickEditKeywordColor.Name = "colorPickEditKeywordColor";
             this.colorPickEditKeywordColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditKeywordColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -113,7 +113,7 @@
             // colorPickEditDefaultTextColor
             // 
             this.colorPickEditDefaultTextColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditDefaultTextColor.Location = new System.Drawing.Point(151, 63);
+            this.colorPickEditDefaultTextColor.Location = new System.Drawing.Point(151, 62);
             this.colorPickEditDefaultTextColor.Name = "colorPickEditDefaultTextColor";
             this.colorPickEditDefaultTextColor.Properties.AutomaticColor = System.Drawing.Color.Black;
             this.colorPickEditDefaultTextColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -124,7 +124,7 @@
             // 
             // fontEditDefaultFont
             // 
-            this.fontEditDefaultFont.Location = new System.Drawing.Point(151, 39);
+            this.fontEditDefaultFont.Location = new System.Drawing.Point(151, 38);
             this.fontEditDefaultFont.Name = "fontEditDefaultFont";
             this.fontEditDefaultFont.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -132,6 +132,7 @@
             this.fontEditDefaultFont.Size = new System.Drawing.Size(310, 20);
             this.fontEditDefaultFont.StyleController = this.lcFontDialog;
             this.fontEditDefaultFont.TabIndex = 6;
+            this.fontEditDefaultFont.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.fontEditDefaultFont_QueryPopUp);
             // 
             // lcgFontDialog
             // 
@@ -200,7 +201,7 @@
             this.lciStringColor.Control = this.colorPickEditStringColor;
             this.lciStringColor.Location = new System.Drawing.Point(0, 96);
             this.lciStringColor.Name = "lciStringColor";
-            this.lciStringColor.Size = new System.Drawing.Size(451, 27);
+            this.lciStringColor.Size = new System.Drawing.Size(451, 28);
             this.lciStringColor.Text = "Text Editor String Color";
             this.lciStringColor.TextSize = new System.Drawing.Size(134, 13);
             // 

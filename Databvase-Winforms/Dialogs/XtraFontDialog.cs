@@ -11,6 +11,9 @@ using ItemCheckEventArgs = DevExpress.XtraEditors.Controls.ItemCheckEventArgs;
 
 namespace Databvase_Winforms.Controls
 {
+    /// <summary>
+    /// This is an "unofficial" DevExpress control that was taken from their RichEdit demo. It provides a rich experience for a user to select a font.
+    /// </summary>
     public class XtraFontDialog : XtraForm
     {
         private ComboBoxEdit cbeFont;
@@ -19,18 +22,18 @@ namespace Databvase_Winforms.Controls
         private Font fCurrentFont;
         private Font fResultFont;
         private ImageListBoxControl ilbcFont;
-        private LabelControl labelControl1;
-        private LabelControl labelControl2;
-        private LabelControl labelControl3;
-        private LabelControl labelControl4;
+        private LabelControl labelControlFontName;
+        private LabelControl labelControlFontStyle;
+        private LabelControl labelControlFontSize;
+        private LabelControl labelControlPreview;
         private ListBoxControl lbcFontSize;
-        private LabelControl lcPreview;
+        private LabelControl lcFontPreviewText;
         private SimpleButton sbCancel;
         private SimpleButton sbOk;
         private SpinEdit seFontSize;
         private TextEdit teFontStyle;
-        private XtraTabControl xtraTabControl1;
-        private XtraTabPage xtraTabPage2;
+        private XtraTabControl xtraTabControlXtraFontDialog;
+        private XtraTabPage xtraTabPageFontSetup;
 
         public XtraFontDialog(Font font)
         {
@@ -105,204 +108,230 @@ namespace Databvase_Winforms.Controls
 
         private void InitializeComponent()
         {
-            xtraTabControl1 = new XtraTabControl();
-            xtraTabPage2 = new XtraTabPage();
-            lcPreview = new LabelControl();
-            labelControl4 = new LabelControl();
-            lbcFontSize = new ListBoxControl();
-            labelControl3 = new LabelControl();
-            seFontSize = new SpinEdit();
-            labelControl2 = new LabelControl();
-            teFontStyle = new TextEdit();
-            clbStyle = new CheckedListBoxControl();
-            labelControl1 = new LabelControl();
-            ilbcFont = new ImageListBoxControl();
-            cbeFont = new ComboBoxEdit();
-            sbCancel = new SimpleButton();
-            sbOk = new SimpleButton();
-            xtraTabControl1.BeginInit();
-            xtraTabControl1.SuspendLayout();
-            xtraTabPage2.SuspendLayout();
-            ((ISupportInitialize) lbcFontSize).BeginInit();
-            seFontSize.Properties.BeginInit();
-            teFontStyle.Properties.BeginInit();
-            ((ISupportInitialize) clbStyle).BeginInit();
-            ((ISupportInitialize) ilbcFont).BeginInit();
-            cbeFont.Properties.BeginInit();
-            SuspendLayout();
-            xtraTabControl1.Location = new Point(8, 9);
-            xtraTabControl1.Name = "xtraTabControl1";
-            xtraTabControl1.SelectedTabPage = xtraTabPage2;
-            xtraTabControl1.Size = new Size(376, 303);
-            xtraTabControl1.TabIndex = 0;
-            xtraTabControl1.TabPages.AddRange(new XtraTabPage[1]
-            {
-                xtraTabPage2
-            });
-            xtraTabControl1.TabStop = false;
-            xtraTabControl1.Text = "xtcFont";
-            xtraTabPage2.Controls.AddRange(new Control[11]
-            {
-                lcPreview,
-                labelControl4,
-                lbcFontSize,
-                labelControl3,
-                seFontSize,
-                labelControl2,
-                teFontStyle,
-                clbStyle,
-                labelControl1,
-                ilbcFont,
-                cbeFont
-            });
-            xtraTabPage2.Name = "xtraTabPage2";
-            xtraTabPage2.Size = new Size(367, 273);
-            xtraTabPage2.Text = "Font";
-            lcPreview.Appearance.BackColor = Color.White;
-            lcPreview.Appearance.Options.UseBackColor = true;
-            lcPreview.Appearance.Options.UseTextOptions = true;
-            lcPreview.Appearance.TextOptions.HAlignment = HorzAlignment.Center;
-            lcPreview.Appearance.TextOptions.VAlignment = VertAlignment.Center;
-            lcPreview.BorderStyle = BorderStyles.Simple;
-            lcPreview.LineLocation = LineLocation.Center;
-            lcPreview.LineVisible = true;
-            lcPreview.Location = new Point(8, 216);
-            lcPreview.Name = "lcPreview";
-            lcPreview.AutoSizeMode = LabelAutoSizeMode.None;
-            lcPreview.Size = new Size(352, 40);
-            lcPreview.TabIndex = 25;
-            lcPreview.Text = "Font Preview Text";
-            labelControl4.LineVisible = true;
-            labelControl4.Location = new Point(10, 192);
-            labelControl4.Name = "labelControl4";
-            labelControl4.Size = new Size(350, 13);
-            labelControl4.TabIndex = 24;
-            labelControl4.Text = "Preview";
-            lbcFontSize.Location = new Point(280, 46);
-            lbcFontSize.Name = "lbcFontSize";
-            lbcFontSize.Size = new Size(80, 130);
-            lbcFontSize.TabIndex = 5;
-            lbcFontSize.SelectedIndexChanged += lbcFontSize_SelectedIndexChanged;
-            labelControl3.AutoSizeMode = LabelAutoSizeMode.Horizontal;
-            labelControl3.Location = new Point(282, 8);
-            labelControl3.Name = "labelControl3";
-            labelControl3.Size = new Size(48, 13);
-            labelControl3.TabIndex = 22;
-            labelControl3.Text = "Font Size:";
-            seFontSize.EditValue = new decimal(new int[4]
-            {
-                8,
-                0,
-                0,
-                0
-            });
-            seFontSize.Location = new Point(280, 24);
-            seFontSize.Name = "seFontSize";
-            seFontSize.Properties.Buttons.AddRange(new EditorButton[1]
-            {
-                new EditorButton()
-            });
-            seFontSize.Properties.IsFloatValue = false;
-            seFontSize.Properties.Mask.EditMask = "N00";
-            seFontSize.Properties.MaxValue = new decimal(new int[4]
-            {
-                100,
-                0,
-                0,
-                0
-            });
-            seFontSize.Properties.MinValue = new decimal(new int[4]
-            {
-                6,
-                0,
-                0,
-                0
-            });
-            seFontSize.Size = new Size(80, 20);
-            seFontSize.TabIndex = 4;
-            seFontSize.EditValueChanged += seFontSize_EditValueChanged;
-            labelControl2.AutoSizeMode = LabelAutoSizeMode.Horizontal;
-            labelControl2.Location = new Point(170, 8);
-            labelControl2.Name = "labelControl2";
-            labelControl2.Size = new Size(53, 13);
-            labelControl2.TabIndex = 20;
-            labelControl2.Text = "Font Style:";
-            teFontStyle.Location = new Point(168, 24);
-            teFontStyle.Name = "teFontStyle";
-            teFontStyle.Properties.ReadOnly = true;
-            teFontStyle.Size = new Size(104, 20);
-            teFontStyle.TabIndex = 2;
-            teFontStyle.TabStop = false;
-            clbStyle.CheckOnClick = true;
-            clbStyle.Items.AddRange(new CheckedListBoxItem[4]
-            {
-                new CheckedListBoxItem("Bold"),
-                new CheckedListBoxItem("Italic"),
-                new CheckedListBoxItem("Strikeout"),
-                new CheckedListBoxItem("Underline")
-            });
-            clbStyle.Location = new Point(168, 46);
-            clbStyle.Name = "clbStyle";
-            clbStyle.Size = new Size(104, 130);
-            clbStyle.TabIndex = 3;
-            clbStyle.ItemCheck += clbStyle_ItemCheck;
-            labelControl1.AutoSizeMode = LabelAutoSizeMode.Horizontal;
-            labelControl1.Location = new Point(10, 8);
-            labelControl1.Name = "labelControl1";
-            labelControl1.Size = new Size(26, 13);
-            labelControl1.TabIndex = 2;
-            labelControl1.Text = "Font:";
-            ilbcFont.Location = new Point(8, 46);
-            ilbcFont.Name = "ilbcFont";
-            ilbcFont.Size = new Size(152, 130);
-            ilbcFont.TabIndex = 1;
-            ilbcFont.SelectedIndexChanged += ilbcFont_SelectedIndexChanged;
-            cbeFont.Location = new Point(8, 24);
-            cbeFont.Name = "cbeFont";
-            cbeFont.Properties.ShowDropDown = ShowDropDown.Never;
-            cbeFont.Size = new Size(152, 20);
-            cbeFont.TabIndex = 0;
-            cbeFont.SelectedValueChanged += cbeFont_SelectedValueChanged;
-            sbCancel.DialogResult = DialogResult.Cancel;
-            sbCancel.Location = new Point(296, 320);
-            sbCancel.Name = "sbCancel";
-            sbCancel.Size = new Size(88, 24);
-            sbCancel.TabIndex = 2;
-            sbCancel.Text = "&Cancel";
-            sbOk.DialogResult = DialogResult.OK;
-            sbOk.Location = new Point(200, 320);
-            sbOk.Name = "sbOk";
-            sbOk.Size = new Size(88, 24);
-            sbOk.TabIndex = 1;
-            sbOk.Text = "&OK";
-            AcceptButton = sbOk;
-            AutoScaleMode = AutoScaleMode.Font;
-            AutoScaleDimensions = new SizeF(6f, 13f);
-            CancelButton = sbCancel;
-            ClientSize = new Size(394, 352);
-            Controls.AddRange(new Control[3]
-            {
-                sbOk,
-                sbCancel,
-                xtraTabControl1
-            });
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmFontDialog";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Font";
-            xtraTabControl1.EndInit();
-            xtraTabControl1.ResumeLayout(false);
-            xtraTabPage2.ResumeLayout(false);
-            ((ISupportInitialize) lbcFontSize).EndInit();
-            seFontSize.Properties.EndInit();
-            teFontStyle.Properties.EndInit();
-            ((ISupportInitialize) clbStyle).EndInit();
-            ((ISupportInitialize) ilbcFont).EndInit();
-            cbeFont.Properties.EndInit();
-            ResumeLayout(false);
+            this.xtraTabControlXtraFontDialog = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPageFontSetup = new DevExpress.XtraTab.XtraTabPage();
+            this.lcFontPreviewText = new DevExpress.XtraEditors.LabelControl();
+            this.labelControlPreview = new DevExpress.XtraEditors.LabelControl();
+            this.lbcFontSize = new DevExpress.XtraEditors.ListBoxControl();
+            this.labelControlFontSize = new DevExpress.XtraEditors.LabelControl();
+            this.seFontSize = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControlFontStyle = new DevExpress.XtraEditors.LabelControl();
+            this.teFontStyle = new DevExpress.XtraEditors.TextEdit();
+            this.clbStyle = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.labelControlFontName = new DevExpress.XtraEditors.LabelControl();
+            this.ilbcFont = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.cbeFont = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.sbCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.sbOk = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlXtraFontDialog)).BeginInit();
+            this.xtraTabControlXtraFontDialog.SuspendLayout();
+            this.xtraTabPageFontSetup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbcFontSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seFontSize.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teFontStyle.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clbStyle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ilbcFont)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFont.Properties)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // xtraTabControlXtraFontDialog
+            // 
+            this.xtraTabControlXtraFontDialog.Location = new System.Drawing.Point(8, 9);
+            this.xtraTabControlXtraFontDialog.Name = "xtraTabControlXtraFontDialog";
+            this.xtraTabControlXtraFontDialog.SelectedTabPage = this.xtraTabPageFontSetup;
+            this.xtraTabControlXtraFontDialog.Size = new System.Drawing.Size(376, 303);
+            this.xtraTabControlXtraFontDialog.TabIndex = 0;
+            this.xtraTabControlXtraFontDialog.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPageFontSetup});
+            this.xtraTabControlXtraFontDialog.TabStop = false;
+            // 
+            // xtraTabPageFontSetup
+            // 
+            this.xtraTabPageFontSetup.Controls.Add(this.lcFontPreviewText);
+            this.xtraTabPageFontSetup.Controls.Add(this.labelControlPreview);
+            this.xtraTabPageFontSetup.Controls.Add(this.lbcFontSize);
+            this.xtraTabPageFontSetup.Controls.Add(this.labelControlFontSize);
+            this.xtraTabPageFontSetup.Controls.Add(this.seFontSize);
+            this.xtraTabPageFontSetup.Controls.Add(this.labelControlFontStyle);
+            this.xtraTabPageFontSetup.Controls.Add(this.teFontStyle);
+            this.xtraTabPageFontSetup.Controls.Add(this.clbStyle);
+            this.xtraTabPageFontSetup.Controls.Add(this.labelControlFontName);
+            this.xtraTabPageFontSetup.Controls.Add(this.ilbcFont);
+            this.xtraTabPageFontSetup.Controls.Add(this.cbeFont);
+            this.xtraTabPageFontSetup.Name = "xtraTabPageFontSetup";
+            this.xtraTabPageFontSetup.Size = new System.Drawing.Size(370, 275);
+            this.xtraTabPageFontSetup.Text = "Font";
+            // 
+            // lcFontPreviewText
+            // 
+            this.lcFontPreviewText.Appearance.BackColor = System.Drawing.Color.White;
+            this.lcFontPreviewText.Appearance.Options.UseBackColor = true;
+            this.lcFontPreviewText.Appearance.Options.UseTextOptions = true;
+            this.lcFontPreviewText.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lcFontPreviewText.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.lcFontPreviewText.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lcFontPreviewText.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.lcFontPreviewText.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
+            this.lcFontPreviewText.LineVisible = true;
+            this.lcFontPreviewText.Location = new System.Drawing.Point(8, 216);
+            this.lcFontPreviewText.Name = "lcFontPreviewText";
+            this.lcFontPreviewText.Size = new System.Drawing.Size(352, 40);
+            this.lcFontPreviewText.TabIndex = 25;
+            this.lcFontPreviewText.Text = "Font Preview Text";
+            // 
+            // labelControlPreview
+            // 
+            this.labelControlPreview.LineVisible = true;
+            this.labelControlPreview.Location = new System.Drawing.Point(10, 192);
+            this.labelControlPreview.Name = "labelControlPreview";
+            this.labelControlPreview.Size = new System.Drawing.Size(38, 13);
+            this.labelControlPreview.TabIndex = 24;
+            this.labelControlPreview.Text = "Preview";
+            // 
+            // lbcFontSize
+            // 
+            this.lbcFontSize.Location = new System.Drawing.Point(280, 46);
+            this.lbcFontSize.Name = "lbcFontSize";
+            this.lbcFontSize.Size = new System.Drawing.Size(80, 130);
+            this.lbcFontSize.TabIndex = 5;
+            // 
+            // labelControlFontSize
+            // 
+            this.labelControlFontSize.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControlFontSize.Location = new System.Drawing.Point(282, 8);
+            this.labelControlFontSize.Name = "labelControlFontSize";
+            this.labelControlFontSize.Size = new System.Drawing.Size(48, 13);
+            this.labelControlFontSize.TabIndex = 22;
+            this.labelControlFontSize.Text = "Font Size:";
+            // 
+            // seFontSize
+            // 
+            this.seFontSize.EditValue = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.seFontSize.Location = new System.Drawing.Point(280, 24);
+            this.seFontSize.Name = "seFontSize";
+            this.seFontSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.seFontSize.Properties.IsFloatValue = false;
+            this.seFontSize.Properties.Mask.EditMask = "N00";
+            this.seFontSize.Properties.MaxValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.seFontSize.Properties.MinValue = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.seFontSize.Size = new System.Drawing.Size(80, 20);
+            this.seFontSize.TabIndex = 4;
+            // 
+            // labelControlFontStyle
+            // 
+            this.labelControlFontStyle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControlFontStyle.Location = new System.Drawing.Point(170, 8);
+            this.labelControlFontStyle.Name = "labelControlFontStyle";
+            this.labelControlFontStyle.Size = new System.Drawing.Size(53, 13);
+            this.labelControlFontStyle.TabIndex = 20;
+            this.labelControlFontStyle.Text = "Font Style:";
+            // 
+            // teFontStyle
+            // 
+            this.teFontStyle.Location = new System.Drawing.Point(168, 24);
+            this.teFontStyle.Name = "teFontStyle";
+            this.teFontStyle.Properties.ReadOnly = true;
+            this.teFontStyle.Size = new System.Drawing.Size(104, 20);
+            this.teFontStyle.TabIndex = 2;
+            this.teFontStyle.TabStop = false;
+            // 
+            // clbStyle
+            // 
+            this.clbStyle.CheckOnClick = true;
+            this.clbStyle.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("Bold"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("Italic"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("Strikeout"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("Underline")});
+            this.clbStyle.Location = new System.Drawing.Point(168, 46);
+            this.clbStyle.Name = "clbStyle";
+            this.clbStyle.Size = new System.Drawing.Size(104, 130);
+            this.clbStyle.TabIndex = 3;
+            // 
+            // labelControlFontName
+            // 
+            this.labelControlFontName.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControlFontName.Location = new System.Drawing.Point(10, 8);
+            this.labelControlFontName.Name = "labelControlFontName";
+            this.labelControlFontName.Size = new System.Drawing.Size(26, 13);
+            this.labelControlFontName.TabIndex = 2;
+            this.labelControlFontName.Text = "Font:";
+            // 
+            // ilbcFont
+            // 
+            this.ilbcFont.Location = new System.Drawing.Point(8, 46);
+            this.ilbcFont.Name = "ilbcFont";
+            this.ilbcFont.Size = new System.Drawing.Size(152, 130);
+            this.ilbcFont.TabIndex = 1;
+            // 
+            // cbeFont
+            // 
+            this.cbeFont.Location = new System.Drawing.Point(8, 24);
+            this.cbeFont.Name = "cbeFont";
+            this.cbeFont.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
+            this.cbeFont.Size = new System.Drawing.Size(152, 20);
+            this.cbeFont.TabIndex = 0;
+            // 
+            // sbCancel
+            // 
+            this.sbCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.sbCancel.Location = new System.Drawing.Point(296, 320);
+            this.sbCancel.Name = "sbCancel";
+            this.sbCancel.Size = new System.Drawing.Size(88, 24);
+            this.sbCancel.TabIndex = 2;
+            this.sbCancel.Text = "&Cancel";
+            // 
+            // sbOk
+            // 
+            this.sbOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.sbOk.Location = new System.Drawing.Point(200, 320);
+            this.sbOk.Name = "sbOk";
+            this.sbOk.Size = new System.Drawing.Size(88, 24);
+            this.sbOk.TabIndex = 1;
+            this.sbOk.Text = "&OK";
+            // 
+            // XtraFontDialog
+            // 
+            this.AcceptButton = this.sbOk;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.sbCancel;
+            this.ClientSize = new System.Drawing.Size(394, 352);
+            this.Controls.Add(this.sbOk);
+            this.Controls.Add(this.sbCancel);
+            this.Controls.Add(this.xtraTabControlXtraFontDialog);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "XtraFontDialog";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Font";
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlXtraFontDialog)).EndInit();
+            this.xtraTabControlXtraFontDialog.ResumeLayout(false);
+            this.xtraTabPageFontSetup.ResumeLayout(false);
+            this.xtraTabPageFontSetup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbcFontSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seFontSize.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teFontStyle.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clbStyle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ilbcFont)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbeFont.Properties)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         private void InitStyleString()
@@ -388,7 +417,7 @@ namespace Databvase_Winforms.Controls
         private void UpdatePreview()
         {
             ResultFontDispose();
-            lcPreview.Font = ResultFont;
+            lcFontPreviewText.Font = ResultFont;
         }
 
         private void ResultFontDispose()

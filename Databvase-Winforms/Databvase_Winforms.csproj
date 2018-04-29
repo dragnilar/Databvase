@@ -356,6 +356,9 @@
     <EmbeddedResource Include="Dialogs\RenameTabDialog.resx">
       <DependentUpon>RenameTabDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\XtraFontDialog.resx">
+      <DependentUpon>XtraFontDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ConnectionStringWizard.resx">
       <DependentUpon>ConnectionStringWizard.cs</DependentUpon>
     </EmbeddedResource>

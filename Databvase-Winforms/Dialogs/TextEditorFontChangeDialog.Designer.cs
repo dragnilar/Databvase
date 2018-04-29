@@ -35,6 +35,7 @@ namespace Databvase_Winforms.Dialogs
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextEditorFontChangeDialog));
             this.lcFontDialog = new DevExpress.XtraLayout.LayoutControl();
+            this.textEditorFontEdit = new Databvase_Winforms.Modules.TextEditorFontEdit();
             this.simpleButtonCancel = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonOK = new DevExpress.XtraEditors.SimpleButton();
             this.lcgFontDialog = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -42,7 +43,6 @@ namespace Databvase_Winforms.Dialogs
             this.lciCancel = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.textEditorFontEdit = new Databvase_Winforms.Modules.TextEditorFontEdit();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcFontDialog)).BeginInit();
             this.lcFontDialog.SuspendLayout();
@@ -63,16 +63,28 @@ namespace Databvase_Winforms.Dialogs
             this.lcFontDialog.Location = new System.Drawing.Point(0, 0);
             this.lcFontDialog.Name = "lcFontDialog";
             this.lcFontDialog.Root = this.lcgFontDialog;
-            this.lcFontDialog.Size = new System.Drawing.Size(475, 204);
+            this.lcFontDialog.Size = new System.Drawing.Size(485, 221);
             this.lcFontDialog.TabIndex = 1;
             this.lcFontDialog.Text = "layoutControl1";
+            // 
+            // textEditorFontEdit
+            // 
+            this.textEditorFontEdit.DefaultCommentColor = System.Drawing.Color.Green;
+            this.textEditorFontEdit.DefaultKeywordColor = System.Drawing.Color.Blue;
+            this.textEditorFontEdit.DefaultStringColor = System.Drawing.Color.Red;
+            this.textEditorFontEdit.DefaultTextColor = System.Drawing.Color.Black;
+            this.textEditorFontEdit.Location = new System.Drawing.Point(12, 12);
+            this.textEditorFontEdit.Name = "textEditorFontEdit";
+            this.textEditorFontEdit.SelectedFont = new System.Drawing.Font("Tahoma", 8.25F);
+            this.textEditorFontEdit.Size = new System.Drawing.Size(461, 171);
+            this.textEditorFontEdit.TabIndex = 6;
             // 
             // simpleButtonCancel
             // 
             this.simpleButtonCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancel.ImageOptions.Image")));
-            this.simpleButtonCancel.Location = new System.Drawing.Point(368, 170);
+            this.simpleButtonCancel.Location = new System.Drawing.Point(376, 187);
             this.simpleButtonCancel.Name = "simpleButtonCancel";
-            this.simpleButtonCancel.Size = new System.Drawing.Size(95, 22);
+            this.simpleButtonCancel.Size = new System.Drawing.Size(97, 22);
             this.simpleButtonCancel.StyleController = this.lcFontDialog;
             this.simpleButtonCancel.TabIndex = 5;
             this.simpleButtonCancel.Text = "Cancel";
@@ -80,9 +92,9 @@ namespace Databvase_Winforms.Dialogs
             // simpleButtonOK
             // 
             this.simpleButtonOK.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonOK.ImageOptions.Image")));
-            this.simpleButtonOK.Location = new System.Drawing.Point(228, 170);
+            this.simpleButtonOK.Location = new System.Drawing.Point(233, 187);
             this.simpleButtonOK.Name = "simpleButtonOK";
-            this.simpleButtonOK.Size = new System.Drawing.Size(114, 22);
+            this.simpleButtonOK.Size = new System.Drawing.Size(117, 22);
             this.simpleButtonOK.StyleController = this.lcFontDialog;
             this.simpleButtonOK.TabIndex = 4;
             this.simpleButtonOK.Text = "OK";
@@ -98,71 +110,63 @@ namespace Databvase_Winforms.Dialogs
             this.emptySpaceItem2,
             this.layoutControlItem1});
             this.lcgFontDialog.Name = "lcgFontDialog";
-            this.lcgFontDialog.Size = new System.Drawing.Size(475, 204);
+            this.lcgFontDialog.Size = new System.Drawing.Size(485, 221);
             this.lcgFontDialog.TextVisible = false;
             // 
             // lciOKButton
             // 
             this.lciOKButton.Control = this.simpleButtonOK;
-            this.lciOKButton.Location = new System.Drawing.Point(216, 158);
+            this.lciOKButton.Location = new System.Drawing.Point(221, 175);
             this.lciOKButton.Name = "lciOKButton";
-            this.lciOKButton.Size = new System.Drawing.Size(118, 26);
+            this.lciOKButton.Size = new System.Drawing.Size(121, 26);
             this.lciOKButton.TextSize = new System.Drawing.Size(0, 0);
             this.lciOKButton.TextVisible = false;
             // 
             // lciCancel
             // 
             this.lciCancel.Control = this.simpleButtonCancel;
-            this.lciCancel.Location = new System.Drawing.Point(356, 158);
+            this.lciCancel.Location = new System.Drawing.Point(364, 175);
             this.lciCancel.Name = "lciCancel";
-            this.lciCancel.Size = new System.Drawing.Size(99, 26);
+            this.lciCancel.Size = new System.Drawing.Size(101, 26);
             this.lciCancel.TextSize = new System.Drawing.Size(0, 0);
             this.lciCancel.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 158);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 175);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(216, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(221, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(334, 158);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(342, 175);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(22, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // textEditorFontEdit
-            // 
-            this.textEditorFontEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEditorFontEdit.Location = new System.Drawing.Point(12, 12);
-            this.textEditorFontEdit.Name = "textEditorFontEdit";
-            this.textEditorFontEdit.Size = new System.Drawing.Size(451, 154);
-            this.textEditorFontEdit.TabIndex = 6;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.textEditorFontEdit;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(455, 158);
+            this.layoutControlItem1.Size = new System.Drawing.Size(465, 175);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // FontChangeDialog
+            // TextEditorFontChangeDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 204);
+            this.ClientSize = new System.Drawing.Size(485, 221);
             this.Controls.Add(this.lcFontDialog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FontChangeDialog";
+            this.Name = "TextEditorFontChangeDialog";
             this.ShowIcon = false;
             this.Text = "Font";
             ((System.ComponentModel.ISupportInitialize)(this.lcFontDialog)).EndInit();
