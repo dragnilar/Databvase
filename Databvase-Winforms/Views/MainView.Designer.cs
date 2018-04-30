@@ -64,6 +64,7 @@ namespace Databvase_Winforms.Views
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.splashScreenManagerMainWait = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true);
+            this.barButtonItemQueryBuilder = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
@@ -95,9 +96,10 @@ namespace Databvase_Winforms.Views
             this.barButtonItemShowSettings,
             this.barEditItemTextEditorBG,
             this.barEditItemTextEditorLineNumberColor,
-            this.barButtonItemTextEditorFontSettings});
+            this.barButtonItemTextEditorFontSettings,
+            this.barButtonItemQueryBuilder});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 18;
+            this.ribbonControlMain.MaxItemId = 19;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -224,6 +226,7 @@ namespace Databvase_Winforms.Views
             this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemConnect);
             this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemDisconnect);
             this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemNewQuery);
+            this.ribbonPageGroupDatabvase.ItemLinks.Add(this.barButtonItemQueryBuilder);
             this.ribbonPageGroupDatabvase.Name = "ribbonPageGroupDatabvase";
             this.ribbonPageGroupDatabvase.Text = "Databvase?!";
             // 
@@ -353,6 +356,15 @@ namespace Databvase_Winforms.Views
             // 
             this.splashScreenManagerMainWait.ClosingDelay = 500;
             // 
+            // barButtonItemQueryBuilder
+            // 
+            this.barButtonItemQueryBuilder.Caption = "Query Builder";
+            this.barButtonItemQueryBuilder.Id = 18;
+            this.barButtonItemQueryBuilder.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemQueryBuilder.ImageOptions.Image")));
+            this.barButtonItemQueryBuilder.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemQueryBuilder.ImageOptions.LargeImage")));
+            this.barButtonItemQueryBuilder.Name = "barButtonItemQueryBuilder";
+            this.barButtonItemQueryBuilder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,6 +425,7 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit riColorPickEditTextEditorLineNumberColor;
         private DevExpress.XtraBars.BarButtonItem barButtonItemTextEditorFontSettings;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManagerMainWait;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemQueryBuilder;
     }
 }
 

@@ -8,6 +8,9 @@ using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
 using DevExpress.Customization;
+using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.UI.Sql;
 using DevExpress.LookAndFeel;
 using DevExpress.Mvvm;
 using DevExpress.Utils.Menu;
@@ -15,13 +18,13 @@ using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.ColorWheel;
 
 namespace Databvase_Winforms.Views
 {
     public partial class MainView : RibbonForm
     {
-        private int _numberOfQueries;
 
         public MainView()
         {
@@ -49,6 +52,7 @@ namespace Databvase_Winforms.Views
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
             barButtonItemTextEditorFontSettings.ItemClick += BarButtonItemTextEditorFontSettingsOnItemClick;
+            barButtonItemQueryBuilder.ItemClick += BarButtonItemQueryBuilderOnItemClick;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
 
@@ -112,11 +116,13 @@ namespace Databvase_Winforms.Views
             {
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
+                barButtonItemQueryBuilder.Visibility = BarItemVisibility.Always;
             }
             else
             {
                 barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
                 barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
+                barButtonItemQueryBuilder.Visibility = BarItemVisibility.Never;
             }
         }
 
@@ -215,6 +221,25 @@ namespace Databvase_Winforms.Views
 
         #endregion
 
+
+        private void BarButtonItemQueryBuilderOnItemClick(object sender, ItemClickEventArgs e)
+        {
+            //TODO - Clean up
+            if (App.Connection.InstanceTracker.DatabaseObject == null)
+            {
+                XtraMessageBox.Show("Please select a database from the object explorer first.");
+                return;
+            }
+
+            var currentServer = App.Connection.GetServerAtSpecificInstance(App.Connection.InstanceTracker.InstanceName, App.Connection.InstanceTracker.DatabaseObject.Name);
+            var dxConnectionStringParameters =
+                new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
+            var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);
+            SqlDataSourceUIHelper.AddQueryWithQueryBuilder(dxSqlDataSource);
+            //TODO - See if we can get the query off of the query builder, right now its a dev express query, which we can't just do ToString on...
+            //TODO - Check here: https://www.devexpress.com/Support/Center/Question/Details/T429353/formatted-sql-string-from-querybuilder
+            var query = dxSqlDataSource.Queries.FirstOrDefault();
+        }
 
         private void InitializeBindings() 
         {
