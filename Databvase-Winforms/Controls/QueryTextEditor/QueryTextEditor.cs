@@ -49,11 +49,15 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
 
         private void RegisterSyntaxHighlightingService(bool forceExecute = false)
         {
-            ReplaceService<ISyntaxHighlightService>(new SQLSyntaxHighlightingService(Document));
-            if (forceExecute)
+            if (Document != null) //TODO - Added to prevent a null document from causing an exception, this may be a sign of a disposing issue
             {
-                GetService<ISyntaxHighlightService>().ForceExecute();
+                ReplaceService<ISyntaxHighlightService>(new SQLSyntaxHighlightingService(Document));
+                if (forceExecute)
+                {
+                    GetService<ISyntaxHighlightService>().ForceExecute();
+                }
             }
+
         }
 
         private void HookUpEvents()
