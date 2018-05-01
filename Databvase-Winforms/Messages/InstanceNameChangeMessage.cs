@@ -13,12 +13,12 @@ namespace Databvase_Winforms.Messages
     {
         public InstanceAndDatabaseTracker Tracker { get; set; }
 
-        public InstanceNameChangeMessage(string instanceName, Database database)
+        public InstanceNameChangeMessage(Server server, Database database)
         {
             Tracker = new InstanceAndDatabaseTracker
             {
-                InstanceName = instanceName,
-                DatabaseObject = database
+                CurrentInstance = server,
+                CurrentDatabase = database
             };
             SendMessage();
         }

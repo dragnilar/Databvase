@@ -133,7 +133,7 @@ namespace Databvase_Winforms.Views
 
         private void Disconnect()
         {
-            new DisconnectInstanceMessage(App.Connection.InstanceTracker.InstanceName);
+            new DisconnectInstanceMessage(App.Connection.InstanceTracker.CurrentInstance.Name);
             UpdateConnectionStatusOnRibbon();
         }
 
@@ -225,13 +225,13 @@ namespace Databvase_Winforms.Views
         private void BarButtonItemQueryBuilderOnItemClick(object sender, ItemClickEventArgs e)
         {
             //TODO - Clean up
-            if (App.Connection.InstanceTracker.DatabaseObject == null)
+            if (App.Connection.InstanceTracker.CurrentDatabase == null)
             {
                 XtraMessageBox.Show("Please select a database from the object explorer first.");
                 return;
             }
 
-            var currentServer = App.Connection.GetServerAtSpecificInstance(App.Connection.InstanceTracker.InstanceName, App.Connection.InstanceTracker.DatabaseObject.Name);
+            var currentServer = App.Connection.GetServerAtSpecificInstance(App.Connection.InstanceTracker.CurrentInstance.Name, App.Connection.InstanceTracker.CurrentDatabase.Name);
             var dxConnectionStringParameters =
                 new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
             var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);

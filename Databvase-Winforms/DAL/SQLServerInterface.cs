@@ -92,30 +92,5 @@ namespace Databvase_Winforms.DAL
 
             return instanceList;
         }
-
-        public static List<string> GetDatabaseNames(string instanceName)
-        {
-            var server = App.Connection.GetServerAtSpecificInstance(instanceName, null);
-            var list = new List<string>();
-            foreach (Database db in server.Databases) list.Add(db.Name);
-
-            return list;
-        }
-
-        public static List<Database> GetDatabases(string instanceName)
-        {
-            var server = App.Connection.GetServerAtSpecificInstance(instanceName, null);
-            var list = new List<Database>();
-            foreach (Database db in server.Databases)
-            {
-                list.Add(db);
-            }
-
-            return list;
-        }
-
-
-
-
     }
 }

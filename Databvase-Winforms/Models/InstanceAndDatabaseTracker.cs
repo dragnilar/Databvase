@@ -9,8 +9,8 @@ namespace Databvase_Winforms.Models
 {
     public class InstanceAndDatabaseTracker
     {
-        public string InstanceName { get; set; }
-        public Database DatabaseObject { get; set; }
+        public Server CurrentInstance { get; set; }
+        public Database CurrentDatabase { get; set; }
     }
 
 }

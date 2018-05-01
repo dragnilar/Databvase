@@ -66,8 +66,8 @@ namespace Databvase_Winforms.Services
                     CurrentConnections.Add(savedConnection);
                 }
 
-                InstanceTracker.InstanceName = savedConnection.Instance;
-                InstanceTracker.DatabaseObject = null;
+                InstanceTracker.CurrentInstance = CurrentServer;
+                InstanceTracker.CurrentDatabase = null;
 
                 return result;
 
@@ -104,18 +104,18 @@ namespace Databvase_Winforms.Services
 
         public void DisconnectCurrentInstance()
         {
-            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == InstanceTracker.InstanceName);
+            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == InstanceTracker.CurrentInstance.Name);
             if (connectionToRemove != null)
             {
                 CurrentConnections.Remove(connectionToRemove);
-                InstanceTracker.InstanceName = !CurrentConnections.Any() ? string.Empty : CurrentConnections.First().Instance;
-                InstanceTracker.DatabaseObject = null;
+                InstanceTracker.CurrentInstance = !CurrentConnections.Any() ? null : GetServerAtSpecificInstance(CurrentConnections.First().Instance);
+                InstanceTracker.CurrentDatabase = null;
             }
         }
 
         public SavedConnection GetCurrentConnection()
         {
-            return CurrentConnections.First(r => r.Instance == InstanceTracker.InstanceName);
+            return CurrentConnections.First(r => r.Instance == InstanceTracker.CurrentInstance.Name);
         }
     }
 }

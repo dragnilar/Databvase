@@ -13,6 +13,7 @@ using System.Drawing;
 using System.Linq;
 using Databvase_Winforms.Messages;
 using DevExpress.XtraGrid.Views.Grid;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -27,7 +28,7 @@ namespace Databvase_Winforms.View_Models
             ResultsMessage = string.Empty;
             QueryRunning = false;
             CurrentDatabase = GetCurrentDatabaseFromTracker();
-            DatabasesList = SQLServerInterface.GetDatabaseNames(App.Connection.InstanceTracker.InstanceName);
+            DatabasesList = GetDatabaseNamesFromTracker();
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
             QueryConnection = App.Connection.GetCurrentConnection();
@@ -44,7 +45,7 @@ namespace Databvase_Winforms.View_Models
         public virtual Font DefaultTextEditorFont { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
         public IDocumentOwner DocumentOwner { get; set; }
-        public object Title { get; }
+        public object Title { get; set; }
         //TODO - See if perhaps we can use a server object in here instead of having to keep a saved connection...
 
 
@@ -104,7 +105,15 @@ namespace Databvase_Winforms.View_Models
 
         private string GetCurrentDatabaseFromTracker()
         {
-            return App.Connection.InstanceTracker.DatabaseObject != null ? App.Connection.InstanceTracker.DatabaseObject.Name : string.Empty;
+            return App.Connection.InstanceTracker.CurrentDatabase != null ? App.Connection.InstanceTracker.CurrentDatabase.Name : string.Empty;
+        }
+
+        private List<string> GetDatabaseNamesFromTracker()
+        {
+            var list = new List<string>();
+            foreach (Database db in App.Connection.InstanceTracker.CurrentInstance.Databases) list.Add(db.Name);
+
+            return list;
         }
 
 

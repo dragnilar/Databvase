@@ -77,16 +77,11 @@ namespace Databvase_Winforms.View_Models
             if (message == null) return;
             try
             {
-                LoadingMode = UnboundLoadModes.BeginUnboundLoad;
                 _dataSourceModel.GenerateInstances();
             }
             catch (Exception e)
             {
                 DisplayErrorMessage(e.Message);
-            }
-            finally
-            {
-                FinishUnboundLoad();
             }
         }
 
@@ -190,14 +185,14 @@ namespace Databvase_Winforms.View_Models
         {
             if (e.Node == null) return;
             if (e.OldNode == null) return;
-            var instanceName = GetInstanceNameFromNode(e.Node);
+            var instance = GetInstanceFromNode(e.Node);
 
             var database = GetDatabaseFromNode(e.Node);
-            if (instanceName == App.Connection.InstanceTracker.InstanceName)
+            if (instance == App.Connection.InstanceTracker.CurrentInstance)
                 if (database != null)
-                    if (database.Name == App.Connection.InstanceTracker.DatabaseObject?.Name)
+                    if (database.Name == App.Connection.InstanceTracker.CurrentDatabase?.Name)
                         return;
-            new InstanceNameChangeMessage(instanceName, database);
+            new InstanceNameChangeMessage(instance, database);
         }
 
         private Database GetDatabaseFromNode(TreeListNode node)
@@ -224,11 +219,46 @@ namespace Databvase_Winforms.View_Models
             return null;
         }
 
-        private string GetInstanceNameFromNode(TreeListNode node)
+        private Server GetInstanceFromNode(TreeListNode node)
         {
+            //TODO - This switch probably needs to be condensed...
             if (node == null) return null;
             var model = GetModelForNode(node);
-            return model.InstanceName;
+            switch (model.Type)
+            {
+                case GlobalStrings.ObjectExplorerTypes.Instance:
+                    return (Server)model.Data;
+                case GlobalStrings.ObjectExplorerTypes.Database:
+                    return ((Database)model.Data).Parent;
+                case GlobalStrings.ObjectExplorerTypes.Folder when model.Data is Database database:
+                    return database.Parent;
+                case GlobalStrings.ObjectExplorerTypes.Folder:
+                    return GetInstanceFromFolderNode(model.Data) ;
+                case GlobalStrings.ObjectExplorerTypes.Table:
+                    return ((Table)model.Data).Parent.Parent;
+                case GlobalStrings.ObjectExplorerTypes.Column:
+                    var column = model.Data as Column;
+                    return ((Table)column?.Parent)?.Parent.Parent;
+            }
+            return null;
+        }
+
+        private Server GetInstanceFromFolderNode(object modelData)
+        {
+            switch (modelData)
+            {
+                case View view:
+                    return view.Parent.Parent;
+                case UserDefinedFunction function:
+                    return function.Parent.Parent;
+                case StoredProcedure storedProcedure:
+                    return storedProcedure.Parent.Parent;
+                case Table table:
+                    return table.Parent.Parent;
+                default:
+                    return null;
+
+            }
         }
 
         #endregion

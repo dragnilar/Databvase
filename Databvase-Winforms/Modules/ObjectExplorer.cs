@@ -40,7 +40,7 @@ namespace Databvase_Winforms.Modules
         {   //TODO - This event is firing even when a node is already added, which may mean that this may not be the best way to flag a node as having children...
             if (e.ChangeType == NodeChangeTypeEnum.Add)
             {
-                if (!(e.Node.TreeList.GetRow(e.Node.Id) is ObjectExplorerModel model)) return;
+                if (!(e.Node.TreeList.GetRow(e.Node.Id) is ObjectExplorerModel model) || e.Node.HasChildren) return;
                 SetHasChildrenForNode(e, model);
             }
         }

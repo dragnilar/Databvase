@@ -5,6 +5,7 @@ using DevExpress.Mvvm.POCO;
 using DevExpress.XtraBars.Docking2010.Views.Widget;
 using DevExpress.XtraEditors;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Drawing;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
@@ -61,7 +62,7 @@ namespace Databvase_Winforms.View_Models
 
         private void ChangeInstanceName(InstanceAndDatabaseTracker tracker)
         {
-            if (tracker != null && !string.IsNullOrEmpty(tracker.InstanceName))
+            if (tracker?.CurrentInstance != null)
             {
                 App.Connection.InstanceTracker = tracker;
 
@@ -83,7 +84,6 @@ namespace Databvase_Winforms.View_Models
             document.DestroyOnClose = true;
             document.Show();
             HideSplashScreen();
-
         }
 
 
