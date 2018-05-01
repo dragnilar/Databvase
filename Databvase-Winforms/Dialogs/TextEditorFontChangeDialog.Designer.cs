@@ -69,13 +69,8 @@ namespace Databvase_Winforms.Dialogs
             // 
             // textEditorFontEdit
             // 
-            this.textEditorFontEdit.DefaultCommentColor = System.Drawing.Color.Green;
-            this.textEditorFontEdit.DefaultKeywordColor = System.Drawing.Color.Blue;
-            this.textEditorFontEdit.DefaultStringColor = System.Drawing.Color.Red;
-            this.textEditorFontEdit.DefaultTextColor = System.Drawing.Color.Black;
             this.textEditorFontEdit.Location = new System.Drawing.Point(12, 12);
             this.textEditorFontEdit.Name = "textEditorFontEdit";
-            this.textEditorFontEdit.SelectedFont = new System.Drawing.Font("Tahoma", 8.25F);
             this.textEditorFontEdit.Size = new System.Drawing.Size(461, 171);
             this.textEditorFontEdit.TabIndex = 6;
             // 

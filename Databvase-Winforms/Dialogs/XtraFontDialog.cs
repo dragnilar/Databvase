@@ -194,6 +194,7 @@ namespace Databvase_Winforms.Controls
             this.lbcFontSize.Name = "lbcFontSize";
             this.lbcFontSize.Size = new System.Drawing.Size(80, 130);
             this.lbcFontSize.TabIndex = 5;
+            this.lbcFontSize.SelectedIndexChanged += new System.EventHandler(this.lbcFontSize_SelectedIndexChanged);
             // 
             // labelControlFontSize
             // 
@@ -229,6 +230,7 @@ namespace Databvase_Winforms.Controls
             0});
             this.seFontSize.Size = new System.Drawing.Size(80, 20);
             this.seFontSize.TabIndex = 4;
+            this.seFontSize.EditValueChanged += new System.EventHandler(this.seFontSize_EditValueChanged);
             // 
             // labelControlFontStyle
             // 
@@ -260,6 +262,7 @@ namespace Databvase_Winforms.Controls
             this.clbStyle.Name = "clbStyle";
             this.clbStyle.Size = new System.Drawing.Size(104, 130);
             this.clbStyle.TabIndex = 3;
+            this.clbStyle.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.clbStyle_ItemCheck);
             // 
             // labelControlFontName
             // 
@@ -276,6 +279,7 @@ namespace Databvase_Winforms.Controls
             this.ilbcFont.Name = "ilbcFont";
             this.ilbcFont.Size = new System.Drawing.Size(152, 130);
             this.ilbcFont.TabIndex = 1;
+            this.ilbcFont.SelectedIndexChanged += new System.EventHandler(this.ilbcFont_SelectedIndexChanged);
             // 
             // cbeFont
             // 
@@ -284,6 +288,7 @@ namespace Databvase_Winforms.Controls
             this.cbeFont.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.cbeFont.Size = new System.Drawing.Size(152, 20);
             this.cbeFont.TabIndex = 0;
+            this.cbeFont.SelectedValueChanged += new System.EventHandler(this.cbeFont_SelectedValueChanged);
             // 
             // sbCancel
             // 
