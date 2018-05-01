@@ -25,6 +25,7 @@ namespace Databvase_Winforms.View_Models
         public virtual string SelectTopContextMenuItemDescription { get; set; }
         public virtual BindingList<ObjectExplorerModel> ObjectExplorerSource { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
+        protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
 
         public ObjectExplorerViewModel()
         {
@@ -34,6 +35,8 @@ namespace Databvase_Winforms.View_Models
             ObjectExplorerSource = _dataSourceModel.ObjectExplorerDataSource;
             LoadingMode = UnboundLoadModes.NotLoading;
         }
+
+
 
         private void GetSelectTopDescriptionForPopupMenu()
         {
@@ -99,16 +102,19 @@ namespace Databvase_Winforms.View_Models
         private void LoadDataForObjectExplorerDynamically(ObjectExplorerModel model)
         {
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
+            ShowWaitMessage();
             try
             {
                 GetNodes(model);
             }
             catch (Exception e)
             {
+                _dataSourceModel.CreateEmptyNode(model);
                 DisplayErrorMessage(e.Message);
             }
             finally
             {
+                KillWaitMessage();
                 FinishUnboundLoad();
             }
 
@@ -196,6 +202,7 @@ namespace Databvase_Winforms.View_Models
 
         private Database GetDatabaseFromNode(TreeListNode node)
         {
+            //TODO - This switch probably needs to be condensed...
             if (node == null) return null;
             var model = GetModelForNode(node);
             switch (model.Type)
@@ -228,7 +235,24 @@ namespace Databvase_Winforms.View_Models
 
         private void DisplayErrorMessage(string message)
         {
+            KillWaitMessage();
             MessageBoxService.ShowMessage(message, "Error Getting Objects", MessageButton.OK, MessageIcon.Error);
+        }
+
+        private void ShowWaitMessage()
+        {
+            if (!SplashScreenService.IsSplashScreenActive)
+            {
+                SplashScreenService.ShowSplashScreen();
+            }
+        }
+
+        private void KillWaitMessage()
+        {
+            if (SplashScreenService.IsSplashScreenActive)
+            {
+                SplashScreenService.HideSplashScreen();
+            }
         }
 
         private void FinishUnboundLoad()

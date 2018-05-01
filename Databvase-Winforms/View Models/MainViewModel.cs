@@ -122,12 +122,18 @@ namespace Databvase_Winforms.View_Models
 
         public void ShowSplashScreen()
         {
-            SplashScreenService.ShowSplashScreen();
+            if (!SplashScreenService.IsSplashScreenActive)
+            {
+                SplashScreenService.ShowSplashScreen();
+            }
         }
 
         public void HideSplashScreen()
         {
-            SplashScreenService.HideSplashScreen();
+            if (SplashScreenService.IsSplashScreenActive)
+            {
+                SplashScreenService.HideSplashScreen();
+            }
         }
     }
 

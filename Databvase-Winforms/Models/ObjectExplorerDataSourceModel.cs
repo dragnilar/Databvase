@@ -189,7 +189,7 @@ namespace Databvase_Winforms.Models
 
         }
 
-        private void CreateEmptyNode(ObjectExplorerModel model)
+        public void CreateEmptyNode(ObjectExplorerModel model)
         {
             ObjectExplorerDataSource.Add(new ObjectExplorerModel(GetNewNodeId(), model));
         }

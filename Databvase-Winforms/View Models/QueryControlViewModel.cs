@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Threading.Tasks;
 using Databvase_Winforms.DAL;
@@ -16,7 +17,7 @@ using DevExpress.XtraGrid.Views.Grid;
 namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel]
-    public class QueryControlViewModel
+    public class QueryControlViewModel : IDocumentContent
     {
 
         public QueryControlViewModel()
@@ -42,6 +43,8 @@ namespace Databvase_Winforms.View_Models
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
+        public IDocumentOwner DocumentOwner { get; set; }
+        public object Title { get; }
         //TODO - See if perhaps we can use a server object in here instead of having to keep a saved connection...
 
 
@@ -102,6 +105,17 @@ namespace Databvase_Winforms.View_Models
         private string GetCurrentDatabaseFromTracker()
         {
             return App.Connection.InstanceTracker.DatabaseObject != null ? App.Connection.InstanceTracker.DatabaseObject.Name : string.Empty;
+        }
+
+
+        public void OnClose(CancelEventArgs e)
+        {
+            //Do nothing for now...
+        }
+
+        public void OnDestroy()
+        {
+            //Do nothing for now...
         }
 
 

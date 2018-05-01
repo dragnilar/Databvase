@@ -4,6 +4,7 @@ using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.View_Models;
 using DevExpress.Utils.MVVM;
+using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTreeList;
 using Microsoft.SqlServer.Management.Smo;
@@ -19,6 +20,7 @@ namespace Databvase_Winforms.Modules
                 InitializeBindings();
             MVVMContext.RegisterXtraDialogService();
             HookupEvents();
+            RegisterServices();
         }
 
         private void HookupEvents()
@@ -27,6 +29,11 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
             barButtonItemCopy.ItemClick += CopyCell;
             treeListObjExp.NodeChanged += TreeListObjExpOnNodeChanged;
+        }
+
+        private void RegisterServices()
+        {
+            mvvmContextObjectExplorer.RegisterService(SplashScreenService.Create(splashScreenManagerObjectExplorer));
         }
 
         private void TreeListObjExpOnNodeChanged(object sender, NodeChangedEventArgs e)
@@ -107,12 +114,10 @@ namespace Databvase_Winforms.Modules
             {
                 case ObjectExplorerViewModel.UnboundLoadModes.BeginUnboundLoad:
                     treeListObjExp.BeginUnboundLoad();
-                    splashScreenManagerObjectExplorer.ShowWaitForm();
                     break;
                 case ObjectExplorerViewModel.UnboundLoadModes.FinishUnboundLoad:
-                    splashScreenManagerObjectExplorer.CloseWaitForm();
                     treeListObjExp.EndUnboundLoad();
-                    treeListObjExp.FocusedNode?.Expand();
+                    treeListObjExp.FocusedNode?.Expand(); //TODO - This is a hack to get the focused node to expand... see if there's a way to avoid doing this.
                     break;
             }
         }
