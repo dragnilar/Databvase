@@ -1,6 +1,10 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Tahoma;}{\f1\fnil\fcharset0 MS Sans Serif;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.16299}\viewkind4\uc1 
 \pard\ul\f0\fs44\lang1033 DATABVASE!!!! ReadMe\fs32\par
+\par
+\ulnone\fs16 Github Page: {\cf1\ul{\field{\*\fldinst{HYPERLINK https://github.com/dragnilar/Databvase }}{\fldrslt{https://github.com/dragnilar/Databvase}}}}\ul\f0\fs16\par
+\par
 \par
 \ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 8)\ul\par
 \par
@@ -258,42 +262,12 @@ NOTE: Pretty much all dependencies are embedded in the executable file to keep t
 \ul\par
 Known Bugs/ Limitations\ulnone\par
 \par
-- The settings window does not expose very many settings at this point. This window will be built upon as time permits.\par
 \par
-- Nothing nodes, stored procedures and functions do not have their own unique icons on the object explorer.\par
+For a list of known bugs, limitations and potential enhancements, please see visit the Github page for Databvase:\par
 \par
-- Grid exporting and printing performance can be slow with large data sets and may cause excessive memory consumption when using certain file formats (I.E. PDF). This is more or less a limitation of the "out of box" functionality of the DevExpress grid. This may or may not be looked into improving upon down the road, depending on the level of interest.\par
+{{\field{\*\fldinst{HYPERLINK https://github.com/dragnilar/Databvase/issues }}{\fldrslt{https://github.com/dragnilar/Databvase/issues\ul0\cf0}}}}\f0\fs16\par
 \par
-- No splash screen or about/information page is present. This will be changed.\par
-\par
-- Databvase can only display one table result at a time. For example, if you run two select statements at once, only one table's results will be returned. This may be looked into down the road, depending on demand / interest.\par
-\par
-- Databvase does not currently use connection pooling or keep connections going while a query pane is open. It treats all database operations as one unit of work (connection > do the work > disconnect). This may or may not be ideal in some situations and it will be looked into if this can be toggled on or off down the road for those that may prefer to have a connection always going. \par
-\par
-- When errors occur the bottom tab does not auto switch its tab to the messages tab.\par
-\par
-- There may be possible situations where comments are not properly parsed out in a query (I.E. if they are in the middle of a statement). You will probably get query errors as a result or strange result sets.\par
-\par
-- When queries are returned, there is a momentary pause in the application as the grid is populated. This may be looked into down the road.\par
-\par
-- There may be situations where queries can time out where SSMS does not (I.E. long running queries). This will be looked into as time goes on.\par
-\par
-- Null/empty string columns are not easily distinguishable in filters for nvarchar/varchar/string type columns in tables. NULL is however differentiated display wise but the filtering mechanism does not pick up on this. This will be looked into down the road.\par
-\par
-- There currently is no way to abort/cancel a query.\par
-\par
-- Groups added to the quick access toolbar on the ribbon may show as boxes with X's in them and/or they may not function normally as if they were on the ribbon. The quick access toolbar may be removed down the road unless there is an interest in keeping it.\par
-\par
-- Syntax highlighting is mostly complete but it doesn't parse comments out as well as it should. \par
-\par
-- No intellisense (this is a very complex feature and as a result it is unlikely if it will be implemented). Also there have been some cases where people do not like the intellisense/auto complete of SSMS. \par
-\par
-- The query text editor allows you to add insert images (becuase it is using a very customizable rich edit control similar to Microsoft Word). There may be other features as well that are "unintentional" and they may be subject to removal.\par
-\par
-- High DPI support is currently not implemented. The application may display distorted on computers that have DPIs set higher than the standard 100%.\par
-\par
-- There may be other unforeseen or currently unknown issues (I.E. Performance, stability, memory consumption, weird display bugs, etc.).\par
-\par
+If you discover any problems or have any ideas, please feel free to share them as well! \par
 \par
 \par
 \par
