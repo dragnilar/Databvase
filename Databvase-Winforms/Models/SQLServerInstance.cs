@@ -2,6 +2,8 @@
 {
     /// <summary>
     ///     A class that represents a SQL Server instance returned by SmoApplication.EnumAvailableSqlServers(false);
+    ///     This class should be used only for displaying server instances in cases where SmoApplication.EnumAvailableServers is used.
+    ///     If you need to work with an actual instance, use the Server class instead.
     /// </summary>
     public class SQLServerInstance
     {

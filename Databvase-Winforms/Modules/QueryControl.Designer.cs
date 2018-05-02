@@ -61,7 +61,7 @@ namespace Databvase_Winforms.Modules
             this.gridViewResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridView();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
-            this.queryTextEditor = new QueryTextEditor();
+            this.queryTextEditor = new Databvase_Winforms.Controls.QueryTextEditor.QueryTextEditor();
             this.lcgQueryControl = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciQueryEditor = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
@@ -366,12 +366,18 @@ namespace Databvase_Winforms.Modules
             this.memoEditResults.Size = new System.Drawing.Size(770, 272);
             this.memoEditResults.TabIndex = 0;
             // 
-            // richEditControlQueryEditor
+            // queryTextEditor
             // 
             this.queryTextEditor.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
             this.queryTextEditor.Location = new System.Drawing.Point(12, 36);
             this.queryTextEditor.MenuManager = this.ribbonControlQueryControl;
+            this.queryTextEditor.Modified = true;
             this.queryTextEditor.Name = "queryTextEditor";
+            this.queryTextEditor.Options.DocumentCapabilities.Bookmarks = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.queryTextEditor.Options.DocumentCapabilities.Comments = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.queryTextEditor.Options.DocumentCapabilities.InlinePictures = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.queryTextEditor.Options.DocumentCapabilities.InlineShapes = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+            this.queryTextEditor.Options.DocumentCapabilities.Tables = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
             this.queryTextEditor.Size = new System.Drawing.Size(776, 240);
             this.queryTextEditor.TabIndex = 10;
             this.queryTextEditor.Views.DraftView.AllowDisplayLineNumbers = true;
