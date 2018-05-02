@@ -28,6 +28,12 @@ namespace Databvase_Winforms.View_Models
         private bool Loading = true;
 
 
+        private class DocumentInfo //TODO - We may want to move this to its own file to avoid cluttering up the View Model
+        {
+            public string DocumentType;
+            public string DocumentTitle;
+
+        }
 
 
         public MainViewModel()
@@ -88,14 +94,6 @@ namespace Databvase_Winforms.View_Models
             HideSplashScreen();
         }
 
-
-        private class DocumentInfo
-        {
-            public string DocumentType;
-            public string DocumentTitle;
-
-        }
-
         public void ShowSettings()
         {
             this.GetService<ISettingsWindowService>().ShowDialog();
@@ -110,26 +108,16 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
-        protected void SaveTextEditorColors()
+        public void ShowBezierPaletteSwitcher()
         {
-            if (Loading)  //TODO - This was necessary because this event can get fired prematurely, see if there is a way to avoid having to do this
-            {
-                return;
-            }
-            App.Config.TextEditorBackgroundColor = TextEditorBackgroundColor;
-            App.Config.TextEditorLineNumberColor = TextEditorLineNumberColor;
-            App.Config.Save();
-            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground);
+            this.GetService<ISkinService>().ChangeBezierPalette();
         }
 
-        public class MetaData : IMetadataProvider<MainViewModel>
+        public void ShowColorMixer()
         {
-            public void BuildMetadata(MetadataBuilder<MainViewModel> builder)
-            {
-                builder.Property(x => x.TextEditorBackgroundColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
-                builder.Property(x => x.TextEditorLineNumberColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
-            }
+            this.GetService<ISkinService>().ChangeColorSwatch();
         }
+
 
         public void ShowSplashScreen()
         {
@@ -146,6 +134,33 @@ namespace Databvase_Winforms.View_Models
                 SplashScreenService.HideSplashScreen();
             }
         }
+
+
+        #region MetaData Bindings
+
+        public class MetaData : IMetadataProvider<MainViewModel>
+        {
+            public void BuildMetadata(MetadataBuilder<MainViewModel> builder)
+            {
+                builder.Property(x => x.TextEditorBackgroundColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
+                builder.Property(x => x.TextEditorLineNumberColor).OnPropertyChangedCall(x => x.SaveTextEditorColors());
+            }
+        }
+
+        protected void SaveTextEditorColors()
+        {
+            if (Loading)  //TODO - This was necessary because this event can get fired prematurely, see if there is a way to avoid having to do this
+            {
+                return;
+            }
+            App.Config.TextEditorBackgroundColor = TextEditorBackgroundColor;
+            App.Config.TextEditorLineNumberColor = TextEditorLineNumberColor;
+            App.Config.Save();
+            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground);
+        }
+
+        #endregion
+
     }
 
 }

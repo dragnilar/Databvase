@@ -6,8 +6,19 @@ using DevExpress.XtraEditors.ColorWheel;
 
 namespace Databvase_Winforms.Services
 {
-    public class SkinService
+    public interface ISkinService
     {
+        void ChangeBezierPalette();
+        void ChangeColorSwatch();
+    }
+    /// <summary>
+    /// This is a custom service that can be used to change skin settings in a DevExpress app
+    /// </summary>
+    public class SkinService : ISkinService
+    {
+        /// <summary>
+        /// Displays the Bezier color palette switcher overlay, which allows the user to change the current Bezier palette.
+        /// </summary>
         public void ChangeBezierPalette()
         {
             var mainWindow = new Form();
@@ -15,13 +26,16 @@ namespace Databvase_Winforms.Services
                 if (window is MainView)
                     mainWindow = window;
 
-            if (mainWindow is MainView)
-                using (var palletteSelector = new SvgSkinPaletteSelector(mainWindow))
-                {
-                    palletteSelector.ShowDialog();
-                }
+            if (!(mainWindow is MainView)) return;
+            using (var palletteSelector = new SvgSkinPaletteSelector(mainWindow))
+            {
+                palletteSelector.ShowDialog();
+            }
         }
 
+        /// <summary>
+        /// Displays the DevExpress color mixer, which allows the user to change the color masks for the current skin.
+        /// </summary>
         public void ChangeColorSwatch()
         {
             using (var colorWheel = new ColorWheelForm())
@@ -35,6 +49,9 @@ namespace Databvase_Winforms.Services
             }
         }
 
+        /// <summary>
+        /// Saves current skin settings for the app to the application settings file.
+        /// </summary>
         public void SaveSkinSettings()
         {
             App.Config.DefaultSkinName = UserLookAndFeel.Default.SkinName;
@@ -50,6 +67,9 @@ namespace Databvase_Winforms.Services
             App.Config.Save();
         }
 
+        /// <summary>
+        /// Loads the skin settings from the application settings and applies them to the app.
+        /// </summary>
         public void LoadSkinSettings()
         {
             if (App.Config.DefaultSkinName == "The Bezier")

@@ -47,8 +47,6 @@ namespace Databvase_Winforms.Views
         private void HookupEvents()
         {
             UserLookAndFeel.Default.StyleChanged += Default_StyleChanged;
-            barButtonItemColorMixer.ItemClick += barButtonItemColorMixer_ItemClick;
-            barButtonItemColorPalette.ItemClick += barButtonItemColorPalette_ItemClick;
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
@@ -69,7 +67,15 @@ namespace Databvase_Winforms.Views
         {
             mvvmContextMain.RegisterService(new SettingsWindowService());
             mvvmContextMain.RegisterService(new TextEditorFontChangeService());
+            mvvmContextMain.RegisterService(App.Skins);
             mvvmContextMain.RegisterService(SplashScreenService.Create(splashScreenManagerMainWait));
+        }
+
+        private void Default_StyleChanged(object sender, EventArgs e)
+        {
+            barButtonItemColorPalette.Visibility = LookAndFeel.ActiveSkinName == SkinStyle.Bezier
+                ? BarItemVisibility.Always
+                : BarItemVisibility.Never;
         }
 
 
@@ -179,41 +185,6 @@ namespace Databvase_Winforms.Views
         #endregion
 
 
-
-
-        #region Skin Goodness
-
-        private void Default_StyleChanged(object sender, EventArgs e)
-        {
-            barButtonItemColorPalette.Visibility = LookAndFeel.ActiveSkinName == SkinStyle.Bezier
-                ? BarItemVisibility.Always
-                : BarItemVisibility.Never;
-        }
-
-        private void barButtonItemColorMixer_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            using (var colorWheel = new ColorWheelForm())
-            {
-                colorWheel.StartPosition = FormStartPosition.CenterParent;
-                colorWheel.BeginUpdate();
-                colorWheel.SkinMaskColor = UserLookAndFeel.Default.SkinMaskColor;
-                colorWheel.SkinMaskColor2 = UserLookAndFeel.Default.SkinMaskColor2;
-                colorWheel.EndUpdate();
-                colorWheel.ShowDialog();
-            }
-        }
-
-        private void barButtonItemColorPalette_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            using (var svgSkinSelector = new SvgSkinPaletteSelector(this))
-            {
-                svgSkinSelector.ShowDialog();
-            }
-        }
-
-        #endregion
-
-
         private void BarButtonItemQueryBuilderOnItemClick(object sender, ItemClickEventArgs e)
         {
             //TODO - Clean up
@@ -241,6 +212,8 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(barEditItemTextEditorBG, x => x.EditValue, vm => vm.TextEditorBackgroundColor);
             fluent.SetBinding(barEditItemTextEditorLineNumberColor, x => x.EditValue, vm => vm.TextEditorLineNumberColor);
             fluent.BindCommand(barButtonItemTextEditorFontSettings, vm => vm.ShowTextEditorFontDialog());
+            fluent.BindCommand(barButtonItemColorPalette, vm => vm.ShowBezierPaletteSwitcher());
+            fluent.BindCommand(barButtonItemColorMixer, vm => vm.ShowColorMixer());
         }
     }
 }
