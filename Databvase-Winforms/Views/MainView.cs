@@ -6,6 +6,7 @@ using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
+using Databvase_Winforms.Services.Window_Dialog_Services;
 using Databvase_Winforms.View_Models;
 using DevExpress.Customization;
 using DevExpress.DataAccess.ConnectionParameters;
@@ -51,7 +52,6 @@ namespace Databvase_Winforms.Views
             barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
-            barButtonItemTextEditorFontSettings.ItemClick += BarButtonItemTextEditorFontSettingsOnItemClick;
             barButtonItemQueryBuilder.ItemClick += BarButtonItemQueryBuilderOnItemClick;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
@@ -68,6 +68,7 @@ namespace Databvase_Winforms.Views
         private void RegisterServices()
         {
             mvvmContextMain.RegisterService(new SettingsWindowService());
+            mvvmContextMain.RegisterService(new TextEditorFontChangeService());
             mvvmContextMain.RegisterService(SplashScreenService.Create(splashScreenManagerMainWait));
         }
 
@@ -210,15 +211,6 @@ namespace Databvase_Winforms.Views
             }
         }
 
-        private void BarButtonItemTextEditorFontSettingsOnItemClick(object sender, ItemClickEventArgs e)
-        {
-            using (var dialog = new TextEditorFontChangeDialog{StartPosition = FormStartPosition.CenterScreen} )
-            {
-                dialog.ShowDialog();
-                new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);
-            }
-        }
-
         #endregion
 
 
@@ -248,6 +240,7 @@ namespace Databvase_Winforms.Views
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemShowSettings, "ItemClick", x => x.ShowSettings());
             fluent.SetBinding(barEditItemTextEditorBG, x => x.EditValue, vm => vm.TextEditorBackgroundColor);
             fluent.SetBinding(barEditItemTextEditorLineNumberColor, x => x.EditValue, vm => vm.TextEditorLineNumberColor);
+            fluent.BindCommand(barButtonItemTextEditorFontSettings, vm => vm.ShowTextEditorFontDialog());
         }
     }
 }

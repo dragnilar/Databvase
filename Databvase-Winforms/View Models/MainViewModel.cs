@@ -7,10 +7,12 @@ using DevExpress.XtraEditors;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
+using Databvase_Winforms.Services.Window_Dialog_Services;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -97,6 +99,15 @@ namespace Databvase_Winforms.View_Models
         public void ShowSettings()
         {
             this.GetService<ISettingsWindowService>().ShowDialog();
+        }
+
+        public void ShowTextEditorFontDialog()
+        {
+            var dialogResult = this.GetService<ITextEditorFontChangeService>().ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);
+            }
         }
 
         protected void SaveTextEditorColors()

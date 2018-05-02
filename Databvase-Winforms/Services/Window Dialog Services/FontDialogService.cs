@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Databvase_Winforms.Controls;
 
-namespace Databvase_Winforms.Services
+namespace Databvase_Winforms.Services.Window_Dialog_Services
 {
     public interface IFontDialogService
     {

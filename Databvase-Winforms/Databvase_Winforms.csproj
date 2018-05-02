@@ -301,10 +301,11 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ConnectionService.cs" />
-    <Compile Include="Services\FontDialogService.cs" />
+    <Compile Include="Services\Window Dialog Services\FontDialogService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
-    <Compile Include="Services\SettingsWindowService.cs" />
+    <Compile Include="Services\Window Dialog Services\SettingsWindowService.cs" />
     <Compile Include="Services\SQLSyntaxHighlightingService.cs" />
+    <Compile Include="Services\Window Dialog Services\TextEditorFontChangeService.cs" />
     <Compile Include="Services\ValidatorService.cs" />
     <Compile Include="Controls\QueryGrid\GridExtensions.cs" />
     <Compile Include="Services\QueryEditorService.cs" />

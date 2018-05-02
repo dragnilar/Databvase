@@ -30,6 +30,7 @@ namespace Databvase_Winforms.Dialogs
 
         private void SimpleButtonCancelOnClick(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -41,6 +42,7 @@ namespace Databvase_Winforms.Dialogs
             App.Config.TextEditorStringColor = textEditorFontEdit.DefaultStringColor;
             App.Config.TextEditorCommentsColor = textEditorFontEdit.DefaultCommentColor;
             App.Config.Save();
+            DialogResult = DialogResult.OK;
             Close();
         }
 
