@@ -1,11 +1,13 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+ using System.Diagnostics;
+ using System.Linq;
 using System.Threading.Tasks;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
+using Databvase_Winforms.Models.Data_Providers;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
@@ -20,19 +22,20 @@ namespace Databvase_Winforms.View_Models
     public class ObjectExplorerViewModel
     {
 
-        private ObjectExplorerDataSourceModel _dataSourceModel;
+        private ObjectExplorerDataSource _dataSourceModel;
         public virtual UnboundLoadModes LoadingMode { get; set; }
         public virtual string SelectTopContextMenuItemDescription { get; set; }
-        public virtual BindingList<ObjectExplorerModel> ObjectExplorerSource { get; set; }
+        public virtual BindingList<ObjectExplorerNode> ObjectExplorerSource { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
+        public virtual ObjectExplorerNode FocusedNode { get; set; }
 
         public ObjectExplorerViewModel()
         {
             GetSelectTopDescriptionForPopupMenu();
             RegisterForMessages();
-            _dataSourceModel = new ObjectExplorerDataSourceModel();
-            ObjectExplorerSource = _dataSourceModel.ObjectExplorerDataSource;
+            _dataSourceModel = new ObjectExplorerDataSource();
+            ObjectExplorerSource = _dataSourceModel.DataSource;
             LoadingMode = UnboundLoadModes.NotLoading;
         }
 
@@ -65,8 +68,8 @@ namespace Databvase_Winforms.View_Models
             if (message == null) return;
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
             App.Connection.DisconnectCurrentInstance(); //TODO - See if there's a better way to do this...
-            var instanceTree =  _dataSourceModel.ObjectExplorerDataSource.Where(r => r.InstanceName == message.InstanceName).ToList();
-            foreach (var item in instanceTree)  _dataSourceModel.ObjectExplorerDataSource.Remove(item);
+            var instanceTree =  _dataSourceModel.DataSource.Where(r => r.InstanceName == message.InstanceName).ToList();
+            foreach (var item in instanceTree)  _dataSourceModel.DataSource.Remove(item);
             FinishUnboundLoad();
         }
 
@@ -94,7 +97,7 @@ namespace Databvase_Winforms.View_Models
             };
         }
 
-        private void LoadDataForObjectExplorerDynamically(ObjectExplorerModel model)
+        private void LoadDataForObjectExplorerDynamically(ObjectExplorerNode model)
         {
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
             ShowWaitMessage();
@@ -115,7 +118,7 @@ namespace Databvase_Winforms.View_Models
 
         }
 
-        private void GetNodes(ObjectExplorerModel model)
+        private void GetNodes(ObjectExplorerNode model)
         {
             switch (model.Type)
             {
@@ -134,9 +137,9 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
-        private ObjectExplorerModel GetModelForNode(TreeListNode node)
+        private ObjectExplorerNode GetModelForNode(TreeListNode node)
         {
-            var model = node.TreeList.GetRow(node.Id) as ObjectExplorerModel;
+            var model = node.TreeList.GetRow(node.Id) as ObjectExplorerNode;
             return model;
         }
 
@@ -147,33 +150,34 @@ namespace Databvase_Winforms.View_Models
         #region Scripting
 
 
-        public void ScriptSelectTopForObjectExplorerData(object objectExplorerModelData)
+        public void ScriptSelectTopForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateSelectTopStatement(objectExplorerModelData);
+            var response = new ScriptGeneratorService().GenerateSelectTopStatement(FocusedNode);
             new NewScriptMessage(response.script, response.parentName);
         }
 
-        public void ScriptSelectAllForObjectExplorerData(object objectExplorerModelData)
+        public void ScriptSelectAllForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateSelectAllStatement(objectExplorerModelData);
+            var response = new ScriptGeneratorService().GenerateSelectAllStatement(FocusedNode);
             new NewScriptMessage(response.script, response.parentName);
         }
 
-        public void NewQueryScript(Database selectedDatabase)
+        public void NewQueryScript()
         {
+            var selectedDatabase = FocusedNode.GetDatabaseFromNode();
             var selectedDatabaseName = selectedDatabase == null ? string.Empty : selectedDatabase.Name;
             new NewScriptMessage(string.Empty, selectedDatabaseName);
         }
 
-        public void ScriptModifyForObjectExplorerData(object objectExplorerModelData)
+        public void ScriptModifyForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateModifyScript(objectExplorerModelData);
+            var response = new ScriptGeneratorService().GenerateModifyScript(FocusedNode);
             new NewScriptMessage(response.script, response.parentName);
         }
 
-        public void ScriptAlterForObjectExplorerData(object objectExplorerModelData)
+        public void ScriptAlterForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateAlterScript(objectExplorerModelData);
+            var response = new ScriptGeneratorService().GenerateAlterScript(FocusedNode);
             new NewScriptMessage(response.script, response.parentName);
         }
 
@@ -181,83 +185,18 @@ namespace Databvase_Winforms.View_Models
 
         #region Focused Node Changed
 
-        public void FocusedNodeChanged(FocusedNodeChangedEventArgs e)
+        //Binds at runtime 
+        public void OnFocusedNodeChanged()
         {
-            if (e.Node == null) return;
-            if (e.OldNode == null) return;
-            var instance = GetInstanceFromNode(e.Node);
-
-            var database = GetDatabaseFromNode(e.Node);
-            if (instance == App.Connection.InstanceTracker.CurrentInstance)
-                if (database != null)
-                    if (database.Name == App.Connection.InstanceTracker.CurrentDatabase?.Name)
-                        return;
-            new InstanceNameChangeMessage(instance, database);
-        }
-
-        private Database GetDatabaseFromNode(TreeListNode node)
-        {
-            //TODO - This switch probably needs to be condensed...
-            if (node == null) return null;
-            var model = GetModelForNode(node);
-            switch (model.Type)
+            if (FocusedNode != null)
             {
-                case GlobalStrings.ObjectExplorerTypes.Instance:
-                    return null;
-                case GlobalStrings.ObjectExplorerTypes.Database:
-                    return (Database) model.Data;
-                case GlobalStrings.ObjectExplorerTypes.Folder when model.Data is Database database:
-                    return database;
-                case GlobalStrings.ObjectExplorerTypes.Folder:
-                    return null;
-                case GlobalStrings.ObjectExplorerTypes.Table:
-                    return ((Table) model.Data).Parent;
-                case GlobalStrings.ObjectExplorerTypes.Column:
-                    var column = model.Data as Column;
-                    return ((Table) column?.Parent)?.Parent;
-            }
-            return null;
-        }
-
-        private Server GetInstanceFromNode(TreeListNode node)
-        {
-            //TODO - This switch probably needs to be condensed...
-            if (node == null) return null;
-            var model = GetModelForNode(node);
-            switch (model.Type)
-            {
-                case GlobalStrings.ObjectExplorerTypes.Instance:
-                    return (Server)model.Data;
-                case GlobalStrings.ObjectExplorerTypes.Database:
-                    return ((Database)model.Data).Parent;
-                case GlobalStrings.ObjectExplorerTypes.Folder when model.Data is Database database:
-                    return database.Parent;
-                case GlobalStrings.ObjectExplorerTypes.Folder:
-                    return GetInstanceFromFolderNode(model.Data) ;
-                case GlobalStrings.ObjectExplorerTypes.Table:
-                    return ((Table)model.Data).Parent.Parent;
-                case GlobalStrings.ObjectExplorerTypes.Column:
-                    var column = model.Data as Column;
-                    return ((Table)column?.Parent)?.Parent.Parent;
-            }
-            return null;
-        }
-
-        private Server GetInstanceFromFolderNode(object modelData)
-        {
-            switch (modelData)
-            {
-                case View view:
-                    return view.Parent.Parent;
-                case UserDefinedFunction function:
-                    return function.Parent.Parent;
-                case StoredProcedure storedProcedure:
-                    return storedProcedure.Parent.Parent;
-                case Table table:
-                    return table.Parent.Parent;
-                default:
-                    return null;
-
+                var instance = FocusedNode.GetInstanceFromNode();
+                var database = FocusedNode.GetDatabaseFromNode();
+                if (instance == App.Connection.InstanceTracker.CurrentInstance)
+                    if (database != null)
+                        if (database.Name == App.Connection.InstanceTracker.CurrentDatabase?.Name)
+                            return;
+                new InstanceNameChangeMessage(instance, database);
             }
         }
 

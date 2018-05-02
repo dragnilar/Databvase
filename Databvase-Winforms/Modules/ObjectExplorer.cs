@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models;
+using Databvase_Winforms.Models.Data_Providers;
 using Databvase_Winforms.View_Models;
 using DevExpress.Utils.MVVM;
 using DevExpress.Utils.MVVM.Services;
@@ -40,12 +41,12 @@ namespace Databvase_Winforms.Modules
         {   //TODO - This event is firing even when a node is already added, which may mean that this may not be the best way to flag a node as having children...
             if (e.ChangeType == NodeChangeTypeEnum.Add)
             {
-                if (!(e.Node.TreeList.GetRow(e.Node.Id) is ObjectExplorerModel model) || e.Node.HasChildren) return;
+                if (!(e.Node.TreeList.GetRow(e.Node.Id) is ObjectExplorerNode model) || e.Node.HasChildren) return;
                 SetHasChildrenForNode(e, model);
             }
         }
 
-        private static void SetHasChildrenForNode(NodeChangedEventArgs e, ObjectExplorerModel objectExplorerModel)
+        private static void SetHasChildrenForNode(NodeChangedEventArgs e, ObjectExplorerNode objectExplorerModel)
         {
             switch (objectExplorerModel.Type)
             {
@@ -92,19 +93,20 @@ namespace Databvase_Winforms.Modules
         {
             fluent.EventToCommand<BeforeExpandEventArgs>(treeListObjExp, "BeforeExpand",
                 x => x.ObjectExplorer_OnBeforeExpand(null));
-            fluent.EventToCommand<FocusedNodeChangedEventArgs>(treeListObjExp, "FocusedNodeChanged",
-                x => x.FocusedNodeChanged(null));
+            fluent.WithEvent<TreeList, FocusedNodeChangedEventArgs>(treeListObjExp, "FocusedNodeChanged").SetBinding(
+                x => x.FocusedNode,
+                args => args.Node?.TreeList.GetDataRecordByNode(args.Node) as ObjectExplorerNode, (treeView, entity) =>
+                    treeView.FocusedNode = treeView.FindNode(
+                        x => x.Id == entity.Id));
         }
 
         private void BindCommands(MVVMContextFluentAPI<ObjectExplorerViewModel> fluent)
         {
-            fluent.BindCommand(barButtonItemGenerateSelectAll, (x, p) => x.ScriptSelectAllForObjectExplorerData(p),
-                x => GetFocusedNodeData());
-            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, (x, p) => x.ScriptSelectTopForObjectExplorerData(p),
-                x => GetFocusedNodeData());
-            fluent.BindCommand(barButtonItemAlterScript, (x, p) => x.ScriptModifyForObjectExplorerData(p), x=> GetFocusedNodeData());
-            fluent.BindCommand(barButtonItemViewFunction, (x, p) => x.ScriptAlterForObjectExplorerData(p), x=> GetFocusedNodeData());
-            fluent.BindCommand(barButtonItemNewQuery, (x,p) => x.NewQueryScript(p), x=> GetFocusedNodeDatabase());
+            fluent.BindCommand(barButtonItemGenerateSelectAll, x => x.ScriptSelectAllForObjectExplorerData());
+            fluent.BindCommand(barButtonItemGenerateSelectTopStatement, x => x.ScriptSelectTopForObjectExplorerData());
+            fluent.BindCommand(barButtonItemAlterScript, x => x.ScriptModifyForObjectExplorerData());
+            fluent.BindCommand(barButtonItemViewFunction, x => x.ScriptAlterForObjectExplorerData());
+            fluent.BindCommand(barButtonItemNewQuery, x => x.NewQueryScript());
             fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);
         }
 

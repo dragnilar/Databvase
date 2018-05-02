@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Databvase_Winforms.Models.Data_Providers;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Services
@@ -11,9 +12,9 @@ namespace Databvase_Winforms.Services
     public class ScriptGeneratorService
     {
 
-        public (string script, string parentName) GenerateSelectAllStatement(object selectedObjectExplorerData)
+        public (string script, string parentName) GenerateSelectAllStatement(ObjectExplorerNode node)
         {
-            switch (selectedObjectExplorerData)
+            switch (node.Data)
             {
                 case Table selectedTable:
                     return ($"SELECT * FROM {GetFullTablePath(selectedTable)}", selectedTable.Parent.Name);
@@ -24,9 +25,9 @@ namespace Databvase_Winforms.Services
             }
         }
 
-        public (string script, string parentName) GenerateSelectTopStatement(object selectedObjectExplorerData)
+        public (string script, string parentName) GenerateSelectTopStatement(ObjectExplorerNode node)
         {
-            switch (selectedObjectExplorerData)
+            switch (node.Data)
             {
                 case Table selectedTable:
                     return ($"SELECT TOP {App.Config.NumberOfRowsForTopSelectScript} * FROM {GetFullTablePath(selectedTable)}", selectedTable.Parent.Name);
@@ -37,10 +38,10 @@ namespace Databvase_Winforms.Services
             }
         }
 
-        public (string script, string parentName) GenerateModifyScript(object selectedObjectExplorerData)
+        public (string script, string parentName) GenerateModifyScript(ObjectExplorerNode node)
         {
             var scriptBuilder = new StringBuilder();
-            switch (selectedObjectExplorerData)
+            switch (node.Data)
             {
                 case UserDefinedFunction function:
                 {
@@ -59,10 +60,10 @@ namespace Databvase_Winforms.Services
             return (string.Empty, string.Empty);
         }
 
-        public (string script, string parentName) GenerateAlterScript(object selectedObjectExplorerData)
+        public (string script, string parentName) GenerateAlterScript(ObjectExplorerNode node)
         {
             var scriptBuilder = new StringBuilder();
-            switch (selectedObjectExplorerData)
+            switch (node.Data)
             {
                 case UserDefinedFunction function:
                 {

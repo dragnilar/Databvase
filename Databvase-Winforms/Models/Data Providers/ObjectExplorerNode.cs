@@ -1,22 +1,21 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Databvase_Winforms.Annotations;
 using Databvase_Winforms.Globals;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace Databvase_Winforms.Models
+namespace Databvase_Winforms.Models.Data_Providers
 {
     //TODO - Possibly replace all these constructors with a builder???
-    public class ObjectExplorerModel : INotifyPropertyChanged
+    public class ObjectExplorerNode : INotifyPropertyChanged
     {
         /// <summary>
         /// Creates a new object for a Server/Instance data type
         /// </summary>
         /// <param name="instanceId"></param>
         /// <param name="serverInstance"></param>
-        public ObjectExplorerModel(int instanceId, Server serverInstance)
+        public ObjectExplorerNode(int instanceId, Server serverInstance)
         {
             ParentId = 0;
             Id = instanceId;
@@ -36,7 +35,7 @@ namespace Databvase_Winforms.Models
         /// <param name="databaseId"></param>
         /// <param name="instanceId"></param>
         /// <param name="db"></param>
-        public ObjectExplorerModel(int databaseId, int instanceId, Database db)
+        public ObjectExplorerNode(int databaseId, int instanceId, Database db)
         {
             ParentId = instanceId;
             Id = databaseId;
@@ -55,7 +54,7 @@ namespace Databvase_Winforms.Models
         /// <param name="tableId"></param>
         /// <param name="databaseId"></param>
         /// <param name="table"></param>
-        public ObjectExplorerModel(int tableId, int databaseId, Table table)
+        public ObjectExplorerNode(int tableId, int databaseId, Table table)
         {
             ParentId = databaseId;
             Id = tableId;
@@ -74,7 +73,7 @@ namespace Databvase_Winforms.Models
         /// <param name="columnId"></param>
         /// <param name="tableId"></param>
         /// <param name="column"></param>
-        public ObjectExplorerModel(int columnId, int tableId, Column column)
+        public ObjectExplorerNode(int columnId, int tableId, Column column)
         {
             ParentId = tableId;
             Id = columnId;
@@ -94,7 +93,7 @@ namespace Databvase_Winforms.Models
         /// <param name="folderId"></param>
         /// <param name="folderType"></param>
         /// <param name="parentModel"></param>
-        public ObjectExplorerModel(int folderId, string folderType, ObjectExplorerModel parentModel)
+        public ObjectExplorerNode(int folderId, string folderType, ObjectExplorerNode parentModel)
         {
             ParentId = parentModel.Id;
             Id = folderId;
@@ -113,7 +112,7 @@ namespace Databvase_Winforms.Models
         /// <param name="viewId"></param>
         /// <param name="folderId"></param>
         /// <param name="view"></param>
-        public ObjectExplorerModel(int viewId, int folderId, View view)
+        public ObjectExplorerNode(int viewId, int folderId, View view)
         {
             ParentId = folderId;
             Id = viewId;
@@ -132,7 +131,7 @@ namespace Databvase_Winforms.Models
         /// <param name="functionId"></param>
         /// <param name="folderId"></param>
         /// <param name="function"></param>
-        public ObjectExplorerModel(int functionId, int folderId, UserDefinedFunction function)
+        public ObjectExplorerNode(int functionId, int folderId, UserDefinedFunction function)
         {
             ParentId = folderId;
             Id = functionId;
@@ -151,7 +150,7 @@ namespace Databvase_Winforms.Models
         /// <param name="storedProcedureId"></param>
         /// <param name="folderId"></param>
         /// <param name="storedProcedure"></param>
-        public ObjectExplorerModel(int storedProcedureId, int folderId, StoredProcedure storedProcedure)
+        public ObjectExplorerNode(int storedProcedureId, int folderId, StoredProcedure storedProcedure)
         {
             ParentId = folderId;
             Id = storedProcedureId;
@@ -169,7 +168,7 @@ namespace Databvase_Winforms.Models
         /// </summary>
         /// <param name="emptyNodeId"></param>
         /// <param name="parentModel"></param>
-        public ObjectExplorerModel(int emptyNodeId, ObjectExplorerModel parentModel)
+        public ObjectExplorerNode(int emptyNodeId, ObjectExplorerNode parentModel)
         {
             ParentId = parentModel.Id;
             Id = emptyNodeId;
@@ -192,6 +191,69 @@ namespace Databvase_Winforms.Models
         public int ImageIndex { get; set; }
         public string Properties {get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Database GetDatabaseFromNode()
+        {
+            //TODO - This switch probably needs to be condensed...
+            switch (Type)
+            {
+                case GlobalStrings.ObjectExplorerTypes.Instance:
+                    return null;
+                case GlobalStrings.ObjectExplorerTypes.Database:
+                    return (Database)Data;
+                case GlobalStrings.ObjectExplorerTypes.Folder when Data is Database database:
+                    return database;
+                case GlobalStrings.ObjectExplorerTypes.Folder:
+                    return null;
+                case GlobalStrings.ObjectExplorerTypes.Table:
+                    return ((Table)Data).Parent;
+                case GlobalStrings.ObjectExplorerTypes.Column:
+                    var column = Data as Column;
+                    return ((Table)column?.Parent)?.Parent;
+            }
+            return null;
+        }
+
+        public Server GetInstanceFromNode()
+        {
+            //TODO - This switch probably needs to be condensed...
+            switch (Type)
+            {
+                case GlobalStrings.ObjectExplorerTypes.Instance:
+                    return (Server)Data;
+                case GlobalStrings.ObjectExplorerTypes.Database:
+                    return ((Database)Data).Parent;
+                case GlobalStrings.ObjectExplorerTypes.Folder when Data is Database database:
+                    return database.Parent;
+                case GlobalStrings.ObjectExplorerTypes.Folder:
+                    return GetInstanceFromFolderNode(Data);
+                case GlobalStrings.ObjectExplorerTypes.Table:
+                    return ((Table)Data).Parent.Parent;
+                case GlobalStrings.ObjectExplorerTypes.Column:
+                    var column = Data as Column;
+                    return ((Table)column?.Parent)?.Parent.Parent;
+            }
+            return null;
+        }
+
+        private Server GetInstanceFromFolderNode(object nodeData)
+        {
+            switch (nodeData)
+            {
+                case View view:
+                    return view.Parent.Parent;
+                case UserDefinedFunction function:
+                    return function.Parent.Parent;
+                case StoredProcedure storedProcedure:
+                    return storedProcedure.Parent.Parent;
+                case Table table:
+                    return table.Parent.Parent;
+                default:
+                    return null;
+
+            }
+        }
+
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -224,5 +286,6 @@ namespace Databvase_Winforms.Models
 
             return propertiesBuilder.ToString();
         }
+
     }
 }
