@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RenameTabDialog));
             this.lcRenameQueryTab = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButtonRename = new DevExpress.XtraEditors.SimpleButton();
             this.textEditNewTabName = new DevExpress.XtraEditors.TextEdit();
             this.simpleButtonCancel = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -42,9 +43,8 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButtonRename = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcRenameQueryTab)).BeginInit();
             this.lcRenameQueryTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEditNewTabName.Properties)).BeginInit();
@@ -58,8 +58,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // lcRenameQueryTab
@@ -75,6 +75,15 @@
             this.lcRenameQueryTab.Size = new System.Drawing.Size(471, 179);
             this.lcRenameQueryTab.TabIndex = 0;
             this.lcRenameQueryTab.Text = "layoutControl1";
+            // 
+            // simpleButtonRename
+            // 
+            this.simpleButtonRename.Location = new System.Drawing.Point(244, 145);
+            this.simpleButtonRename.Name = "simpleButtonRename";
+            this.simpleButtonRename.Size = new System.Drawing.Size(74, 22);
+            this.simpleButtonRename.StyleController = this.lcRenameQueryTab;
+            this.simpleButtonRename.TabIndex = 8;
+            this.simpleButtonRename.Text = "Rename";
             // 
             // textEditNewTabName
             // 
@@ -192,24 +201,6 @@
             this.emptySpaceItem8.Size = new System.Drawing.Size(39, 40);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.CustomizationFormText = "emptySpaceItem2";
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(301, 159);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleButtonRename
-            // 
-            this.simpleButtonRename.Location = new System.Drawing.Point(244, 145);
-            this.simpleButtonRename.Name = "simpleButtonRename";
-            this.simpleButtonRename.Size = new System.Drawing.Size(74, 22);
-            this.simpleButtonRename.StyleController = this.lcRenameQueryTab;
-            this.simpleButtonRename.TabIndex = 8;
-            this.simpleButtonRename.Text = "Rename";
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.simpleButtonRename;
@@ -218,6 +209,15 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(78, 26);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.CustomizationFormText = "emptySpaceItem2";
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(301, 159);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // RenameTabDialog
             // 
@@ -244,8 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);
 
         }

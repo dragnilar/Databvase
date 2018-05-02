@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 
 namespace Databvase_Winforms.Dialogs
 {
@@ -18,6 +19,7 @@ namespace Databvase_Winforms.Dialogs
         {
             simpleButtonRename.Click += SimpleButtonRenameOnClick;
             simpleButtonCancel.Click += SimpleButtonCancelOnClick;
+            textEditNewTabName.KeyDown += TextEditNewTabNameOnKeyDown;
         }
 
         private void SimpleButtonCancelOnClick(object sender, EventArgs eventArgs)
@@ -28,12 +30,30 @@ namespace Databvase_Winforms.Dialogs
 
         private void SimpleButtonRenameOnClick(object sender, EventArgs eventArgs)
         {
-            if (!string.IsNullOrEmpty(textEditNewTabName.Text))
+            ApplyRename();
+        }
+
+        private void TextEditNewTabNameOnKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    ApplyRename();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ApplyRename()
+        {
+            if (!string.IsNullOrEmpty(textEditNewTabName.Text.Trim()))
             {
                 NewTabName = textEditNewTabName.Text;
                 DialogResult = DialogResult.OK;
                 Close();
             }
         }
+
     }
 }

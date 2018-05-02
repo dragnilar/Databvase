@@ -25,7 +25,7 @@ namespace Databvase_Winforms.View_Models
         public virtual int NumberOfQueries { get; set; }
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
-        private bool Loading = true;
+        private readonly bool _loading = true;
 
 
         private class DocumentInfo //TODO - We may want to move this to its own file to avoid cluttering up the View Model
@@ -41,7 +41,7 @@ namespace Databvase_Winforms.View_Models
             NumberOfQueries = 0;
             TextEditorBackgroundColor = App.Config.TextEditorBackgroundColor;
             TextEditorLineNumberColor = App.Config.TextEditorLineNumberColor;
-            Loading = false;
+            _loading = false;
             RegisterMessages();
         }
 
@@ -149,7 +149,7 @@ namespace Databvase_Winforms.View_Models
 
         protected void SaveTextEditorColors()
         {
-            if (Loading)  //TODO - This was necessary because this event can get fired prematurely, see if there is a way to avoid having to do this
+            if (_loading)  //TODO - This was necessary because this event can get fired prematurely, see if there is a way to avoid having to do this
             {
                 return;
             }
