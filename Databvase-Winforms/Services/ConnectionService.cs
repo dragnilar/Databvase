@@ -57,8 +57,8 @@ namespace Databvase_Winforms.Services
         {
             if (savedConnection != null)
             {
-                var CurrentServer = GetServerAtSpecificConnection(savedConnection);
-                var result = TestServerConnection(CurrentServer);
+                var currentServer = GetServerAtSpecificConnection(savedConnection);
+                var result = TestServerConnection(currentServer);
 
                 if (!result.valid) return result;
                 if (CurrentConnections.All(x => x.Instance != savedConnection.Instance))
@@ -66,7 +66,7 @@ namespace Databvase_Winforms.Services
                     CurrentConnections.Add(savedConnection);
                 }
 
-                InstanceTracker.CurrentInstance = CurrentServer;
+                InstanceTracker.CurrentInstance = currentServer;
                 InstanceTracker.CurrentDatabase = null;
 
                 return result;

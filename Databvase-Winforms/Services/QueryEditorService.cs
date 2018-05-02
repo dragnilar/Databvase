@@ -22,7 +22,9 @@ namespace Databvase_Winforms.Services
 
         public QueryResult RunQuery(string sqlQuery, string dbName, SavedConnection connection)
         {
-            return sqlQuery == null ? null : SQLServerInterface.SendQueryAndGetResult(sqlQuery, dbName, connection);
+            //TODO - See if this actually hurts performance, if so either switch back to static or something else so its always available.
+            var queryUnit = new SQLQuery();
+            return sqlQuery == null ? null : queryUnit.SendQueryAndGetResult(sqlQuery, dbName, connection);
         }
 
         public string GetSqlQueryFromQueryPane()

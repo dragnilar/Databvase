@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using Databvase_Winforms.DAL;
@@ -9,6 +10,7 @@ using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -142,7 +144,7 @@ namespace Databvase_Winforms.View_Models
             try
             {
                 SplashScreenService.ShowSplashScreen();
-                Instances = SQLServerInterface.GetInstances();
+                Instances = GetInstancesList();
                 SplashScreenService.HideSplashScreen();
             }
             catch (Exception e)
@@ -177,6 +179,26 @@ namespace Databvase_Winforms.View_Models
         private void ShowErrorMessage(string message, string header)
         {
             MessageBoxService.ShowMessage(message, header, MessageButton.OK, MessageIcon.Error);
+        }
+
+        private List<SQLServerInstance> GetInstancesList()
+        {
+            var instancesTable = SmoApplication.EnumAvailableSqlServers(false);
+
+            var instanceList = new List<SQLServerInstance>();
+            foreach (var instance in instancesTable.AsEnumerable()
+                .Select(x => new SQLServerInstance
+                {
+                    InstanceName = x.Field<string>("Instance"),
+                    IsClustered = x.Field<bool>("IsClustered"),
+                    Name = x.Field<string>("Name"),
+                    ServerName = x.Field<string>("Server"),
+                    Version = x.Field<string>("Version"),
+                    Local = x.Field<bool>("IsLocal")
+                }))
+                instanceList.Add(instance);
+
+            return instanceList;
         }
     }
 }
