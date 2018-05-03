@@ -253,6 +253,7 @@
     <Compile Include="Controls\QueryTextEditor\QueryTextEditor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dialogs\QueryBuilderDialogWrapper.cs" />
     <Compile Include="Dialogs\XtraFontDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,6 +303,7 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\QueryBuilderService.cs" />
     <Compile Include="Services\Window Dialog Services\ConnectionWindowService.cs" />
     <Compile Include="Services\Window Dialog Services\FontDialogService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />

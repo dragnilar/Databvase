@@ -129,28 +129,15 @@ namespace Databvase_Winforms.Views
 
         private void BarButtonItemQueryBuilderOnItemClick(object sender, ItemClickEventArgs e)
         {
-            //TODO - Clean up
+            //TODO - Move to View Model and set up as a service
             if (App.Connection.InstanceTracker.CurrentDatabase == null)
             {
                 XtraMessageBox.Show("Please select a database from the object explorer first.");
                 return;
             }
+            
+            new QueryBuilderDialogWrapper().ShowQueryBuilder();
 
-            var currentServer = App.Connection.GetServerAtSpecificInstance(App.Connection.InstanceTracker.CurrentInstance.Name, App.Connection.InstanceTracker.CurrentDatabase.Name);
-            var dxConnectionStringParameters =
-                new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
-            var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);
-            dxSqlDataSource.AddQueryWithQueryBuilder();
-
-            var query = (dxSqlDataSource.Queries.FirstOrDefault() as SelectQuery)?.GetSql(dxSqlDataSource.Connection
-                .GetDBSchema());
-            new NewScriptMessage(query, App.Connection.InstanceTracker.CurrentDatabase.Name);
-
-        }
-
-        private static string GetSqlQueryText(string query)
-        {
-            return AutoSqlWrapHelper.AutoSqlTextWrap(query, 9999);
         }
 
 
