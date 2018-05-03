@@ -10,6 +10,7 @@ using Databvase_Winforms.Services.Window_Dialog_Services;
 using Databvase_Winforms.View_Models;
 using DevExpress.Customization;
 using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.Native.Sql;
 using DevExpress.DataAccess.Sql;
 using DevExpress.DataAccess.UI.Sql;
 using DevExpress.LookAndFeel;
@@ -26,7 +27,6 @@ namespace Databvase_Winforms.Views
 {
     public partial class MainView : RibbonForm
     {
-
         public MainView()
         {
             InitializeComponent();
@@ -140,10 +140,17 @@ namespace Databvase_Winforms.Views
             var dxConnectionStringParameters =
                 new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
             var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);
-            SqlDataSourceUIHelper.AddQueryWithQueryBuilder(dxSqlDataSource);
-            //TODO - See if we can get the query off of the query builder, right now its a dev express query, which we can't just do ToString on...
-            //TODO - Check here: https://www.devexpress.com/Support/Center/Question/Details/T429353/formatted-sql-string-from-querybuilder
-            var query = dxSqlDataSource.Queries.FirstOrDefault();
+            dxSqlDataSource.AddQueryWithQueryBuilder();
+
+            var query = (dxSqlDataSource.Queries.FirstOrDefault() as SelectQuery)?.GetSql(dxSqlDataSource.Connection
+                .GetDBSchema());
+            new NewScriptMessage(query, App.Connection.InstanceTracker.CurrentDatabase.Name);
+
+        }
+
+        private static string GetSqlQueryText(string query)
+        {
+            return AutoSqlWrapHelper.AutoSqlTextWrap(query, 9999);
         }
 
 
