@@ -24,12 +24,7 @@ namespace Databvase_Winforms.DAL
             var result = new QueryResult();
             try
             {
-                var server = App.Connection.GetServerAtSpecificConnection(connection, dataBase);
-                server.ConnectionContext.DatabaseName = dataBase;
-                server.ConnectionContext.Connect();
-                var dataset = server.ConnectionContext.ExecuteWithResults(sqlQuery);
-                result = GetResult(dataset);
-                server.ConnectionContext.Disconnect();
+                result = Query(sqlQuery, dataBase, connection);
             }
             catch (SqlException ex)
             {
@@ -42,6 +37,17 @@ namespace Databvase_Winforms.DAL
                 result.ResultsMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
             }
 
+            return result;
+        }
+
+        private QueryResult Query(string sqlQuery, string dataBase, SavedConnection connection)
+        {
+            var server = App.Connection.GetServerAtSpecificConnection(connection, dataBase);
+            server.ConnectionContext.DatabaseName = dataBase;
+            server.ConnectionContext.Connect();
+            var queryDataSet = server.ConnectionContext.ExecuteWithResults(sqlQuery);
+            var result = GetResult(queryDataSet);
+            server.ConnectionContext.Disconnect();
             return result;
         }
 

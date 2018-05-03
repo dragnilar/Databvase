@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
@@ -25,7 +26,9 @@ namespace Databvase_Winforms.View_Models
         public virtual int NumberOfQueries { get; set; }
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
+        public virtual bool InstancesConnected { get; set; }
         private readonly bool _loading = true;
+        
 
 
         private class DocumentInfo //TODO - We may want to move this to its own file to avoid cluttering up the View Model
@@ -44,7 +47,6 @@ namespace Databvase_Winforms.View_Models
             _loading = false;
             RegisterMessages();
         }
-
         private void RegisterMessages()
         {
             Messenger.Default.Register<InstanceConnectedMessage>(this, typeof(InstanceConnectedMessage).Name, ReceiveInstanceConnectedMessage);
@@ -64,9 +66,10 @@ namespace Databvase_Winforms.View_Models
             if (message != null)
             {
                 ChangeInstanceName(message.Tracker);
+                CheckConnections();
+
             }
         }
-
 
         private void ChangeInstanceName(InstanceAndDatabaseTracker tracker)
         {
@@ -75,6 +78,31 @@ namespace Databvase_Winforms.View_Models
                 App.Connection.InstanceTracker = tracker;
 
             }
+        }
+
+        public void CheckToShowConnectionsAtStartup()
+        {
+            if (App.Config.ShowConnectionWindowOnStartup)
+            {
+                Connect();
+            }
+        }
+
+
+        public void Connect()
+        {
+            this.GetService<IConnectionWindowService>().ShowDialog();
+        }
+
+        public void Disconnect()
+        {
+            new DisconnectInstanceMessage(App.Connection.InstanceTracker.CurrentInstance.Name);
+            CheckConnections();
+        }
+
+        private void CheckConnections()
+        {
+            InstancesConnected = App.Connection.CurrentConnections.Count > 0;
         }
 
         public void AddNewTab()
@@ -108,6 +136,7 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
+        #region Skin Methods
         public void ShowBezierPaletteSwitcher()
         {
             this.GetService<ISkinService>().ChangeBezierPalette();
@@ -117,8 +146,9 @@ namespace Databvase_Winforms.View_Models
         {
             this.GetService<ISkinService>().ChangeColorSwatch();
         }
+        #endregion
 
-
+        #region Splash Screen Methods
         public void ShowSplashScreen()
         {
             if (!SplashScreenService.IsSplashScreenActive)
@@ -134,7 +164,7 @@ namespace Databvase_Winforms.View_Models
                 SplashScreenService.HideSplashScreen();
             }
         }
-
+        #endregion
 
         #region MetaData Bindings
 
@@ -160,6 +190,7 @@ namespace Databvase_Winforms.View_Models
         }
 
         #endregion
+
 
     }
 

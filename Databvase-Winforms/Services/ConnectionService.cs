@@ -8,7 +8,7 @@ namespace Databvase_Winforms.Services
 {
     public class ConnectionService
     {
-        private (string, bool) NullConnectionTuple => ("Connection is null, please try again", false);
+        private (string, bool) NullConnectionResponse => ("Connection is null, please try again", false);
         public List<SavedConnection> CurrentConnections = new List<SavedConnection>();
         public InstanceAndDatabaseTracker InstanceTracker = new InstanceAndDatabaseTracker();
 
@@ -24,7 +24,7 @@ namespace Databvase_Winforms.Services
             return null;
         }
 
-        public  Server GetServerAtSpecificConnection(SavedConnection connection, string dbName = null)
+        public Server GetServerAtSpecificConnection(SavedConnection connection, string dbName = null)
         {
             return GetServer(connection, dbName);
         }
@@ -73,7 +73,7 @@ namespace Databvase_Winforms.Services
 
             }
 
-            return NullConnectionTuple;
+            return NullConnectionResponse;
         }
 
         public (string errorMessage, bool valid) TestSavedConnection(SavedConnection savedConnection)
@@ -84,7 +84,7 @@ namespace Databvase_Winforms.Services
                 return TestServerConnection(server);
             }
 
-            return NullConnectionTuple;
+            return NullConnectionResponse;
         }
 
         private (string errorMessage, bool valid) TestServerConnection(Server server)

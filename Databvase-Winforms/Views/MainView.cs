@@ -30,13 +30,14 @@ namespace Databvase_Winforms.Views
         public MainView()
         {
             InitializeComponent();
+            RegisterServices();
+            RegisterMessages();
             if (!mvvmContextMain.IsDesignMode)
                 InitializeBindings();
             AddObjectExplorerToUi();
             App.Skins.LoadSkinSettings();
             HookupEvents();
-            RegisterMessages();
-            RegisterServices();
+
         }
 
         private void AddObjectExplorerToUi()
@@ -47,15 +48,11 @@ namespace Databvase_Winforms.Views
         private void HookupEvents()
         {
             UserLookAndFeel.Default.StyleChanged += Default_StyleChanged;
-            barButtonItemConnect.ItemClick += BarButtonItemConnectOnItemClick;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
-            barButtonItemDisconnect.ItemClick += BarButtonItemDisconnectOnItemClick;
             barButtonItemQueryBuilder.ItemClick += BarButtonItemQueryBuilderOnItemClick;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
-
             defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
-            Shown += OnShown;
         }
 
         private void RegisterMessages()
@@ -67,6 +64,7 @@ namespace Databvase_Winforms.Views
         {
             mvvmContextMain.RegisterService(new SettingsWindowService());
             mvvmContextMain.RegisterService(new TextEditorFontChangeService());
+            mvvmContextMain.RegisterService(new ConnectionWindowService());
             mvvmContextMain.RegisterService(App.Skins);
             mvvmContextMain.RegisterService(SplashScreenService.Create(splashScreenManagerMainWait));
         }
@@ -78,20 +76,6 @@ namespace Databvase_Winforms.Views
                 : BarItemVisibility.Never;
         }
 
-
-        private void OnShown(object sender, EventArgs e)
-        {
-            CheckToShowConnectionWindow();
-        }
-
-        private void CheckToShowConnectionWindow()
-        {
-            if (App.Config.ShowConnectionWindowOnStartup)
-            {
-                Connect();
-            }
-        }
-
         private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
         {
             App.Skins.SaveSkinSettings();
@@ -101,53 +85,6 @@ namespace Databvase_Winforms.Views
         private void BarButtonItemObjectExplorerOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
         {
             objectExplorerContainer.Panel.Show();
-        }
-
-
-        private void BarButtonItemConnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
-        {
-            Connect();
-        }
-
-        private void Connect()
-        {
-            var window = new ConnectionWindowView {StartPosition = FormStartPosition.CenterScreen};
-            window.ShowDialog();
-            window.Dispose();
-            UpdateConnectionStatusOnRibbon();
-        }
-
-        private void UpdateConnectionStatusOnRibbon()
-        {
-            if (App.Connection.CurrentConnections.Count > 0)
-            {
-                barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
-                barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
-                barButtonItemQueryBuilder.Visibility = BarItemVisibility.Always;
-            }
-            else
-            {
-                barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
-                barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
-                barButtonItemQueryBuilder.Visibility = BarItemVisibility.Never;
-            }
-        }
-
-        private void BarButtonItemDisconnectOnItemClick(object sender, ItemClickEventArgs itemClickEventArgs)
-        {
-            Disconnect();
-        }
-
-        private void Disconnect()
-        {
-            new DisconnectInstanceMessage(App.Connection.InstanceTracker.CurrentInstance.Name);
-            UpdateConnectionStatusOnRibbon();
-        }
-
-
-        private void MergeMainRibbon(QueryControl queryControl)
-        {
-            if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
         }
 
         #region Tabbed Main View
@@ -170,6 +107,11 @@ namespace Databvase_Winforms.Views
         {
             
             MergeMainRibbon(e.Document.Control as QueryControl);
+        }
+
+        private void MergeMainRibbon(QueryControl queryControl)
+        {
+            if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
         }
 
         private void CreateNewQueryPaneWithScript(NewScriptMessage message)
@@ -204,16 +146,36 @@ namespace Databvase_Winforms.Views
             var query = dxSqlDataSource.Queries.FirstOrDefault();
         }
 
+
         private void InitializeBindings() 
         {
             var fluent = mvvmContextMain.OfType<MainViewModel>();
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemShowSettings, "ItemClick", x => x.ShowSettings());
+            fluent.EventToCommand<EventArgs>(this, "Shown", x => x.CheckToShowConnectionsAtStartup());
             fluent.SetBinding(barEditItemTextEditorBG, x => x.EditValue, vm => vm.TextEditorBackgroundColor);
             fluent.SetBinding(barEditItemTextEditorLineNumberColor, x => x.EditValue, vm => vm.TextEditorLineNumberColor);
             fluent.BindCommand(barButtonItemTextEditorFontSettings, vm => vm.ShowTextEditorFontDialog());
             fluent.BindCommand(barButtonItemColorPalette, vm => vm.ShowBezierPaletteSwitcher());
             fluent.BindCommand(barButtonItemColorMixer, vm => vm.ShowColorMixer());
+            fluent.BindCommand(barButtonItemConnect, vm => vm.Connect());
+            fluent.BindCommand(barButtonItemDisconnect, vm => vm.Disconnect());
+
+            fluent.SetTrigger(x => x.InstancesConnected, connectionsActive =>
+            {
+                if (connectionsActive)
+                {
+                    barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
+                    barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
+                    barButtonItemQueryBuilder.Visibility = BarItemVisibility.Always;
+                }
+                else
+                {
+                    barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
+                    barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
+                    barButtonItemQueryBuilder.Visibility = BarItemVisibility.Never;
+                }
+            });
         }
     }
 }

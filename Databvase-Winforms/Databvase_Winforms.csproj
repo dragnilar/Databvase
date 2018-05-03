@@ -301,6 +301,7 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\Window Dialog Services\ConnectionWindowService.cs" />
     <Compile Include="Services\Window Dialog Services\FontDialogService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />
     <Compile Include="Services\Window Dialog Services\SettingsWindowService.cs" />

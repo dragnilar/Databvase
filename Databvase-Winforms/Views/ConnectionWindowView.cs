@@ -43,12 +43,12 @@ namespace Databvase_Winforms.Views
             }
         }
 
-        //Hacks to enable feature on controls that are not natively supported by DX
+        //Hacks to enable feature on controls that are not inherently supported by DX
         private void HackControls()
         {
-            var f = comboBoxEditInstances.Properties.GetType().GetField("fTextEditStyle",
+            var fieldInfo = comboBoxEditInstances.Properties.GetType().GetField("fTextEditStyle",
                 BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
-            if (f != null) f.SetValue(comboBoxEditInstances.Properties, TextEditStyles.Standard);
+            if (fieldInfo != null) fieldInfo.SetValue(comboBoxEditInstances.Properties, TextEditStyles.Standard);
         }
 
         private void ShowConnectionStringBuilder()
