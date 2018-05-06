@@ -321,6 +321,12 @@
     <Compile Include="Utilities\SMOChecker.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
+    <Compile Include="Views\BackupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BackupView.Designer.cs">
+      <DependentUpon>BackupView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConnectionWindowView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\TextEditorFontEdit.resx">
       <DependentUpon>TextEditorFontEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BackupView.resx">
+      <DependentUpon>BackupView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ConnectionWindowView.resx">
       <DependentUpon>ConnectionWindowView.cs</DependentUpon>
