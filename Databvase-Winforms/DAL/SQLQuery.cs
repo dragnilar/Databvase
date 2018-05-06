@@ -42,7 +42,7 @@ namespace Databvase_Winforms.DAL
 
         private QueryResult Query(string sqlQuery, string dataBase, SavedConnection connection)
         {
-            var server = App.Connection.GetServerAtSpecificConnection(connection, dataBase);
+            var server = App.Connection.GetServerAtSavedConnection(connection, dataBase);
             server.ConnectionContext.DatabaseName = dataBase;
             server.ConnectionContext.Connect();
             var queryDataSet = server.ConnectionContext.ExecuteWithResults(sqlQuery);

@@ -16,6 +16,7 @@ using DevExpress.DataAccess.UI.Sql;
 using DevExpress.LookAndFeel;
 using DevExpress.Mvvm;
 using DevExpress.Utils.Menu;
+using DevExpress.Utils.MVVM;
 using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
@@ -49,7 +50,6 @@ namespace Databvase_Winforms.Views
         {
             UserLookAndFeel.Default.StyleChanged += Default_StyleChanged;
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
-            barButtonItemQueryBuilder.ItemClick += BarButtonItemQueryBuilderOnItemClick;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
             defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
@@ -62,9 +62,11 @@ namespace Databvase_Winforms.Views
 
         private void RegisterServices()
         {
+            MVVMContext.RegisterXtraDialogService();
             mvvmContextMain.RegisterService(new SettingsWindowService());
             mvvmContextMain.RegisterService(new TextEditorFontChangeService());
             mvvmContextMain.RegisterService(new ConnectionWindowService());
+            mvvmContextMain.RegisterService(new QueryBuilderService());
             mvvmContextMain.RegisterService(App.Skins);
             mvvmContextMain.RegisterService(SplashScreenService.Create(splashScreenManagerMainWait));
         }
@@ -127,20 +129,6 @@ namespace Databvase_Winforms.Views
         #endregion
 
 
-        private void BarButtonItemQueryBuilderOnItemClick(object sender, ItemClickEventArgs e)
-        {
-            //TODO - Move to View Model and set up as a service
-            if (App.Connection.InstanceTracker.CurrentDatabase == null)
-            {
-                XtraMessageBox.Show("Please select a database from the object explorer first.");
-                return;
-            }
-            
-            new QueryBuilderDialogWrapper().ShowQueryBuilder();
-
-        }
-
-
         private void InitializeBindings() 
         {
             var fluent = mvvmContextMain.OfType<MainViewModel>();
@@ -154,6 +142,7 @@ namespace Databvase_Winforms.Views
             fluent.BindCommand(barButtonItemColorMixer, vm => vm.ShowColorMixer());
             fluent.BindCommand(barButtonItemConnect, vm => vm.Connect());
             fluent.BindCommand(barButtonItemDisconnect, vm => vm.Disconnect());
+            fluent.BindCommand(barButtonItemQueryBuilder, vm => vm.ShowQueryBuilder());
 
             fluent.SetTrigger(x => x.InstancesConnected, connectionsActive =>
             {

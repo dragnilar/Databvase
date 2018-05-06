@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Databvase_Winforms.Dialogs;
 
 namespace Databvase_Winforms.Services
 {
     public interface IQueryBuilderService
     {
-        //TODO - Implement
+        void ShowQueryBuilder();
     }
 
-    class QueryBuilderService
+    public class QueryBuilderService : IQueryBuilderService
     {
-        //TODO - Implement
+        public void ShowQueryBuilder()
+        {
+            new QueryBuilderDialogWrapper().RunQueryBuilder();
+        }
     }
 }

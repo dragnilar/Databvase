@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Views;
 using DevExpress.DataAccess.ConnectionParameters;
 using DevExpress.DataAccess.Native.Sql;
 using DevExpress.DataAccess.Sql;
@@ -19,24 +20,10 @@ namespace Databvase_Winforms.Dialogs
 {
     public class QueryBuilderDialogWrapper
     {
-        private Form form = new Form();
-
-
-
-        public void ShowQueryBuilder()
+        public void RunQueryBuilder()
         {
-            IWaitFormActivator waitFormActivator = new WaitFormActivator(form, typeof(WaitFormWithCancel), true);
-            IExceptionHandler exceptionHandler = new ExceptionHandler(UserLookAndFeel.Default, form);
-            var currentServer = App.Connection.GetServerAtSpecificInstance(App.Connection.InstanceTracker.CurrentInstance.Name, App.Connection.InstanceTracker.CurrentDatabase.Name);
-            var dxConnectionStringParameters =
-                new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
-            var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);
-            ConnectionHelper.OpenConnection(dxSqlDataSource.Connection, exceptionHandler, waitFormActivator,
-                null);
-            dxSqlDataSource.AddQueryWithQueryBuilder();
-
-            var query = (dxSqlDataSource.Queries.FirstOrDefault() as SelectQuery)?.GetSql(dxSqlDataSource.Connection
-                .GetDBSchema());
+            var dxSqlDataSource = GetDataSourceForQueryBuilder();
+            var query = ShowQueryBuilder(dxSqlDataSource);
             if (query != null)
             {
                 new NewScriptMessage(FormatQueryBuilderOutput(query), App.Connection.InstanceTracker.CurrentDatabase.Name);
@@ -44,9 +31,44 @@ namespace Databvase_Winforms.Dialogs
 
         }
 
+        private SqlDataSource GetDataSourceForQueryBuilder()
+        {
+            var form = GetMainWindow();
+            IWaitFormActivator waitFormActivator = new WaitFormActivator(form, typeof(WaitFormWithCancel), true);
+            IExceptionHandler exceptionHandler = new ExceptionHandler(UserLookAndFeel.Default, form);
+            var currentServer = App.Connection.GetServerAtCurrentInstanceAndDatabase();
+            var dxConnectionStringParameters =
+                new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
+            var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);
+            ConnectionHelper.OpenConnection(dxSqlDataSource.Connection, exceptionHandler, waitFormActivator,
+                null);
+            return dxSqlDataSource;
+        }
+
+        private static string ShowQueryBuilder(SqlDataSource dxSqlDataSource)
+        {
+            dxSqlDataSource.AddQueryWithQueryBuilder();
+            var query = (dxSqlDataSource.Queries.FirstOrDefault() as SelectQuery)?.GetSql(dxSqlDataSource.Connection
+                .GetDBSchema());
+            return query;
+        }
+
         private static string FormatQueryBuilderOutput(string query)
         {
             return AutoSqlWrapHelper.AutoSqlTextWrap(query, 9999);
+        }
+
+        private static Form GetMainWindow()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(MainView))
+                {
+                    return form;
+                }
+            }
+
+            return null;
         }
     }
 }

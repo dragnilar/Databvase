@@ -14,6 +14,7 @@ using Databvase_Winforms.Models;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.Services.Window_Dialog_Services;
+using DevExpress.Utils.MVVM.Services;
 
 namespace Databvase_Winforms.View_Models
 {
@@ -23,6 +24,7 @@ namespace Databvase_Winforms.View_Models
 
         public IDocumentManagerService DocumentManagerService => this.GetRequiredService<IDocumentManagerService>();
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
+        protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
         public virtual int NumberOfQueries { get; set; }
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
@@ -134,6 +136,19 @@ namespace Databvase_Winforms.View_Models
             {
                 new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);
             }
+        }
+
+        public void ShowQueryBuilder()
+        {
+            if (App.Connection.InstanceTracker.CurrentDatabase == null)
+            {
+                MessageBoxService.ShowMessage(
+                    "Please select a database from the object explorer before using the Query Builder",
+                    "Database Required For Query Builder",
+                    MessageButton.OK, MessageIcon.Information);
+                return;
+            }
+            this.GetService<IQueryBuilderService>().ShowQueryBuilder();
         }
 
         #region Skin Methods

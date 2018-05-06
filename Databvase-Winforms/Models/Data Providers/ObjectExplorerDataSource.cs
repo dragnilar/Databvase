@@ -48,7 +48,7 @@ namespace Databvase_Winforms.Models.Data_Providers
             foreach (var instance in App.Connection.CurrentConnections.Select(x => x.Instance).ToList())
             {
                 if (InstanceAlreadyInDataSource(instance)) continue;
-                var serverInstance = App.Connection.GetServerAtSpecificInstance(instance);
+                var serverInstance = App.Connection.GetServerAtInstanceName(instance);
                 DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), serverInstance));
             }
 
