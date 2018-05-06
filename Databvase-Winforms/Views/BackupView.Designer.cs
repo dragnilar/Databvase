@@ -49,14 +49,12 @@
             this.navigationFrameBackupWindow = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPageBackupGeneral = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lciBackupGeneral = new DevExpress.XtraLayout.LayoutControl();
-            this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEditBackupType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.comboBoxEditDatabaseList = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lcgBackupGeneral = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcgBackupSource = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciBackupDatabaseName = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciRecoveryModel = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciBackupType = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navigationPageMediaOptions = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -73,6 +71,16 @@
             this.lciServerName = new DevExpress.XtraLayout.LayoutControlItem();
             this.labelControlConnectionName = new DevExpress.XtraEditors.LabelControl();
             this.lciConnectionName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.textEditBackupPath = new DevExpress.XtraEditors.TextEdit();
+            this.lciBackupPath = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcgBackupDestination = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.textEditRecoveryModel = new DevExpress.XtraEditors.TextEdit();
+            this.lciRecoveryModel = new DevExpress.XtraLayout.LayoutControlItem();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.accordianBackup)).BeginInit();
             this.accordianBackup.SuspendLayout();
             this.accordianConnectionContainer.SuspendLayout();
@@ -89,16 +97,16 @@
             this.navigationPageBackupGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupGeneral)).BeginInit();
             this.lciBackupGeneral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBackupType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabaseList.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupGeneral)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupDatabaseName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciRecoveryModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            this.navigationPageMediaOptions.SuspendLayout();
+            this.navigationPageBackupOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lciNavigationFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciOkButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancelButton)).BeginInit();
@@ -107,6 +115,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciServerName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciConnectionName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupPath.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupPath)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditRecoveryModel.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciRecoveryModel)).BeginInit();
             this.SuspendLayout();
             // 
             // accordianBackup
@@ -178,23 +194,27 @@
             this.accordionControlSeparator1,
             this.accordianElementProgress});
             this.accordionControlElementBackupPages.Expanded = true;
+            this.accordionControlElementBackupPages.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElementBackupPages.ImageOptions.SvgImage")));
             this.accordionControlElementBackupPages.Name = "accordionControlElementBackupPages";
             this.accordionControlElementBackupPages.Text = "Backup Settings";
             // 
             // accordianElementGeneral
             // 
+            this.accordianElementGeneral.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordianElementGeneral.ImageOptions.SvgImage")));
             this.accordianElementGeneral.Name = "accordianElementGeneral";
             this.accordianElementGeneral.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordianElementGeneral.Text = "General";
             // 
             // accordianElementMedia
             // 
+            this.accordianElementMedia.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordianElementMedia.ImageOptions.SvgImage")));
             this.accordianElementMedia.Name = "accordianElementMedia";
             this.accordianElementMedia.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordianElementMedia.Text = "Media Options";
             // 
             // accordianElementBackupOptions
             // 
+            this.accordianElementBackupOptions.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordianElementBackupOptions.ImageOptions.SvgImage")));
             this.accordianElementBackupOptions.Name = "accordianElementBackupOptions";
             this.accordianElementBackupOptions.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordianElementBackupOptions.Text = "Backup Options";
@@ -207,6 +227,7 @@
             // 
             this.accordianElementConnection.ContentContainer = this.accordianConnectionContainer;
             this.accordianElementConnection.Expanded = true;
+            this.accordianElementConnection.ImageOptions.ImageUri.Uri = "AddNewDataSource;Size16x16;Office2013";
             this.accordianElementConnection.Name = "accordianElementConnection";
             this.accordianElementConnection.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordianElementConnection.Text = "Connection";
@@ -286,9 +307,10 @@
             // 
             // lciBackupGeneral
             // 
-            this.lciBackupGeneral.Controls.Add(this.comboBoxEdit3);
-            this.lciBackupGeneral.Controls.Add(this.comboBoxEdit2);
-            this.lciBackupGeneral.Controls.Add(this.comboBoxEdit1);
+            this.lciBackupGeneral.Controls.Add(this.textEditRecoveryModel);
+            this.lciBackupGeneral.Controls.Add(this.textEditBackupPath);
+            this.lciBackupGeneral.Controls.Add(this.comboBoxEditBackupType);
+            this.lciBackupGeneral.Controls.Add(this.comboBoxEditDatabaseList);
             this.lciBackupGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lciBackupGeneral.Location = new System.Drawing.Point(0, 0);
             this.lciBackupGeneral.Name = "lciBackupGeneral";
@@ -297,35 +319,25 @@
             this.lciBackupGeneral.TabIndex = 0;
             this.lciBackupGeneral.Text = "layoutControl1";
             // 
-            // comboBoxEdit3
+            // comboBoxEditBackupType
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(111, 90);
-            this.comboBoxEdit3.Name = "comboBoxEdit3";
-            this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboBoxEditBackupType.Location = new System.Drawing.Point(111, 136);
+            this.comboBoxEditBackupType.Name = "comboBoxEditBackupType";
+            this.comboBoxEditBackupType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(314, 20);
-            this.comboBoxEdit3.StyleController = this.lciBackupGeneral;
-            this.comboBoxEdit3.TabIndex = 6;
+            this.comboBoxEditBackupType.Size = new System.Drawing.Size(314, 20);
+            this.comboBoxEditBackupType.StyleController = this.lciBackupGeneral;
+            this.comboBoxEditBackupType.TabIndex = 6;
             // 
-            // comboBoxEdit2
+            // comboBoxEditDatabaseList
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(111, 66);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.comboBoxEditDatabaseList.Location = new System.Drawing.Point(111, 88);
+            this.comboBoxEditDatabaseList.Name = "comboBoxEditDatabaseList";
+            this.comboBoxEditDatabaseList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(314, 20);
-            this.comboBoxEdit2.StyleController = this.lciBackupGeneral;
-            this.comboBoxEdit2.TabIndex = 5;
-            // 
-            // comboBoxEdit1
-            // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(111, 42);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(314, 20);
-            this.comboBoxEdit1.StyleController = this.lciBackupGeneral;
-            this.comboBoxEdit1.TabIndex = 4;
+            this.comboBoxEditDatabaseList.Size = new System.Drawing.Size(314, 20);
+            this.comboBoxEditDatabaseList.StyleController = this.lciBackupGeneral;
+            this.comboBoxEditDatabaseList.TabIndex = 4;
             // 
             // lcgBackupGeneral
             // 
@@ -333,7 +345,10 @@
             this.lcgBackupGeneral.GroupBordersVisible = false;
             this.lcgBackupGeneral.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem3,
-            this.lcgBackupSource});
+            this.lcgBackupSource,
+            this.lcgBackupDestination,
+            this.emptySpaceItem7,
+            this.emptySpaceItem8});
             this.lcgBackupGeneral.Name = "lcgBackupGeneral";
             this.lcgBackupGeneral.Size = new System.Drawing.Size(556, 509);
             this.lcgBackupGeneral.TextVisible = false;
@@ -341,44 +356,37 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 114);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 266);
             this.emptySpaceItem3.Name = "emptySpaceItem2";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(536, 375);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(536, 223);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lcgBackupSource
             // 
+            this.lcgBackupSource.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgBackupSource.CaptionImageOptions.SvgImage")));
+            this.lcgBackupSource.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
             this.lcgBackupSource.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lciBackupDatabaseName,
-            this.lciRecoveryModel,
             this.lciBackupType,
-            this.emptySpaceItem4});
-            this.lcgBackupSource.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem4,
+            this.lciRecoveryModel});
+            this.lcgBackupSource.Location = new System.Drawing.Point(0, 40);
             this.lcgBackupSource.Name = "lcgBackupSource";
-            this.lcgBackupSource.Size = new System.Drawing.Size(536, 114);
+            this.lcgBackupSource.Size = new System.Drawing.Size(536, 120);
             this.lcgBackupSource.Text = "Backup Source";
             // 
             // lciBackupDatabaseName
             // 
-            this.lciBackupDatabaseName.Control = this.comboBoxEdit1;
+            this.lciBackupDatabaseName.Control = this.comboBoxEditDatabaseList;
             this.lciBackupDatabaseName.Location = new System.Drawing.Point(0, 0);
             this.lciBackupDatabaseName.Name = "lciBackupDatabaseName";
             this.lciBackupDatabaseName.Size = new System.Drawing.Size(405, 24);
             this.lciBackupDatabaseName.Text = "Database: ";
             this.lciBackupDatabaseName.TextSize = new System.Drawing.Size(84, 13);
             // 
-            // lciRecoveryModel
-            // 
-            this.lciRecoveryModel.Control = this.comboBoxEdit2;
-            this.lciRecoveryModel.Location = new System.Drawing.Point(0, 24);
-            this.lciRecoveryModel.Name = "lciRecoveryModel";
-            this.lciRecoveryModel.Size = new System.Drawing.Size(405, 24);
-            this.lciRecoveryModel.Text = "Recovery Model: ";
-            this.lciRecoveryModel.TextSize = new System.Drawing.Size(84, 13);
-            // 
             // lciBackupType
             // 
-            this.lciBackupType.Control = this.comboBoxEdit3;
+            this.lciBackupType.Control = this.comboBoxEditBackupType;
             this.lciBackupType.Location = new System.Drawing.Point(0, 48);
             this.lciBackupType.Name = "lciBackupType";
             this.lciBackupType.Size = new System.Drawing.Size(405, 24);
@@ -396,12 +404,13 @@
             // navigationPageMediaOptions
             // 
             this.navigationPageMediaOptions.Caption = "navigationPageMediaOptions";
+            this.navigationPageMediaOptions.Controls.Add(this.labelControl2);
             this.navigationPageMediaOptions.Name = "navigationPageMediaOptions";
             this.navigationPageMediaOptions.Size = new System.Drawing.Size(556, 509);
             // 
             // navigationPageBackupOptions
             // 
-            this.navigationPageBackupOptions.Caption = "navigationPageBackupOptions";
+            this.navigationPageBackupOptions.Controls.Add(this.labelControl1);
             this.navigationPageBackupOptions.Name = "navigationPageBackupOptions";
             this.navigationPageBackupOptions.Size = new System.Drawing.Size(556, 509);
             // 
@@ -416,6 +425,7 @@
             // 
             // simpleButtonOK
             // 
+            this.simpleButtonOK.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonOK.ImageOptions.Image")));
             this.simpleButtonOK.Location = new System.Drawing.Point(543, 527);
             this.simpleButtonOK.Name = "simpleButtonOK";
             this.simpleButtonOK.Size = new System.Drawing.Size(103, 22);
@@ -434,6 +444,7 @@
             // 
             // simpleButtonCancel
             // 
+            this.simpleButtonCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonCancel.ImageOptions.Image")));
             this.simpleButtonCancel.Location = new System.Drawing.Point(681, 527);
             this.simpleButtonCancel.Name = "simpleButtonCancel";
             this.simpleButtonCancel.Size = new System.Drawing.Size(91, 22);
@@ -511,6 +522,92 @@
             this.lciConnectionName.TextLocation = DevExpress.Utils.Locations.Top;
             this.lciConnectionName.TextSize = new System.Drawing.Size(58, 13);
             // 
+            // textEditBackupPath
+            // 
+            this.textEditBackupPath.Location = new System.Drawing.Point(111, 242);
+            this.textEditBackupPath.Name = "textEditBackupPath";
+            this.textEditBackupPath.Size = new System.Drawing.Size(314, 20);
+            this.textEditBackupPath.StyleController = this.lciBackupGeneral;
+            this.textEditBackupPath.TabIndex = 7;
+            // 
+            // lciBackupPath
+            // 
+            this.lciBackupPath.Control = this.textEditBackupPath;
+            this.lciBackupPath.Location = new System.Drawing.Point(0, 0);
+            this.lciBackupPath.Name = "lciBackupPath";
+            this.lciBackupPath.Size = new System.Drawing.Size(405, 24);
+            this.lciBackupPath.Text = "Backup Path: ";
+            this.lciBackupPath.TextSize = new System.Drawing.Size(84, 13);
+            // 
+            // lcgBackupDestination
+            // 
+            this.lcgBackupDestination.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgBackupDestination.CaptionImageOptions.SvgImage")));
+            this.lcgBackupDestination.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.lcgBackupDestination.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciBackupPath,
+            this.emptySpaceItem6});
+            this.lcgBackupDestination.Location = new System.Drawing.Point(0, 194);
+            this.lcgBackupDestination.Name = "lcgBackupDestination";
+            this.lcgBackupDestination.Size = new System.Drawing.Size(536, 72);
+            this.lcgBackupDestination.Text = "Backup Destination";
+            // 
+            // emptySpaceItem6
+            // 
+            this.emptySpaceItem6.AllowHotTrack = false;
+            this.emptySpaceItem6.Location = new System.Drawing.Point(405, 0);
+            this.emptySpaceItem6.Name = "emptySpaceItem6";
+            this.emptySpaceItem6.Size = new System.Drawing.Size(107, 24);
+            this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem7
+            // 
+            this.emptySpaceItem7.AllowHotTrack = false;
+            this.emptySpaceItem7.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem7.Name = "emptySpaceItem7";
+            this.emptySpaceItem7.Size = new System.Drawing.Size(536, 40);
+            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem8
+            // 
+            this.emptySpaceItem8.AllowHotTrack = false;
+            this.emptySpaceItem8.Location = new System.Drawing.Point(0, 160);
+            this.emptySpaceItem8.Name = "emptySpaceItem8";
+            this.emptySpaceItem8.Size = new System.Drawing.Size(536, 34);
+            this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // textEditRecoveryModel
+            // 
+            this.textEditRecoveryModel.Location = new System.Drawing.Point(111, 112);
+            this.textEditRecoveryModel.Name = "textEditRecoveryModel";
+            this.textEditRecoveryModel.Size = new System.Drawing.Size(314, 20);
+            this.textEditRecoveryModel.StyleController = this.lciBackupGeneral;
+            this.textEditRecoveryModel.TabIndex = 8;
+            // 
+            // lciRecoveryModel
+            // 
+            this.lciRecoveryModel.Control = this.textEditRecoveryModel;
+            this.lciRecoveryModel.Location = new System.Drawing.Point(0, 24);
+            this.lciRecoveryModel.Name = "lciRecoveryModel";
+            this.lciRecoveryModel.Size = new System.Drawing.Size(405, 24);
+            this.lciRecoveryModel.Text = "Recovery Model: ";
+            this.lciRecoveryModel.TextSize = new System.Drawing.Size(84, 13);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(248, 251);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(68, 13);
+            this.labelControl2.TabIndex = 0;
+            this.labelControl2.Text = "Media Options";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(244, 248);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(74, 13);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "Backup Options";
+            // 
             // BackupView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -537,16 +634,18 @@
             this.navigationPageBackupGeneral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupGeneral)).EndInit();
             this.lciBackupGeneral.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBackupType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabaseList.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupGeneral)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupDatabaseName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciRecoveryModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            this.navigationPageMediaOptions.ResumeLayout(false);
+            this.navigationPageMediaOptions.PerformLayout();
+            this.navigationPageBackupOptions.ResumeLayout(false);
+            this.navigationPageBackupOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lciNavigationFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciOkButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancelButton)).EndInit();
@@ -555,6 +654,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciServerName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciConnectionName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupPath.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupPath)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditRecoveryModel.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciRecoveryModel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -579,14 +686,12 @@
         private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrameBackupWindow;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageBackupGeneral;
         private DevExpress.XtraLayout.LayoutControl lciBackupGeneral;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditBackupType;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditDatabaseList;
         private DevExpress.XtraLayout.LayoutControlGroup lcgBackupGeneral;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControlGroup lcgBackupSource;
         private DevExpress.XtraLayout.LayoutControlItem lciBackupDatabaseName;
-        private DevExpress.XtraLayout.LayoutControlItem lciRecoveryModel;
         private DevExpress.XtraLayout.LayoutControlItem lciBackupType;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageMediaOptions;
@@ -605,5 +710,15 @@
         private DevExpress.XtraEditors.LabelControl labelControlServerName;
         private DevExpress.XtraLayout.LayoutControlItem lciServerName;
         private DevExpress.XtraLayout.LayoutControlItem lciConnectionName;
+        private DevExpress.XtraEditors.TextEdit textEditBackupPath;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgBackupDestination;
+        private DevExpress.XtraLayout.LayoutControlItem lciBackupPath;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
+        private DevExpress.XtraEditors.TextEdit textEditRecoveryModel;
+        private DevExpress.XtraLayout.LayoutControlItem lciRecoveryModel;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }
