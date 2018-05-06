@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using Databvase_Winforms.Annotations;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Models.Data_Providers;
@@ -14,27 +17,63 @@ namespace Databvase_Winforms.Modules
 {
     public partial class ObjectExplorer : XtraUserControl
     {
+        private Dictionary<string, Action> PopupActionDictionary;
         public ObjectExplorer()
         {
+
             InitializeComponent();
             if (!mvvmContextObjectExplorer.IsDesignMode)
                 InitializeBindings();
             MVVMContext.RegisterXtraDialogService();
             HookupEvents();
             RegisterServices();
+            CreatePopUpActions();
         }
 
         private void HookupEvents()
         {
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
-            barButtonItemCopy.ItemClick += CopyCell;
             treeListObjExp.NodeChanged += TreeListObjExpOnNodeChanged;
         }
 
         private void RegisterServices()
         {
             mvvmContextObjectExplorer.RegisterService(SplashScreenService.Create(splashScreenManagerObjectExplorer));
+        }
+
+        private void CreatePopUpActions()
+        {
+            PopupActionDictionary = new Dictionary<string, Action>
+            {
+                {GlobalStrings.ObjectExplorerTypes.Instance, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.Database, () => popupMenuDatabase.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.Table, () => popupMenuTable.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.View, () => popupMenuTable.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.Column, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.Folder, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.Function, () => popupMenuFunction.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.StoredProcedure, () => popupMenuStoredProcedure.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.Nothing, () => {  }} //Do nothing for nothing... lulz
+            };
+
+        }
+
+        #region TreeList Methods
+
+        private void TreeListObjExpOnMouseDown(object sender, MouseEventArgs e)
+        {
+            var treeList = sender as TreeList;
+            var info = treeList?.CalcHitInfo(e.Location);
+            if (info?.Node != null) treeListObjExp.FocusedNode = info.Node;
+        }
+
+        private void TreeListObjectExplorerOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            var focusedNodeType = treeListObjExp.FocusedNode?.GetValue(treeListColumnType).ToString();
+            if (focusedNodeType == null) return;
+            var popUpMenuAction = PopupActionDictionary[focusedNodeType];
+            popUpMenuAction.Invoke();
         }
 
         private void TreeListObjExpOnNodeChanged(object sender, NodeChangedEventArgs e)
@@ -68,10 +107,7 @@ namespace Databvase_Winforms.Modules
             }
         }
 
-        private void CopyCell(object sender, EventArgs e)
-        {
-            Clipboard.SetText(GetFocusedNodeFullName());
-        }
+        #endregion
 
         private void InitializeBindings()
         {
@@ -107,6 +143,8 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemAlterScript, x => x.ScriptModifyForObjectExplorerData());
             fluent.BindCommand(barButtonItemViewFunction, x => x.ScriptAlterForObjectExplorerData());
             fluent.BindCommand(barButtonItemNewQuery, x => x.NewQueryScript());
+            fluent.BindCommand(barButtonItemCopyFullName, x=>x.CopyNameCell());
+            fluent.BindCommand(barButtonItemCreateDatabaseBackup, x => x.BackupDatabase());
             fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);
         }
 
@@ -123,75 +161,6 @@ namespace Databvase_Winforms.Modules
                     break;
             }
         }
-
-
-        #region TreeList Methods
-
-        private void TreeListObjExpOnMouseDown(object sender, MouseEventArgs e)
-        {
-            var treeList = sender as TreeList;
-            var info = treeList.CalcHitInfo(e.Location);
-            if (info?.Node != null) treeListObjExp.FocusedNode = info.Node;
-        }
-
-        private void TreeListObjectExplorerOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            var focusedNodeType = treeListObjExp.FocusedNode?.GetValue(treeListColumnType).ToString();
-
-            switch (focusedNodeType)
-            {
-                case GlobalStrings.ObjectExplorerTypes.Table:
-                    popupMenuTable.ShowPopup(MousePosition);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.View:
-                    popupMenuTable.ShowPopup(MousePosition);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Function:
-                    popupMenuFunction.ShowPopup(MousePosition);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.StoredProcedure:
-                    popupMenuStoredProcedure.ShowPopup(MousePosition);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Nothing:
-                    break;
-                default:
-                    popupMenuObjectExplorer.ShowPopup(MousePosition);
-                    break;
-            }
-        }
-
-        #endregion
-
-        #region Focused Node Methods
-
-        private string GetFocusedNodeFullName()
-        {
-            return treeListObjExp.FocusedNode?.GetValue(treeListColumnFullName).ToString();
-        }
-
-        private object GetFocusedNodeData()
-        {
-            return treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
-        }
-
-        private Database GetFocusedNodeDatabase()
-        {
-            var data = treeListObjExp.FocusedNode?.GetValue(treeListColumnData);
-            switch (data)
-            {
-                case Database _:
-                    return data as Database;
-                case Server _:
-                    return null;
-                case Column _:
-                    var column = data as Column;
-                    return ((Table) column?.Parent)?.Parent;
-                default:
-                    return null;
-            }
-        }
-
-        #endregion
 
     }
 }

@@ -4,7 +4,8 @@ using System.ComponentModel;
  using System.Diagnostics;
  using System.Linq;
 using System.Threading.Tasks;
-using Databvase_Winforms.Globals;
+ using System.Windows;
+ using Databvase_Winforms.Globals;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Models.Data_Providers;
@@ -71,6 +72,37 @@ namespace Databvase_Winforms.View_Models
             var instanceTree =  _dataSourceModel.DataSource.Where(r => r.InstanceName == message.InstanceName).ToList();
             foreach (var item in instanceTree)  _dataSourceModel.DataSource.Remove(item);
             FinishUnboundLoad();
+        }
+
+        public void CopyNameCell()
+        {
+            Clipboard.SetDataObject(FocusedNode.FullName);
+        }
+
+        public void BackupDatabase()
+        {
+            var database = FocusedNode.GetDatabaseFromNode();
+
+
+            if (database != null)
+            {
+                var backupProcess = new Backup();
+                backupProcess.Action = BackupActionType.Database;
+                backupProcess.Database = database.Name;
+                backupProcess.Devices.AddDevice(@"C:\Temp\Test.bak", DeviceType.File);
+                backupProcess.BackupSetName = "Test Backup";
+                backupProcess.BackupSetDescription = "Test Backup - This Is A Test";
+                backupProcess.Initialize = false;
+                
+                ShowWaitMessage();
+                backupProcess.SqlBackup(database.Parent);
+                KillWaitMessage();
+                MessageBoxService.ShowMessage(@"Backup Created At C:\Temp\Test.bak!");
+            }
+            else
+            {
+                MessageBoxService.ShowMessage("No database was found to backup... odd.");
+            }
         }
 
         #region Object Explorer On Demand Data Methods

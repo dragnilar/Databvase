@@ -43,7 +43,7 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.mvvmContextObjectExplorer = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.popupMenuObjectExplorer = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barButtonItemCopy = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemCopyFullName = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemNewQuery = new DevExpress.XtraBars.BarButtonItem();
             this.barManagerObjectExplorer = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -58,6 +58,8 @@
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManagerObjectExplorer = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true, typeof(System.Windows.Forms.UserControl));
+            this.popupMenuDatabase = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonItemCreateDatabaseBackup = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -70,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuStoredProcedure)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuDatabase)).BeginInit();
             this.SuspendLayout();
             // 
             // lcObjectExplorer
@@ -198,18 +201,18 @@
             // popupMenuObjectExplorer
             // 
             this.popupMenuObjectExplorer.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopy),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery)});
             this.popupMenuObjectExplorer.Manager = this.barManagerObjectExplorer;
             this.popupMenuObjectExplorer.Name = "popupMenuObjectExplorer";
             // 
-            // barButtonItemCopy
+            // barButtonItemCopyFullName
             // 
-            this.barButtonItemCopy.Caption = "Copy Text To Clipboard";
-            this.barButtonItemCopy.Id = 0;
-            this.barButtonItemCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.Image")));
-            this.barButtonItemCopy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.LargeImage")));
-            this.barButtonItemCopy.Name = "barButtonItemCopy";
+            this.barButtonItemCopyFullName.Caption = "Copy Text To Clipboard";
+            this.barButtonItemCopyFullName.Id = 0;
+            this.barButtonItemCopyFullName.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopyFullName.ImageOptions.Image")));
+            this.barButtonItemCopyFullName.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopyFullName.ImageOptions.LargeImage")));
+            this.barButtonItemCopyFullName.Name = "barButtonItemCopyFullName";
             // 
             // barButtonItemNewQuery
             // 
@@ -227,13 +230,14 @@
             this.barManagerObjectExplorer.DockControls.Add(this.barDockControlRight);
             this.barManagerObjectExplorer.Form = this;
             this.barManagerObjectExplorer.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItemCopy,
+            this.barButtonItemCopyFullName,
             this.barButtonItemGenerateSelectAll,
             this.barButtonItemGenerateSelectTopStatement,
             this.barButtonItemNewQuery,
             this.barButtonItemViewFunction,
-            this.barButtonItemAlterScript});
-            this.barManagerObjectExplorer.MaxItemId = 9;
+            this.barButtonItemAlterScript,
+            this.barButtonItemCreateDatabaseBackup});
+            this.barManagerObjectExplorer.MaxItemId = 10;
             // 
             // barDockControlTop
             // 
@@ -302,7 +306,7 @@
             // popupMenuTable
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopy),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectAll),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement)});
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
@@ -328,6 +332,22 @@
             // 
             this.splashScreenManagerObjectExplorer.ClosingDelay = 500;
             // 
+            // popupMenuDatabase
+            // 
+            this.popupMenuDatabase.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCreateDatabaseBackup)});
+            this.popupMenuDatabase.Manager = this.barManagerObjectExplorer;
+            this.popupMenuDatabase.Name = "popupMenuDatabase";
+            // 
+            // barButtonItemCreateDatabaseBackup
+            // 
+            this.barButtonItemCreateDatabaseBackup.Caption = "Create Database Backup";
+            this.barButtonItemCreateDatabaseBackup.Id = 9;
+            this.barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage")));
+            this.barButtonItemCreateDatabaseBackup.Name = "barButtonItemCreateDatabaseBackup";
+            // 
             // ObjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuFunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuStoredProcedure)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuDatabase)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,7 +394,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemCopy;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemCopyFullName;
         private DevExpress.XtraBars.BarButtonItem barButtonItemGenerateSelectAll;
         private DevExpress.XtraBars.PopupMenu popupMenuTable;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnData;
@@ -386,5 +407,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemViewFunction;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAlterScript;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManagerObjectExplorer;
+        private DevExpress.XtraBars.PopupMenu popupMenuDatabase;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemCreateDatabaseBackup;
     }
 }
