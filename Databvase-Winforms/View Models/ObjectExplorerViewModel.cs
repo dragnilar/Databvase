@@ -81,28 +81,28 @@ namespace Databvase_Winforms.View_Models
 
         public void BackupDatabase()
         {
-            var database = FocusedNode.GetDatabaseFromNode();
+            //var database = FocusedNode.GetDatabaseFromNode();
 
 
-            if (database != null)
-            {
-                var backupProcess = new Backup();
-                backupProcess.Action = BackupActionType.Database;
-                backupProcess.Database = database.Name;
-                backupProcess.Devices.AddDevice(@"C:\Temp\Test.bak", DeviceType.File);
-                backupProcess.BackupSetName = "Test Backup";
-                backupProcess.BackupSetDescription = "Test Backup - This Is A Test";
-                backupProcess.Initialize = false;
+            //if (database != null)
+            //{
+            //    var backupProcess = new Backup();
+            //    backupProcess.Action = BackupActionType.Database;
+            //    backupProcess.Database = database.Name;
+            //    backupProcess.Devices.AddDevice(@"C:\Temp\Test.bak", DeviceType.File);
+            //    backupProcess.BackupSetName = "Test Backup";
+            //    backupProcess.BackupSetDescription = "Test Backup - This Is A Test";
+            //    backupProcess.Initialize = false;
                 
-                ShowWaitMessage();
-                backupProcess.SqlBackup(database.Parent);
-                KillWaitMessage();
-                MessageBoxService.ShowMessage(@"Backup Created At C:\Temp\Test.bak!");
-            }
-            else
-            {
-                MessageBoxService.ShowMessage("No database was found to backup... odd.");
-            }
+            //    ShowWaitMessage();
+            //    backupProcess.SqlBackup(database.Parent);
+            //    KillWaitMessage();
+            //    MessageBoxService.ShowMessage(@"Backup Created At C:\Temp\Test.bak!");
+            //}
+            //else
+            //{
+            //    MessageBoxService.ShowMessage("No database was found to backup... odd.");
+            //}
         }
 
         #region Object Explorer On Demand Data Methods
