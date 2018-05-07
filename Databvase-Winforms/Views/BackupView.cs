@@ -8,6 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Databvase_Winforms.View_Models;
 using DevExpress.XtraEditors;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
@@ -25,6 +26,8 @@ namespace Databvase_Winforms.Views
             HookupEvents();
             SetupControls();
             SetServerNamesOnPanel();
+            if (!mvvmContextBackupView.IsDesignMode)
+                InitializeBindings();
         }
 
 
@@ -201,6 +204,11 @@ namespace Databvase_Winforms.Views
             radioGroupAppendOrOverwriteBackupSet.Enabled = false;
             checkEditMediaSetName.Enabled = false;
             textEditMediaSetName.Enabled = false;
+        }
+
+        void InitializeBindings()
+        {
+            var fluent = mvvmContextBackupView.OfType<BackupViewModel>();
         }
     }
 }

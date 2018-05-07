@@ -1,4 +1,6 @@
-﻿namespace Databvase_Winforms.Views
+﻿using Databvase_Winforms.View_Models;
+
+namespace Databvase_Winforms.Views
 {
     partial class BackupView
     {
@@ -84,6 +86,8 @@
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navigationPageMediaOptions = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lcMediaOptions = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControlTemp = new DevExpress.XtraEditors.LabelControl();
+            this.checkEditVerifyBackup = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditContinueOnError = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditPerformChecksum = new DevExpress.XtraEditors.CheckEdit();
             this.memoEditNewMediaSetDescription = new DevExpress.XtraEditors.MemoEdit();
@@ -106,9 +110,34 @@
             this.lciNewMediaSetDescription = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem16 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lciNewMediaSetName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lcgReliability = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciVerifyBacupWhenFinished = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciPerformChecksum = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciContinueOnError = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciTemp1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navigationPageBackupOptions = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.lcBackupOptions = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControlTemp2 = new DevExpress.XtraEditors.LabelControl();
+            this.dateEditExpireOnDate = new DevExpress.XtraEditors.DateEdit();
+            this.spinEditExpireAfterDays = new DevExpress.XtraEditors.SpinEdit();
+            this.radioGroupBackupSetExpire = new DevExpress.XtraEditors.RadioGroup();
+            this.textEditBackupDescription = new DevExpress.XtraEditors.TextEdit();
+            this.textEditBackupName = new DevExpress.XtraEditors.TextEdit();
+            this.lcgBackupOptions = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lcgBackupSet = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lciBackupName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciBackupDescription = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciBackupSetExpire = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciExpireAfterDays = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciExpireOnDate = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem21 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem20 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem22 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciTemp2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgBackupWindow = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciAccordian = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciNavigationFrame = new DevExpress.XtraLayout.LayoutControlItem();
@@ -118,33 +147,7 @@
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.lciOkButton = new DevExpress.XtraLayout.LayoutControlItem();
             this.imageCollectionBackupView = new DevExpress.Utils.ImageCollection(this.components);
-            this.checkEditVerifyBackup = new DevExpress.XtraEditors.CheckEdit();
-            this.lciVerifyBacupWhenFinished = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcgReliability = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.labelControlTemp = new DevExpress.XtraEditors.LabelControl();
-            this.lciTemp1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcBackupOptions = new DevExpress.XtraLayout.LayoutControl();
-            this.lcgBackupOptions = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.textEditBackupName = new DevExpress.XtraEditors.TextEdit();
-            this.lciBackupName = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.textEditBackupDescription = new DevExpress.XtraEditors.TextEdit();
-            this.lciBackupDescription = new DevExpress.XtraLayout.LayoutControlItem();
-            this.radioGroupBackupSetExpire = new DevExpress.XtraEditors.RadioGroup();
-            this.lciBackupSetExpire = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcgBackupSet = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.spinEditExpireAfterDays = new DevExpress.XtraEditors.SpinEdit();
-            this.lciExpireAfterDays = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dateEditExpireOnDate = new DevExpress.XtraEditors.DateEdit();
-            this.lciExpireOnDate = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem21 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem20 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem22 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.labelControlTemp2 = new DevExpress.XtraEditors.LabelControl();
-            this.lciTemp2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.mvvmContextBackupView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.accordianBackup)).BeginInit();
             this.accordianBackup.SuspendLayout();
             this.accordianConnectionContainer.SuspendLayout();
@@ -193,6 +196,7 @@
             this.navigationPageMediaOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcMediaOptions)).BeginInit();
             this.lcMediaOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditVerifyBackup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditContinueOnError.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPerformChecksum.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditNewMediaSetDescription.Properties)).BeginInit();
@@ -215,9 +219,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciNewMediaSetDescription)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciNewMediaSetName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgReliability)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciVerifyBacupWhenFinished)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciPerformChecksum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciContinueOnError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTemp1)).BeginInit();
             this.navigationPageBackupOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lcBackupOptions)).BeginInit();
+            this.lcBackupOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupDescription)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupSetExpire)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciExpireAfterDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciExpireOnDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTemp2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupWindow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciAccordian)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciNavigationFrame)).BeginInit();
@@ -227,33 +257,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciOkButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionBackupView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditVerifyBackup.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciVerifyBacupWhenFinished)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgReliability)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciTemp1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcBackupOptions)).BeginInit();
-            this.lcBackupOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupDescription)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupSetExpire)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciExpireAfterDays)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciExpireOnDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciTemp2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextBackupView)).BeginInit();
             this.SuspendLayout();
             // 
             // accordianBackup
@@ -572,6 +576,7 @@
             // 
             // navigationPageBackupGeneral
             // 
+            this.navigationPageBackupGeneral.Caption = "navigationPageBackupGeneral";
             this.navigationPageBackupGeneral.Controls.Add(this.lciBackupGeneral);
             this.navigationPageBackupGeneral.Name = "navigationPageBackupGeneral";
             this.navigationPageBackupGeneral.Size = new System.Drawing.Size(556, 509);
@@ -768,6 +773,7 @@
             // 
             // navigationPageMediaOptions
             // 
+            this.navigationPageMediaOptions.Caption = "navigationPageMediaOptions";
             this.navigationPageMediaOptions.Controls.Add(this.lcMediaOptions);
             this.navigationPageMediaOptions.Name = "navigationPageMediaOptions";
             this.navigationPageMediaOptions.Size = new System.Drawing.Size(556, 509);
@@ -792,6 +798,24 @@
             this.lcMediaOptions.Size = new System.Drawing.Size(556, 509);
             this.lcMediaOptions.TabIndex = 0;
             this.lcMediaOptions.Text = "layoutControl1";
+            // 
+            // labelControlTemp
+            // 
+            this.labelControlTemp.Location = new System.Drawing.Point(12, 12);
+            this.labelControlTemp.Name = "labelControlTemp";
+            this.labelControlTemp.Size = new System.Drawing.Size(211, 13);
+            this.labelControlTemp.StyleController = this.lcMediaOptions;
+            this.labelControlTemp.TabIndex = 15;
+            this.labelControlTemp.Text = "NOTE: NONE OF THIS IS IMPLEMENTED YET";
+            // 
+            // checkEditVerifyBackup
+            // 
+            this.checkEditVerifyBackup.Location = new System.Drawing.Point(24, 330);
+            this.checkEditVerifyBackup.Name = "checkEditVerifyBackup";
+            this.checkEditVerifyBackup.Properties.Caption = "Verify backup when finished";
+            this.checkEditVerifyBackup.Size = new System.Drawing.Size(508, 19);
+            this.checkEditVerifyBackup.StyleController = this.lcMediaOptions;
+            this.checkEditVerifyBackup.TabIndex = 14;
             // 
             // checkEditContinueOnError
             // 
@@ -1013,6 +1037,28 @@
             this.lciNewMediaSetName.Text = "New Media Set Name: ";
             this.lciNewMediaSetName.TextSize = new System.Drawing.Size(134, 13);
             // 
+            // lcgReliability
+            // 
+            this.lcgReliability.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgReliability.CaptionImageOptions.SvgImage")));
+            this.lcgReliability.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.lcgReliability.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciVerifyBacupWhenFinished,
+            this.lciPerformChecksum,
+            this.lciContinueOnError});
+            this.lcgReliability.Location = new System.Drawing.Point(0, 282);
+            this.lcgReliability.Name = "lcgReliability";
+            this.lcgReliability.Size = new System.Drawing.Size(536, 117);
+            this.lcgReliability.Text = "Reliability";
+            // 
+            // lciVerifyBacupWhenFinished
+            // 
+            this.lciVerifyBacupWhenFinished.Control = this.checkEditVerifyBackup;
+            this.lciVerifyBacupWhenFinished.Location = new System.Drawing.Point(0, 0);
+            this.lciVerifyBacupWhenFinished.Name = "lciVerifyBacupWhenFinished";
+            this.lciVerifyBacupWhenFinished.Size = new System.Drawing.Size(512, 23);
+            this.lciVerifyBacupWhenFinished.TextSize = new System.Drawing.Size(0, 0);
+            this.lciVerifyBacupWhenFinished.TextVisible = false;
+            // 
             // lciPerformChecksum
             // 
             this.lciPerformChecksum.Control = this.checkEditPerformChecksum;
@@ -1031,11 +1077,247 @@
             this.lciContinueOnError.TextSize = new System.Drawing.Size(0, 0);
             this.lciContinueOnError.TextVisible = false;
             // 
+            // lciTemp1
+            // 
+            this.lciTemp1.Control = this.labelControlTemp;
+            this.lciTemp1.Location = new System.Drawing.Point(0, 0);
+            this.lciTemp1.Name = "lciTemp1";
+            this.lciTemp1.Size = new System.Drawing.Size(536, 17);
+            this.lciTemp1.TextSize = new System.Drawing.Size(0, 0);
+            this.lciTemp1.TextVisible = false;
+            // 
             // navigationPageBackupOptions
             // 
+            this.navigationPageBackupOptions.Caption = "navigationPageBackupOptions";
             this.navigationPageBackupOptions.Controls.Add(this.lcBackupOptions);
             this.navigationPageBackupOptions.Name = "navigationPageBackupOptions";
             this.navigationPageBackupOptions.Size = new System.Drawing.Size(556, 509);
+            // 
+            // lcBackupOptions
+            // 
+            this.lcBackupOptions.Controls.Add(this.labelControlTemp2);
+            this.lcBackupOptions.Controls.Add(this.dateEditExpireOnDate);
+            this.lcBackupOptions.Controls.Add(this.spinEditExpireAfterDays);
+            this.lcBackupOptions.Controls.Add(this.radioGroupBackupSetExpire);
+            this.lcBackupOptions.Controls.Add(this.textEditBackupDescription);
+            this.lcBackupOptions.Controls.Add(this.textEditBackupName);
+            this.lcBackupOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcBackupOptions.Location = new System.Drawing.Point(0, 0);
+            this.lcBackupOptions.Name = "lcBackupOptions";
+            this.lcBackupOptions.Root = this.lcgBackupOptions;
+            this.lcBackupOptions.Size = new System.Drawing.Size(556, 509);
+            this.lcBackupOptions.TabIndex = 2;
+            this.lcBackupOptions.Text = "layoutControl1";
+            // 
+            // labelControlTemp2
+            // 
+            this.labelControlTemp2.Location = new System.Drawing.Point(12, 12);
+            this.labelControlTemp2.Name = "labelControlTemp2";
+            this.labelControlTemp2.Size = new System.Drawing.Size(148, 13);
+            this.labelControlTemp2.StyleController = this.lcBackupOptions;
+            this.labelControlTemp2.TabIndex = 9;
+            this.labelControlTemp2.Text = "NOTE: NOT IMPLEMENTED YET";
+            // 
+            // dateEditExpireOnDate
+            // 
+            this.dateEditExpireOnDate.EditValue = null;
+            this.dateEditExpireOnDate.Location = new System.Drawing.Point(208, 198);
+            this.dateEditExpireOnDate.Name = "dateEditExpireOnDate";
+            this.dateEditExpireOnDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditExpireOnDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditExpireOnDate.Size = new System.Drawing.Size(160, 20);
+            this.dateEditExpireOnDate.StyleController = this.lcBackupOptions;
+            this.dateEditExpireOnDate.TabIndex = 8;
+            // 
+            // spinEditExpireAfterDays
+            // 
+            this.spinEditExpireAfterDays.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditExpireAfterDays.Location = new System.Drawing.Point(208, 174);
+            this.spinEditExpireAfterDays.Name = "spinEditExpireAfterDays";
+            this.spinEditExpireAfterDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditExpireAfterDays.Size = new System.Drawing.Size(163, 20);
+            this.spinEditExpireAfterDays.StyleController = this.lcBackupOptions;
+            this.spinEditExpireAfterDays.TabIndex = 7;
+            // 
+            // radioGroupBackupSetExpire
+            // 
+            this.radioGroupBackupSetExpire.Location = new System.Drawing.Point(24, 178);
+            this.radioGroupBackupSetExpire.Name = "radioGroupBackupSetExpire";
+            this.radioGroupBackupSetExpire.Properties.Columns = 1;
+            this.radioGroupBackupSetExpire.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "After: "),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "On: ")});
+            this.radioGroupBackupSetExpire.Size = new System.Drawing.Size(109, 40);
+            this.radioGroupBackupSetExpire.StyleController = this.lcBackupOptions;
+            this.radioGroupBackupSetExpire.TabIndex = 6;
+            // 
+            // textEditBackupDescription
+            // 
+            this.textEditBackupDescription.Location = new System.Drawing.Point(136, 113);
+            this.textEditBackupDescription.Name = "textEditBackupDescription";
+            this.textEditBackupDescription.Size = new System.Drawing.Size(396, 20);
+            this.textEditBackupDescription.StyleController = this.lcBackupOptions;
+            this.textEditBackupDescription.TabIndex = 5;
+            // 
+            // textEditBackupName
+            // 
+            this.textEditBackupName.Location = new System.Drawing.Point(136, 65);
+            this.textEditBackupName.Name = "textEditBackupName";
+            this.textEditBackupName.Size = new System.Drawing.Size(396, 20);
+            this.textEditBackupName.StyleController = this.lcBackupOptions;
+            this.textEditBackupName.TabIndex = 4;
+            // 
+            // lcgBackupOptions
+            // 
+            this.lcgBackupOptions.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.lcgBackupOptions.GroupBordersVisible = false;
+            this.lcgBackupOptions.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem17,
+            this.lcgBackupSet,
+            this.lciTemp2});
+            this.lcgBackupOptions.Name = "lcgBackupOptions";
+            this.lcgBackupOptions.Size = new System.Drawing.Size(556, 509);
+            this.lcgBackupOptions.TextVisible = false;
+            // 
+            // emptySpaceItem17
+            // 
+            this.emptySpaceItem17.AllowHotTrack = false;
+            this.emptySpaceItem17.Location = new System.Drawing.Point(0, 222);
+            this.emptySpaceItem17.Name = "emptySpaceItem17";
+            this.emptySpaceItem17.Size = new System.Drawing.Size(536, 267);
+            this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lcgBackupSet
+            // 
+            this.lcgBackupSet.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgBackupSet.CaptionImageOptions.SvgImage")));
+            this.lcgBackupSet.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.lcgBackupSet.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciBackupName,
+            this.lciBackupDescription,
+            this.lciBackupSetExpire,
+            this.lciExpireAfterDays,
+            this.lciExpireOnDate,
+            this.emptySpaceItem18,
+            this.emptySpaceItem19,
+            this.emptySpaceItem21,
+            this.emptySpaceItem20,
+            this.emptySpaceItem22,
+            this.emptySpaceItem23});
+            this.lcgBackupSet.Location = new System.Drawing.Point(0, 17);
+            this.lcgBackupSet.Name = "lcgBackupSet";
+            this.lcgBackupSet.Size = new System.Drawing.Size(536, 205);
+            this.lcgBackupSet.Text = "Backup Set";
+            // 
+            // lciBackupName
+            // 
+            this.lciBackupName.Control = this.textEditBackupName;
+            this.lciBackupName.Location = new System.Drawing.Point(0, 0);
+            this.lciBackupName.Name = "lciBackupName";
+            this.lciBackupName.Size = new System.Drawing.Size(512, 24);
+            this.lciBackupName.Text = "Name: ";
+            this.lciBackupName.TextSize = new System.Drawing.Size(109, 13);
+            // 
+            // lciBackupDescription
+            // 
+            this.lciBackupDescription.Control = this.textEditBackupDescription;
+            this.lciBackupDescription.Location = new System.Drawing.Point(0, 48);
+            this.lciBackupDescription.Name = "lciBackupDescription";
+            this.lciBackupDescription.Size = new System.Drawing.Size(512, 24);
+            this.lciBackupDescription.Text = "Backup Description: ";
+            this.lciBackupDescription.TextSize = new System.Drawing.Size(109, 13);
+            // 
+            // lciBackupSetExpire
+            // 
+            this.lciBackupSetExpire.Control = this.radioGroupBackupSetExpire;
+            this.lciBackupSetExpire.Location = new System.Drawing.Point(0, 97);
+            this.lciBackupSetExpire.Name = "lciBackupSetExpire";
+            this.lciBackupSetExpire.Size = new System.Drawing.Size(113, 60);
+            this.lciBackupSetExpire.Text = "Backup set will expire: ";
+            this.lciBackupSetExpire.TextLocation = DevExpress.Utils.Locations.Top;
+            this.lciBackupSetExpire.TextSize = new System.Drawing.Size(109, 13);
+            // 
+            // lciExpireAfterDays
+            // 
+            this.lciExpireAfterDays.Control = this.spinEditExpireAfterDays;
+            this.lciExpireAfterDays.Location = new System.Drawing.Point(184, 109);
+            this.lciExpireAfterDays.Name = "lciExpireAfterDays";
+            this.lciExpireAfterDays.Size = new System.Drawing.Size(279, 24);
+            this.lciExpireAfterDays.Text = "days";
+            this.lciExpireAfterDays.TextLocation = DevExpress.Utils.Locations.Right;
+            this.lciExpireAfterDays.TextSize = new System.Drawing.Size(109, 13);
+            // 
+            // lciExpireOnDate
+            // 
+            this.lciExpireOnDate.Control = this.dateEditExpireOnDate;
+            this.lciExpireOnDate.Location = new System.Drawing.Point(184, 133);
+            this.lciExpireOnDate.Name = "lciExpireOnDate";
+            this.lciExpireOnDate.Size = new System.Drawing.Size(164, 24);
+            this.lciExpireOnDate.TextSize = new System.Drawing.Size(0, 0);
+            this.lciExpireOnDate.TextVisible = false;
+            // 
+            // emptySpaceItem18
+            // 
+            this.emptySpaceItem18.AllowHotTrack = false;
+            this.emptySpaceItem18.Location = new System.Drawing.Point(184, 97);
+            this.emptySpaceItem18.Name = "emptySpaceItem18";
+            this.emptySpaceItem18.Size = new System.Drawing.Size(328, 12);
+            this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem19
+            // 
+            this.emptySpaceItem19.AllowHotTrack = false;
+            this.emptySpaceItem19.Location = new System.Drawing.Point(113, 97);
+            this.emptySpaceItem19.Name = "emptySpaceItem19";
+            this.emptySpaceItem19.Size = new System.Drawing.Size(71, 60);
+            this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem21
+            // 
+            this.emptySpaceItem21.AllowHotTrack = false;
+            this.emptySpaceItem21.Location = new System.Drawing.Point(348, 133);
+            this.emptySpaceItem21.Name = "emptySpaceItem21";
+            this.emptySpaceItem21.Size = new System.Drawing.Size(164, 24);
+            this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem20
+            // 
+            this.emptySpaceItem20.AllowHotTrack = false;
+            this.emptySpaceItem20.Location = new System.Drawing.Point(463, 109);
+            this.emptySpaceItem20.Name = "emptySpaceItem20";
+            this.emptySpaceItem20.Size = new System.Drawing.Size(49, 24);
+            this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem22
+            // 
+            this.emptySpaceItem22.AllowHotTrack = false;
+            this.emptySpaceItem22.Location = new System.Drawing.Point(0, 72);
+            this.emptySpaceItem22.Name = "emptySpaceItem22";
+            this.emptySpaceItem22.Size = new System.Drawing.Size(512, 25);
+            this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem23
+            // 
+            this.emptySpaceItem23.AllowHotTrack = false;
+            this.emptySpaceItem23.Location = new System.Drawing.Point(0, 24);
+            this.emptySpaceItem23.Name = "emptySpaceItem23";
+            this.emptySpaceItem23.Size = new System.Drawing.Size(512, 24);
+            this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciTemp2
+            // 
+            this.lciTemp2.Control = this.labelControlTemp2;
+            this.lciTemp2.Location = new System.Drawing.Point(0, 0);
+            this.lciTemp2.Name = "lciTemp2";
+            this.lciTemp2.Size = new System.Drawing.Size(536, 17);
+            this.lciTemp2.TextSize = new System.Drawing.Size(0, 0);
+            this.lciTemp2.TextVisible = false;
             // 
             // lcgBackupWindow
             // 
@@ -1122,280 +1404,10 @@
             this.imageCollectionBackupView.InsertGalleryImage("close_16x16.png", "office2013/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/close_16x16.png"), 2);
             this.imageCollectionBackupView.Images.SetKeyName(2, "close_16x16.png");
             // 
-            // checkEditVerifyBackup
+            // mvvmContextBackupView
             // 
-            this.checkEditVerifyBackup.Location = new System.Drawing.Point(24, 330);
-            this.checkEditVerifyBackup.Name = "checkEditVerifyBackup";
-            this.checkEditVerifyBackup.Properties.Caption = "Verify backup when finished";
-            this.checkEditVerifyBackup.Size = new System.Drawing.Size(508, 19);
-            this.checkEditVerifyBackup.StyleController = this.lcMediaOptions;
-            this.checkEditVerifyBackup.TabIndex = 14;
-            // 
-            // lciVerifyBacupWhenFinished
-            // 
-            this.lciVerifyBacupWhenFinished.Control = this.checkEditVerifyBackup;
-            this.lciVerifyBacupWhenFinished.Location = new System.Drawing.Point(0, 0);
-            this.lciVerifyBacupWhenFinished.Name = "lciVerifyBacupWhenFinished";
-            this.lciVerifyBacupWhenFinished.Size = new System.Drawing.Size(512, 23);
-            this.lciVerifyBacupWhenFinished.TextSize = new System.Drawing.Size(0, 0);
-            this.lciVerifyBacupWhenFinished.TextVisible = false;
-            // 
-            // lcgReliability
-            // 
-            this.lcgReliability.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgReliability.CaptionImageOptions.SvgImage")));
-            this.lcgReliability.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.lcgReliability.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lciVerifyBacupWhenFinished,
-            this.lciPerformChecksum,
-            this.lciContinueOnError});
-            this.lcgReliability.Location = new System.Drawing.Point(0, 282);
-            this.lcgReliability.Name = "lcgReliability";
-            this.lcgReliability.Size = new System.Drawing.Size(536, 117);
-            this.lcgReliability.Text = "Reliability";
-            // 
-            // labelControlTemp
-            // 
-            this.labelControlTemp.Location = new System.Drawing.Point(12, 12);
-            this.labelControlTemp.Name = "labelControlTemp";
-            this.labelControlTemp.Size = new System.Drawing.Size(211, 13);
-            this.labelControlTemp.StyleController = this.lcMediaOptions;
-            this.labelControlTemp.TabIndex = 15;
-            this.labelControlTemp.Text = "NOTE: NONE OF THIS IS IMPLEMENTED YET";
-            // 
-            // lciTemp1
-            // 
-            this.lciTemp1.Control = this.labelControlTemp;
-            this.lciTemp1.Location = new System.Drawing.Point(0, 0);
-            this.lciTemp1.Name = "lciTemp1";
-            this.lciTemp1.Size = new System.Drawing.Size(536, 17);
-            this.lciTemp1.TextSize = new System.Drawing.Size(0, 0);
-            this.lciTemp1.TextVisible = false;
-            // 
-            // lcBackupOptions
-            // 
-            this.lcBackupOptions.Controls.Add(this.labelControlTemp2);
-            this.lcBackupOptions.Controls.Add(this.dateEditExpireOnDate);
-            this.lcBackupOptions.Controls.Add(this.spinEditExpireAfterDays);
-            this.lcBackupOptions.Controls.Add(this.radioGroupBackupSetExpire);
-            this.lcBackupOptions.Controls.Add(this.textEditBackupDescription);
-            this.lcBackupOptions.Controls.Add(this.textEditBackupName);
-            this.lcBackupOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lcBackupOptions.Location = new System.Drawing.Point(0, 0);
-            this.lcBackupOptions.Name = "lcBackupOptions";
-            this.lcBackupOptions.Root = this.lcgBackupOptions;
-            this.lcBackupOptions.Size = new System.Drawing.Size(556, 509);
-            this.lcBackupOptions.TabIndex = 2;
-            this.lcBackupOptions.Text = "layoutControl1";
-            // 
-            // lcgBackupOptions
-            // 
-            this.lcgBackupOptions.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.lcgBackupOptions.GroupBordersVisible = false;
-            this.lcgBackupOptions.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem17,
-            this.lcgBackupSet,
-            this.lciTemp2});
-            this.lcgBackupOptions.Name = "lcgBackupOptions";
-            this.lcgBackupOptions.Size = new System.Drawing.Size(556, 509);
-            this.lcgBackupOptions.TextVisible = false;
-            // 
-            // textEditBackupName
-            // 
-            this.textEditBackupName.Location = new System.Drawing.Point(137, 65);
-            this.textEditBackupName.Name = "textEditBackupName";
-            this.textEditBackupName.Size = new System.Drawing.Size(395, 20);
-            this.textEditBackupName.StyleController = this.lcBackupOptions;
-            this.textEditBackupName.TabIndex = 4;
-            // 
-            // lciBackupName
-            // 
-            this.lciBackupName.Control = this.textEditBackupName;
-            this.lciBackupName.Location = new System.Drawing.Point(0, 0);
-            this.lciBackupName.Name = "lciBackupName";
-            this.lciBackupName.Size = new System.Drawing.Size(512, 24);
-            this.lciBackupName.Text = "Name: ";
-            this.lciBackupName.TextSize = new System.Drawing.Size(109, 13);
-            // 
-            // emptySpaceItem17
-            // 
-            this.emptySpaceItem17.AllowHotTrack = false;
-            this.emptySpaceItem17.Location = new System.Drawing.Point(0, 222);
-            this.emptySpaceItem17.Name = "emptySpaceItem17";
-            this.emptySpaceItem17.Size = new System.Drawing.Size(536, 267);
-            this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // textEditBackupDescription
-            // 
-            this.textEditBackupDescription.Location = new System.Drawing.Point(137, 113);
-            this.textEditBackupDescription.Name = "textEditBackupDescription";
-            this.textEditBackupDescription.Size = new System.Drawing.Size(395, 20);
-            this.textEditBackupDescription.StyleController = this.lcBackupOptions;
-            this.textEditBackupDescription.TabIndex = 5;
-            // 
-            // lciBackupDescription
-            // 
-            this.lciBackupDescription.Control = this.textEditBackupDescription;
-            this.lciBackupDescription.Location = new System.Drawing.Point(0, 48);
-            this.lciBackupDescription.Name = "lciBackupDescription";
-            this.lciBackupDescription.Size = new System.Drawing.Size(512, 24);
-            this.lciBackupDescription.Text = "Backup Description: ";
-            this.lciBackupDescription.TextSize = new System.Drawing.Size(109, 13);
-            // 
-            // radioGroupBackupSetExpire
-            // 
-            this.radioGroupBackupSetExpire.Location = new System.Drawing.Point(24, 178);
-            this.radioGroupBackupSetExpire.Name = "radioGroupBackupSetExpire";
-            this.radioGroupBackupSetExpire.Properties.Columns = 1;
-            this.radioGroupBackupSetExpire.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "After: "),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "On: ")});
-            this.radioGroupBackupSetExpire.Size = new System.Drawing.Size(109, 40);
-            this.radioGroupBackupSetExpire.StyleController = this.lcBackupOptions;
-            this.radioGroupBackupSetExpire.TabIndex = 6;
-            // 
-            // lciBackupSetExpire
-            // 
-            this.lciBackupSetExpire.Control = this.radioGroupBackupSetExpire;
-            this.lciBackupSetExpire.Location = new System.Drawing.Point(0, 97);
-            this.lciBackupSetExpire.Name = "lciBackupSetExpire";
-            this.lciBackupSetExpire.Size = new System.Drawing.Size(113, 60);
-            this.lciBackupSetExpire.Text = "Backup set will expire: ";
-            this.lciBackupSetExpire.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lciBackupSetExpire.TextSize = new System.Drawing.Size(109, 13);
-            // 
-            // lcgBackupSet
-            // 
-            this.lcgBackupSet.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgBackupSet.CaptionImageOptions.SvgImage")));
-            this.lcgBackupSet.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.lcgBackupSet.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lciBackupName,
-            this.lciBackupDescription,
-            this.lciBackupSetExpire,
-            this.lciExpireAfterDays,
-            this.lciExpireOnDate,
-            this.emptySpaceItem18,
-            this.emptySpaceItem19,
-            this.emptySpaceItem21,
-            this.emptySpaceItem20,
-            this.emptySpaceItem22,
-            this.emptySpaceItem23});
-            this.lcgBackupSet.Location = new System.Drawing.Point(0, 17);
-            this.lcgBackupSet.Name = "lcgBackupSet";
-            this.lcgBackupSet.Size = new System.Drawing.Size(536, 205);
-            this.lcgBackupSet.Text = "Backup Set";
-            // 
-            // spinEditExpireAfterDays
-            // 
-            this.spinEditExpireAfterDays.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditExpireAfterDays.Location = new System.Drawing.Point(208, 174);
-            this.spinEditExpireAfterDays.Name = "spinEditExpireAfterDays";
-            this.spinEditExpireAfterDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditExpireAfterDays.Size = new System.Drawing.Size(162, 20);
-            this.spinEditExpireAfterDays.StyleController = this.lcBackupOptions;
-            this.spinEditExpireAfterDays.TabIndex = 7;
-            // 
-            // lciExpireAfterDays
-            // 
-            this.lciExpireAfterDays.Control = this.spinEditExpireAfterDays;
-            this.lciExpireAfterDays.Location = new System.Drawing.Point(184, 109);
-            this.lciExpireAfterDays.Name = "lciExpireAfterDays";
-            this.lciExpireAfterDays.Size = new System.Drawing.Size(279, 24);
-            this.lciExpireAfterDays.Text = "days";
-            this.lciExpireAfterDays.TextLocation = DevExpress.Utils.Locations.Right;
-            this.lciExpireAfterDays.TextSize = new System.Drawing.Size(109, 13);
-            // 
-            // dateEditExpireOnDate
-            // 
-            this.dateEditExpireOnDate.EditValue = null;
-            this.dateEditExpireOnDate.Location = new System.Drawing.Point(208, 198);
-            this.dateEditExpireOnDate.Name = "dateEditExpireOnDate";
-            this.dateEditExpireOnDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditExpireOnDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEditExpireOnDate.Size = new System.Drawing.Size(160, 20);
-            this.dateEditExpireOnDate.StyleController = this.lcBackupOptions;
-            this.dateEditExpireOnDate.TabIndex = 8;
-            // 
-            // lciExpireOnDate
-            // 
-            this.lciExpireOnDate.Control = this.dateEditExpireOnDate;
-            this.lciExpireOnDate.Location = new System.Drawing.Point(184, 133);
-            this.lciExpireOnDate.Name = "lciExpireOnDate";
-            this.lciExpireOnDate.Size = new System.Drawing.Size(164, 24);
-            this.lciExpireOnDate.TextSize = new System.Drawing.Size(0, 0);
-            this.lciExpireOnDate.TextVisible = false;
-            // 
-            // emptySpaceItem18
-            // 
-            this.emptySpaceItem18.AllowHotTrack = false;
-            this.emptySpaceItem18.Location = new System.Drawing.Point(184, 97);
-            this.emptySpaceItem18.Name = "emptySpaceItem18";
-            this.emptySpaceItem18.Size = new System.Drawing.Size(328, 12);
-            this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem19
-            // 
-            this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(113, 97);
-            this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(71, 60);
-            this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem21
-            // 
-            this.emptySpaceItem21.AllowHotTrack = false;
-            this.emptySpaceItem21.Location = new System.Drawing.Point(348, 133);
-            this.emptySpaceItem21.Name = "emptySpaceItem21";
-            this.emptySpaceItem21.Size = new System.Drawing.Size(164, 24);
-            this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem20
-            // 
-            this.emptySpaceItem20.AllowHotTrack = false;
-            this.emptySpaceItem20.Location = new System.Drawing.Point(463, 109);
-            this.emptySpaceItem20.Name = "emptySpaceItem20";
-            this.emptySpaceItem20.Size = new System.Drawing.Size(49, 24);
-            this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem22
-            // 
-            this.emptySpaceItem22.AllowHotTrack = false;
-            this.emptySpaceItem22.Location = new System.Drawing.Point(0, 72);
-            this.emptySpaceItem22.Name = "emptySpaceItem22";
-            this.emptySpaceItem22.Size = new System.Drawing.Size(512, 25);
-            this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem23
-            // 
-            this.emptySpaceItem23.AllowHotTrack = false;
-            this.emptySpaceItem23.Location = new System.Drawing.Point(0, 24);
-            this.emptySpaceItem23.Name = "emptySpaceItem23";
-            this.emptySpaceItem23.Size = new System.Drawing.Size(512, 24);
-            this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // labelControlTemp2
-            // 
-            this.labelControlTemp2.Location = new System.Drawing.Point(12, 12);
-            this.labelControlTemp2.Name = "labelControlTemp2";
-            this.labelControlTemp2.Size = new System.Drawing.Size(148, 13);
-            this.labelControlTemp2.StyleController = this.lcBackupOptions;
-            this.labelControlTemp2.TabIndex = 9;
-            this.labelControlTemp2.Text = "NOTE: NOT IMPLEMENTED YET";
-            // 
-            // lciTemp2
-            // 
-            this.lciTemp2.Control = this.labelControlTemp2;
-            this.lciTemp2.Location = new System.Drawing.Point(0, 0);
-            this.lciTemp2.Name = "lciTemp2";
-            this.lciTemp2.Size = new System.Drawing.Size(536, 17);
-            this.lciTemp2.TextSize = new System.Drawing.Size(0, 0);
-            this.lciTemp2.TextVisible = false;
+            this.mvvmContextBackupView.ContainerControl = this;
+            this.mvvmContextBackupView.ViewModelType = typeof(BackupViewModel);
             // 
             // BackupView
             // 
@@ -1455,6 +1467,7 @@
             this.navigationPageMediaOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcMediaOptions)).EndInit();
             this.lcMediaOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditVerifyBackup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditContinueOnError.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPerformChecksum.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditNewMediaSetDescription.Properties)).EndInit();
@@ -1477,9 +1490,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.lciNewMediaSetDescription)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciNewMediaSetName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgReliability)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciVerifyBacupWhenFinished)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciPerformChecksum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciContinueOnError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTemp1)).EndInit();
             this.navigationPageBackupOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lcBackupOptions)).EndInit();
+            this.lcBackupOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupDescription)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupSetExpire)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciExpireAfterDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciExpireOnDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciTemp2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupWindow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciAccordian)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciNavigationFrame)).EndInit();
@@ -1489,33 +1528,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciOkButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionBackupView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditVerifyBackup.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciVerifyBacupWhenFinished)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgReliability)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciTemp1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcBackupOptions)).EndInit();
-            this.lcBackupOptions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupDescription)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupSetExpire)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciExpireAfterDays)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciExpireOnDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciTemp2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mvvmContextBackupView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1637,5 +1650,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
         private DevExpress.XtraEditors.LabelControl labelControlTemp2;
         private DevExpress.XtraLayout.LayoutControlItem lciTemp2;
+        private DevExpress.Utils.MVVM.MVVMContext mvvmContextBackupView;
     }
 }

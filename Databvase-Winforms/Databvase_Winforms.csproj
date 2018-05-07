@@ -327,6 +327,7 @@
     <Compile Include="Views\BackupView.Designer.cs">
       <DependentUpon>BackupView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View Models\BackupViewModel.cs" />
     <Compile Include="Views\ConnectionWindowView.cs">
       <SubType>Form</SubType>
     </Compile>
