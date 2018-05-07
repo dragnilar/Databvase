@@ -41,10 +41,11 @@ namespace Databvase_Winforms.Views
             simpleButtonOK.Click += SimpleButtonOkOnClick;
             simpleButtonCancel.Click += SimpleButtonCancelOnClick;
 
+            comboBoxEditDatabaseList.EditValueChanged += ComboBoxEditDatabaseListOnEditValueChanged;
+
             BackupProcess.Complete += BackupProcessOnComplete;
             BackupProcess.PercentComplete += BackupProcessOnPercentComplete;
         }
-
 
 
         private void BackupProcessOnPercentComplete(object sender, PercentCompleteEventArgs e)
@@ -88,8 +89,8 @@ namespace Databvase_Winforms.Views
         private void SetServerNamesOnPanel()
         {
             labelControlServerName.Text = App.Connection.InstanceTracker.CurrentInstance.Name;
-            labelControlConnectionName.Text =
-                App.Connection.InstanceTracker.CurrentInstance.ConnectionContext.WorkstationId;
+            labelControlCurrentUser.Text =
+                App.Connection.InstanceTracker.CurrentInstance.ConnectionContext.TrueLogin;
         }
 
         private void SetupDatabasesComboBox()
@@ -156,6 +157,26 @@ namespace Databvase_Winforms.Views
         private bool GetBackupType()
         {
             return comboBoxEditBackupType.SelectedItem != "Full";
+        }
+
+        private void ComboBoxEditDatabaseListOnEditValueChanged(object sender, EventArgs e)
+        {
+            GetRecoveryModel();
+
+        }
+
+        private void GetRecoveryModel()
+        {
+            var databases = App.Connection.InstanceTracker.CurrentInstance.Databases;
+
+            foreach (Database db in databases)
+            {
+                if (db.Name == comboBoxEditDatabaseList.EditValue.ToString())
+                {
+                    textEditRecoveryModel.Text = db.RecoveryModel.ToString();
+                    break;
+                }
+            }
         }
     }
 }

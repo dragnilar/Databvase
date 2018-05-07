@@ -33,13 +33,23 @@
             this.accordianBackup = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianConnectionContainer = new DevExpress.XtraBars.Navigation.AccordionContentContainer();
             this.layoutControlConnection = new DevExpress.XtraLayout.LayoutControl();
-            this.labelControlConnectionName = new DevExpress.XtraEditors.LabelControl();
+            this.labelControlCurrentUser = new DevExpress.XtraEditors.LabelControl();
             this.labelControlServerName = new DevExpress.XtraEditors.LabelControl();
             this.lcgConnectionGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lciServerName = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciConnectionName = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciCurrentUser = new DevExpress.XtraLayout.LayoutControlItem();
             this.accordianProgressContainer = new DevExpress.XtraBars.Navigation.AccordionContentContainer();
+            this.lcProgressPanel = new DevExpress.XtraLayout.LayoutControl();
+            this.pictureEditProgressStatus = new DevExpress.XtraEditors.PictureEdit();
+            this.progressBarControlDatabaseBackup = new DevExpress.XtraEditors.ProgressBarControl();
+            this.lcgProgressPanel = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lcProgressStatusImage = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciBackupProgressBar = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.accordionControlElementBackupPages = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordianElementGeneral = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordianElementMedia = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -54,6 +64,7 @@
             this.navigationFrameBackupWindow = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.navigationPageBackupGeneral = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lciBackupGeneral = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButtonBrowse = new DevExpress.XtraEditors.SimpleButton();
             this.textEditRecoveryModel = new DevExpress.XtraEditors.TextEdit();
             this.textEditBackupPath = new DevExpress.XtraEditors.TextEdit();
             this.comboBoxEditBackupType = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -68,6 +79,7 @@
             this.lcgBackupDestination = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciBackupPath = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navigationPageMediaOptions = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -82,19 +94,7 @@
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.lciOkButton = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcProgressPanel = new DevExpress.XtraLayout.LayoutControl();
-            this.lcgProgressPanel = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.progressBarControlDatabaseBackup = new DevExpress.XtraEditors.ProgressBarControl();
-            this.lciBackupProgressBar = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.pictureEditProgressStatus = new DevExpress.XtraEditors.PictureEdit();
-            this.lcProgressStatusImage = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.imageCollectionBackupView = new DevExpress.Utils.ImageCollection(this.components);
-            this.simpleButtonBrowse = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.accordianBackup)).BeginInit();
             this.accordianBackup.SuspendLayout();
             this.accordianConnectionContainer.SuspendLayout();
@@ -103,8 +103,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgConnectionGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciServerName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciConnectionName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCurrentUser)).BeginInit();
             this.accordianProgressContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lcProgressPanel)).BeginInit();
+            this.lcProgressPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEditProgressStatus.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControlDatabaseBackup.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgProgressPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcProgressStatusImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupProgressBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcBackupWindow)).BeginInit();
             this.lcBackupWindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrameBackupWindow)).BeginInit();
@@ -126,6 +137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupDestination)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupPath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             this.navigationPageMediaOptions.SuspendLayout();
@@ -138,19 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciOkButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcProgressPanel)).BeginInit();
-            this.lcProgressPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgProgressPanel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBarControlDatabaseBackup.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupProgressBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEditProgressStatus.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcProgressStatusImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionBackupView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // accordianBackup
@@ -159,6 +159,7 @@
             this.accordianBackup.Controls.Add(this.accordianProgressContainer);
             this.accordianBackup.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElementBackupPages});
+            this.accordianBackup.ExpandElementMode = DevExpress.XtraBars.Navigation.ExpandElementMode.Multiple;
             this.accordianBackup.Location = new System.Drawing.Point(12, 12);
             this.accordianBackup.Name = "accordianBackup";
             this.accordianBackup.Size = new System.Drawing.Size(200, 509);
@@ -175,7 +176,7 @@
             // 
             // layoutControlConnection
             // 
-            this.layoutControlConnection.Controls.Add(this.labelControlConnectionName);
+            this.layoutControlConnection.Controls.Add(this.labelControlCurrentUser);
             this.layoutControlConnection.Controls.Add(this.labelControlServerName);
             this.layoutControlConnection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControlConnection.Location = new System.Drawing.Point(0, 0);
@@ -185,14 +186,14 @@
             this.layoutControlConnection.TabIndex = 0;
             this.layoutControlConnection.Text = "layoutControl1";
             // 
-            // labelControlConnectionName
+            // labelControlCurrentUser
             // 
-            this.labelControlConnectionName.Location = new System.Drawing.Point(12, 61);
-            this.labelControlConnectionName.Name = "labelControlConnectionName";
-            this.labelControlConnectionName.Size = new System.Drawing.Size(92, 13);
-            this.labelControlConnectionName.StyleController = this.layoutControlConnection;
-            this.labelControlConnectionName.TabIndex = 5;
-            this.labelControlConnectionName.Text = "[Connection Name]";
+            this.labelControlCurrentUser.Location = new System.Drawing.Point(12, 61);
+            this.labelControlCurrentUser.Name = "labelControlCurrentUser";
+            this.labelControlCurrentUser.Size = new System.Drawing.Size(70, 13);
+            this.labelControlCurrentUser.StyleController = this.layoutControlConnection;
+            this.labelControlCurrentUser.TabIndex = 5;
+            this.labelControlCurrentUser.Text = "[Current User]";
             // 
             // labelControlServerName
             // 
@@ -210,7 +211,7 @@
             this.lcgConnectionGroup.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem1,
             this.lciServerName,
-            this.lciConnectionName});
+            this.lciCurrentUser});
             this.lcgConnectionGroup.Name = "lcgConnectionGroup";
             this.lcgConnectionGroup.Size = new System.Drawing.Size(181, 122);
             this.lcgConnectionGroup.TextVisible = false;
@@ -231,17 +232,17 @@
             this.lciServerName.Size = new System.Drawing.Size(161, 33);
             this.lciServerName.Text = "Server:";
             this.lciServerName.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lciServerName.TextSize = new System.Drawing.Size(58, 13);
+            this.lciServerName.TextSize = new System.Drawing.Size(66, 13);
             // 
-            // lciConnectionName
+            // lciCurrentUser
             // 
-            this.lciConnectionName.Control = this.labelControlConnectionName;
-            this.lciConnectionName.Location = new System.Drawing.Point(0, 33);
-            this.lciConnectionName.Name = "lciConnectionName";
-            this.lciConnectionName.Size = new System.Drawing.Size(161, 33);
-            this.lciConnectionName.Text = "Connection:";
-            this.lciConnectionName.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lciConnectionName.TextSize = new System.Drawing.Size(58, 13);
+            this.lciCurrentUser.Control = this.labelControlCurrentUser;
+            this.lciCurrentUser.Location = new System.Drawing.Point(0, 33);
+            this.lciCurrentUser.Name = "lciCurrentUser";
+            this.lciCurrentUser.Size = new System.Drawing.Size(161, 33);
+            this.lciCurrentUser.Text = "Current User:";
+            this.lciCurrentUser.TextLocation = DevExpress.Utils.Locations.Top;
+            this.lciCurrentUser.TextSize = new System.Drawing.Size(66, 13);
             // 
             // accordianProgressContainer
             // 
@@ -249,6 +250,111 @@
             this.accordianProgressContainer.Name = "accordianProgressContainer";
             this.accordianProgressContainer.Size = new System.Drawing.Size(181, 126);
             this.accordianProgressContainer.TabIndex = 2;
+            // 
+            // lcProgressPanel
+            // 
+            this.lcProgressPanel.Controls.Add(this.pictureEditProgressStatus);
+            this.lcProgressPanel.Controls.Add(this.progressBarControlDatabaseBackup);
+            this.lcProgressPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcProgressPanel.Location = new System.Drawing.Point(0, 0);
+            this.lcProgressPanel.Name = "lcProgressPanel";
+            this.lcProgressPanel.Root = this.lcgProgressPanel;
+            this.lcProgressPanel.Size = new System.Drawing.Size(181, 126);
+            this.lcProgressPanel.TabIndex = 0;
+            this.lcProgressPanel.Text = "layoutControl1";
+            // 
+            // pictureEditProgressStatus
+            // 
+            this.pictureEditProgressStatus.EditValue = ((object)(resources.GetObject("pictureEditProgressStatus.EditValue")));
+            this.pictureEditProgressStatus.Location = new System.Drawing.Point(51, 12);
+            this.pictureEditProgressStatus.Name = "pictureEditProgressStatus";
+            this.pictureEditProgressStatus.Properties.AllowFocused = false;
+            this.pictureEditProgressStatus.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEditProgressStatus.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEditProgressStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEditProgressStatus.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEditProgressStatus.Properties.ShowMenu = false;
+            this.pictureEditProgressStatus.Size = new System.Drawing.Size(55, 40);
+            this.pictureEditProgressStatus.StyleController = this.lcProgressPanel;
+            this.pictureEditProgressStatus.TabIndex = 5;
+            // 
+            // progressBarControlDatabaseBackup
+            // 
+            this.progressBarControlDatabaseBackup.Location = new System.Drawing.Point(12, 71);
+            this.progressBarControlDatabaseBackup.Name = "progressBarControlDatabaseBackup";
+            this.progressBarControlDatabaseBackup.Properties.ShowTitle = true;
+            this.progressBarControlDatabaseBackup.Size = new System.Drawing.Size(157, 18);
+            this.progressBarControlDatabaseBackup.StyleController = this.lcProgressPanel;
+            this.progressBarControlDatabaseBackup.TabIndex = 4;
+            // 
+            // lcgProgressPanel
+            // 
+            this.lcgProgressPanel.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.lcgProgressPanel.GroupBordersVisible = false;
+            this.lcgProgressPanel.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lcProgressStatusImage,
+            this.emptySpaceItem9,
+            this.emptySpaceItem10,
+            this.emptySpaceItem11,
+            this.lciBackupProgressBar,
+            this.emptySpaceItem12});
+            this.lcgProgressPanel.Name = "lcgProgressPanel";
+            this.lcgProgressPanel.Size = new System.Drawing.Size(181, 126);
+            this.lcgProgressPanel.TextVisible = false;
+            // 
+            // lcProgressStatusImage
+            // 
+            this.lcProgressStatusImage.Control = this.pictureEditProgressStatus;
+            this.lcProgressStatusImage.Location = new System.Drawing.Point(39, 0);
+            this.lcProgressStatusImage.MaxSize = new System.Drawing.Size(93, 44);
+            this.lcProgressStatusImage.MinSize = new System.Drawing.Size(93, 44);
+            this.lcProgressStatusImage.Name = "lcProgressStatusImage";
+            this.lcProgressStatusImage.Size = new System.Drawing.Size(93, 44);
+            this.lcProgressStatusImage.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.lcProgressStatusImage.Text = "Ready";
+            this.lcProgressStatusImage.TextLocation = DevExpress.Utils.Locations.Right;
+            this.lcProgressStatusImage.TextSize = new System.Drawing.Size(31, 13);
+            // 
+            // emptySpaceItem9
+            // 
+            this.emptySpaceItem9.AllowHotTrack = false;
+            this.emptySpaceItem9.Location = new System.Drawing.Point(132, 0);
+            this.emptySpaceItem9.Name = "emptySpaceItem9";
+            this.emptySpaceItem9.Size = new System.Drawing.Size(29, 44);
+            this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem10
+            // 
+            this.emptySpaceItem10.AllowHotTrack = false;
+            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 44);
+            this.emptySpaceItem10.Name = "emptySpaceItem10";
+            this.emptySpaceItem10.Size = new System.Drawing.Size(161, 15);
+            this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem11
+            // 
+            this.emptySpaceItem11.AllowHotTrack = false;
+            this.emptySpaceItem11.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem11.Name = "emptySpaceItem11";
+            this.emptySpaceItem11.Size = new System.Drawing.Size(39, 44);
+            this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciBackupProgressBar
+            // 
+            this.lciBackupProgressBar.Control = this.progressBarControlDatabaseBackup;
+            this.lciBackupProgressBar.Location = new System.Drawing.Point(0, 59);
+            this.lciBackupProgressBar.Name = "lciBackupProgressBar";
+            this.lciBackupProgressBar.Size = new System.Drawing.Size(161, 22);
+            this.lciBackupProgressBar.TextSize = new System.Drawing.Size(0, 0);
+            this.lciBackupProgressBar.TextVisible = false;
+            // 
+            // emptySpaceItem12
+            // 
+            this.emptySpaceItem12.AllowHotTrack = false;
+            this.emptySpaceItem12.Location = new System.Drawing.Point(0, 81);
+            this.emptySpaceItem12.Name = "emptySpaceItem12";
+            this.emptySpaceItem12.Size = new System.Drawing.Size(161, 25);
+            this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
             // accordionControlElementBackupPages
             // 
@@ -293,6 +399,7 @@
             // accordianElementConnection
             // 
             this.accordianElementConnection.ContentContainer = this.accordianConnectionContainer;
+            this.accordianElementConnection.Expanded = true;
             this.accordianElementConnection.ImageOptions.ImageUri.Uri = "AddNewDataSource;Size16x16;Office2013";
             this.accordianElementConnection.Name = "accordianElementConnection";
             this.accordianElementConnection.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
@@ -382,6 +489,16 @@
             this.lciBackupGeneral.TabIndex = 0;
             this.lciBackupGeneral.Text = "layoutControl1";
             // 
+            // simpleButtonBrowse
+            // 
+            this.simpleButtonBrowse.Location = new System.Drawing.Point(429, 242);
+            this.simpleButtonBrowse.Name = "simpleButtonBrowse";
+            this.simpleButtonBrowse.Size = new System.Drawing.Size(76, 22);
+            this.simpleButtonBrowse.StyleController = this.lciBackupGeneral;
+            this.simpleButtonBrowse.TabIndex = 9;
+            this.simpleButtonBrowse.Text = "Browse";
+            this.simpleButtonBrowse.Visible = false;
+            // 
             // textEditRecoveryModel
             // 
             this.textEditRecoveryModel.Location = new System.Drawing.Point(111, 112);
@@ -405,6 +522,7 @@
             this.comboBoxEditBackupType.Name = "comboBoxEditBackupType";
             this.comboBoxEditBackupType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditBackupType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEditBackupType.Size = new System.Drawing.Size(314, 20);
             this.comboBoxEditBackupType.StyleController = this.lciBackupGeneral;
             this.comboBoxEditBackupType.TabIndex = 6;
@@ -415,6 +533,7 @@
             this.comboBoxEditDatabaseList.Name = "comboBoxEditDatabaseList";
             this.comboBoxEditDatabaseList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditDatabaseList.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEditDatabaseList.Size = new System.Drawing.Size(314, 20);
             this.comboBoxEditDatabaseList.StyleController = this.lciBackupGeneral;
             this.comboBoxEditDatabaseList.TabIndex = 4;
@@ -519,6 +638,15 @@
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(27, 26);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.simpleButtonBrowse;
+            this.layoutControlItem1.Location = new System.Drawing.Point(405, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(80, 26);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem7
             // 
@@ -641,111 +769,6 @@
             this.lciOkButton.TextSize = new System.Drawing.Size(0, 0);
             this.lciOkButton.TextVisible = false;
             // 
-            // lcProgressPanel
-            // 
-            this.lcProgressPanel.Controls.Add(this.pictureEditProgressStatus);
-            this.lcProgressPanel.Controls.Add(this.progressBarControlDatabaseBackup);
-            this.lcProgressPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lcProgressPanel.Location = new System.Drawing.Point(0, 0);
-            this.lcProgressPanel.Name = "lcProgressPanel";
-            this.lcProgressPanel.Root = this.lcgProgressPanel;
-            this.lcProgressPanel.Size = new System.Drawing.Size(181, 126);
-            this.lcProgressPanel.TabIndex = 0;
-            this.lcProgressPanel.Text = "layoutControl1";
-            // 
-            // lcgProgressPanel
-            // 
-            this.lcgProgressPanel.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.lcgProgressPanel.GroupBordersVisible = false;
-            this.lcgProgressPanel.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lcProgressStatusImage,
-            this.emptySpaceItem9,
-            this.emptySpaceItem10,
-            this.emptySpaceItem11,
-            this.lciBackupProgressBar,
-            this.emptySpaceItem12});
-            this.lcgProgressPanel.Name = "lcgProgressPanel";
-            this.lcgProgressPanel.Size = new System.Drawing.Size(181, 126);
-            this.lcgProgressPanel.TextVisible = false;
-            // 
-            // progressBarControlDatabaseBackup
-            // 
-            this.progressBarControlDatabaseBackup.Location = new System.Drawing.Point(12, 71);
-            this.progressBarControlDatabaseBackup.Name = "progressBarControlDatabaseBackup";
-            this.progressBarControlDatabaseBackup.Properties.ShowTitle = true;
-            this.progressBarControlDatabaseBackup.Size = new System.Drawing.Size(157, 18);
-            this.progressBarControlDatabaseBackup.StyleController = this.lcProgressPanel;
-            this.progressBarControlDatabaseBackup.TabIndex = 4;
-            // 
-            // lciBackupProgressBar
-            // 
-            this.lciBackupProgressBar.Control = this.progressBarControlDatabaseBackup;
-            this.lciBackupProgressBar.Location = new System.Drawing.Point(0, 59);
-            this.lciBackupProgressBar.Name = "lciBackupProgressBar";
-            this.lciBackupProgressBar.Size = new System.Drawing.Size(161, 22);
-            this.lciBackupProgressBar.TextSize = new System.Drawing.Size(0, 0);
-            this.lciBackupProgressBar.TextVisible = false;
-            // 
-            // emptySpaceItem9
-            // 
-            this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(132, 0);
-            this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(29, 44);
-            this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // pictureEditProgressStatus
-            // 
-            this.pictureEditProgressStatus.EditValue = ((object)(resources.GetObject("pictureEditProgressStatus.EditValue")));
-            this.pictureEditProgressStatus.Location = new System.Drawing.Point(51, 12);
-            this.pictureEditProgressStatus.Name = "pictureEditProgressStatus";
-            this.pictureEditProgressStatus.Properties.AllowFocused = false;
-            this.pictureEditProgressStatus.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEditProgressStatus.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEditProgressStatus.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEditProgressStatus.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEditProgressStatus.Properties.ShowMenu = false;
-            this.pictureEditProgressStatus.Size = new System.Drawing.Size(54, 40);
-            this.pictureEditProgressStatus.StyleController = this.lcProgressPanel;
-            this.pictureEditProgressStatus.TabIndex = 5;
-            // 
-            // lcProgressStatusImage
-            // 
-            this.lcProgressStatusImage.Control = this.pictureEditProgressStatus;
-            this.lcProgressStatusImage.Location = new System.Drawing.Point(39, 0);
-            this.lcProgressStatusImage.MaxSize = new System.Drawing.Size(93, 44);
-            this.lcProgressStatusImage.MinSize = new System.Drawing.Size(93, 44);
-            this.lcProgressStatusImage.Name = "lcProgressStatusImage";
-            this.lcProgressStatusImage.Size = new System.Drawing.Size(93, 44);
-            this.lcProgressStatusImage.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.lcProgressStatusImage.Text = "Ready";
-            this.lcProgressStatusImage.TextLocation = DevExpress.Utils.Locations.Right;
-            this.lcProgressStatusImage.TextSize = new System.Drawing.Size(31, 13);
-            // 
-            // emptySpaceItem10
-            // 
-            this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 44);
-            this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(161, 15);
-            this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem11
-            // 
-            this.emptySpaceItem11.AllowHotTrack = false;
-            this.emptySpaceItem11.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(39, 44);
-            this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem12
-            // 
-            this.emptySpaceItem12.AllowHotTrack = false;
-            this.emptySpaceItem12.Location = new System.Drawing.Point(0, 81);
-            this.emptySpaceItem12.Name = "emptySpaceItem12";
-            this.emptySpaceItem12.Size = new System.Drawing.Size(161, 25);
-            this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // imageCollectionBackupView
             // 
             this.imageCollectionBackupView.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionBackupView.ImageStream")));
@@ -755,25 +778,6 @@
             this.imageCollectionBackupView.Images.SetKeyName(1, "time_16x16.png");
             this.imageCollectionBackupView.InsertGalleryImage("close_16x16.png", "office2013/actions/close_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/close_16x16.png"), 2);
             this.imageCollectionBackupView.Images.SetKeyName(2, "close_16x16.png");
-            // 
-            // simpleButtonBrowse
-            // 
-            this.simpleButtonBrowse.Location = new System.Drawing.Point(429, 242);
-            this.simpleButtonBrowse.Name = "simpleButtonBrowse";
-            this.simpleButtonBrowse.Size = new System.Drawing.Size(76, 22);
-            this.simpleButtonBrowse.StyleController = this.lciBackupGeneral;
-            this.simpleButtonBrowse.TabIndex = 9;
-            this.simpleButtonBrowse.Text = "Browse";
-            this.simpleButtonBrowse.Visible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.simpleButtonBrowse;
-            this.layoutControlItem1.Location = new System.Drawing.Point(405, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(80, 26);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
             // 
             // BackupView
             // 
@@ -793,8 +797,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgConnectionGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciServerName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciConnectionName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciCurrentUser)).EndInit();
             this.accordianProgressContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lcProgressPanel)).EndInit();
+            this.lcProgressPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEditProgressStatus.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControlDatabaseBackup.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgProgressPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcProgressStatusImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciBackupProgressBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcBackupWindow)).EndInit();
             this.lcBackupWindow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrameBackupWindow)).EndInit();
@@ -816,6 +831,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupDestination)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciBackupPath)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             this.navigationPageMediaOptions.ResumeLayout(false);
@@ -830,19 +846,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciOkButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcProgressPanel)).EndInit();
-            this.lcProgressPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lcgProgressPanel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBarControlDatabaseBackup.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciBackupProgressBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEditProgressStatus.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcProgressStatusImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionBackupView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -887,10 +891,10 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
         private DevExpress.XtraLayout.LayoutControlItem lciOkButton;
-        private DevExpress.XtraEditors.LabelControl labelControlConnectionName;
+        private DevExpress.XtraEditors.LabelControl labelControlCurrentUser;
         private DevExpress.XtraEditors.LabelControl labelControlServerName;
         private DevExpress.XtraLayout.LayoutControlItem lciServerName;
-        private DevExpress.XtraLayout.LayoutControlItem lciConnectionName;
+        private DevExpress.XtraLayout.LayoutControlItem lciCurrentUser;
         private DevExpress.XtraEditors.TextEdit textEditBackupPath;
         private DevExpress.XtraLayout.LayoutControlGroup lcgBackupDestination;
         private DevExpress.XtraLayout.LayoutControlItem lciBackupPath;
