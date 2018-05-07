@@ -45,6 +45,9 @@ namespace Databvase_Winforms.Views
 
             BackupProcess.Complete += BackupProcessOnComplete;
             BackupProcess.PercentComplete += BackupProcessOnPercentComplete;
+
+            radioGroupBackupToExisting.SelectedIndexChanged += RadioGroupBackupToExistingOnSelectedIndexChanged;
+            radioGroupBackupNewMediaSet.SelectedIndexChanged += RadioGroupBackupNewMediaSetOnSelectedIndexChanged;
         }
 
 
@@ -177,6 +180,27 @@ namespace Databvase_Winforms.Views
                     break;
                 }
             }
+        }
+
+
+        private void RadioGroupBackupToExistingOnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            radioGroupBackupNewMediaSet.SelectedIndex = -1;
+            textEditNewMediaSetName.Enabled = false;
+            memoEditNewMediaSetDescription.Enabled = false;
+            radioGroupAppendOrOverwriteBackupSet.Enabled = true;
+            checkEditMediaSetName.Enabled = true;
+            textEditMediaSetName.Enabled = true;
+        }
+
+        private void RadioGroupBackupNewMediaSetOnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            radioGroupBackupToExisting.SelectedIndex = -1;
+            textEditNewMediaSetName.Enabled = true;
+            memoEditNewMediaSetDescription.Enabled = true;
+            radioGroupAppendOrOverwriteBackupSet.Enabled = false;
+            checkEditMediaSetName.Enabled = false;
+            textEditMediaSetName.Enabled = false;
         }
     }
 }
