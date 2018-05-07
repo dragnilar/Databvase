@@ -1407,7 +1407,7 @@ namespace Databvase_Winforms.Views
             // mvvmContextBackupView
             // 
             this.mvvmContextBackupView.ContainerControl = this;
-            this.mvvmContextBackupView.ViewModelType = typeof(BackupViewModel);
+            this.mvvmContextBackupView.ViewModelType = typeof(Databvase_Winforms.View_Models.BackupViewModel);
             // 
             // BackupView
             // 

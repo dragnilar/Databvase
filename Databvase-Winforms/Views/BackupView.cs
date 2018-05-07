@@ -90,7 +90,10 @@ namespace Databvase_Winforms.Views
             SetupDatabasesComboBox();
             SetupRecoveryModel();
             SetupBackupType();
+            SetupRadioGroups();
         }
+
+
 
         private void SetServerNamesOnPanel()
         {
@@ -116,6 +119,15 @@ namespace Databvase_Winforms.Views
             comboBoxEditBackupType.Properties.Items.Add("Full");
             comboBoxEditBackupType.Properties.Items.Add("Differential");
             comboBoxEditBackupType.SelectedItem = "Full";
+        }
+
+        private void SetupRadioGroups()
+        {
+            radioGroupBackupToExisting.SelectedIndex = 0;
+            radioGroupBackupNewMediaSet.SelectedIndex = -1;
+            textEditNewMediaSetName.Enabled = false;
+            memoEditNewMediaSetDescription.Enabled = false;
+
         }
 
         private void SimpleButtonCancelOnClick(object sender, EventArgs e)
@@ -188,22 +200,30 @@ namespace Databvase_Winforms.Views
 
         private void RadioGroupBackupToExistingOnSelectedIndexChanged(object sender, EventArgs e)
         {
-            radioGroupBackupNewMediaSet.SelectedIndex = -1;
-            textEditNewMediaSetName.Enabled = false;
-            memoEditNewMediaSetDescription.Enabled = false;
-            radioGroupAppendOrOverwriteBackupSet.Enabled = true;
-            checkEditMediaSetName.Enabled = true;
-            textEditMediaSetName.Enabled = true;
+            if (radioGroupBackupToExisting.SelectedIndex == 0)
+            {
+                radioGroupBackupNewMediaSet.SelectedIndex = -1;
+                textEditNewMediaSetName.Enabled = false;
+                memoEditNewMediaSetDescription.Enabled = false;
+                radioGroupAppendOrOverwriteBackupSet.Enabled = true;
+                checkEditMediaSetName.Enabled = true;
+                textEditMediaSetName.Enabled = true;
+            }
+
         }
 
         private void RadioGroupBackupNewMediaSetOnSelectedIndexChanged(object sender, EventArgs e)
         {
-            radioGroupBackupToExisting.SelectedIndex = -1;
-            textEditNewMediaSetName.Enabled = true;
-            memoEditNewMediaSetDescription.Enabled = true;
-            radioGroupAppendOrOverwriteBackupSet.Enabled = false;
-            checkEditMediaSetName.Enabled = false;
-            textEditMediaSetName.Enabled = false;
+            if (radioGroupBackupNewMediaSet.SelectedIndex == 0)
+            {
+                radioGroupBackupToExisting.SelectedIndex = -1;
+                textEditNewMediaSetName.Enabled = true;
+                memoEditNewMediaSetDescription.Enabled = true;
+                radioGroupAppendOrOverwriteBackupSet.Enabled = false;
+                checkEditMediaSetName.Enabled = false;
+                textEditMediaSetName.Enabled = false;
+            }
+
         }
 
         void InitializeBindings()

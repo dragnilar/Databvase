@@ -305,6 +305,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\QueryBuilderService.cs" />
+    <Compile Include="Services\Window Dialog Services\BackupViewService.cs" />
     <Compile Include="Services\Window Dialog Services\ConnectionWindowService.cs" />
     <Compile Include="Services\Window Dialog Services\FontDialogService.cs" />
     <Compile Include="Services\ScriptGeneratorService.cs" />

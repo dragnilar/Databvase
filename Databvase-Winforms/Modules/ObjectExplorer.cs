@@ -6,6 +6,7 @@ using Databvase_Winforms.Annotations;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Models.Data_Providers;
+using Databvase_Winforms.Services.Window_Dialog_Services;
 using Databvase_Winforms.Views;
 using Databvase_Winforms.View_Models;
 using DevExpress.Utils.MVVM;
@@ -37,19 +38,12 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
             treeListObjExp.NodeChanged += TreeListObjExpOnNodeChanged;
-            barButtonItemCreateDatabaseBackup.ItemClick += BarButtonItemCreateDatabaseBackupOnItemClick;
-        }
-
-        private void BarButtonItemCreateDatabaseBackupOnItemClick(object sender, ItemClickEventArgs e)
-        {
-            var backupWindow = new BackupView();
-            backupWindow.StartPosition = FormStartPosition.CenterScreen;
-            backupWindow.Show();
         }
 
         private void RegisterServices()
         {
             mvvmContextObjectExplorer.RegisterService(SplashScreenService.Create(splashScreenManagerObjectExplorer));
+            mvvmContextObjectExplorer.RegisterService(new BackupViewService());
         }
 
         private void CreatePopUpActions()
@@ -154,7 +148,7 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemViewFunction, x => x.ScriptAlterForObjectExplorerData());
             fluent.BindCommand(barButtonItemNewQuery, x => x.NewQueryScript());
             fluent.BindCommand(barButtonItemCopyFullName, x=>x.CopyNameCell());
-            //fluent.BindCommand(barButtonItemCreateDatabaseBackup, x => x.BackupDatabase());
+            fluent.BindCommand(barButtonItemCreateDatabaseBackup, x => x.ShowBackupView());
             fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);
         }
 

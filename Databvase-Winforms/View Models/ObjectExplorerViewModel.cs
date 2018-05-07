@@ -10,7 +10,8 @@ using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
 using Databvase_Winforms.Models.Data_Providers;
 using Databvase_Winforms.Services;
-using DevExpress.Mvvm;
+ using Databvase_Winforms.Services.Window_Dialog_Services;
+ using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using DevExpress.XtraTreeList;
@@ -29,6 +30,7 @@ namespace Databvase_Winforms.View_Models
         public virtual BindingList<ObjectExplorerNode> ObjectExplorerSource { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
+        protected IBackupViewService BackupViewService => this.GetService<IBackupViewService>();
         public virtual ObjectExplorerNode FocusedNode { get; set; }
 
         public ObjectExplorerViewModel()
@@ -79,30 +81,9 @@ namespace Databvase_Winforms.View_Models
             Clipboard.SetDataObject(FocusedNode.FullName);
         }
 
-        public void BackupDatabase()
+        public void ShowBackupView()
         {
-            //var database = FocusedNode.GetDatabaseFromNode();
-
-
-            //if (database != null)
-            //{
-            //    var backupProcess = new Backup();
-            //    backupProcess.Action = BackupActionType.Database;
-            //    backupProcess.Database = database.Name;
-            //    backupProcess.Devices.AddDevice(@"C:\Temp\Test.bak", DeviceType.File);
-            //    backupProcess.BackupSetName = "Test Backup";
-            //    backupProcess.BackupSetDescription = "Test Backup - This Is A Test";
-            //    backupProcess.Initialize = false;
-                
-            //    ShowWaitMessage();
-            //    backupProcess.SqlBackup(database.Parent);
-            //    KillWaitMessage();
-            //    MessageBoxService.ShowMessage(@"Backup Created At C:\Temp\Test.bak!");
-            //}
-            //else
-            //{
-            //    MessageBoxService.ShowMessage("No database was found to backup... odd.");
-            //}
+            BackupViewService.Show();
         }
 
         #region Object Explorer On Demand Data Methods
