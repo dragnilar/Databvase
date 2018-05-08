@@ -8,6 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.View_Models;
 using DevExpress.XtraEditors;
@@ -202,7 +203,13 @@ namespace Databvase_Winforms.Views
 
         private void SimpleButtonBrowseOnClick(object sender, EventArgs e)
         {
+            //TODO - Get backup path(s) for current database
             XtraDialog.Show(new ServerFolderExplorer(), "Test", MessageBoxButtons.OKCancel); //TODO replace with a window that returns results
+        }
+
+        private void GetBackupPaths()
+        {
+            //TODO - Need to enum the backup sets and return them to some kind of list or grid...
         }
 
 
@@ -235,7 +242,7 @@ namespace Databvase_Winforms.Views
 
         }
 
-        void InitializeBindings()
+        void InitializeBindings() 
         {
             var fluent = mvvmContextBackupView.OfType<BackupViewModel>();
         }
