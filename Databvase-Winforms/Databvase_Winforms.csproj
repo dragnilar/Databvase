@@ -296,6 +296,12 @@
     <Compile Include="Modules\ObjectExplorer.Designer.cs">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ServerFolderExplorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ServerFolderExplorer.Designer.cs">
+      <DependentUpon>ServerFolderExplorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\TextEditorFontEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -387,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\QueryControl.resx">
       <DependentUpon>QueryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ServerFolderExplorer.resx">
+      <DependentUpon>ServerFolderExplorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\TextEditorFontEdit.resx">
       <DependentUpon>TextEditorFontEdit.cs</DependentUpon>

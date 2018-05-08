@@ -8,6 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Databvase_Winforms.Modules;
 using Databvase_Winforms.View_Models;
 using DevExpress.XtraEditors;
 using Microsoft.SqlServer.Management.Common;
@@ -43,6 +44,7 @@ namespace Databvase_Winforms.Views
 
             simpleButtonOK.Click += SimpleButtonOkOnClick;
             simpleButtonCancel.Click += SimpleButtonCancelOnClick;
+            simpleButtonBrowse.Click += SimpleButtonBrowseOnClick;
 
             comboBoxEditDatabaseList.EditValueChanged += ComboBoxEditDatabaseListOnEditValueChanged;
 
@@ -52,6 +54,7 @@ namespace Databvase_Winforms.Views
             radioGroupBackupToExisting.SelectedIndexChanged += RadioGroupBackupToExistingOnSelectedIndexChanged;
             radioGroupBackupNewMediaSet.SelectedIndexChanged += RadioGroupBackupNewMediaSetOnSelectedIndexChanged;
         }
+
 
 
         private void BackupProcessOnPercentComplete(object sender, PercentCompleteEventArgs e)
@@ -174,7 +177,7 @@ namespace Databvase_Winforms.Views
 
         private bool GetBackupType()
         {
-            return comboBoxEditBackupType.SelectedItem != "Full";
+            return (string) comboBoxEditBackupType.SelectedItem != "Full";
         }
 
         private void ComboBoxEditDatabaseListOnEditValueChanged(object sender, EventArgs e)
@@ -196,6 +199,12 @@ namespace Databvase_Winforms.Views
                 }
             }
         }
+
+        private void SimpleButtonBrowseOnClick(object sender, EventArgs e)
+        {
+            XtraDialog.Show(new ServerFolderExplorer(), "Test", MessageBoxButtons.OKCancel); //TODO replace with a window that returns results
+        }
+
 
 
         private void RadioGroupBackupToExistingOnSelectedIndexChanged(object sender, EventArgs e)
