@@ -2,6 +2,7 @@
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.View_Models;
 using DevExpress.XtraTreeList;
@@ -17,6 +18,7 @@ namespace Databvase_Winforms.Dialogs
     /// </summary>
     public partial class ServerFolderExplorer : DevExpress.XtraEditors.XtraForm
     {
+        //TODO - Reactor more of this into the view model
         public ServerFolderExplorer()
         {
             InitializeComponent();
@@ -30,9 +32,13 @@ namespace Databvase_Winforms.Dialogs
         {
             treeListServerFolderExplorer.BeforeExpand += TreeListServerFolderExplorerOnBeforeExpand;
             treeListServerFolderExplorer.MouseDown += TreeListServerFolderExplorerOnMouseDown;
-            textEditFileName.EditValueChanged += TextEditFileNameOnEditValueChanged;
+            Shown += OnShown;
         }
 
+        private void OnShown(object sender, EventArgs e)
+        {
+            simpleButtonSave.Enabled = false;
+        }
 
         private void InitializeServerTreeAndGetDrives()
         {
@@ -114,40 +120,59 @@ namespace Databvase_Winforms.Dialogs
 
         #endregion
 
+
         private void TreeListServerFolderExplorerOnMouseDown(object sender, MouseEventArgs e)
         {
             var treeList = sender as TreeList;
-
             var info = treeList?.CalcHitInfo(e.Location);
             if (info?.Node != null)
             {
-                CheckIfNodeIsFileAndSendToTextEdit(info.Node);
+                CheckIfNodeIsFileAndPopulateFileStrings(info.Node);
             }
+            
         }
 
-        private void CheckIfNodeIsFileAndSendToTextEdit(TreeListNode infoNode)
+        private void CheckIfNodeIsFileAndPopulateFileStrings(TreeListNode infoNode)
         {
+            string selectedFolderPath;
+
             if (infoNode.ParentNode == null)
             {
-                textEditSelectedPath.Text = infoNode.GetValue(treeListColumnFullPath) + @"\";
+                selectedFolderPath = infoNode.GetValue(1) + @"\";
             }
             else
             {
-                textEditSelectedPath.Text = infoNode.GetValue(treeListColumnFullPath).ToString();
+                selectedFolderPath = infoNode.GetValue(1).ToString();
             }
-            
-            var isFile = (bool)infoNode.GetValue(treeListColumnIsFile);
-            textEditFileName.Text = isFile ? infoNode.GetValue(treeListColumnName).ToString() : string.Empty;
-        }
 
-        private void TextEditFileNameOnEditValueChanged(object sender, EventArgs e)
-        {
-            simpleButtonOK.Enabled = !string.IsNullOrEmpty(textEditFileName.Text.Trim());
+            var isFile = (bool)infoNode.GetValue(2);
+            var selectedBackupFilePath = isFile ? infoNode.GetValue(0).ToString() : string.Empty;
+
+            new ServerExplorerNodeChangedMessage(selectedFolderPath, selectedBackupFilePath);
         }
 
         void InitializeBindings()
         {
             var fluent = mvvmContextServerFolderExplorer.OfType<ServerFolderExplorerViewModel>();
+            fluent.SetBinding(textEditFileName, x => x.Text, y => y.SelectedBackupFilePath);
+            fluent.SetBinding(textEditSelectedPath, x => x.Text, y => y.SelectedFolderPath);
+            fluent.BindCommand(simpleButtonSave, x=>x.SaveAndClose());
+            fluent.BindCommand(simpleButtonCancel, x=>x.Close());
+            fluent.SetTrigger(x => x.State, state =>
+            {
+                switch (state)
+                {
+                    case ServerFolderExplorerViewModel.WindowState.Open:
+                        simpleButtonSave.Enabled = false;
+                        break;
+                    case ServerFolderExplorerViewModel.WindowState.Close:
+                        Close();
+                        break;
+                    case ServerFolderExplorerViewModel.WindowState.ReadyToSave:
+                        simpleButtonSave.Enabled = true;
+                        break;
+                }
+            });
         }
     }
 }

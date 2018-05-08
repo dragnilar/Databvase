@@ -204,7 +204,10 @@ namespace Databvase_Winforms.Views
         private void SimpleButtonBrowseOnClick(object sender, EventArgs e)
         {
             //TODO - Get backup path(s) for current database
-            XtraDialog.Show(new ServerFolderExplorer(), "Test", MessageBoxButtons.OKCancel); //TODO replace with a window that returns results
+            var serverFolderExp = new ServerFolderExplorer();
+            serverFolderExp.StartPosition = FormStartPosition.CenterParent;
+            serverFolderExp.ShowDialog();
+            serverFolderExp.Dispose();
         }
 
         private void GetBackupPaths()

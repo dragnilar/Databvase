@@ -34,7 +34,6 @@ namespace Databvase_Winforms.Dialogs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerFolderExplorer));
             this.lcServerFolderExplorer = new DevExpress.XtraLayout.LayoutControl();
             this.simpleButtonCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButtonOK = new DevExpress.XtraEditors.SimpleButton();
             this.textEditFileName = new DevExpress.XtraEditors.TextEdit();
             this.textEditSelectedPath = new DevExpress.XtraEditors.TextEdit();
             this.treeListServerFolderExplorer = new DevExpress.XtraTreeList.TreeList();
@@ -45,12 +44,13 @@ namespace Databvase_Winforms.Dialogs
             this.lciServerFolderExplorerTree = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciSelectedPath = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciFileName = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciOKButton = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciCancel = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.mvvmContextServerFolderExplorer = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.simpleButtonSave = new DevExpress.XtraEditors.SimpleButton();
+            this.lcSaveButton = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcServerFolderExplorer)).BeginInit();
             this.lcServerFolderExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEditFileName.Properties)).BeginInit();
@@ -60,18 +60,18 @@ namespace Databvase_Winforms.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.lciServerFolderExplorerTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSelectedPath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciFileName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciOKButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextServerFolderExplorer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcSaveButton)).BeginInit();
             this.SuspendLayout();
             // 
             // lcServerFolderExplorer
             // 
+            this.lcServerFolderExplorer.Controls.Add(this.simpleButtonSave);
             this.lcServerFolderExplorer.Controls.Add(this.simpleButtonCancel);
-            this.lcServerFolderExplorer.Controls.Add(this.simpleButtonOK);
             this.lcServerFolderExplorer.Controls.Add(this.textEditFileName);
             this.lcServerFolderExplorer.Controls.Add(this.textEditSelectedPath);
             this.lcServerFolderExplorer.Controls.Add(this.treeListServerFolderExplorer);
@@ -91,17 +91,6 @@ namespace Databvase_Winforms.Dialogs
             this.simpleButtonCancel.StyleController = this.lcServerFolderExplorer;
             this.simpleButtonCancel.TabIndex = 8;
             this.simpleButtonCancel.Text = "Cancel";
-            this.simpleButtonCancel.Visible = false;
-            // 
-            // simpleButtonOK
-            // 
-            this.simpleButtonOK.Location = new System.Drawing.Point(179, 408);
-            this.simpleButtonOK.Name = "simpleButtonOK";
-            this.simpleButtonOK.Size = new System.Drawing.Size(81, 22);
-            this.simpleButtonOK.StyleController = this.lcServerFolderExplorer;
-            this.simpleButtonOK.TabIndex = 7;
-            this.simpleButtonOK.Text = "OK";
-            this.simpleButtonOK.Visible = false;
             // 
             // textEditFileName
             // 
@@ -115,7 +104,6 @@ namespace Databvase_Winforms.Dialogs
             // 
             this.textEditSelectedPath.Location = new System.Drawing.Point(88, 360);
             this.textEditSelectedPath.Name = "textEditSelectedPath";
-            this.textEditSelectedPath.Properties.ReadOnly = true;
             this.textEditSelectedPath.Size = new System.Drawing.Size(285, 20);
             this.textEditSelectedPath.StyleController = this.lcServerFolderExplorer;
             this.textEditSelectedPath.TabIndex = 5;
@@ -165,11 +153,11 @@ namespace Databvase_Winforms.Dialogs
             this.lciServerFolderExplorerTree,
             this.lciSelectedPath,
             this.lciFileName,
-            this.lciOKButton,
             this.lciCancel,
             this.emptySpaceItem1,
             this.emptySpaceItem2,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.lcSaveButton});
             this.lcgServerFolderExplorer.Name = "lcgServerFolderExplorer";
             this.lcgServerFolderExplorer.Size = new System.Drawing.Size(385, 442);
             this.lcgServerFolderExplorer.TextVisible = false;
@@ -202,15 +190,6 @@ namespace Databvase_Winforms.Dialogs
             this.lciFileName.Text = "File Name: ";
             this.lciFileName.TextSize = new System.Drawing.Size(73, 13);
             // 
-            // lciOKButton
-            // 
-            this.lciOKButton.Control = this.simpleButtonOK;
-            this.lciOKButton.Location = new System.Drawing.Point(167, 396);
-            this.lciOKButton.Name = "lciOKButton";
-            this.lciOKButton.Size = new System.Drawing.Size(85, 26);
-            this.lciOKButton.TextSize = new System.Drawing.Size(0, 0);
-            this.lciOKButton.TextVisible = false;
-            // 
             // lciCancel
             // 
             this.lciCancel.Control = this.simpleButtonCancel;
@@ -231,9 +210,9 @@ namespace Databvase_Winforms.Dialogs
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(252, 396);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(248, 396);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(23, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(27, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
@@ -247,7 +226,25 @@ namespace Databvase_Winforms.Dialogs
             // mvvmContextServerFolderExplorer
             // 
             this.mvvmContextServerFolderExplorer.ContainerControl = this;
-            this.mvvmContextServerFolderExplorer.ViewModelType = typeof(ServerFolderExplorerViewModel);
+            this.mvvmContextServerFolderExplorer.ViewModelType = typeof(Databvase_Winforms.View_Models.ServerFolderExplorerViewModel);
+            // 
+            // simpleButtonSave
+            // 
+            this.simpleButtonSave.Location = new System.Drawing.Point(179, 408);
+            this.simpleButtonSave.Name = "simpleButtonSave";
+            this.simpleButtonSave.Size = new System.Drawing.Size(77, 22);
+            this.simpleButtonSave.StyleController = this.lcServerFolderExplorer;
+            this.simpleButtonSave.TabIndex = 9;
+            this.simpleButtonSave.Text = "OK";
+            // 
+            // lcSaveButton
+            // 
+            this.lcSaveButton.Control = this.simpleButtonSave;
+            this.lcSaveButton.Location = new System.Drawing.Point(167, 396);
+            this.lcSaveButton.Name = "lcSaveButton";
+            this.lcSaveButton.Size = new System.Drawing.Size(81, 26);
+            this.lcSaveButton.TextSize = new System.Drawing.Size(0, 0);
+            this.lcSaveButton.TextVisible = false;
             // 
             // ServerFolderExplorer
             // 
@@ -268,12 +265,12 @@ namespace Databvase_Winforms.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.lciServerFolderExplorerTree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciSelectedPath)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciFileName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciOKButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextServerFolderExplorer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcSaveButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,12 +282,10 @@ namespace Databvase_Winforms.Dialogs
         private DevExpress.XtraTreeList.TreeList treeListServerFolderExplorer;
         private DevExpress.XtraLayout.LayoutControlItem lciServerFolderExplorerTree;
         private DevExpress.XtraEditors.SimpleButton simpleButtonCancel;
-        private DevExpress.XtraEditors.SimpleButton simpleButtonOK;
         private DevExpress.XtraEditors.TextEdit textEditFileName;
         private DevExpress.XtraEditors.TextEdit textEditSelectedPath;
         private DevExpress.XtraLayout.LayoutControlItem lciSelectedPath;
         private DevExpress.XtraLayout.LayoutControlItem lciFileName;
-        private DevExpress.XtraLayout.LayoutControlItem lciOKButton;
         private DevExpress.XtraLayout.LayoutControlItem lciCancel;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
@@ -299,5 +294,7 @@ namespace Databvase_Winforms.Dialogs
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullPath;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnIsFile;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextServerFolderExplorer;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonSave;
+        private DevExpress.XtraLayout.LayoutControlItem lcSaveButton;
     }
 }

@@ -272,12 +272,15 @@
       <DependentUpon>RenameTabDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals\GlobalStrings.cs" />
+    <Compile Include="Messages\BackupPathMessage.cs" />
     <Compile Include="Messages\DisconnectInstanceMessage.cs" />
     <Compile Include="Messages\InstanceConnectedMessage.cs" />
     <Compile Include="Messages\InstanceNameChangeMessage.cs" />
     <Compile Include="Messages\NewScriptMessage.cs" />
+    <Compile Include="Messages\ServerExplorerNodeChangedMessage.cs" />
     <Compile Include="Messages\SettingsUpdatedMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
+    <Compile Include="Models\Data Providers\ServerExplorerNode.cs" />
     <Compile Include="Models\InstanceAndDatabaseTracker.cs" />
     <Compile Include="Models\Data Providers\ObjectExplorerDataSource.cs" />
     <Compile Include="Models\Data Providers\ObjectExplorerNode.cs" />
