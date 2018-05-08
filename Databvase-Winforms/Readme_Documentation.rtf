@@ -1,14 +1,39 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Tahoma;}{\f1\fnil\fcharset0 MS Sans Serif;}{\f2\fnil\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green77\blue187;\red0\green0\blue255;}
+{\colortbl ;\red0\green0\blue255;}
 {\*\generator Riched20 10.0.16299}\viewkind4\uc1 
 \pard\ul\f0\fs44\lang1033 DATABVASE!!!! ReadMe\fs32\par
 \par
-\ulnone\fs16 Github Page: {\cf1\ul{\field{\*\fldinst{HYPERLINK https://github.com/dragnilar/Databvase }}{\fldrslt{https://github.com/dragnilar/Databvase}}}}\ul\f0\fs16\par
+\ulnone\fs16 Github Page: {{\field{\*\fldinst{HYPERLINK https://github.com/dragnilar/Databvase }}{\fldrslt{https://github.com/dragnilar/Databvase\ul0\cf0}}}}\ul\f0\fs16\par
 \par
 \par
-\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 8)\ul\par
+\ulnone\fs24 Current Version 1.0.0.0 (Alpha) (Revision 9)\ul\par
 \par
 Release Notes:\par
+\par
+\b\fs16 Rev 9 Changes\b0\fs24\par
+\ulnone\fs16 - Fixed various bugs with performance when creating new query tabs, syntax highlighting errors and also further increased the performance of the object explorer.\par
+\par
+- Added some more syntax highlighting colors (currently not configurable).\par
+\par
+- Fixed some bugs with the text color changing not applying correctly and/or causing strange errors.\par
+\par
+- The object explorer now seperates system databases from user database into seperate folders.\par
+\par
+- Added ability to script modify and alter functions and stored procedures.\par
+\par
+- Added ability to create database backups, much like SSMS. Note that backups will be created on the same computer as the server where SQL is installed, NOT on the machine you are on (unless of course your SQL instance is on the same machine). Note that this is a work in progress, so some functionality is not implemented. \par
+\par
+- Along with the backup wizard, a file browser has been added that allows you to view folders and backup files on the computer that SQL is installed.\par
+\par
+- Added a query builder that allows you to construct various select statements via visual aid.\par
+\par
+- Added a splash screen and improved the appearance of the connection wizard. \par
+\par
+- Added option to display the connection wizard on startup.\par
+\par
+- Fixed some spelling mistakes.\par
+\par
+- Removed some DevExpress localization files that were adding bloat to the executable.\ul\fs24\par
 \par
 \b\fs16 Rev 8 Changes\fs24\par
 \ulnone\b0\fs16 - Fixed some bugs related to disconnecting and changing the focused instance/database.\par
@@ -181,8 +206,17 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f3\'B7\tab}Allows you to search using the find panel (CTRL + F or right click the column header and select show find panel).\par
 {\pntext\f3\'B7\tab}Displays current databases/tables/columns that you can see in your current instances.\par
 {\pntext\f3\'B7\tab}Able to right click and copy the name of the currently focused object.\par
-{\pntext\f3\'B7\tab}You can script statements to a new query pane via the right click context menu (I.E. select * from [tablename].\par
+{\pntext\f3\'B7\tab}Allows you to run the backup wizard by right clicking on a database node and selecting backup.\par
+{\pntext\f3\'B7\tab}You can script statements to a new query pane via the right click context menu (I.E. select * from [tablename].)\par
 {\pntext\f3\'B7\tab}Data for each node is loaded on demand (I.E. When you click on a database, only the table names are loaded, when you click on a table, the columns for that specific table are loaded).\par
+
+\pard\par
+\b Backup Wizard\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\b0 Much like SSMS, you can create database backups with Databvase. \par
+{\pntext\f3\'B7\tab}Backup paths can either be manually typed in or you can select a path and file locationf or the backup using a tree list view file explorer that lets you see folders on the computer where SQL server is installed.\par
+{\pntext\f3\'B7\tab}NOTE that backups HAVE to be created on the computer where SQL is installed.\par
+{\pntext\f3\'B7\tab}You can configure various aspects of the backup such as expiration date, differental/full, etc.\par
 
 \pard\par
 \b Querying\par
@@ -198,6 +232,7 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f0 iv.\tab}Queries can be executed by either clicking an execute button or by hitting F5.\par
 {\pntext\f0 v.\tab}Able to run part of a query by highlighting it and hitting F5.\par
 {\pntext\f0 vi.\tab}Queries will (to a limited degree) factor in whether or not the text is commented out and if it is it will not run.\par
+{\pntext\f0 vii.\tab}Queries can be created via the query builder tool by selecting a database and then clicking the query builder button. Note that if you do not have a database currently focused, you will get a message telling you to select a database first. This is necessary since the query builder needs a database connection to work.\par
 
 \pard\par
 
@@ -257,7 +292,7 @@ Note: this setting requires an application restart.\ul\fs24\par
 {\pntext\f0 ii.\tab}\b0 Query results can be exported to a variety of file formats via either the print preview/tool or via the export grid drop down on the ribbon (note that export time depends on the amount of data shown in the grid and also the file format selection. Also be aware that certain file formats have limitations for export, such as regular XLS having a limtiation of 65,000 rows).\par
 
 \pard\par
-NOTE: Pretty much all dependencies are embedded in the executable file to keep the package small. This means that the application should have everything it needs to run, assuming .NET 4.7 is installed.\par
+NOTE: Pretty much all dependencies are embedded in the executable file to keep the package small. This means that the application should have everything it needs to run, assuming .NET 4.7.1  is installed.\par
 \par
 \ul\par
 Known Bugs/ Limitations\ulnone\par
