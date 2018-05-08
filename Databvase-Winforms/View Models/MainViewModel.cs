@@ -25,6 +25,7 @@ namespace Databvase_Winforms.View_Models
         public IDocumentManagerService DocumentManagerService => this.GetRequiredService<IDocumentManagerService>();
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
+        protected IBackupViewService BackupViewService => this.GetService<IBackupViewService>();
         public virtual int NumberOfQueries { get; set; }
         public virtual Color TextEditorBackgroundColor { get; set; }
         public virtual Color TextEditorLineNumberColor { get; set; }
@@ -149,6 +150,18 @@ namespace Databvase_Winforms.View_Models
                 return;
             }
             this.GetService<IQueryBuilderService>().ShowQueryBuilder();
+        }
+
+        public void ShowBackupWizard()
+        {
+            if (App.Connection.InstanceTracker.CurrentInstance == null)
+            {
+                MessageBoxService.ShowMessage("Please connect to an instance before attempting to perform a backup.",
+                    "No Instance Connected",
+                    MessageButton.OK, MessageIcon.Stop);
+                return;
+            }
+            BackupViewService.Show();
         }
 
         #region Skin Methods

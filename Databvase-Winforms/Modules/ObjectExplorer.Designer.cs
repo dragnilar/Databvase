@@ -54,12 +54,12 @@
             this.barButtonItemGenerateSelectTopStatement = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemViewFunction = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemAlterScript = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemCreateDatabaseBackup = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManagerObjectExplorer = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true, typeof(System.Windows.Forms.UserControl));
             this.popupMenuDatabase = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barButtonItemCreateDatabaseBackup = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -303,6 +303,13 @@
             this.barButtonItemAlterScript.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
             this.barButtonItemAlterScript.Name = "barButtonItemAlterScript";
             // 
+            // barButtonItemCreateDatabaseBackup
+            // 
+            this.barButtonItemCreateDatabaseBackup.Caption = "Create Database Backup";
+            this.barButtonItemCreateDatabaseBackup.Id = 9;
+            this.barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage")));
+            this.barButtonItemCreateDatabaseBackup.Name = "barButtonItemCreateDatabaseBackup";
+            // 
             // popupMenuTable
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -340,13 +347,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCreateDatabaseBackup)});
             this.popupMenuDatabase.Manager = this.barManagerObjectExplorer;
             this.popupMenuDatabase.Name = "popupMenuDatabase";
-            // 
-            // barButtonItemCreateDatabaseBackup
-            // 
-            this.barButtonItemCreateDatabaseBackup.Caption = "Create Database Backup";
-            this.barButtonItemCreateDatabaseBackup.Id = 9;
-            this.barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage")));
-            this.barButtonItemCreateDatabaseBackup.Name = "barButtonItemCreateDatabaseBackup";
             // 
             // ObjectExplorer
             // 

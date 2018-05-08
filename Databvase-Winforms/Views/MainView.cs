@@ -67,8 +67,10 @@ namespace Databvase_Winforms.Views
             mvvmContextMain.RegisterService(new TextEditorFontChangeService());
             mvvmContextMain.RegisterService(new ConnectionWindowService());
             mvvmContextMain.RegisterService(new QueryBuilderService());
+            mvvmContextMain.RegisterService(new BackupViewService());
             mvvmContextMain.RegisterService(App.Skins);
             mvvmContextMain.RegisterService(SplashScreenService.Create(splashScreenManagerMainWait));
+
         }
 
         private void Default_StyleChanged(object sender, EventArgs e)
@@ -143,6 +145,7 @@ namespace Databvase_Winforms.Views
             fluent.BindCommand(barButtonItemConnect, vm => vm.Connect());
             fluent.BindCommand(barButtonItemDisconnect, vm => vm.Disconnect());
             fluent.BindCommand(barButtonItemQueryBuilder, vm => vm.ShowQueryBuilder());
+            fluent.BindCommand(barButtonItemBackupWizard, vm => vm.ShowBackupWizard());
 
             fluent.SetTrigger(x => x.InstancesConnected, connectionsActive =>
             {

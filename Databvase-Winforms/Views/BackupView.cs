@@ -128,11 +128,11 @@ namespace Databvase_Winforms.Views
             var list = new List<string>();
             foreach (Database db in App.Connection.InstanceTracker.CurrentInstance.Databases) list.Add(db.Name);
             comboBoxEditDatabaseList.Properties.Items.AddRange(list);
-            comboBoxEditDatabaseList.SelectedItem = App.Connection.InstanceTracker.CurrentDatabase.Name;
+            comboBoxEditDatabaseList.SelectedItem = App.Connection.InstanceTracker.CurrentDatabase?.Name;
         }
         private void SetupRecoveryModel()
         {
-            textEditRecoveryModel.Text = App.Connection.InstanceTracker.CurrentDatabase.RecoveryModel.ToString();
+            textEditRecoveryModel.Text = App.Connection.InstanceTracker.CurrentDatabase?.RecoveryModel.ToString();
         }
 
         private void SetupBackupType()
@@ -167,6 +167,11 @@ namespace Databvase_Winforms.Views
             {
                 XtraMessageBox.Show("You must enter a backup path");
                 return;
+            }
+
+            if (comboBoxEditDatabaseList.SelectedIndex == -1)
+            {
+                XtraMessageBox.Show("You must select a database to backup");
             }
 
             try
