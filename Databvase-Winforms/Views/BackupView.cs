@@ -9,8 +9,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Databvase_Winforms.Dialogs;
+using Databvase_Winforms.Messages;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.View_Models;
+using DevExpress.Mvvm;
 using DevExpress.XtraEditors;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
@@ -30,7 +32,9 @@ namespace Databvase_Winforms.Views
             SetServerNamesOnPanel();
             if (!mvvmContextBackupView.IsDesignMode)
                 InitializeBindings();
+            RegisterMessages();
         }
+
 
 
 
@@ -104,6 +108,19 @@ namespace Databvase_Winforms.Views
             labelControlServerName.Text = App.Connection.InstanceTracker.CurrentInstance.Name;
             labelControlCurrentUser.Text =
                 App.Connection.InstanceTracker.CurrentInstance.ConnectionContext.TrueLogin;
+        }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<BackupPathMessage>(this, typeof(BackupPathMessage).Name, OnBackupPathReceived);
+        }
+
+        private void OnBackupPathReceived(BackupPathMessage message)
+        {
+            if (message != null)
+            {
+                textEditBackupPath.Text = message.BackupPath;
+            }
         }
 
         private void SetupDatabasesComboBox()
