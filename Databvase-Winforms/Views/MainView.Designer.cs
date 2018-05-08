@@ -47,6 +47,7 @@ namespace Databvase_Winforms.Views
             this.barEditItemTextEditorLineNumberColor = new DevExpress.XtraBars.BarEditItem();
             this.riColorPickEditTextEditorLineNumberColor = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.barButtonItemTextEditorFontSettings = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemQueryBuilder = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -64,7 +65,6 @@ namespace Databvase_Winforms.Views
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.splashScreenManagerMainWait = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true);
-            this.barButtonItemQueryBuilder = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
@@ -110,6 +110,7 @@ namespace Databvase_Winforms.Views
             this.riColorPickEditTextEditorLineNumberColor});
             this.ribbonControlMain.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlMain.Size = new System.Drawing.Size(1024, 162);
+            this.ribbonControlMain.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // skinRibbonGalleryBarItem1
             // 
@@ -213,6 +214,15 @@ namespace Databvase_Winforms.Views
             this.barButtonItemTextEditorFontSettings.Id = 17;
             this.barButtonItemTextEditorFontSettings.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemTextEditorFontSettings.ImageOptions.SvgImage")));
             this.barButtonItemTextEditorFontSettings.Name = "barButtonItemTextEditorFontSettings";
+            // 
+            // barButtonItemQueryBuilder
+            // 
+            this.barButtonItemQueryBuilder.Caption = "Query Builder";
+            this.barButtonItemQueryBuilder.Id = 18;
+            this.barButtonItemQueryBuilder.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemQueryBuilder.ImageOptions.Image")));
+            this.barButtonItemQueryBuilder.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemQueryBuilder.ImageOptions.LargeImage")));
+            this.barButtonItemQueryBuilder.Name = "barButtonItemQueryBuilder";
+            this.barButtonItemQueryBuilder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // ribbonPageDatabvase
             // 
@@ -355,15 +365,6 @@ namespace Databvase_Winforms.Views
             // splashScreenManagerMainWait
             // 
             this.splashScreenManagerMainWait.ClosingDelay = 500;
-            // 
-            // barButtonItemQueryBuilder
-            // 
-            this.barButtonItemQueryBuilder.Caption = "Query Builder";
-            this.barButtonItemQueryBuilder.Id = 18;
-            this.barButtonItemQueryBuilder.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemQueryBuilder.ImageOptions.Image")));
-            this.barButtonItemQueryBuilder.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemQueryBuilder.ImageOptions.LargeImage")));
-            this.barButtonItemQueryBuilder.Name = "barButtonItemQueryBuilder";
-            this.barButtonItemQueryBuilder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // MainView
             // 
