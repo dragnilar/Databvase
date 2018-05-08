@@ -4,8 +4,9 @@
 
 <u>Databvase</u> is a small, lightweight query tool, designed similarly to SQL Server Management Studio.  
 
-It is a hobby project, so do not expect it to be anywhere as nearly as powerful as SSMS. 
-Also expect it to have possible performance problems when compared to SSMS.
+This is a "fun" project, so do not expect this to have the same level of backing or development turn around as the likes of Microsoft or Jetbrains.
+
+Also expect this to have possible performance problems when compared to SSMS (for now at least). If you find performance problems, please open an issue or comment on a pre-existing one in the issues section.
 
 It primarily makes use of SMO and <a href="http://www.devexpress.com">DevExpress</a> to provide an experience that is close to SSMS in terms of basic functionality and
 also providing some features that SSMS does not provide by default.
@@ -17,12 +18,15 @@ Some of the features that it provides are:
 <li>Data grid filtering, grouping and data exporting to various file types.</li>
 <li>Flexible object explorer filtering.</li>
 <li>Ability to right click and generate basic select *, select top * scripts .</li>
+  <li>Ability to also script out alter and modify statements on views, stored procedures and functions.</li>
 <li>Ability to run simultanious queries on multiple databases within one instance.</li>
 <li>Like with SSMS, you can connect to multiple instances at once if need be to view multiple object explorer trees. </li>
 <li>The ability to run MOST queries (we say most becuase this needs more extensive testing).</li>
 <li>Dockable windows and object explorer. </li>
 <li>Syntax highlighting for most keywords (such as SELECT, DROP, etc.), comments and strings.</li>
-<li>A smaller hard drive footprint and faster download/install time than SSMS. Databvase is ~40-50 megs currently, SSMS 2017 is almost a full gigabyte for just the download.</li>
+<li>Query builder tool that allows you to construct complex select/join statements via a visual aid </li>
+<li>Backup wizard that lets you create database backups</li>
+<li>A smaller hard drive footprint and faster download/install time than SSMS. Databvase is ~40-56 megs currently, SSMS 2017 is almost a full gigabyte for just the download.</li>
 </ul>
 <br>
 <br>
@@ -60,7 +64,7 @@ Other dependencies:
 <li><a href='https://github.com/Fody/Costura'>Costura/Fody</a></li>
 <li><a href='https://github.com/Tyrrrz/Settings'>Tyrrrz.Settings</a></li>
 <li><a href='https://www.newtonsoft.com/json'>Newtonsoft.Json</a></li>
-<li>Micorsoft.SqlServer.Types</li>
-<li>Microsoft.SqlServer.SqlManagementObjects</li>
+<li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.Types/'>Micorsoft.SqlServer.Types</a></li>
+<li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.SqlManagementObjects'>Microsoft.SqlServer.SqlManagementObjects</a></li>
 </ul>
 
