@@ -23,7 +23,7 @@ namespace Databvase_Winforms.Services
 
         private IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
-        public bool CheckErrors(List<string> errorMessageList)
+        public bool CheckErrors(List<string> errorMessageList, string errorHeader)
         {
             if (!errorMessageList.Any())
             {
@@ -33,7 +33,7 @@ namespace Databvase_Winforms.Services
             var errorBuilder =
                 new StringBuilder("There are errors, please review them below: \n");
             foreach (var error in errorMessageList) errorBuilder.AppendLine(error);
-            MessageBoxService.ShowMessage(errorBuilder.ToString(), "Error(s) Creating Connection String",
+            MessageBoxService.ShowMessage(errorBuilder.ToString(),errorHeader ,
                 MessageButton.OK, MessageIcon.Error);
 
             return false;

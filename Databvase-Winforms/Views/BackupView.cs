@@ -1,44 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Messages;
-using Databvase_Winforms.Modules;
 using Databvase_Winforms.View_Models;
 using DevExpress.Mvvm;
+using DevExpress.Utils.MVVM;
 using DevExpress.XtraEditors;
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Smo;
+using DevExpress.XtraEditors.Controls;
 
 namespace Databvase_Winforms.Views
 {
-    public partial class BackupView : DevExpress.XtraEditors.XtraForm
+    public partial class BackupView : XtraForm
     {
-        Backup BackupProcess = new Backup();
-
-
         public BackupView()
         {
             InitializeComponent();
             HookupEvents();
             SetupControls();
-            SetServerNamesOnPanel();
             if (!mvvmContextBackupView.IsDesignMode)
                 InitializeBindings();
             RegisterMessages();
+            RegisterService();
         }
 
 
+        private void RegisterService()
+        {
+            MVVMContext.RegisterXtraMessageBoxService();
+        }
 
-
-        void HookupEvents()
+        private void HookupEvents()
         {
             accordianElementGeneral.Click += (sender, args) =>
                 navigationFrameBackupWindow.SelectedPage = navigationPageBackupGeneral;
@@ -47,68 +38,19 @@ namespace Databvase_Winforms.Views
             accordianElementBackupOptions.Click += (sender, args) =>
                 navigationFrameBackupWindow.SelectedPage = navigationPageBackupOptions;
 
-            simpleButtonOK.Click += SimpleButtonOkOnClick;
-            simpleButtonCancel.Click += SimpleButtonCancelOnClick;
             simpleButtonBrowse.Click += SimpleButtonBrowseOnClick;
-
-            comboBoxEditDatabaseList.EditValueChanged += ComboBoxEditDatabaseListOnEditValueChanged;
-
-            BackupProcess.Complete += BackupProcessOnComplete;
-            BackupProcess.PercentComplete += BackupProcessOnPercentComplete;
 
             radioGroupBackupToExisting.SelectedIndexChanged += RadioGroupBackupToExistingOnSelectedIndexChanged;
             radioGroupBackupNewMediaSet.SelectedIndexChanged += RadioGroupBackupNewMediaSetOnSelectedIndexChanged;
         }
 
 
-
-        private void BackupProcessOnPercentComplete(object sender, PercentCompleteEventArgs e)
-        {
-            pictureEditProgressStatus.Image = imageCollectionBackupView.Images[1];
-            progressBarControlDatabaseBackup.Properties.Step = e.Percent;
-            progressBarControlDatabaseBackup.PerformStep();
-            progressBarControlDatabaseBackup.Update();
-            
-        }
-
-        private void BackupProcessOnComplete(object sender, ServerMessageEventArgs e)
-        {
-            if (e.Error.Number == 3014)
-            {
-                XtraMessageBox.Show(e.Error.Message, "Backup Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pictureEditProgressStatus.Image = imageCollectionBackupView.Images[0];
-                lcProgressStatusImage.Text = "Complete";
-                Close();
-            }
-            else
-            {
-                XtraMessageBox.Show(e.Error.Message, "Backup Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                pictureEditProgressStatus.Image = imageCollectionBackupView.Images[2];
-                lcProgressStatusImage.Text = "Error";
-                progressBarControlDatabaseBackup.Properties.Step = 0;
-                progressBarControlDatabaseBackup.PerformStep();
-                progressBarControlDatabaseBackup.Update();
-                
-            }
-        }
-
-
         private void SetupControls()
         {
-            SetupDatabasesComboBox();
             SetupRecoveryModel();
-            SetupBackupType();
             SetupRadioGroups();
         }
 
-
-
-        private void SetServerNamesOnPanel()
-        {
-            labelControlServerName.Text = App.Connection.InstanceTracker.CurrentInstance.Name;
-            labelControlCurrentUser.Text =
-                App.Connection.InstanceTracker.CurrentInstance.ConnectionContext.TrueLogin;
-        }
 
         private void RegisterMessages()
         {
@@ -117,29 +59,12 @@ namespace Databvase_Winforms.Views
 
         private void OnBackupPathReceived(BackupPathMessage message)
         {
-            if (message != null)
-            {
-                textEditBackupPath.Text = message.BackupPath;
-            }
+            if (message != null) textEditBackupPath.Text = message.BackupPath;
         }
 
-        private void SetupDatabasesComboBox()
-        {
-            var list = new List<string>();
-            foreach (Database db in App.Connection.InstanceTracker.CurrentInstance.Databases) list.Add(db.Name);
-            comboBoxEditDatabaseList.Properties.Items.AddRange(list);
-            comboBoxEditDatabaseList.SelectedItem = App.Connection.InstanceTracker.CurrentDatabase?.Name;
-        }
         private void SetupRecoveryModel()
         {
             textEditRecoveryModel.Text = App.Connection.InstanceTracker.CurrentDatabase?.RecoveryModel.ToString();
-        }
-
-        private void SetupBackupType()
-        {
-            comboBoxEditBackupType.Properties.Items.Add("Full");
-            comboBoxEditBackupType.Properties.Items.Add("Differential");
-            comboBoxEditBackupType.SelectedItem = "Full";
         }
 
         private void SetupRadioGroups()
@@ -148,95 +73,15 @@ namespace Databvase_Winforms.Views
             radioGroupBackupNewMediaSet.SelectedIndex = -1;
             textEditNewMediaSetName.Enabled = false;
             memoEditNewMediaSetDescription.Enabled = false;
-
-        }
-
-        private void SimpleButtonCancelOnClick(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void SimpleButtonOkOnClick(object sender, EventArgs e)
-        {
-            RunBackup();
-        }
-
-        private void RunBackup()
-        {
-            if (string.IsNullOrEmpty(textEditBackupPath.Text.Trim()))
-            {
-                XtraMessageBox.Show("You must enter a backup path");
-                return;
-            }
-
-            if (comboBoxEditDatabaseList.SelectedIndex == -1)
-            {
-                XtraMessageBox.Show("You must select a database to backup");
-            }
-
-            try
-            {
-                BackupProcess.Action = BackupActionType.Database;
-                BackupProcess.Database = comboBoxEditDatabaseList.SelectedItem.ToString();
-                BackupProcess.Devices.AddDevice(textEditBackupPath.Text, DeviceType.File);
-                BackupProcess.BackupSetName = comboBoxEditDatabaseList.SelectedItem.ToString() + " Full Database Backup";
-                BackupProcess.BackupSetDescription = string.Empty;
-                BackupProcess.Initialize = false;
-                BackupProcess.Incremental = GetBackupType();
-                lcProgressStatusImage.Text = "In Progress";
-                pictureEditProgressStatus.Image = imageCollectionBackupView.Images[1];
-                BackupProcess.SqlBackup(App.Connection.InstanceTracker.CurrentInstance);
-            }
-            catch (Exception e)
-            {
-                XtraMessageBox.Show(e.Message, "Error Starting Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                pictureEditProgressStatus.Image = imageCollectionBackupView.Images[2];
-                lcProgressStatusImage.Text = "Error";
-            }
-
-        }
-
-
-
-        private bool GetBackupType()
-        {
-            return (string) comboBoxEditBackupType.SelectedItem != "Full";
-        }
-
-        private void ComboBoxEditDatabaseListOnEditValueChanged(object sender, EventArgs e)
-        {
-            GetRecoveryModel();
-
-        }
-
-        private void GetRecoveryModel()
-        {
-            var databases = App.Connection.InstanceTracker.CurrentInstance.Databases;
-
-            foreach (Database db in databases)
-            {
-                if (db.Name == comboBoxEditDatabaseList.EditValue.ToString())
-                {
-                    textEditRecoveryModel.Text = db.RecoveryModel.ToString();
-                    break;
-                }
-            }
         }
 
         private void SimpleButtonBrowseOnClick(object sender, EventArgs e)
         {
-            //TODO - Get backup path(s) for current database
             var serverFolderExp = new ServerFolderExplorer();
             serverFolderExp.StartPosition = FormStartPosition.CenterParent;
             serverFolderExp.ShowDialog();
             serverFolderExp.Dispose();
         }
-
-        private void GetBackupPaths()
-        {
-            //TODO - Need to enum the backup sets and return them to some kind of list or grid...
-        }
-
 
 
         private void RadioGroupBackupToExistingOnSelectedIndexChanged(object sender, EventArgs e)
@@ -250,7 +95,6 @@ namespace Databvase_Winforms.Views
                 checkEditMediaSetName.Enabled = true;
                 textEditMediaSetName.Enabled = true;
             }
-
         }
 
         private void RadioGroupBackupNewMediaSetOnSelectedIndexChanged(object sender, EventArgs e)
@@ -264,12 +108,60 @@ namespace Databvase_Winforms.Views
                 checkEditMediaSetName.Enabled = false;
                 textEditMediaSetName.Enabled = false;
             }
-
         }
 
-        void InitializeBindings() 
+        private void InitializeBindings()
         {
             var fluent = mvvmContextBackupView.OfType<BackupViewModel>();
+            SetTriggers(fluent);
+            BindCommands(fluent);
+            SetDataBindings(fluent);
+        }
+
+        private void SetTriggers(MVVMContextFluentAPI<BackupViewModel> fluent)
+        {
+            fluent.SetTrigger(vm => vm.State, state =>
+            {
+                switch (state)
+                {
+                    case BackupViewModel.WindowState.Open:
+                        break;
+                    case BackupViewModel.WindowState.Closed:
+                        Close();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(state), state, null);
+                }
+            });
+
+            fluent.SetTrigger(vm => vm.IncrementalBackupOption,
+                b => { comboBoxEditBackupType.SelectedIndex = b ? 1 : 0; });
+
+            fluent.SetTrigger(vm => vm.StatusImageIndex,
+                i => { pictureEditProgressStatus.Image = imageCollectionBackupView.Images[i]; });
+        }
+
+        private void BindCommands(MVVMContextFluentAPI<BackupViewModel> fluent)
+        {
+            fluent.BindCommand(simpleButtonOK, vm => vm.ValidateAndRunBackup());
+            fluent.BindCommand(simpleButtonCancel, vm => vm.Cancel());
+        }
+
+        private void SetDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
+        {
+            fluent.SetBinding(progressBarControlDatabaseBackup, x => x.EditValue,
+                vm => vm.BackupPercentageComplete);
+            fluent.SetBinding(lcProgressStatusImage, x => x.Text, vm => vm.ProgressMessage);
+            fluent.SetBinding(textEditBackupPath, x => x.Text, vm => vm.BackupName);
+            fluent.SetBinding(labelControlServerName, x => x.Text, vm => vm.CurrentInstanceName);
+            fluent.SetBinding(labelControlCurrentUser, x => x.Text, vm => vm.CurrentLoginName);
+            fluent.SetBinding(textEditRecoveryModel, x => x.Text, vm => vm.RecoveryModel);
+            fluent.SetItemsSourceBinding(comboBoxEditDatabaseList.Properties, cb => cb.Items, x => x.DatabaseList,
+                (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
+            fluent.SetBinding(comboBoxEditDatabaseList, x => x.EditValue, vm => vm.CurrentDatabase);
+            fluent.SetItemsSourceBinding(comboBoxEditBackupType.Properties, cb => cb.Items, x => x.IncrementalTypes,
+                (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
+            fluent.SetBinding(comboBoxEditBackupType, x => x.EditValue, vm => vm.IncrementalTypeString);
         }
     }
 }

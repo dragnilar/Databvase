@@ -40,7 +40,9 @@ namespace Databvase_Winforms.Models
                 if (string.IsNullOrEmpty(UserName))
                     errorMessageList.Add("You must specify a User Id if you are not using Windows Authentication");
 
-            return new ValidatorService(new ServiceContainer(this)).CheckErrors(errorMessageList);
+            var errorHeader = "Error(s) Creating Connection String";
+
+            return new ValidatorService(new ServiceContainer(this)).CheckErrors(errorMessageList, errorHeader);
 
         }
 
