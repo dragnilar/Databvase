@@ -833,10 +833,10 @@ namespace Databvase_Winforms.Views
             // 
             this.labelControlTemp.Location = new System.Drawing.Point(12, 12);
             this.labelControlTemp.Name = "labelControlTemp";
-            this.labelControlTemp.Size = new System.Drawing.Size(211, 13);
+            this.labelControlTemp.Size = new System.Drawing.Size(208, 13);
             this.labelControlTemp.StyleController = this.lcMediaOptions;
             this.labelControlTemp.TabIndex = 15;
-            this.labelControlTemp.Text = "NOTE: NONE OF THIS IS IMPLEMENTED YET";
+            this.labelControlTemp.Text = "NOTE: ONLY RELIABILITY IS IMPLEMENTED";
             // 
             // checkEditVerifyBackup
             // 

@@ -156,6 +156,9 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(labelControlServerName, x => x.Text, vm => vm.CurrentInstanceName);
             fluent.SetBinding(labelControlCurrentUser, x => x.Text, vm => vm.CurrentLoginName);
             fluent.SetBinding(textEditRecoveryModel, x => x.Text, vm => vm.RecoveryModel);
+            fluent.SetBinding(checkEditVerifyBackup, x => x.Checked, vm => vm.VerifyBackupOnComplete);
+            fluent.SetBinding(checkEditPerformChecksum, x => x.Checked, vm => vm.PerformChecksum);
+            fluent.SetBinding(checkEditContinueOnError, x => x.Checked, vm => vm.ContinueAfterError);
             fluent.SetItemsSourceBinding(comboBoxEditDatabaseList.Properties, cb => cb.Items, x => x.DatabaseList,
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
             fluent.SetBinding(comboBoxEditDatabaseList, x => x.EditValue, vm => vm.CurrentDatabase);

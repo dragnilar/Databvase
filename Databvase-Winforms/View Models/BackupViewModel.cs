@@ -29,6 +29,9 @@ namespace Databvase_Winforms.View_Models
         public virtual List<string> IncrementalTypes { get; set; }
         public virtual string IncrementalTypeString { get; set; }
         public virtual bool IncrementalBackupOption { get; set; }
+        public virtual bool VerifyBackupOnComplete { get; set; }
+        public virtual bool PerformChecksum { get; set; }
+        public virtual bool ContinueAfterError { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
 
@@ -42,6 +45,7 @@ namespace Databvase_Winforms.View_Models
             IncrementalTypeString = "Full";
             BackupPercentageComplete = 0;
             State = WindowState.Open;
+            VerifyBackupOnComplete = false;
             HookUpEvents();
             GetRecoveryModel();
             GetDatabaseList();
@@ -98,21 +102,51 @@ namespace Databvase_Winforms.View_Models
         {
             if (e.Error.Number == 3014)
             {
-                StatusImageIndex = 0;
-                ProgressMessage = "Complete";
-                MessageBoxService.ShowMessage("Backup Completed Successfully!", "Backup Complete", MessageButton.OK,
-                    MessageIcon.Information);
-                State = WindowState.Closed;
-
+                FinalizeBackup();
             }
             else
             {
-                StatusImageIndex = 2;
-                ProgressMessage = "Error";
-                BackupPercentageComplete = 0;
-                MessageBoxService.ShowMessage(e.Error.Message, "Backup Failed", MessageButton.OK, MessageIcon.Error);
-
+                HandleBackupFailureError(e);
             }
+        }
+
+        private void FinalizeBackup()
+        {
+            StatusImageIndex = 0;
+            ProgressMessage = "Complete";
+            MessageBoxService.ShowMessage("Backup Completed Successfully!", "Backup Complete", MessageButton.OK,
+                MessageIcon.Information);
+            VerifyBackup();
+            State = WindowState.Closed;
+        }
+
+        private void VerifyBackup()
+        {
+            if (!VerifyBackupOnComplete) return;
+            var verificationRestore = new Restore();
+            verificationRestore.Devices.AddDevice(BackupName, DeviceType.File);
+            verificationRestore.Database = CurrentDatabase.Name;
+            var isBackupValid = verificationRestore.SqlVerify(App.Connection.InstanceTracker.CurrentInstance);
+            if (isBackupValid)
+            {
+                MessageBoxService.ShowMessage($"The backup for {CurrentDatabase.Name} is valid", "Backup Verification Result",
+                    MessageButton.OK, MessageIcon.Information);
+            }
+            else
+            {
+                MessageBoxService.ShowMessage($"Warning: The backup for {CurrentDatabase.Name} is invalid \n" +
+                                              $"It is recommended that you create another backup. If this problem persists\n" +
+                                              $"you may have an issue with data corruption. ", "Backup Verification Result",
+                    MessageButton.OK, MessageIcon.Warning);
+            }
+        }
+
+        private void HandleBackupFailureError(ServerMessageEventArgs e)
+        {
+            StatusImageIndex = 2;
+            ProgressMessage = "Error";
+            BackupPercentageComplete = 0;
+            MessageBoxService.ShowMessage(e.Error.Message, "Backup Failed", MessageButton.OK, MessageIcon.Error);
         }
 
         private string GetBackupPath()
@@ -162,13 +196,7 @@ namespace Databvase_Winforms.View_Models
         {
             try
             {
-                BackupProcess.Action = BackupActionType.Database;
-                BackupProcess.Database = CurrentDatabase.Name;
-                BackupProcess.Devices.AddDevice(BackupName, DeviceType.File);
-                BackupProcess.BackupSetName = CurrentDatabase.Name + " Full Database Backup";
-                BackupProcess.BackupSetDescription = string.Empty;
-                BackupProcess.Initialize = false;
-                BackupProcess.Incremental = IncrementalBackupOption;
+                ApplyBackupProperties();
                 ProgressMessage = "In Progress";
                 StatusImageIndex = 1;
                 BackupProcess.SqlBackup(App.Connection.InstanceTracker.CurrentInstance);
@@ -179,6 +207,19 @@ namespace Databvase_Winforms.View_Models
                 StatusImageIndex = 2;
                 ProgressMessage = "Error";
             }
+        }
+
+        private void ApplyBackupProperties()
+        {
+            BackupProcess.Action = BackupActionType.Database;
+            BackupProcess.Database = CurrentDatabase.Name;
+            BackupProcess.Devices.AddDevice(BackupName, DeviceType.File);
+            BackupProcess.BackupSetName = CurrentDatabase.Name + " Full Database Backup";
+            BackupProcess.BackupSetDescription = string.Empty;
+            BackupProcess.Initialize = false;
+            BackupProcess.Incremental = IncrementalBackupOption;
+            BackupProcess.Checksum = PerformChecksum;
+            BackupProcess.ContinueAfterError = ContinueAfterError;
         }
 
 
