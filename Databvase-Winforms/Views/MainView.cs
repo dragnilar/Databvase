@@ -28,6 +28,7 @@ namespace Databvase_Winforms.Views
 {
     public partial class MainView : RibbonForm
     {
+        private DXMenuItem RenameTabMenuItem;
         public MainView()
         {
             InitializeComponent();
@@ -38,7 +39,13 @@ namespace Databvase_Winforms.Views
             AddObjectExplorerToUi();
             App.Skins.LoadSkinSettings();
             HookupEvents();
+            Blah();
 
+        }
+
+        private void Blah()
+        {
+            RenameTabMenuItem = new DXMenuItem("RenameTabMenuItem", RenameTab);
         }
 
         private void AddObjectExplorerToUi()
@@ -96,7 +103,7 @@ namespace Databvase_Winforms.Views
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             var menu = e.Menu;
-            if (e.HitInfo.Document != null) menu.Items.Add(new DXMenuItem("Rename Tab", RenameTab));
+            if (e.HitInfo.Document != null) menu.Items.Add(RenameTabMenuItem);
         }
 
         private void RenameTab(object sender, EventArgs e)
