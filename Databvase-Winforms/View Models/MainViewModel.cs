@@ -78,7 +78,7 @@ namespace Databvase_Winforms.View_Models
         {
             if (tracker?.CurrentInstance != null)
             {
-                App.Connection.InstanceTracker = tracker;
+                App.Connection.UpdateInstanceTracker(tracker);
 
             }
         }
@@ -99,7 +99,7 @@ namespace Databvase_Winforms.View_Models
 
         public void Disconnect()
         {
-            new DisconnectInstanceMessage(App.Connection.InstanceTracker.CurrentInstance.Name);
+            new DisconnectInstanceMessage(App.Connection.CurrentServer.Name);
             CheckConnections();
         }
 
@@ -141,7 +141,7 @@ namespace Databvase_Winforms.View_Models
 
         public void ShowQueryBuilder()
         {
-            if (App.Connection.InstanceTracker.CurrentDatabase == null)
+            if (App.Connection.CurrentDatabase == null)
             {
                 MessageBoxService.ShowMessage(
                     "Please select a database from the object explorer before using the Query Builder",
@@ -154,7 +154,7 @@ namespace Databvase_Winforms.View_Models
 
         public void ShowBackupWizard()
         {
-            if (App.Connection.InstanceTracker.CurrentInstance == null)
+            if (App.Connection.CurrentServer == null)
             {
                 MessageBoxService.ShowMessage("Please connect to an instance before attempting to perform a backup.",
                     "No Instance Connected",

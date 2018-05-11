@@ -131,14 +131,32 @@ namespace Databvase_Winforms.Views
         #endregion
 
 
+        #region MVVM Bindings
+
         private void InitializeBindings() 
         {
             var fluent = mvvmContextMain.OfType<MainViewModel>();
+            BindEventToCommands(fluent);
+            SetDataBindings(fluent);
+            BindCommands(fluent);
+            SetupTriggers(fluent);
+        }
+
+        private void BindEventToCommands(MVVMContextFluentAPI<MainViewModel> fluent)
+        {
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemShowSettings, "ItemClick", x => x.ShowSettings());
             fluent.EventToCommand<EventArgs>(this, "Shown", x => x.CheckToShowConnectionsAtStartup());
+        }
+
+        private void SetDataBindings(MVVMContextFluentAPI<MainViewModel> fluent)
+        {
             fluent.SetBinding(barEditItemTextEditorBG, x => x.EditValue, vm => vm.TextEditorBackgroundColor);
             fluent.SetBinding(barEditItemTextEditorLineNumberColor, x => x.EditValue, vm => vm.TextEditorLineNumberColor);
+        }
+
+        private void BindCommands(MVVMContextFluentAPI<MainViewModel> fluent)
+        {
             fluent.BindCommand(barButtonItemTextEditorFontSettings, vm => vm.ShowTextEditorFontDialog());
             fluent.BindCommand(barButtonItemColorPalette, vm => vm.ShowBezierPaletteSwitcher());
             fluent.BindCommand(barButtonItemColorMixer, vm => vm.ShowColorMixer());
@@ -146,7 +164,10 @@ namespace Databvase_Winforms.Views
             fluent.BindCommand(barButtonItemDisconnect, vm => vm.Disconnect());
             fluent.BindCommand(barButtonItemQueryBuilder, vm => vm.ShowQueryBuilder());
             fluent.BindCommand(barButtonItemBackupWizard, vm => vm.ShowBackupWizard());
+        }
 
+        private void SetupTriggers(MVVMContextFluentAPI<MainViewModel> fluent)
+        {
             fluent.SetTrigger(x => x.InstancesConnected, connectionsActive =>
             {
                 if (connectionsActive)
@@ -154,14 +175,18 @@ namespace Databvase_Winforms.Views
                     barButtonItemDisconnect.Visibility = BarItemVisibility.Always;
                     barButtonItemNewQuery.Visibility = BarItemVisibility.Always;
                     barButtonItemQueryBuilder.Visibility = BarItemVisibility.Always;
+                    barButtonItemBackupWizard.Visibility = BarItemVisibility.Always;
                 }
                 else
                 {
                     barButtonItemDisconnect.Visibility = BarItemVisibility.Never;
                     barButtonItemNewQuery.Visibility = BarItemVisibility.Never;
                     barButtonItemQueryBuilder.Visibility = BarItemVisibility.Never;
+                    barButtonItemBackupWizard.Visibility = BarItemVisibility.Never;
                 }
             });
         }
+
+        #endregion
     }
 }

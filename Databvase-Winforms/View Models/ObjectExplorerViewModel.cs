@@ -205,9 +205,9 @@ namespace Databvase_Winforms.View_Models
             {
                 var instance = FocusedNode.GetInstanceFromNode();
                 var database = FocusedNode.GetDatabaseFromNode();
-                if (instance == App.Connection.InstanceTracker.CurrentInstance)
+                if (instance == App.Connection.CurrentServer)
                     if (database != null)
-                        if (database.Name == App.Connection.InstanceTracker.CurrentDatabase?.Name)
+                        if (database.Name == App.Connection.CurrentDatabase?.Name)
                             return;
                 new InstanceNameChangeMessage(instance, database);
             }

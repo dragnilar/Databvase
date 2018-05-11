@@ -105,13 +105,13 @@ namespace Databvase_Winforms.View_Models
 
         private string GetCurrentDatabaseFromTracker()
         {
-            return App.Connection.InstanceTracker.CurrentDatabase != null ? App.Connection.InstanceTracker.CurrentDatabase.Name : string.Empty;
+            return App.Connection.CurrentDatabase != null ? App.Connection.CurrentDatabase.Name : string.Empty;
         }
 
         private List<string> GetDatabaseNamesFromTracker()
         {
             var list = new List<string>();
-            foreach (Database db in App.Connection.InstanceTracker.CurrentInstance.Databases) list.Add(db.Name);
+            foreach (Database db in App.Connection.CurrentServer.Databases) list.Add(db.Name);
 
             return list;
         }

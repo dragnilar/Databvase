@@ -26,7 +26,7 @@ namespace Databvase_Winforms.Dialogs
             var query = ShowQueryBuilder(dxSqlDataSource);
             if (query != null)
             {
-                new NewScriptMessage(FormatQueryBuilderOutput(query), App.Connection.InstanceTracker.CurrentDatabase.Name);
+                new NewScriptMessage(FormatQueryBuilderOutput(query), App.Connection.CurrentDatabase.Name);
             }
 
         }

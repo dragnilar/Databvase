@@ -37,7 +37,7 @@ namespace Databvase_Winforms.View_Models
 
         public BackupViewModel()
         {
-            CurrentDatabase = App.Connection.InstanceTracker.CurrentDatabase;
+            CurrentDatabase = App.Connection.CurrentDatabase;
             StatusImageIndex = 0;
             ProgressMessage = "Ready";
             BackupName = string.Empty;
@@ -76,14 +76,14 @@ namespace Databvase_Winforms.View_Models
 
         private void GetCurrentInstanceAndLogin()
         {
-            CurrentInstanceName = App.Connection.InstanceTracker.CurrentInstance.Name;
-            CurrentLoginName = App.Connection.InstanceTracker.CurrentInstance.ConnectionContext.TrueLogin;
+            CurrentInstanceName = App.Connection.CurrentServer.Name;
+            CurrentLoginName = App.Connection.CurrentServer.ConnectionContext.TrueLogin;
         }
 
         private void GetDatabaseList()
         {
             DatabaseList = new List<Database>();
-            foreach(Database db in App.Connection.InstanceTracker.CurrentInstance.Databases) DatabaseList.Add(db);
+            foreach(Database db in App.Connection.CurrentServer.Databases) DatabaseList.Add(db);
         }
 
         private void HookUpEvents()
@@ -126,7 +126,7 @@ namespace Databvase_Winforms.View_Models
             var verificationRestore = new Restore();
             verificationRestore.Devices.AddDevice(BackupName, DeviceType.File);
             verificationRestore.Database = CurrentDatabase.Name;
-            var isBackupValid = verificationRestore.SqlVerify(App.Connection.InstanceTracker.CurrentInstance);
+            var isBackupValid = verificationRestore.SqlVerify(App.Connection.CurrentServer);
             if (isBackupValid)
             {
                 MessageBoxService.ShowMessage($"The backup for {CurrentDatabase.Name} is valid", "Backup Verification Result",
@@ -147,21 +147,6 @@ namespace Databvase_Winforms.View_Models
             ProgressMessage = "Error";
             BackupPercentageComplete = 0;
             MessageBoxService.ShowMessage(e.Error.Message, "Backup Failed", MessageButton.OK, MessageIcon.Error);
-        }
-
-        private string GetBackupPath()
-        {
-            if (CurrentDatabase != null)
-            {
-                DataTable backupSets = CurrentDatabase.EnumBackupSets();
-
-                foreach (DataRow row in backupSets.Rows)
-                {
-                    //Is this even useful? 
-                }
-            }
-
-            return null;
         }
 
         private void GetRecoveryModel()
@@ -199,7 +184,7 @@ namespace Databvase_Winforms.View_Models
                 ApplyBackupProperties();
                 ProgressMessage = "In Progress";
                 StatusImageIndex = 1;
-                BackupProcess.SqlBackup(App.Connection.InstanceTracker.CurrentInstance);
+                BackupProcess.SqlBackup(App.Connection.CurrentServer);
             }
             catch (Exception e)
             {

@@ -101,7 +101,7 @@ namespace Databvase_Winforms.Views
             this.barButtonItemQueryBuilder,
             this.barButtonItemBackupWizard});
             this.ribbonControlMain.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControlMain.MaxItemId = 20;
+            this.ribbonControlMain.MaxItemId = 21;
             this.ribbonControlMain.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlMain.Name = "ribbonControlMain";
             this.ribbonControlMain.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -372,7 +372,7 @@ namespace Databvase_Winforms.Views
             // barButtonItemBackupWizard
             // 
             this.barButtonItemBackupWizard.Caption = "Backup Wizard";
-            this.barButtonItemBackupWizard.Id = 19;
+            this.barButtonItemBackupWizard.Id = 20;
             this.barButtonItemBackupWizard.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemBackupWizard.ImageOptions.SvgImage")));
             this.barButtonItemBackupWizard.Name = "barButtonItemBackupWizard";
             // 

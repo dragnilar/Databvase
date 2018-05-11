@@ -136,7 +136,7 @@ namespace Databvase_Winforms.Modules
             this.ribbonControlQueryControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 120);
+            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 128);
             this.ribbonControlQueryControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
             // 
             // QueryButton
@@ -301,10 +301,10 @@ namespace Databvase_Winforms.Modules
             // 
             // xtraTabControlResultsPane
             // 
-            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 285);
+            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 290);
             this.xtraTabControlResultsPane.Name = "xtraTabControlResultsPane";
             this.xtraTabControlResultsPane.SelectedTabPage = this.xtraTabPageResultsGrid;
-            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 303);
+            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 298);
             this.xtraTabControlResultsPane.TabIndex = 12;
             this.xtraTabControlResultsPane.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageResultsGrid,
@@ -315,7 +315,7 @@ namespace Databvase_Winforms.Modules
             this.xtraTabPageResultsGrid.Controls.Add(this.gridControlResults);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
-            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(770, 272);
+            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
             this.xtraTabPageResultsGrid.Text = "Results";
             // 
             // gridControlResults
@@ -335,7 +335,7 @@ namespace Databvase_Winforms.Modules
             this.gridControlResults.Location = new System.Drawing.Point(0, 0);
             this.gridControlResults.MainView = this.gridViewResults;
             this.gridControlResults.Name = "gridControlResults";
-            this.gridControlResults.Size = new System.Drawing.Size(770, 272);
+            this.gridControlResults.Size = new System.Drawing.Size(774, 266);
             this.gridControlResults.TabIndex = 12;
             this.gridControlResults.UseEmbeddedNavigator = true;
             this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -355,7 +355,7 @@ namespace Databvase_Winforms.Modules
             this.xtraTabPageMessages.Controls.Add(this.memoEditResults);
             this.xtraTabPageMessages.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageMessages.ImageOptions.Image")));
             this.xtraTabPageMessages.Name = "xtraTabPageMessages";
-            this.xtraTabPageMessages.Size = new System.Drawing.Size(770, 272);
+            this.xtraTabPageMessages.Size = new System.Drawing.Size(774, 266);
             this.xtraTabPageMessages.Text = "Messages";
             // 
             // memoEditResults
@@ -363,7 +363,7 @@ namespace Databvase_Winforms.Modules
             this.memoEditResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEditResults.Location = new System.Drawing.Point(0, 0);
             this.memoEditResults.Name = "memoEditResults";
-            this.memoEditResults.Size = new System.Drawing.Size(770, 272);
+            this.memoEditResults.Size = new System.Drawing.Size(774, 266);
             this.memoEditResults.TabIndex = 0;
             // 
             // queryTextEditor
@@ -414,14 +414,14 @@ namespace Databvase_Winforms.Modules
             this.splitterItemQueryEditor.AllowHotTrack = true;
             this.splitterItemQueryEditor.Location = new System.Drawing.Point(0, 268);
             this.splitterItemQueryEditor.Name = "splitterItemQueryEditor";
-            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 5);
+            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 10);
             // 
             // lcIResultsPane
             // 
             this.lcIResultsPane.Control = this.xtraTabControlResultsPane;
-            this.lcIResultsPane.Location = new System.Drawing.Point(0, 273);
+            this.lcIResultsPane.Location = new System.Drawing.Point(0, 278);
             this.lcIResultsPane.Name = "lcIResultsPane";
-            this.lcIResultsPane.Size = new System.Drawing.Size(780, 307);
+            this.lcIResultsPane.Size = new System.Drawing.Size(780, 302);
             this.lcIResultsPane.Text = "ResultsPane";
             this.lcIResultsPane.TextSize = new System.Drawing.Size(0, 0);
             this.lcIResultsPane.TextVisible = false;

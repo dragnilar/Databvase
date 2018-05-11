@@ -42,7 +42,7 @@ namespace Databvase_Winforms.Dialogs
 
         private void InitializeServerTreeAndGetDrives()
         {
-            var table = App.Connection.InstanceTracker.CurrentInstance.EnumAvailableMedia();
+            var table = App.Connection.CurrentServer.EnumAvailableMedia();
 
             foreach (DataRow row in table.Rows)
             {
@@ -62,7 +62,7 @@ namespace Databvase_Winforms.Dialogs
                 //TODO - probably should move this to the DAL
                 var fullPath = GetFullPathForTreeNode(e.Node, @"\");
                 var xpDirTreeCommand = $"exec xp_dirtree '{fullPath}', 1, 1";
-                DataSet dataSet = App.Connection.InstanceTracker.CurrentInstance.ConnectionContext.ExecuteWithResults(xpDirTreeCommand);
+                DataSet dataSet = App.Connection.CurrentServer.ConnectionContext.ExecuteWithResults(xpDirTreeCommand);
 
                 dataSet.Tables[0].DefaultView.Sort = "file ASC";
 

@@ -64,7 +64,7 @@ namespace Databvase_Winforms.Views
 
         private void SetupRecoveryModel()
         {
-            textEditRecoveryModel.Text = App.Connection.InstanceTracker.CurrentDatabase?.RecoveryModel.ToString();
+            textEditRecoveryModel.Text = App.Connection.CurrentDatabase?.RecoveryModel.ToString();
         }
 
         private void SetupRadioGroups()
