@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Databvase_Winforms.Messages;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 
@@ -7,7 +8,6 @@ namespace Databvase_Winforms.Dialogs
 {
     public partial class RenameTabDialog : XtraForm
     {
-        public string NewTabName = string.Empty;
 
         public RenameTabDialog()
         {
@@ -49,8 +49,7 @@ namespace Databvase_Winforms.Dialogs
         {
             if (!string.IsNullOrEmpty(textEditNewTabName.Text.Trim()))
             {
-                NewTabName = textEditNewTabName.Text;
-                DialogResult = DialogResult.OK;
+                new TabNameMessage(textEditNewTabName.Text);
                 Close();
             }
         }

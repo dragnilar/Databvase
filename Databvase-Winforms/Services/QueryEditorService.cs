@@ -9,6 +9,9 @@ namespace Databvase_Winforms.Services
     {
         QueryResult RunQuery(string sqlQuery, string dbName, SavedConnection connection);
         string GetSqlQueryFromQueryPane();
+        void Copy();
+        void Cut();
+        void Paste();
     }
 
     internal class QueryEditorService : IQueryEditorService
@@ -45,6 +48,22 @@ namespace Databvase_Winforms.Services
             if (string.IsNullOrEmpty(sqlQuery) || sqlQuery.StartsWith("--") || sqlQuery.StartsWith("/*")) return null;
 
             return sqlQuery;
+        }
+
+        public void Copy()
+        {
+            _queryPane.Copy();
+        }
+
+        public void Cut()
+        {
+            _queryPane.Cut();
+            
+        }
+
+        public void Paste()
+        {
+            _queryPane.Paste();
         }
 
     }

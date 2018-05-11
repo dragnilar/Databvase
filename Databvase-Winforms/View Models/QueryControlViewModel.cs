@@ -103,6 +103,21 @@ namespace Databvase_Winforms.View_Models
             //TODO - Implement some kind of functionality if necessary, otherwise do nothing here since this is needed for the MVVM context
         }
 
+        public void CopyFromQueryTextEditor()
+        {
+            this.GetService<IQueryEditorService>().Copy();
+        }
+
+        public void CutFromQueryTextEditor()
+        {
+            this.GetService<IQueryEditorService>().Cut();
+        }
+
+        public void PasteIntoQueryTextEditor()
+        {
+            this.GetService<IQueryEditorService>().Paste();
+        }
+
         private string GetCurrentDatabaseFromTracker()
         {
             return App.Connection.CurrentDatabase != null ? App.Connection.CurrentDatabase.Name : string.Empty;

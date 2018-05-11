@@ -101,6 +101,11 @@ namespace Databvase_Winforms.Modules
             SetBindingForControls(fluent);
 
             SetTriggers(fluent);
+
+            //Bind commands
+            fluent.BindCommand(barButtonItemCopy, x=>x.CopyFromQueryTextEditor());
+            fluent.BindCommand(barButtonItemCut, x=>x.CutFromQueryTextEditor());
+            fluent.BindCommand(barButtonItemPaste, x=>x.PasteIntoQueryTextEditor());
         }
 
         private void SetBindingSourceForQueryEditor(MVVMContextFluentAPI<QueryControlViewModel> fluent)

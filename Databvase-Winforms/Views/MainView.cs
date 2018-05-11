@@ -28,7 +28,6 @@ namespace Databvase_Winforms.Views
 {
     public partial class MainView : RibbonForm
     {
-        private DXMenuItem RenameTabMenuItem;
         public MainView()
         {
             InitializeComponent();
@@ -39,14 +38,8 @@ namespace Databvase_Winforms.Views
             AddObjectExplorerToUi();
             App.Skins.LoadSkinSettings();
             HookupEvents();
-            Blah();
-
         }
 
-        private void Blah()
-        {
-            RenameTabMenuItem = new DXMenuItem("RenameTabMenuItem", RenameTab);
-        }
 
         private void AddObjectExplorerToUi()
         {
@@ -65,6 +58,7 @@ namespace Databvase_Winforms.Views
         private void RegisterMessages()
         {
             Messenger.Default.Register<NewScriptMessage>(this, typeof(NewScriptMessage).Name, CreateNewQueryPaneWithScript);
+            Messenger.Default.Register<TabNameMessage>(this, typeof(TabNameMessage).Name, OnTabNameMessage);
         }
 
         private void RegisterServices()
@@ -103,15 +97,23 @@ namespace Databvase_Winforms.Views
         private void TabbedViewMainOnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             var menu = e.Menu;
-            if (e.HitInfo.Document != null) menu.Items.Add(RenameTabMenuItem);
+            if (e.HitInfo.Document != null) menu.Items.Add(new DXMenuItem("Rename Tab", ShowRenameTabDialog));
         }
 
-        private void RenameTab(object sender, EventArgs e)
+        private void ShowRenameTabDialog(object sender, EventArgs e)
         {
-            var renameTabDialog = new RenameTabDialog {StartPosition = FormStartPosition.CenterParent};
-            var dialogResult = renameTabDialog.ShowDialog();
-            if (dialogResult == DialogResult.OK) tabbedViewMain.ActiveDocument.Caption = renameTabDialog.NewTabName;
-            renameTabDialog.Dispose();
+            using (var dialog = new RenameTabDialog { StartPosition = FormStartPosition.CenterParent })
+            {
+                dialog.ShowDialog();
+            }
+        }
+
+        private void OnTabNameMessage(TabNameMessage message)
+        {
+            if (message != null)
+            {
+                tabbedViewMain.ActiveDocument.Caption = message.Name;
+            }
         }
 
         private void TabbedViewMainOnDocumentActivated(object sender, DocumentEventArgs e)
@@ -171,7 +173,9 @@ namespace Databvase_Winforms.Views
             fluent.BindCommand(barButtonItemDisconnect, vm => vm.Disconnect());
             fluent.BindCommand(barButtonItemQueryBuilder, vm => vm.ShowQueryBuilder());
             fluent.BindCommand(barButtonItemBackupWizard, vm => vm.ShowBackupWizard());
+
         }
+
 
         private void SetupTriggers(MVVMContextFluentAPI<MainViewModel> fluent)
         {

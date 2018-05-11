@@ -1,9 +1,21 @@
-﻿namespace Databvase_Winforms.Messages
+﻿using DevExpress.Mvvm;
+
+namespace Databvase_Winforms.Messages
 {
     public class TabNameMessage
     {
-        public const string TabRenameSender = "TabRenameSender";
+        
         public string Name { get; set; }
-        public string Caption { get; set; }
+
+        public TabNameMessage(string name)
+        {
+            Name = name;
+            SendMessage();
+        }
+
+        private void SendMessage()
+        {
+            Messenger.Default.Send(this, GetType().Name);
+        }
     }
 }
