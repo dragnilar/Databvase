@@ -207,6 +207,11 @@ namespace Databvase_Winforms.View_Models
             BackupProcess.ContinueAfterError = ContinueAfterError;
         }
 
+        private void Test()
+        {
+            //var database = App.Connection.
+        }
+
 
         public enum  WindowState
         {

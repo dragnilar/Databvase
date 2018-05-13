@@ -78,7 +78,7 @@ namespace Databvase_Winforms.View_Models
         {
             if (tracker?.CurrentInstance != null)
             {
-                App.Connection.UpdateInstanceTracker(tracker);
+                App.Connection.UpdateInstanceAndDatabaseTracker(tracker);
 
             }
         }

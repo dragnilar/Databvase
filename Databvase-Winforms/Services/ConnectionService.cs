@@ -9,10 +9,10 @@ namespace Databvase_Winforms.Services
     public class ConnectionService
     {
         private (string, bool) NullConnectionResponse => ("Connection is null, please try again", false);
-        private InstanceAndDatabaseTracker _instanceTracker = new InstanceAndDatabaseTracker();
+        private InstanceAndDatabaseTracker _mainInstanceAndDatabaseTracker = new InstanceAndDatabaseTracker();
         public readonly List<SavedConnection> CurrentConnections = new List<SavedConnection>();
-        public Database CurrentDatabase => _instanceTracker.CurrentDatabase;
-        public Server CurrentServer => _instanceTracker.CurrentInstance;
+        public Database CurrentDatabase => _mainInstanceAndDatabaseTracker.CurrentDatabase;
+        public Server CurrentServer => _mainInstanceAndDatabaseTracker.CurrentInstance;
 
 
 
@@ -21,23 +21,23 @@ namespace Databvase_Winforms.Services
 
         public void DisconnectCurrentInstance()
         {
-            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == _instanceTracker.CurrentInstance.Name);
+            var connectionToRemove = CurrentConnections.FirstOrDefault(x => x.Instance == _mainInstanceAndDatabaseTracker.CurrentInstance.Name);
             if (connectionToRemove != null)
             {
                 CurrentConnections.Remove(connectionToRemove);
-                _instanceTracker.CurrentInstance = !CurrentConnections.Any() ? null : GetServerAtInstanceName(CurrentConnections.First().Instance);
-                _instanceTracker.CurrentDatabase = null;
+                _mainInstanceAndDatabaseTracker.CurrentInstance = !CurrentConnections.Any() ? null : GetServerAtInstanceName(CurrentConnections.First().Instance);
+                _mainInstanceAndDatabaseTracker.CurrentDatabase = null;
             }
         }
 
         public InstanceAndDatabaseTracker GetCurrentTracker()
         {
-            return _instanceTracker;
+            return _mainInstanceAndDatabaseTracker;
         }
 
-        public void UpdateInstanceTracker(InstanceAndDatabaseTracker tracker)
+        public void UpdateInstanceAndDatabaseTracker(InstanceAndDatabaseTracker tracker)
         {
-            _instanceTracker = tracker;
+            _mainInstanceAndDatabaseTracker = tracker;
         }
 
         #endregion
@@ -58,18 +58,6 @@ namespace Databvase_Winforms.Services
         public Server GetServerAtSavedConnection(SavedConnection connection, string dbName = null)
         {
             return GetAServer(connection, dbName);
-        }
-
-        public Server GetServerAtCurrentInstanceAndDatabase()
-        {
-            if (_instanceTracker != null && CurrentConnections.Any())
-            {
-                var connection = CurrentConnections.First(x => x.Instance == _instanceTracker.CurrentInstance.Name);
-                return GetAServer(connection, _instanceTracker.CurrentDatabase.Name);
-            }
-
-            return null;
-
         }
 
         private Server GetAServer(SavedConnection connection, string dbName)
@@ -113,8 +101,8 @@ namespace Databvase_Winforms.Services
                     CurrentConnections.Add(savedConnection);
                 }
 
-                _instanceTracker.CurrentInstance = currentServer;
-                _instanceTracker.CurrentDatabase = null;
+                _mainInstanceAndDatabaseTracker.CurrentInstance = currentServer;
+                _mainInstanceAndDatabaseTracker.CurrentDatabase = null;
 
                 return result;
 
@@ -151,7 +139,7 @@ namespace Databvase_Winforms.Services
 
         public SavedConnection GetCurrentConnection()
         {
-            return CurrentConnections.First(r => r.Instance == _instanceTracker.CurrentInstance.Name);
+            return CurrentConnections.First(r => r.Instance == _mainInstanceAndDatabaseTracker.CurrentInstance.Name);
         }
 
         #endregion

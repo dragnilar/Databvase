@@ -36,7 +36,8 @@ namespace Databvase_Winforms.Dialogs
             var form = GetMainWindow();
             IWaitFormActivator waitFormActivator = new WaitFormActivator(form, typeof(WaitFormWithCancel), true);
             IExceptionHandler exceptionHandler = new ExceptionHandler(UserLookAndFeel.Default, form);
-            var currentServer = App.Connection.GetServerAtCurrentInstanceAndDatabase();
+            var currentServer =
+                App.Connection.GetServerAtInstanceName(App.Connection.CurrentServer.Name, App.Connection.CurrentDatabase.Name);
             var dxConnectionStringParameters =
                 new CustomStringConnectionParameters(currentServer.ConnectionContext.ConnectionString);
             var dxSqlDataSource = new SqlDataSource(dxConnectionStringParameters);
