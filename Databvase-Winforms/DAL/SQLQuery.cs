@@ -40,10 +40,10 @@ namespace Databvase_Winforms.DAL
             return result;
         }
 
-        private QueryResult Query(string sqlQuery, string dataBase, SavedConnection connection)
+        private QueryResult Query(string sqlQuery, string dataBaseName, SavedConnection connection)
         {
-            var server = App.Connection.GetServerAtSavedConnection(connection, dataBase);
-            server.ConnectionContext.DatabaseName = dataBase;
+            var server = connection.GetServer(dataBaseName);
+            server.ConnectionContext.DatabaseName = dataBaseName;
             server.ConnectionContext.Connect();
             var queryDataSet = server.ConnectionContext.ExecuteWithResults(sqlQuery);
             var result = GetResult(queryDataSet);

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Databvase_Winforms.Services;
 using DevExpress.Mvvm;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
 {
@@ -17,6 +19,10 @@ namespace Databvase_Winforms.Models
         public string Instance { get; set; }
         public int Timeout { get; set; }
 
+        /// <summary>
+        /// Returns the saved connections Nickname value
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return NickName;
@@ -60,12 +66,60 @@ namespace Databvase_Winforms.Models
         }
 
         /// <summary>
-        /// Returns true if it can make a successful connection to a SQL Server database.
+        /// Tests the current saved connection and returns a tuple indicating whether or not the saved connection can successfully connect to a server.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String containing any possible error messages and true/false indicating whether or not the connection was successful</returns>
         public (string errorMessage, bool valid) TestConnection()
         {
-            return App.Connection.TestSavedConnection(this);
+            var server = GetServer();
+            return TestServerConnection(server);
+        }
+
+        private (string errorMessage, bool isValid) TestServerConnection(Server server)
+        {
+            try
+            {
+                server.ConnectionContext.Connect();
+                server.ConnectionContext.Disconnect();
+                return (string.Empty, true);
+            }
+            catch (Exception ex)
+            {
+
+                return (ex.Message, false);
+            }
+        }
+
+
+        /// <summary>
+        /// Returns an SMO server object based off of the parameters used on the current instance of SavedConnection. You may optionally specify a database
+        /// to connect to for the server object by passing in a database name. 
+        /// </summary>
+        /// <param name="dataBaseName">Optional, the name of a database that you wish to connect to using the returned SMO server</param>
+        /// <returns></returns>
+        public Server GetServer(string dataBaseName = null)
+        {
+            var server = new Server();
+            server.ConnectionContext.ServerInstance = Instance;
+            server.ConnectionContext.NonPooledConnection = true;
+            server.ConnectionContext.StatementTimeout = Timeout;
+
+            if (WindowsAuthentication == false)
+            {
+                server.ConnectionContext.LoginSecure = false;
+                server.ConnectionContext.Login = UserName;
+                server.ConnectionContext.Password = Password;
+            }
+            else
+            {
+                server.ConnectionContext.LoginSecure = true;
+
+            }
+
+            if (dataBaseName != null) server.ConnectionContext.DatabaseName = dataBaseName;
+
+            return server;
+
         }
     }
 }

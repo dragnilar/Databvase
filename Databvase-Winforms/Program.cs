@@ -51,8 +51,8 @@ namespace Databvase_Winforms
 
     public static class App
     {
-        public static Settings Config = new Settings();
-        public static ConnectionService Connection = new ConnectionService();
-        public static SkinService Skins = new SkinService();
+        public static readonly Settings Config = new Settings();
+        public static readonly ConnectionService Connection = new ConnectionService();
+        public static readonly SkinService Skins = new SkinService();
     }
 }
