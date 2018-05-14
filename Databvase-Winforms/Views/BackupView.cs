@@ -165,6 +165,7 @@ namespace Databvase_Winforms.Views
             fluent.SetItemsSourceBinding(comboBoxEditBackupType.Properties, cb => cb.Items, x => x.IncrementalTypes,
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
             fluent.SetBinding(comboBoxEditBackupType, x => x.EditValue, vm => vm.IncrementalTypeString);
+            fluent.SetBinding(checkEditCopyOnlyBackup, x => x.Checked, vm => vm.CopyOnly);
         }
     }
 }

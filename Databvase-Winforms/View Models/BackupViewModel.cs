@@ -32,6 +32,7 @@ namespace Databvase_Winforms.View_Models
         public virtual bool VerifyBackupOnComplete { get; set; }
         public virtual bool PerformChecksum { get; set; }
         public virtual bool ContinueAfterError { get; set; }
+        public virtual bool CopyOnly { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
 
@@ -46,6 +47,7 @@ namespace Databvase_Winforms.View_Models
             BackupPercentageComplete = 0;
             State = WindowState.Open;
             VerifyBackupOnComplete = false;
+            CopyOnly = false;
             HookUpEvents();
             GetRecoveryModel();
             GetDatabaseList();
@@ -59,6 +61,7 @@ namespace Databvase_Winforms.View_Models
             GetRecoveryModel();
         }
 
+        //Binds at runtime
         protected void OnIncrementalTypeStringChanged()
         {
             IncrementalBackupOption = IncrementalTypeString != "Full";
@@ -205,11 +208,17 @@ namespace Databvase_Winforms.View_Models
             BackupProcess.Incremental = IncrementalBackupOption;
             BackupProcess.Checksum = PerformChecksum;
             BackupProcess.ContinueAfterError = ContinueAfterError;
+            BackupProcess.CopyOnly = CopyOnly;
         }
 
         private void Test()
         {
-            //var database = App.Connection.
+            var database = App.Connection.CurrentDatabase;
+
+            var backupSetFiles = database.EnumBackupSetFiles();
+            var backupSets = database.EnumBackupSets();
+            
+
         }
 
 
