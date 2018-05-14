@@ -125,7 +125,7 @@ namespace Databvase_Winforms.Views
             this.spinEditExpireAfterDays = new DevExpress.XtraEditors.SpinEdit();
             this.radioGroupBackupSetExpire = new DevExpress.XtraEditors.RadioGroup();
             this.textEditBackupDescription = new DevExpress.XtraEditors.TextEdit();
-            this.textEditBackupName = new DevExpress.XtraEditors.TextEdit();
+            this.textEditBackupSetName = new DevExpress.XtraEditors.TextEdit();
             this.lcgBackupOptions = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcgBackupSet = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -240,7 +240,7 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupSetName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).BeginInit();
@@ -1131,7 +1131,7 @@ namespace Databvase_Winforms.Views
             this.lcBackupOptions.Controls.Add(this.spinEditExpireAfterDays);
             this.lcBackupOptions.Controls.Add(this.radioGroupBackupSetExpire);
             this.lcBackupOptions.Controls.Add(this.textEditBackupDescription);
-            this.lcBackupOptions.Controls.Add(this.textEditBackupName);
+            this.lcBackupOptions.Controls.Add(this.textEditBackupSetName);
             this.lcBackupOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lcBackupOptions.Location = new System.Drawing.Point(0, 0);
             this.lcBackupOptions.Name = "lcBackupOptions";
@@ -1210,13 +1210,13 @@ namespace Databvase_Winforms.Views
             this.textEditBackupDescription.StyleController = this.lcBackupOptions;
             this.textEditBackupDescription.TabIndex = 5;
             // 
-            // textEditBackupName
+            // textEditBackupSetName
             // 
-            this.textEditBackupName.Location = new System.Drawing.Point(169, 65);
-            this.textEditBackupName.Name = "textEditBackupName";
-            this.textEditBackupName.Size = new System.Drawing.Size(363, 20);
-            this.textEditBackupName.StyleController = this.lcBackupOptions;
-            this.textEditBackupName.TabIndex = 4;
+            this.textEditBackupSetName.Location = new System.Drawing.Point(169, 65);
+            this.textEditBackupSetName.Name = "textEditBackupSetName";
+            this.textEditBackupSetName.Size = new System.Drawing.Size(363, 20);
+            this.textEditBackupSetName.StyleController = this.lcBackupOptions;
+            this.textEditBackupSetName.TabIndex = 4;
             // 
             // lcgBackupOptions
             // 
@@ -1262,7 +1262,7 @@ namespace Databvase_Winforms.Views
             // 
             // lciBackupName
             // 
-            this.lciBackupName.Control = this.textEditBackupName;
+            this.lciBackupName.Control = this.textEditBackupSetName;
             this.lciBackupName.Location = new System.Drawing.Point(0, 0);
             this.lciBackupName.Name = "lciBackupName";
             this.lciBackupName.Size = new System.Drawing.Size(512, 24);
@@ -1571,7 +1571,7 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditBackupSetName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).EndInit();
@@ -1699,7 +1699,7 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraLayout.LayoutControlGroup lcgBackupOptions;
         private DevExpress.XtraEditors.RadioGroup radioGroupBackupSetExpire;
         private DevExpress.XtraEditors.TextEdit textEditBackupDescription;
-        private DevExpress.XtraEditors.TextEdit textEditBackupName;
+        private DevExpress.XtraEditors.TextEdit textEditBackupSetName;
         private DevExpress.XtraLayout.LayoutControlItem lciBackupName;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem17;
         private DevExpress.XtraLayout.LayoutControlItem lciBackupDescription;

@@ -2,11 +2,13 @@
 using System.Windows.Forms;
 using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Models;
 using Databvase_Winforms.View_Models;
 using DevExpress.Mvvm;
 using DevExpress.Utils.MVVM;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Views
 {
@@ -19,14 +21,24 @@ namespace Databvase_Winforms.Views
             SetupControls();
             if (!mvvmContextBackupView.IsDesignMode)
                 InitializeBindings();
-            RegisterMessages();
             RegisterService();
+            RegisterMessages();
         }
 
 
         private void RegisterService()
         {
             MVVMContext.RegisterXtraMessageBoxService();
+        }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<BackupPathMessage>(this, typeof(BackupPathMessage).Name, OnBackupPathReceived);
+        }
+
+        private void OnBackupPathReceived(BackupPathMessage message)
+        {
+            if (message != null) textEditBackupPath.Text = message.BackupPath;
         }
 
         private void HookupEvents()
@@ -49,17 +61,6 @@ namespace Databvase_Winforms.Views
         {
             SetupRecoveryModel();
             SetupRadioGroups();
-        }
-
-
-        private void RegisterMessages()
-        {
-            Messenger.Default.Register<BackupPathMessage>(this, typeof(BackupPathMessage).Name, OnBackupPathReceived);
-        }
-
-        private void OnBackupPathReceived(BackupPathMessage message)
-        {
-            if (message != null) textEditBackupPath.Text = message.BackupPath;
         }
 
         private void SetupRecoveryModel()
@@ -110,6 +111,8 @@ namespace Databvase_Winforms.Views
             }
         }
 
+        #region MVVM Bindings
+
         private void InitializeBindings()
         {
             var fluent = mvvmContextBackupView.OfType<BackupViewModel>();
@@ -134,7 +137,7 @@ namespace Databvase_Winforms.Views
                 }
             });
 
-            fluent.SetTrigger(vm => vm.IncrementalBackupOption,
+            fluent.SetTrigger(vm => vm.BackupEntityForVm.IncrementalBackupOption,
                 b => { comboBoxEditBackupType.SelectedIndex = b ? 1 : 0; });
 
             fluent.SetTrigger(vm => vm.StatusImageIndex,
@@ -149,23 +152,45 @@ namespace Databvase_Winforms.Views
 
         private void SetDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
         {
+            SetEntityDataBindings(fluent);
+            SetMiscDataBindings(fluent);
+            SetComboBoxDataBindings(fluent);
+        }
+
+        private void SetMiscDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
+        {
             fluent.SetBinding(progressBarControlDatabaseBackup, x => x.EditValue,
                 vm => vm.BackupPercentageComplete);
             fluent.SetBinding(lcProgressStatusImage, x => x.Text, vm => vm.ProgressMessage);
-            fluent.SetBinding(textEditBackupPath, x => x.Text, vm => vm.BackupName);
             fluent.SetBinding(labelControlServerName, x => x.Text, vm => vm.CurrentInstanceName);
             fluent.SetBinding(labelControlCurrentUser, x => x.Text, vm => vm.CurrentLoginName);
             fluent.SetBinding(textEditRecoveryModel, x => x.Text, vm => vm.RecoveryModel);
             fluent.SetBinding(checkEditVerifyBackup, x => x.Checked, vm => vm.VerifyBackupOnComplete);
-            fluent.SetBinding(checkEditPerformChecksum, x => x.Checked, vm => vm.PerformChecksum);
-            fluent.SetBinding(checkEditContinueOnError, x => x.Checked, vm => vm.ContinueAfterError);
+        }
+
+        private void SetEntityDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
+        {
+            //TODO - See if there's a simpler way to do this, this feels really... old fashioned.
+            BindingSource entityBindingSource = new BindingSource();
+            entityBindingSource.DataSource = typeof(BackupContainer);
+            textEditBackupPath.DataBindings.Add(new Binding("EditValue", entityBindingSource, "BackupPath", true, DataSourceUpdateMode.OnPropertyChanged));
+            checkEditPerformChecksum.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.Checksum"));
+            checkEditCopyOnlyBackup.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.CopyOnly"));
+            checkEditContinueOnError.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.ContinueAfterError"));
+            comboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase"));
+            fluent.SetObjectDataSourceBinding(entityBindingSource, x => x.BackupEntityForVm, x => x.Update());
+
+        }
+
+        private void SetComboBoxDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
+        {
             fluent.SetItemsSourceBinding(comboBoxEditDatabaseList.Properties, cb => cb.Items, x => x.DatabaseList,
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
-            fluent.SetBinding(comboBoxEditDatabaseList, x => x.EditValue, vm => vm.CurrentDatabase);
             fluent.SetItemsSourceBinding(comboBoxEditBackupType.Properties, cb => cb.Items, x => x.IncrementalTypes,
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
             fluent.SetBinding(comboBoxEditBackupType, x => x.EditValue, vm => vm.IncrementalTypeString);
-            fluent.SetBinding(checkEditCopyOnlyBackup, x => x.Checked, vm => vm.CopyOnly);
         }
+
+        #endregion
     }
 }

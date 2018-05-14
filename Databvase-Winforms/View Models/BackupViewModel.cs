@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using Databvase_Winforms.Messages;
+using Databvase_Winforms.Models;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
@@ -15,39 +17,30 @@ namespace Databvase_Winforms.View_Models
     public class BackupViewModel
     {
 
-        public virtual string BackupName { get; set; }
         public virtual string ProgressMessage { get; set; }
         public virtual string RecoveryModel { get; set; }
         public virtual string CurrentInstanceName { get; set; }
         public virtual string CurrentLoginName { get; set; }
         public virtual int StatusImageIndex { get; set; }
-        public virtual Database CurrentDatabase { get; set; }
         public virtual int BackupPercentageComplete {get; set; }
-        private Backup BackupProcess = new Backup();
+        public virtual BackupContainer BackupEntityForVm { get; set; }
         public virtual WindowState State { get; set; }
         public virtual List<Database> DatabaseList { get; set; }
         public virtual List<string> IncrementalTypes { get; set; }
         public virtual string IncrementalTypeString { get; set; }
-        public virtual bool IncrementalBackupOption { get; set; }
         public virtual bool VerifyBackupOnComplete { get; set; }
-        public virtual bool PerformChecksum { get; set; }
-        public virtual bool ContinueAfterError { get; set; }
-        public virtual bool CopyOnly { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
 
         public BackupViewModel()
         {
-            CurrentDatabase = App.Connection.CurrentDatabase;
+            BackupEntityForVm = new BackupContainer();
             StatusImageIndex = 0;
             ProgressMessage = "Ready";
-            BackupName = string.Empty;
-            IncrementalBackupOption = false;
             IncrementalTypeString = "Full";
             BackupPercentageComplete = 0;
             State = WindowState.Open;
             VerifyBackupOnComplete = false;
-            CopyOnly = false;
             HookUpEvents();
             GetRecoveryModel();
             GetDatabaseList();
@@ -64,7 +57,8 @@ namespace Databvase_Winforms.View_Models
         //Binds at runtime
         protected void OnIncrementalTypeStringChanged()
         {
-            IncrementalBackupOption = IncrementalTypeString != "Full";
+            BackupEntityForVm.IncrementalBackupOption = IncrementalTypeString != "Full";
+            
         }
 
         private void GetIncrementalOptions()
@@ -91,17 +85,17 @@ namespace Databvase_Winforms.View_Models
 
         private void HookUpEvents()
         {
-            BackupProcess.Complete += BackupProcessOnComplete;
-            BackupProcess.PercentComplete += BackupProcessOnPercentComplete;
+            BackupEntityForVm.CurrentBackup.Complete += BackupEntityOnComplete;
+            BackupEntityForVm.CurrentBackup.PercentComplete += BackupEntityOnPercentComplete;
         }
 
-        private void BackupProcessOnPercentComplete(object sender, PercentCompleteEventArgs e)
+        private void BackupEntityOnPercentComplete(object sender, PercentCompleteEventArgs e)
         {
             StatusImageIndex = 1;
             BackupPercentageComplete = e.Percent;
         }
 
-        private void BackupProcessOnComplete(object sender, ServerMessageEventArgs e)
+        private void BackupEntityOnComplete(object sender, ServerMessageEventArgs e)
         {
             if (e.Error.Number == 3014)
             {
@@ -126,18 +120,15 @@ namespace Databvase_Winforms.View_Models
         private void VerifyBackup()
         {
             if (!VerifyBackupOnComplete) return;
-            var verificationRestore = new Restore();
-            verificationRestore.Devices.AddDevice(BackupName, DeviceType.File);
-            verificationRestore.Database = CurrentDatabase.Name;
-            var isBackupValid = verificationRestore.SqlVerify(App.Connection.CurrentServer);
-            if (isBackupValid)
+
+            if (BackupEntityForVm.VerifyBackup())
             {
-                MessageBoxService.ShowMessage($"The backup for {CurrentDatabase.Name} is valid", "Backup Verification Result",
+                MessageBoxService.ShowMessage($"The backup for {BackupEntityForVm.CurrentDatabase.Name} is valid", "Backup Verification Result",
                     MessageButton.OK, MessageIcon.Information);
             }
             else
             {
-                MessageBoxService.ShowMessage($"Warning: The backup for {CurrentDatabase.Name} is invalid \n" +
+                MessageBoxService.ShowMessage($"Warning: The backup for {BackupEntityForVm.CurrentDatabase.Name} is invalid \n" +
                                               $"It is recommended that you create another backup. If this problem persists\n" +
                                               $"you may have an issue with data corruption. ", "Backup Verification Result",
                     MessageButton.OK, MessageIcon.Warning);
@@ -154,8 +145,8 @@ namespace Databvase_Winforms.View_Models
 
         private void GetRecoveryModel()
         {
-            if (CurrentDatabase != null)
-                RecoveryModel = CurrentDatabase.RecoveryModel.ToString();
+            if (BackupEntityForVm.CurrentDatabase != null)
+                RecoveryModel = BackupEntityForVm.CurrentDatabase.RecoveryModel.ToString();
         }
 
         public void Cancel()
@@ -165,13 +156,13 @@ namespace Databvase_Winforms.View_Models
 
         public void ValidateAndRunBackup()
         {
-            if (string.IsNullOrEmpty(BackupName.Trim()))
+            if (string.IsNullOrEmpty(BackupEntityForVm.BackupPath.Trim()))
             {
                 MessageBoxService.ShowMessage("You must enter a backup path.");
                 return;
             }
 
-            if (CurrentDatabase == null)
+            if (BackupEntityForVm.CurrentDatabase == null)
             {
                 MessageBoxService.ShowMessage("You must select a database to backup");
                 return;
@@ -184,10 +175,9 @@ namespace Databvase_Winforms.View_Models
         {
             try
             {
-                ApplyBackupProperties();
                 ProgressMessage = "In Progress";
                 StatusImageIndex = 1;
-                BackupProcess.SqlBackup(App.Connection.CurrentServer);
+                BackupEntityForVm.RunCurrentBackup();
             }
             catch (Exception e)
             {
@@ -197,18 +187,9 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
-        private void ApplyBackupProperties()
+        public void Update()
         {
-            BackupProcess.Action = BackupActionType.Database;
-            BackupProcess.Database = CurrentDatabase.Name;
-            BackupProcess.Devices.AddDevice(BackupName, DeviceType.File);
-            BackupProcess.BackupSetName = CurrentDatabase.Name + " Full Database Backup";
-            BackupProcess.BackupSetDescription = string.Empty;
-            BackupProcess.Initialize = false;
-            BackupProcess.Incremental = IncrementalBackupOption;
-            BackupProcess.Checksum = PerformChecksum;
-            BackupProcess.ContinueAfterError = ContinueAfterError;
-            BackupProcess.CopyOnly = CopyOnly;
+            //This is needed for the MVVM Context in the view to create two way bindings back to the BackupEntityForVM
         }
 
         private void Test()
