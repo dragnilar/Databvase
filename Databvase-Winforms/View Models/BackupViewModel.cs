@@ -46,12 +46,14 @@ namespace Databvase_Winforms.View_Models
             GetDatabaseList();
             GetCurrentInstanceAndLogin();
             GetIncrementalOptions();
+            Test();
         }
 
         //Binds at runtime
         protected void OnCurrentDatabaseChanged()
         {
             GetRecoveryModel();
+            BackupEntityForVm.GetMostRecentBackupsFromSQL();
         }
 
         //Binds at runtime
@@ -194,11 +196,6 @@ namespace Databvase_Winforms.View_Models
 
         private void Test()
         {
-            var database = App.Connection.CurrentDatabase;
-
-            var backupSetFiles = database.EnumBackupSetFiles();
-            var backupSets = database.EnumBackupSets();
-            
 
         }
 

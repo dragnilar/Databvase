@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Databvase_Winforms.DAL;
 using Databvase_Winforms.Messages;
 using DevExpress.Mvvm;
 using Microsoft.SqlServer.Management.Smo;
@@ -50,6 +53,38 @@ namespace Databvase_Winforms.Models
             return verificationRestore.SqlVerify(App.Connection.CurrentServer);
         }
 
+        public void GetMostRecentBackupsFromSQL()
+        {
+            var sqlQuery = new SQLQuery();
+            var queryString =
+                "SELECT\r\n    bs.database_name,\r\n    bs.backup_start_date,\r\n\tbs.backup_finish_date,\r\n    bmf.physical_device_name\r\nFROM\r\n    " +
+                "msdb.dbo.backupmediafamily bmf\r\n    JOIN\r\n    msdb.dbo.backupset bs ON bs.media_set_id = bmf.media_set_id\r\nWHERE\r\n   " +
+                " bs.database_name = \'InsignificantDatabase\'\r\nORDER BY\r\n    bmf.media_set_id DESC;";
 
+            var result = sqlQuery.SendQueryAndGetResult(queryString, CurrentDatabase.Name, App.Connection.GetCurrentConnection());
+
+            if (!result.HasErrors)
+            {
+                var list = ConvertResultsToObjects(result.ResultsSet.Tables[0]);
+                Debug.WriteLine(list.First().PhysicalDeviceName);
+            }
+
+        }
+
+        private List<RecentBackup> ConvertResultsToObjects(DataTable table)
+        {
+            List<RecentBackup> backupList = new List<RecentBackup>();
+            foreach (var recentBackup in table.AsEnumerable().Select(x=> new RecentBackup
+            {
+                DatabaseName = x.Field<string>("database_name"),
+                BackupStartDate = x.Field<DateTime>("backup_start_date"),
+                BackupFinishTime = x.Field<DateTime>("backup_finish_date"),
+                PhysicalDeviceName = x.Field<string>("physical_device_name")
+            }))
+                backupList.Add(recentBackup);
+
+
+            return backupList;
+        }
     }
 }
