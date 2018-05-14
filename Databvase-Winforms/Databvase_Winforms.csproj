@@ -254,6 +254,7 @@
     <Compile Include="Controls\QueryTextEditor\QueryTextEditor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DAL\RecentBackupRepository.cs" />
     <Compile Include="Dialogs\QueryBuilderDialogWrapper.cs" />
     <Compile Include="Dialogs\XtraFontDialog.cs">
       <SubType>Form</SubType>

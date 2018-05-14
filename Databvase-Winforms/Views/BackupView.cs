@@ -177,7 +177,7 @@ namespace Databvase_Winforms.Views
             checkEditPerformChecksum.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.Checksum"));
             checkEditCopyOnlyBackup.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.CopyOnly"));
             checkEditContinueOnError.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.ContinueAfterError"));
-            comboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase"));
+            comboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase", true, DataSourceUpdateMode.OnPropertyChanged));
             fluent.SetObjectDataSourceBinding(entityBindingSource, x => x.BackupEntityForVm, x => x.Update());
 
         }

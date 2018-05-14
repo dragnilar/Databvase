@@ -35,6 +35,7 @@ namespace Databvase_Winforms.View_Models
         public BackupViewModel()
         {
             BackupEntityForVm = new BackupContainer();
+            BackupEntityForVm.CurrentDatabase = App.Connection.CurrentDatabase;
             StatusImageIndex = 0;
             ProgressMessage = "Ready";
             IncrementalTypeString = "Full";
@@ -53,7 +54,6 @@ namespace Databvase_Winforms.View_Models
         protected void OnCurrentDatabaseChanged()
         {
             GetRecoveryModel();
-            BackupEntityForVm.GetMostRecentBackupsFromSQL();
         }
 
         //Binds at runtime

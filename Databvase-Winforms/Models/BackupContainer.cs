@@ -15,15 +15,35 @@ namespace Databvase_Winforms.Models
     public class BackupContainer
     {
         public Backup CurrentBackup { get; set; }
-        public Database CurrentDatabase { get; set; }
+        private Database _currentDatabase;
         public string BackupPath { get; set; }
         public bool IncrementalBackupOption { get; set; }
+
+        public Database CurrentDatabase
+        {
+            get => _currentDatabase;
+            set => SetCurrentDatabase(value);
+        }
+
+        private void SetCurrentDatabase(Database value)
+        {
+            _currentDatabase = value;
+            GetCurrentDatabaseMostRecentBackupPath();
+        }
+
+        private void GetCurrentDatabaseMostRecentBackupPath()
+        {
+            BackupPath = new RecentBackupRepository().GetMostRecentBackupsForDatabase(CurrentDatabase.Name).FirstOrDefault()
+                ?.PhysicalDeviceName;
+        }
+
+
+
 
 
         public BackupContainer()
         {
             CurrentBackup = new Backup();
-            CurrentDatabase = App.Connection.CurrentDatabase;
             BackupPath = string.Empty;
             IncrementalBackupOption = false;
         }
@@ -51,40 +71,6 @@ namespace Databvase_Winforms.Models
             verificationRestore.Devices.AddDevice(BackupPath, DeviceType.File);
             verificationRestore.Database = CurrentDatabase.Name;
             return verificationRestore.SqlVerify(App.Connection.CurrentServer);
-        }
-
-        public void GetMostRecentBackupsFromSQL()
-        {
-            var sqlQuery = new SQLQuery();
-            var queryString =
-                "SELECT\r\n    bs.database_name,\r\n    bs.backup_start_date,\r\n\tbs.backup_finish_date,\r\n    bmf.physical_device_name\r\nFROM\r\n    " +
-                "msdb.dbo.backupmediafamily bmf\r\n    JOIN\r\n    msdb.dbo.backupset bs ON bs.media_set_id = bmf.media_set_id\r\nWHERE\r\n   " +
-                " bs.database_name = \'InsignificantDatabase\'\r\nORDER BY\r\n    bmf.media_set_id DESC;";
-
-            var result = sqlQuery.SendQueryAndGetResult(queryString, CurrentDatabase.Name, App.Connection.GetCurrentConnection());
-
-            if (!result.HasErrors)
-            {
-                var list = ConvertResultsToObjects(result.ResultsSet.Tables[0]);
-                Debug.WriteLine(list.First().PhysicalDeviceName);
-            }
-
-        }
-
-        private List<RecentBackup> ConvertResultsToObjects(DataTable table)
-        {
-            List<RecentBackup> backupList = new List<RecentBackup>();
-            foreach (var recentBackup in table.AsEnumerable().Select(x=> new RecentBackup
-            {
-                DatabaseName = x.Field<string>("database_name"),
-                BackupStartDate = x.Field<DateTime>("backup_start_date"),
-                BackupFinishTime = x.Field<DateTime>("backup_finish_date"),
-                PhysicalDeviceName = x.Field<string>("physical_device_name")
-            }))
-                backupList.Add(recentBackup);
-
-
-            return backupList;
         }
     }
 }
