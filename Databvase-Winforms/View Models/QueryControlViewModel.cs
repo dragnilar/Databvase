@@ -18,7 +18,7 @@ using Microsoft.SqlServer.Management.Smo;
 namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel]
-    public class QueryControlViewModel : IDocumentContent
+    public class QueryControlViewModel
     {
         public static QueryControlViewModel Create()
         {
@@ -48,8 +48,6 @@ namespace Databvase_Winforms.View_Models
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
-        public IDocumentOwner DocumentOwner { get; set; }
-        public object Title { get; set; }
         //TODO - See if perhaps we can use a server object in here instead of having to keep a saved connection...
 
 
@@ -120,6 +118,12 @@ namespace Databvase_Winforms.View_Models
         public void PasteIntoQueryTextEditor()
         {
             this.GetService<IQueryEditorService>().Paste();
+            this.GetService<IQueryEditorService>().ShowLineNumbers();
+        }
+
+        public void ShowLineNumbersOnTextEditor()
+        {
+            this.GetService<IQueryEditorService>().ShowLineNumbers();
         }
 
         private string GetCurrentDatabaseFromTracker()
@@ -148,16 +152,6 @@ namespace Databvase_Winforms.View_Models
                 CurrentDatabase = message.SelectedDatabase;
             }
 
-        }
-
-        public void OnClose(CancelEventArgs e)
-        {
-            //Do nothing for now...
-        }
-
-        public void OnDestroy()
-        {
-            //Do nothing for now...
         }
 
 

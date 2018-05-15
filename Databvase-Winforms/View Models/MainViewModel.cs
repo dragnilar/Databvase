@@ -127,6 +127,7 @@ namespace Databvase_Winforms.View_Models
             document.Title = $"Query {NumberOfQueries}";
             document.DestroyOnClose = true;
             document.Show();
+            vm.ShowLineNumbersOnTextEditor();
             HideSplashScreen();
         }
 

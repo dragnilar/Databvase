@@ -12,6 +12,7 @@ namespace Databvase_Winforms.Services
         void Copy();
         void Cut();
         void Paste();
+        void ShowLineNumbers();
     }
 
     internal class QueryEditorService : IQueryEditorService
@@ -64,6 +65,11 @@ namespace Databvase_Winforms.Services
         public void Paste()
         {
             _queryPane.Paste();
+        }
+
+        public void ShowLineNumbers()
+        {
+            _queryPane.ShowLineNumbers();
         }
 
     }

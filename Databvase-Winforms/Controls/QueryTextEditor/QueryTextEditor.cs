@@ -27,7 +27,6 @@ namespace Databvase_Winforms.Controls.QueryTextEditor
 
         private void InitializeQueryTextEditor()
         {
-            ShowLineNumbers();
             RegisterMessages();
             RegisterServices();
             HookUpEvents();
