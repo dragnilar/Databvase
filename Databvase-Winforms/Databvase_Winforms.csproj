@@ -290,6 +290,7 @@
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\RecentBackup.cs" />
     <Compile Include="Models\SavedConnection.cs" />
+    <Compile Include="Models\ScriptGenerationResult.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />
     <Compile Include="Modules\ConnectionStringWizard.cs">
       <SubType>UserControl</SubType>

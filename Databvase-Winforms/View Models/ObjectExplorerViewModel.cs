@@ -97,7 +97,7 @@ namespace Databvase_Winforms.View_Models
             }
             catch (Exception e)
             {
-                DisplayErrorMessage(e.Message);
+                DisplayErrorMessage(e.Message, "Error Getting Objects");
             }
         }
 
@@ -113,7 +113,7 @@ namespace Databvase_Winforms.View_Models
         private void LoadDataForObjectExplorerDynamically(ObjectExplorerNode model)
         {
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
-            ShowWaitMessage();
+            ShowWaitMessageIfItsNotActive();
             try
             {
                 GetNodes(model);
@@ -121,11 +121,11 @@ namespace Databvase_Winforms.View_Models
             catch (Exception e)
             {
                 _dataSourceModel.CreateEmptyNode(model);
-                DisplayErrorMessage(e.Message);
+                DisplayErrorMessage(e.Message, "Error Getting Objects");
             }
             finally
             {
-                KillWaitMessage();
+                KillWaitMessageIfItsActive();
                 FinishUnboundLoad();
             }
 
@@ -162,36 +162,53 @@ namespace Databvase_Winforms.View_Models
 
         #region Scripting
 
+        public void NewQueryScript()
+        {
+            var selectedDatabase = FocusedNode.GetDatabaseFromNode();
+            var selectedDatabaseName = selectedDatabase == null ? string.Empty : selectedDatabase.Name;
+            SendBlankScript(selectedDatabaseName);
+        }
 
         public void ScriptSelectTopForObjectExplorerData()
         {
             var response = new ScriptGeneratorService().GenerateSelectTopStatement(FocusedNode);
-            new NewScriptMessage(response.script, response.parentName);
+            ValidateResponseAndSendScriptMessage(response);
         }
 
         public void ScriptSelectAllForObjectExplorerData()
         {
             var response = new ScriptGeneratorService().GenerateSelectAllStatement(FocusedNode);
-            new NewScriptMessage(response.script, response.parentName);
-        }
-
-        public void NewQueryScript()
-        {
-            var selectedDatabase = FocusedNode.GetDatabaseFromNode();
-            var selectedDatabaseName = selectedDatabase == null ? string.Empty : selectedDatabase.Name;
-            new NewScriptMessage(string.Empty, selectedDatabaseName);
+            ValidateResponseAndSendScriptMessage(response);
         }
 
         public void ScriptModifyForObjectExplorerData()
         {
             var response = new ScriptGeneratorService().GenerateModifyScript(FocusedNode);
-            new NewScriptMessage(response.script, response.parentName);
+            ValidateResponseAndSendScriptMessage(response);
         }
 
         public void ScriptAlterForObjectExplorerData()
         {
             var response = new ScriptGeneratorService().GenerateAlterScript(FocusedNode);
-            new NewScriptMessage(response.script, response.parentName);
+            ValidateResponseAndSendScriptMessage(response);
+        }
+
+        private void SendBlankScript(string selectedDatabaseName)
+        {
+            new NewScriptMessage(string.Empty, selectedDatabaseName);
+        }
+
+        private void ValidateResponseAndSendScriptMessage(ScriptGenerationResult result)
+        {
+            if (result.HasErrors)
+            {
+                DisplayErrorMessage(result.ErrorMessage, "Error Generating Script");
+            }
+            else
+            {
+                new NewScriptMessage(result.Script, result.DatabaseName);
+            }
+            
         }
 
         #endregion
@@ -215,13 +232,13 @@ namespace Databvase_Winforms.View_Models
 
         #endregion
 
-        private void DisplayErrorMessage(string message)
+        private void DisplayErrorMessage(string message, string header)
         {
-            KillWaitMessage();
-            MessageBoxService.ShowMessage(message, "Error Getting Objects", MessageButton.OK, MessageIcon.Error);
+            KillWaitMessageIfItsActive();
+            MessageBoxService.ShowMessage(message, header, MessageButton.OK, MessageIcon.Error);
         }
 
-        private void ShowWaitMessage()
+        private void ShowWaitMessageIfItsNotActive()
         {
             if (!SplashScreenService.IsSplashScreenActive)
             {
@@ -229,7 +246,7 @@ namespace Databvase_Winforms.View_Models
             }
         }
 
-        private void KillWaitMessage()
+        private void KillWaitMessageIfItsActive()
         {
             if (SplashScreenService.IsSplashScreenActive)
             {
