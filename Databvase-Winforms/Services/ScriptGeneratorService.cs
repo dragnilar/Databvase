@@ -91,5 +91,8 @@ namespace Databvase_Winforms.Services
         {
             return $"[{selectedView.Parent.Name}].[{selectedView.Schema}].[{selectedView.Name}]";
         }
+
+
+
     }
 }

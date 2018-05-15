@@ -52,8 +52,12 @@ namespace Databvase_Winforms.Modules
             this.repositoryItemLookUpEditDatabaseList = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.barButtonCopyCells = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemSelectAll = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemCopy = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemCut = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemPaste = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupQuery = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroupClipBoard = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControlResultsPane = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageResultsGrid = new DevExpress.XtraTab.XtraTabPage();
@@ -68,12 +72,7 @@ namespace Databvase_Winforms.Modules
             this.lcIResultsPane = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciRibbon = new DevExpress.XtraLayout.LayoutControlItem();
             this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
-            this.bindingSourceQueryControl = new System.Windows.Forms.BindingSource(this.components);
             this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.ribbonPageGroupClipBoard = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItemCopy = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemCut = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemPaste = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -91,7 +90,6 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.lcIResultsPane)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQueryControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuQueryGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +141,7 @@ namespace Databvase_Winforms.Modules
             this.ribbonControlQueryControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControlQueryControl.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 128);
+            this.ribbonControlQueryControl.Size = new System.Drawing.Size(776, 120);
             this.ribbonControlQueryControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Above;
             // 
             // QueryButton
@@ -282,6 +280,28 @@ namespace Databvase_Winforms.Modules
             this.barButtonItemSelectAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemSelectAll.ImageOptions.LargeImage")));
             this.barButtonItemSelectAll.Name = "barButtonItemSelectAll";
             // 
+            // barButtonItemCopy
+            // 
+            this.barButtonItemCopy.Caption = "Copy";
+            this.barButtonItemCopy.Id = 18;
+            this.barButtonItemCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.Image")));
+            this.barButtonItemCopy.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.barButtonItemCopy.Name = "barButtonItemCopy";
+            // 
+            // barButtonItemCut
+            // 
+            this.barButtonItemCut.Caption = "Cut";
+            this.barButtonItemCut.Id = 19;
+            this.barButtonItemCut.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCut.ImageOptions.Image")));
+            this.barButtonItemCut.Name = "barButtonItemCut";
+            // 
+            // barButtonItemPaste
+            // 
+            this.barButtonItemPaste.Caption = "Paste";
+            this.barButtonItemPaste.Id = 20;
+            this.barButtonItemPaste.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemPaste.ImageOptions.Image")));
+            this.barButtonItemPaste.Name = "barButtonItemPaste";
+            // 
             // ribbonPageGroupDatabvase
             // 
             this.ribbonPageGroupDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -299,6 +319,15 @@ namespace Databvase_Winforms.Modules
             this.ribbonPageGroupQuery.Name = "ribbonPageGroupQuery";
             this.ribbonPageGroupQuery.Text = "Query";
             // 
+            // ribbonPageGroupClipBoard
+            // 
+            this.ribbonPageGroupClipBoard.AllowTextClipping = false;
+            this.ribbonPageGroupClipBoard.ItemLinks.Add(this.barButtonItemCopy);
+            this.ribbonPageGroupClipBoard.ItemLinks.Add(this.barButtonItemCut);
+            this.ribbonPageGroupClipBoard.ItemLinks.Add(this.barButtonItemPaste);
+            this.ribbonPageGroupClipBoard.Name = "ribbonPageGroupClipBoard";
+            this.ribbonPageGroupClipBoard.Text = "Clipboard";
+            // 
             // ribbonPageGroupGridPrintAndExport
             // 
             this.ribbonPageGroupGridPrintAndExport.AllowTextClipping = false;
@@ -309,10 +338,10 @@ namespace Databvase_Winforms.Modules
             // 
             // xtraTabControlResultsPane
             // 
-            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 290);
+            this.xtraTabControlResultsPane.Location = new System.Drawing.Point(12, 285);
             this.xtraTabControlResultsPane.Name = "xtraTabControlResultsPane";
             this.xtraTabControlResultsPane.SelectedTabPage = this.xtraTabPageResultsGrid;
-            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 298);
+            this.xtraTabControlResultsPane.Size = new System.Drawing.Size(776, 303);
             this.xtraTabControlResultsPane.TabIndex = 12;
             this.xtraTabControlResultsPane.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageResultsGrid,
@@ -323,7 +352,7 @@ namespace Databvase_Winforms.Modules
             this.xtraTabPageResultsGrid.Controls.Add(this.gridControlResults);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
-            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
+            this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(770, 272);
             this.xtraTabPageResultsGrid.Text = "Results";
             // 
             // gridControlResults
@@ -343,7 +372,7 @@ namespace Databvase_Winforms.Modules
             this.gridControlResults.Location = new System.Drawing.Point(0, 0);
             this.gridControlResults.MainView = this.gridViewResults;
             this.gridControlResults.Name = "gridControlResults";
-            this.gridControlResults.Size = new System.Drawing.Size(774, 266);
+            this.gridControlResults.Size = new System.Drawing.Size(770, 272);
             this.gridControlResults.TabIndex = 12;
             this.gridControlResults.UseEmbeddedNavigator = true;
             this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -363,7 +392,7 @@ namespace Databvase_Winforms.Modules
             this.xtraTabPageMessages.Controls.Add(this.memoEditResults);
             this.xtraTabPageMessages.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageMessages.ImageOptions.Image")));
             this.xtraTabPageMessages.Name = "xtraTabPageMessages";
-            this.xtraTabPageMessages.Size = new System.Drawing.Size(774, 266);
+            this.xtraTabPageMessages.Size = new System.Drawing.Size(770, 272);
             this.xtraTabPageMessages.Text = "Messages";
             // 
             // memoEditResults
@@ -371,7 +400,7 @@ namespace Databvase_Winforms.Modules
             this.memoEditResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEditResults.Location = new System.Drawing.Point(0, 0);
             this.memoEditResults.Name = "memoEditResults";
-            this.memoEditResults.Size = new System.Drawing.Size(774, 266);
+            this.memoEditResults.Size = new System.Drawing.Size(770, 272);
             this.memoEditResults.TabIndex = 0;
             // 
             // queryTextEditor
@@ -422,14 +451,14 @@ namespace Databvase_Winforms.Modules
             this.splitterItemQueryEditor.AllowHotTrack = true;
             this.splitterItemQueryEditor.Location = new System.Drawing.Point(0, 268);
             this.splitterItemQueryEditor.Name = "splitterItemQueryEditor";
-            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 10);
+            this.splitterItemQueryEditor.Size = new System.Drawing.Size(780, 5);
             // 
             // lcIResultsPane
             // 
             this.lcIResultsPane.Control = this.xtraTabControlResultsPane;
-            this.lcIResultsPane.Location = new System.Drawing.Point(0, 278);
+            this.lcIResultsPane.Location = new System.Drawing.Point(0, 273);
             this.lcIResultsPane.Name = "lcIResultsPane";
-            this.lcIResultsPane.Size = new System.Drawing.Size(780, 302);
+            this.lcIResultsPane.Size = new System.Drawing.Size(780, 307);
             this.lcIResultsPane.Text = "ResultsPane";
             this.lcIResultsPane.TextSize = new System.Drawing.Size(0, 0);
             this.lcIResultsPane.TextVisible = false;
@@ -449,47 +478,12 @@ namespace Databvase_Winforms.Modules
             this.mvvmContextQueryControl.ContainerControl = this;
             this.mvvmContextQueryControl.ViewModelType = typeof(Databvase_Winforms.View_Models.QueryControlViewModel);
             // 
-            // bindingSourceQueryControl
-            // 
-            this.bindingSourceQueryControl.DataSource = typeof(Databvase_Winforms.Models.QueryDocumentEntity);
-            // 
             // popupMenuQueryGrid
             // 
             this.popupMenuQueryGrid.ItemLinks.Add(this.barButtonCopyCells);
             this.popupMenuQueryGrid.ItemLinks.Add(this.barButtonItemSelectAll);
             this.popupMenuQueryGrid.Name = "popupMenuQueryGrid";
             this.popupMenuQueryGrid.Ribbon = this.ribbonControlQueryControl;
-            // 
-            // ribbonPageGroupClipBoard
-            // 
-            this.ribbonPageGroupClipBoard.AllowTextClipping = false;
-            this.ribbonPageGroupClipBoard.ItemLinks.Add(this.barButtonItemCopy);
-            this.ribbonPageGroupClipBoard.ItemLinks.Add(this.barButtonItemCut);
-            this.ribbonPageGroupClipBoard.ItemLinks.Add(this.barButtonItemPaste);
-            this.ribbonPageGroupClipBoard.Name = "ribbonPageGroupClipBoard";
-            this.ribbonPageGroupClipBoard.Text = "Clipboard";
-            // 
-            // barButtonItemCopy
-            // 
-            this.barButtonItemCopy.Caption = "Copy";
-            this.barButtonItemCopy.Id = 18;
-            this.barButtonItemCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopy.ImageOptions.Image")));
-            this.barButtonItemCopy.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.barButtonItemCopy.Name = "barButtonItemCopy";
-            // 
-            // barButtonItemCut
-            // 
-            this.barButtonItemCut.Caption = "Cut";
-            this.barButtonItemCut.Id = 19;
-            this.barButtonItemCut.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCut.ImageOptions.Image")));
-            this.barButtonItemCut.Name = "barButtonItemCut";
-            // 
-            // barButtonItemPaste
-            // 
-            this.barButtonItemPaste.Caption = "Paste";
-            this.barButtonItemPaste.Id = 20;
-            this.barButtonItemPaste.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemPaste.ImageOptions.Image")));
-            this.barButtonItemPaste.Name = "barButtonItemPaste";
             // 
             // QueryControl
             // 
@@ -516,7 +510,6 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.lcIResultsPane)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciRibbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceQueryControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuQueryGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -530,7 +523,6 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraLayout.LayoutControlItem lciQueryEditor;
         private DevExpress.XtraLayout.SplitterItem splitterItemQueryEditor;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextQueryControl;
-        private System.Windows.Forms.BindingSource bindingSourceQueryControl;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlResultsPane;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageResultsGrid;
         private Databvase_Winforms.Controls.QueryGrid.QueryGridControl gridControlResults;

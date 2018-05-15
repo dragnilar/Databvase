@@ -20,6 +20,10 @@ namespace Databvase_Winforms.View_Models
     [POCOViewModel]
     public class QueryControlViewModel : IDocumentContent
     {
+        public static QueryControlViewModel Create()
+        {
+            return ViewModelSource.Create<QueryControlViewModel>();
+        }
 
         public QueryControlViewModel()
         {
@@ -34,7 +38,7 @@ namespace Databvase_Winforms.View_Models
             QueryConnection = App.Connection.GetCurrentConnection();
         }
 
-        public virtual QueryDocumentEntity Entity { get; set; }
+        public virtual QueryDocumentEntity Entity { get;  set; }
         public virtual DataTable GridSource { get; set; }
         public virtual bool ClearGrid { get; set; }
         public virtual string ResultsMessage { get; set; }
@@ -131,6 +135,20 @@ namespace Databvase_Winforms.View_Models
             return list;
         }
 
+        /// <summary>
+        /// Appends the text on the query text editor entity's document text with a new document message's text. Also changes the currently database
+        /// value (if one is included in the message).
+        /// </summary>
+        /// <param name="message"></param>
+        public void ReceiveNewScriptMessageAndSetScriptText(NewScriptMessage message)
+        {
+            if (message != null)
+            {
+                Entity.DocumentText += message.Script;
+                CurrentDatabase = message.SelectedDatabase;
+            }
+
+        }
 
         public void OnClose(CancelEventArgs e)
         {

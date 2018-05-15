@@ -29,7 +29,7 @@ namespace Databvase_Winforms.Modules
             HookupEvents();
             SetupGridButtons();
             if (!mvvmContextQueryControl.IsDesignMode)
-                InitializeBindings();
+                mvvmContextQueryControl.ViewModelSet += MvvmContextQueryControlOnViewModelSet;
         }
 
 
@@ -44,13 +44,6 @@ namespace Databvase_Winforms.Modules
             barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
             barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
             
-        }
-
-        public void ProcessNewScriptMessage(NewScriptMessage message)
-        {
-            queryTextEditor.Text = message.Script;
-            barEditItemDatabaseList.EditValue = message.SelectedDatabase;
-            queryTextEditor.ShowLineNumbers();
         }
 
         private void GridViewResultsOnPopupMenuShowing(object o, PopupMenuShowingEventArgs e)
@@ -82,7 +75,7 @@ namespace Databvase_Winforms.Modules
 
         #region MVVMContext
 
-        private void InitializeBindings()
+        private void MvvmContextQueryControlOnViewModelSet(object sender, ViewModelSetEventArgs e)
         {
             //Instantiate fluent API
             var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
@@ -90,6 +83,7 @@ namespace Databvase_Winforms.Modules
             //Register services
             mvvmContextQueryControl.RegisterService(new QueryEditorService(queryTextEditor));
 
+            //Set binding source for the query editor
             SetBindingSourceForQueryEditor(fluent);
 
             //Event to command
@@ -103,13 +97,16 @@ namespace Databvase_Winforms.Modules
             SetTriggers(fluent);
 
             //Bind commands
-            fluent.BindCommand(barButtonItemCopy, x=>x.CopyFromQueryTextEditor());
-            fluent.BindCommand(barButtonItemCut, x=>x.CutFromQueryTextEditor());
-            fluent.BindCommand(barButtonItemPaste, x=>x.PasteIntoQueryTextEditor());
+            fluent.BindCommand(barButtonItemCopy, x => x.CopyFromQueryTextEditor());
+            fluent.BindCommand(barButtonItemCut, x => x.CutFromQueryTextEditor());
+            fluent.BindCommand(barButtonItemPaste, x => x.PasteIntoQueryTextEditor());
         }
 
         private void SetBindingSourceForQueryEditor(MVVMContextFluentAPI<QueryControlViewModel> fluent)
         {
+            var bindingSourceQueryControl = new BindingSource();
+            queryTextEditor.DataBindings.Add("Text", bindingSourceQueryControl, "DocumentText", false,
+                DataSourceUpdateMode.OnPropertyChanged);
             fluent.SetObjectDataSourceBinding(bindingSourceQueryControl, x => x.Entity, x => x.Update());
             fluent.ViewModel.RaisePropertyChanged(x => x.Entity);
         }

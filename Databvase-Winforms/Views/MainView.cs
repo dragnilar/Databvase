@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Messages;
-using Databvase_Winforms.Models;
 using Databvase_Winforms.Modules;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.Services.Window_Dialog_Services;
 using Databvase_Winforms.View_Models;
-using DevExpress.Customization;
-using DevExpress.DataAccess.ConnectionParameters;
-using DevExpress.DataAccess.Native.Sql;
-using DevExpress.DataAccess.Sql;
-using DevExpress.DataAccess.UI.Sql;
 using DevExpress.LookAndFeel;
 using DevExpress.Mvvm;
 using DevExpress.Utils.Menu;
@@ -21,8 +14,6 @@ using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.ColorWheel;
 
 namespace Databvase_Winforms.Views
 {
@@ -57,7 +48,6 @@ namespace Databvase_Winforms.Views
 
         private void RegisterMessages()
         {
-            Messenger.Default.Register<NewScriptMessage>(this, typeof(NewScriptMessage).Name, CreateNewQueryPaneWithScript);
             Messenger.Default.Register<TabNameMessage>(this, typeof(TabNameMessage).Name, OnTabNameMessage);
         }
 
@@ -127,16 +117,6 @@ namespace Databvase_Winforms.Views
             if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
         }
 
-        private void CreateNewQueryPaneWithScript(NewScriptMessage message)
-        {
-            mvvmContextMain.GetViewModel<MainViewModel>().AddNewTab();
-            ((QueryControl)tabbedViewMain.ActiveDocument.Control).ProcessNewScriptMessage(message);
-
-
-        }
-
-
-
         #endregion
 
 
@@ -153,7 +133,7 @@ namespace Databvase_Winforms.Views
 
         private void BindEventToCommands(MVVMContextFluentAPI<MainViewModel> fluent)
         {
-            fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddNewTab());
+            fluent.EventToCommand<ItemClickEventArgs>(barButtonItemNewQuery, "ItemClick", x => x.AddBlankTab());
             fluent.EventToCommand<ItemClickEventArgs>(barButtonItemShowSettings, "ItemClick", x => x.ShowSettings());
             fluent.EventToCommand<EventArgs>(this, "Shown", x => x.CheckToShowConnectionsAtStartup());
         }

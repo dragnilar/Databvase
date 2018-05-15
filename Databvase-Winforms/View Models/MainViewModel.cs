@@ -31,16 +31,6 @@ namespace Databvase_Winforms.View_Models
         public virtual Color TextEditorLineNumberColor { get; set; }
         public virtual bool InstancesConnected { get; set; }
         private readonly bool _loading = true;
-        
-
-
-        private class DocumentInfo //TODO - We may want to move this to its own file to avoid cluttering up the View Model
-        {
-            public string DocumentType;
-            public string DocumentTitle;
-
-        }
-
 
         public MainViewModel()
         {
@@ -54,6 +44,7 @@ namespace Databvase_Winforms.View_Models
         {
             Messenger.Default.Register<InstanceConnectedMessage>(this, typeof(InstanceConnectedMessage).Name, ReceiveInstanceConnectedMessage);
             Messenger.Default.Register<InstanceNameChangeMessage>(this, typeof(InstanceNameChangeMessage).Name, ReceiveInstanceNameChangedMessage);
+            Messenger.Default.Register<NewScriptMessage>(this, typeof(NewScriptMessage).Name, AddTabWithScriptText);
         }
 
         private void ReceiveInstanceNameChangedMessage(InstanceNameChangeMessage message)
@@ -108,18 +99,32 @@ namespace Databvase_Winforms.View_Models
             InstancesConnected = App.Connection.CurrentConnections.Count > 0;
         }
 
-        public void AddNewTab()
+
+
+        /// <summary>
+        /// Creates a new query tab that is displayed in the document manager on the main view.
+        /// </summary>
+        public void AddBlankTab()
+        {
+            GenerateNewQueryTextEditor();
+        }
+
+        private void AddTabWithScriptText(NewScriptMessage message)
+        {
+            if (message != null)
+            {
+                GenerateNewQueryTextEditor(message);
+            }
+        }
+
+        private void GenerateNewQueryTextEditor(NewScriptMessage optionalNewScriptMessage = null)
         {
             ShowSplashScreen();
             NumberOfQueries++;
-            var vm = new QueryControlViewModel();
-            var docInfo = new DocumentInfo
-            {
-                DocumentTitle = $"Query {NumberOfQueries}",
-                DocumentType = "QueryControl"
-            };
-            var document = DocumentManagerService.CreateDocument(docInfo.DocumentType, vm);
-            document.Title = docInfo.DocumentTitle;
+            var vm = QueryControlViewModel.Create();
+            if (optionalNewScriptMessage != null) vm.ReceiveNewScriptMessageAndSetScriptText(optionalNewScriptMessage);
+            var document = DocumentManagerService.CreateDocument("QueryControl", vm);
+            document.Title = $"Query {NumberOfQueries}";
             document.DestroyOnClose = true;
             document.Show();
             HideSplashScreen();

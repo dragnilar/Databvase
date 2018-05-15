@@ -1,7 +1,16 @@
-﻿namespace Databvase_Winforms.Models
+﻿using DevExpress.Mvvm;
+
+namespace Databvase_Winforms.Models
 {
-    public class QueryDocumentEntity
+    public class QueryDocumentEntity : BindableBase
     {
-        public string DocumentText { get; set; }
+        private string _documentText;
+
+        public string DocumentText
+        {
+            get => _documentText;
+            set => SetProperty(ref _documentText, value, "DocumentText");
+        }
+
     }
 }
