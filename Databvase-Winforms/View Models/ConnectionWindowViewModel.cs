@@ -20,8 +20,8 @@ namespace Databvase_Winforms.View_Models
         public enum State
         {
             Open,
-            ConnectionStringManager,
-            ConnectionStringBuilder,
+            ConnectionManager,
+            ConnectionBuilder,
             Exit
         }
 
@@ -30,7 +30,7 @@ namespace Databvase_Winforms.View_Models
         {
             InitalizeValues();
             SelectedConnection = null;
-            SavedConnectionStrings = App.Config.ConnectionStrings;
+            SavedConnections = App.Config.SavedConnections;
             CanConnect = false;
         }
 
@@ -43,7 +43,7 @@ namespace Databvase_Winforms.View_Models
         public virtual List<SQLServerInstance> Instances { get; set; }
         public virtual State WindowState { get; set; }
         public virtual SavedConnection SelectedConnection { get; set; }
-        public virtual List<SavedConnection> SavedConnectionStrings { get; set; }
+        public virtual List<SavedConnection> SavedConnections { get; set; }
         public virtual bool CanConnect { get; set; }
         public virtual bool ShowOnStartup { get; set; }
 
@@ -62,7 +62,7 @@ namespace Databvase_Winforms.View_Models
             ShowOnStartup = App.Config.ShowConnectionWindowOnStartup;
         }
 
-        //Simple Dependency For SelectedConnectionString, binds at runtime
+        //Simple Dependency For SelectedConnection, binds at runtime
         protected void OnSelectedConnectionChanged()
         {
             CanConnect = SelectedConnection != null;
@@ -95,15 +95,15 @@ namespace Databvase_Winforms.View_Models
             WindowState = State.Exit;
         }
 
-        public void GoToConnectionStringBuilder()
+        public void GoToConnectionBuilder()
         {
-            WindowState = State.ConnectionStringBuilder;
+            WindowState = State.ConnectionBuilder;
         }
 
-        public void GoToConnectionStringManager()
+        public void GoToConnectionManager()
         {
             InitalizeValues();
-            WindowState = State.ConnectionStringManager;
+            WindowState = State.ConnectionManager;
         }
 
         public void TestAndSave()
@@ -119,7 +119,7 @@ namespace Databvase_Winforms.View_Models
             if (testResult.valid)
             {
                 SaveConnectionToBeBuilt(connection);
-                WindowState = State.ConnectionStringManager;
+                WindowState = State.ConnectionManager;
             }
             else
             {
@@ -130,12 +130,12 @@ namespace Databvase_Winforms.View_Models
 
         private void SaveConnectionToBeBuilt(SavedConnection connection)
         {
-            App.Config.ConnectionStrings.Add(connection);
+            App.Config.SavedConnections.Add(connection);
 
             App.Config.Save();
 
             SelectedConnection =
-                SavedConnectionStrings.FirstOrDefault(r => r.NickName == connection.NickName);
+                SavedConnections.FirstOrDefault(r => r.NickName == connection.NickName);
         }
 
 

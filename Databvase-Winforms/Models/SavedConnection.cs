@@ -59,7 +59,7 @@ namespace Databvase_Winforms.Models
                 errorMessageList.Add("Nickname is required.");
             }
 
-            if (App.Config.ConnectionStrings.Any(r => r.NickName == NickName))
+            if (App.Config.SavedConnections.Any(r => r.NickName == NickName))
             {
                 errorMessageList.Add("Nickname is already being used by another saved string, please enter a different one.");
             }

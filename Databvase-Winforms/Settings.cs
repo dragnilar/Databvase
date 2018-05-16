@@ -7,7 +7,7 @@ namespace Databvase_Winforms
 {
     public class Settings : SettingsManager
     {
-        public List<SavedConnection> ConnectionStrings = new List<SavedConnection>();
+        public List<SavedConnection> SavedConnections = new List<SavedConnection>();
         public string DefaultSkinName = "The Bezier";
         public string DefaultSvgPalette = string.Empty;
         public Color SavedSkinColor1 = Color.Empty;

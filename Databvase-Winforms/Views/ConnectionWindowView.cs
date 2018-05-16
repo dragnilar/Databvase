@@ -15,7 +15,7 @@ namespace Databvase_Winforms.Views
         public ConnectionWindowView()
         {
             InitializeComponent();
-            if (!mvvmContextConnectionStringView.IsDesignMode)
+            if (!mvvmContextConnectionWindowView.IsDesignMode)
                 InitializeBindings();
             MVVMContext.RegisterXtraMessageBoxService();
 
@@ -51,26 +51,26 @@ namespace Databvase_Winforms.Views
             if (fieldInfo != null) fieldInfo.SetValue(comboBoxEditInstances.Properties, TextEditStyles.Standard);
         }
 
-        private void ShowConnectionStringBuilder()
+        private void ShowConnectionBuilder()
         {
-            navigationFrame.SelectedPage = navigationPageConnetionStringBuilder;
+            navigationFrame.SelectedPage = navigationPageConnectionBuilder;
         }
 
-        private void ShowConnectionStringManager()
+        private void ShowConnectionManager()
         {
-            navigationFrame.SelectedPage = navigationPageConnectionStringManager;
+            navigationFrame.SelectedPage = navigationPageConnectionManager;
         }
 
 
         private void InitializeBindings()
         {
-            var fluent = mvvmContextConnectionStringView.OfType<ConnectionWindowViewModel>();
+            var fluent = mvvmContextConnectionWindowView.OfType<ConnectionWindowViewModel>();
 
-            mvvmContextConnectionStringView.RegisterService(SplashScreenService.Create(splashScreenManager));
+            mvvmContextConnectionWindowView.RegisterService(SplashScreenService.Create(splashScreenManager));
 
 
-            fluent.BindCommand(simpleButtonCreateNewString, x => x.GoToConnectionStringBuilder());
-            fluent.BindCommand(simpleButtonCancelCreateConnection, x => x.GoToConnectionStringManager());
+            fluent.BindCommand(simpleButtonCreateNewString, x => x.GoToConnectionBuilder());
+            fluent.BindCommand(simpleButtonCancelCreateConnection, x => x.GoToConnectionManager());
             fluent.BindCommand(simpleButtonCancel, x => x.Cancel());
             fluent.BindCommand(simpleButtonSaveAndTest, x => x.TestAndSave());
             fluent.BindCommand(simpleButtonConnect, x => x.Connect());
@@ -79,9 +79,9 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(textEditNickName, x => x.EditValue, y => y.NickName);
             fluent.SetBinding(textEditPassword, x => x.EditValue, y => y.Password);
             fluent.SetBinding(textEditUserName, x => x.EditValue, y => y.UserId);
-            fluent.SetBinding(lookUpEditConnectionStrings.Properties, x => x.DataSource,
-                vm => vm.SavedConnectionStrings);
-            fluent.SetBinding(lookUpEditConnectionStrings, x => x.EditValue, y => y.SelectedConnection);
+            fluent.SetBinding(lookUpEditSavedConnections.Properties, x => x.DataSource,
+                vm => vm.SavedConnections);
+            fluent.SetBinding(lookUpEditSavedConnections, x => x.EditValue, y => y.SelectedConnection);
             fluent.SetBinding(checkEditWindowsAuthentication, x => x.EditValue, y => y.UseWindowsAuthentication);
             fluent.SetBinding(spinEditConnectionTimeout, x => x.EditValue, y => y.ConnectTimeout);
             fluent.SetItemsSourceBinding(comboBoxEditInstances.Properties, cb => cb.Items, x => x.Instances,
@@ -97,11 +97,11 @@ namespace Databvase_Winforms.Views
                 {
                     case ConnectionWindowViewModel.State.Open:
                         break;
-                    case ConnectionWindowViewModel.State.ConnectionStringManager:
-                        ShowConnectionStringManager();
+                    case ConnectionWindowViewModel.State.ConnectionManager:
+                        ShowConnectionManager();
                         break;
-                    case ConnectionWindowViewModel.State.ConnectionStringBuilder:
-                        ShowConnectionStringBuilder();
+                    case ConnectionWindowViewModel.State.ConnectionBuilder:
+                        ShowConnectionBuilder();
                         break;
                     case ConnectionWindowViewModel.State.Exit:
                         Close();
