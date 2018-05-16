@@ -206,6 +206,7 @@ namespace Databvase_Winforms.Views
             // 
             // navigationPageConnectionManager
             // 
+            this.navigationPageConnectionManager.Caption = "navigationPageConnectionManager";
             this.navigationPageConnectionManager.Controls.Add(this.lcFrameConnectionManager);
             this.navigationPageConnectionManager.Name = "navigationPageConnectionManager";
             this.navigationPageConnectionManager.Size = new System.Drawing.Size(609, 353);
@@ -311,6 +312,7 @@ namespace Databvase_Winforms.Views
             this.lookUpEditSavedConnections.Properties.Appearance.Options.UseFont = true;
             this.lookUpEditSavedConnections.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEditSavedConnections.Properties.DisplayMember = "NickName";
             this.lookUpEditSavedConnections.Properties.NullText = "";
             this.lookUpEditSavedConnections.Size = new System.Drawing.Size(585, 30);
             this.lookUpEditSavedConnections.StyleController = this.lcFrameConnectionManager;
@@ -517,6 +519,7 @@ namespace Databvase_Winforms.Views
             // 
             // navigationPageConnectionBuilder
             // 
+            this.navigationPageConnectionBuilder.Caption = "navigationPageConnectionBuilder";
             this.navigationPageConnectionBuilder.Controls.Add(this.lciConnectionBuilder);
             this.navigationPageConnectionBuilder.Name = "navigationPageConnectionBuilder";
             this.navigationPageConnectionBuilder.Size = new System.Drawing.Size(609, 353);

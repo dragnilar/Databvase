@@ -139,6 +139,24 @@ namespace Databvase_Winforms.Modules
 
             });
 
+            fluent.SetTrigger(x => x.ControlState, state =>
+            {
+                switch (state)
+                {
+                    case QueryControlViewModel.QueryResultState.ShowGrid:
+                        xtraTabControlResultsPane.SelectedTabPage = xtraTabPageResultsGrid;
+                        break;
+                    case QueryControlViewModel.QueryResultState.ShowMessages:
+                        xtraTabControlResultsPane.SelectedTabPage = xtraTabPageMessages;
+                        break;
+                    case QueryControlViewModel.QueryResultState.Default:
+                        xtraTabControlResultsPane.SelectedTabPage = xtraTabPageResultsGrid; //For now just default to the grid
+                        break;
+                    default:
+                        break;
+                }
+            });
+
 
         }
 

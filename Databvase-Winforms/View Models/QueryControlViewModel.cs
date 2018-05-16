@@ -36,7 +36,16 @@ namespace Databvase_Winforms.View_Models
             AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
             QueryConnection = App.Connection.GetCurrentConnection();
+            ControlState = QueryResultState.Default;
         }
+
+        public enum QueryResultState
+        {
+            Default,
+            ShowGrid,
+            ShowMessages
+        }
+        public virtual QueryResultState ControlState { get; set; }
 
         public virtual QueryDocumentEntity Entity { get;  set; }
         public virtual DataTable GridSource { get; set; }
@@ -79,19 +88,26 @@ namespace Databvase_Winforms.View_Models
                 if (result.HasErrors)
                 {
                     ResultsMessage = $"Errors Occurred: \n{result.ResultsMessage}";
+                    ControlState = QueryResultState.ShowMessages;
                 }
                 else
                 {
-                    ClearGrid = true;
-                    GridSource = result.ResultsSet.Tables.Count > 0 ? result.ResultsSet.Tables[0] : null;
-                    ClearGrid = false;
-                    ResultsMessage = result.ResultsMessage;
-                    if (App.Config.ShowRowNumberColumn)
-                    {
-                        AddRowNumberColumn();
-                    }
-                    
+                    UpgradeGridStateWithResults(result);
                 }
+        }
+
+        private void UpgradeGridStateWithResults(QueryResult result)
+        {
+            ClearGrid = true;
+            var doesResultHaveData = result.ResultsSet.Tables.Count > 0;
+            GridSource = doesResultHaveData ? result.ResultsSet.Tables[0] : null;
+            ControlState = doesResultHaveData ? QueryResultState.ShowGrid : QueryResultState.ShowMessages;
+            ClearGrid = false;
+            ResultsMessage = result.ResultsMessage;
+            if (App.Config.ShowRowNumberColumn)
+            {
+                AddRowNumberColumn();
+            }
         }
 
         private void AddRowNumberColumn()

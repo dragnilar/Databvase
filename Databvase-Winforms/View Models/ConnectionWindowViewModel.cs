@@ -30,6 +30,7 @@ namespace Databvase_Winforms.View_Models
         {
             InitalizeValues();
             SavedConnections = App.Config.SavedConnections;
+            GetLastSavedConnectionAndDetermineIfCanConnect();
         }
 
         public virtual bool UseWindowsAuthentication { get; set; }
@@ -59,7 +60,6 @@ namespace Databvase_Winforms.View_Models
             Password = string.Empty;
             WindowState = State.Open;
             ShowOnStartup = App.Config.ShowConnectionWindowOnStartup;
-            GetLastSavedConnectionAndDetermineIfCanConnect();
         }
 
         //Simple Dependency For SelectedConnection, binds at runtime
@@ -206,7 +206,8 @@ namespace Databvase_Winforms.View_Models
         {
             if (App.Config.LastUsedSavedConnection.Instance != null)
             {
-                SelectedConnection = App.Config.LastUsedSavedConnection;
+                SelectedConnection =
+                    SavedConnections.FirstOrDefault(r => r.NickName == App.Config.LastUsedSavedConnection.NickName);
                 CanConnect = true;
             }
             else

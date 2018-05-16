@@ -36,6 +36,11 @@ namespace Databvase_Winforms.Controls.QueryGrid
             {
                 e.DisplayText = App.Config.NullGridText;
             }
+
+            if (e.Column.ColumnType == typeof(bool))
+            {
+                e.DisplayText = (bool) e.Value ? "True" : "False";
+            }
         }
 
         private void QueryGridView_RowCellStyle(object sender, RowCellStyleEventArgs e)
