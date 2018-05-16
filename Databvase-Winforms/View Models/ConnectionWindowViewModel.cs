@@ -29,9 +29,7 @@ namespace Databvase_Winforms.View_Models
         public ConnectionWindowViewModel()
         {
             InitalizeValues();
-            SelectedConnection = null;
             SavedConnections = App.Config.SavedConnections;
-            CanConnect = false;
         }
 
         public virtual bool UseWindowsAuthentication { get; set; }
@@ -48,6 +46,7 @@ namespace Databvase_Winforms.View_Models
         public virtual bool ShowOnStartup { get; set; }
 
 
+
         protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
@@ -60,6 +59,7 @@ namespace Databvase_Winforms.View_Models
             Password = string.Empty;
             WindowState = State.Open;
             ShowOnStartup = App.Config.ShowConnectionWindowOnStartup;
+            GetLastSavedConnectionAndDetermineIfCanConnect();
         }
 
         //Simple Dependency For SelectedConnection, binds at runtime
@@ -81,6 +81,7 @@ namespace Databvase_Winforms.View_Models
             if (result.valid)
             {
                 new InstanceConnectedMessage(App.Connection.GetCurrentTracker());
+                UpdateLastUsedSavedConnection();
                 WindowState = State.Exit;
             }
             else
@@ -199,6 +200,26 @@ namespace Databvase_Winforms.View_Models
                 instanceList.Add(instance);
 
             return instanceList;
+        }
+
+        private void GetLastSavedConnectionAndDetermineIfCanConnect()
+        {
+            if (App.Config.LastUsedSavedConnection.Instance != null)
+            {
+                SelectedConnection = App.Config.LastUsedSavedConnection;
+                CanConnect = true;
+            }
+            else
+            {
+                CanConnect = false;
+            }
+
+        }
+
+        private void UpdateLastUsedSavedConnection()
+        {
+            App.Config.LastUsedSavedConnection = SelectedConnection;
+            App.Config.Save();
         }
     }
 }
