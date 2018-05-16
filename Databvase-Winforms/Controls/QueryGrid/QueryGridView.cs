@@ -39,7 +39,15 @@ namespace Databvase_Winforms.Controls.QueryGrid
 
             if (e.Column.ColumnType == typeof(bool))
             {
-                e.DisplayText = (bool) e.Value ? "True" : "False";
+                if (e.Value != DBNull.Value)
+                {
+                    e.DisplayText = (bool)e.Value ? "True" : "False";
+                }
+                else
+                {
+                    e.DisplayText = App.Config.NullGridText;
+                }
+                
             }
         }
 
