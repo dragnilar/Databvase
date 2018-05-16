@@ -292,12 +292,6 @@
     <Compile Include="Models\SavedConnection.cs" />
     <Compile Include="Models\ScriptGenerationResult.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />
-    <Compile Include="Modules\ConnectionStringWizard.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\ConnectionStringWizard.Designer.cs">
-      <DependentUpon>ConnectionStringWizard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modules\ObjectExplorer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -393,9 +387,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\XtraFontDialog.resx">
       <DependentUpon>XtraFontDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\ConnectionStringWizard.resx">
-      <DependentUpon>ConnectionStringWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ObjectExplorer.resx">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
