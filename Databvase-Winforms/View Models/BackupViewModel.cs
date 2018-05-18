@@ -205,5 +205,7 @@ namespace Databvase_Winforms.View_Models
             Open,
             Closed
         }
+
+        //public enum 
     }
 }

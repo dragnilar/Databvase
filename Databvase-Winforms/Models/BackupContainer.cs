@@ -37,10 +37,6 @@ namespace Databvase_Winforms.Models
                 ?.PhysicalDeviceName;
         }
 
-
-
-
-
         public BackupContainer()
         {
             CurrentBackup = new Backup();

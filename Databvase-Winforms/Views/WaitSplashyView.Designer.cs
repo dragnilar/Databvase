@@ -41,6 +41,7 @@
             this.progressPanel1.AppearanceCaption.Options.UseFont = true;
             this.progressPanel1.AppearanceDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.progressPanel1.AppearanceDescription.Options.UseFont = true;
+            this.progressPanel1.BarAnimationElementThickness = 2;
             this.progressPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressPanel1.ImageHorzOffset = 20;
             this.progressPanel1.Location = new System.Drawing.Point(0, 17);
@@ -67,7 +68,7 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(246, 73);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // Form1
+            // WaitSplashyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -76,12 +77,13 @@
             this.ClientSize = new System.Drawing.Size(246, 73);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
-            this.Name = "Form1";
+            this.Name = "WaitSplashyView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Form1";
+            this.Text = "Loading Please Wait...";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
