@@ -30,6 +30,7 @@ namespace Databvase_Winforms.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
             this.navigationPaneSettings = new DevExpress.XtraBars.Navigation.NavigationPane();
             this.navigationPageQuerySettings = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -37,7 +38,7 @@ namespace Databvase_Winforms.Views
             this.textEditNullText = new DevExpress.XtraEditors.TextEdit();
             this.colorPickEditNullColor = new DevExpress.XtraEditors.ColorPickEdit();
             this.checkEditShowRowNumberColumn = new DevExpress.XtraEditors.CheckEdit();
-            this.lcgEnvironment = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lcgQuerySettings = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lcgQueryExecution = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lciShowRowNumberInGrid = new DevExpress.XtraLayout.LayoutControlItem();
@@ -50,7 +51,7 @@ namespace Databvase_Winforms.Views
             this.navigationPageObjectExplorer = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lcObjectExplorerSettings = new DevExpress.XtraLayout.LayoutControl();
             this.spinEditNumberOfRowsForTopScript = new DevExpress.XtraEditors.SpinEdit();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lcgObjectExplorerSettings = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lcgQueryScripting = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lciNumberOfRowsForSelectTop = new DevExpress.XtraLayout.LayoutControlItem();
@@ -58,8 +59,19 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navigationPageTextEditor = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lcTextEditorSettings = new DevExpress.XtraLayout.LayoutControl();
+            this.colorPickEditDefaultCommentColor = new DevExpress.XtraEditors.ColorPickEdit();
+            this.colorPickEditDefaultStringColor = new DevExpress.XtraEditors.ColorPickEdit();
+            this.colorPickEditDefaultKeywordColor = new DevExpress.XtraEditors.ColorPickEdit();
+            this.colorPickEditDefaultTextColor = new DevExpress.XtraEditors.ColorPickEdit();
+            this.fontEditDefaultFont = new DevExpress.XtraEditors.FontEdit();
             this.lcgTextEditorSettings = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lciDefaultTextEditorFont = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciDefaultTextColor = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciDefaultKeywordColor = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciDefaultStringColor = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lciDefaultCommentColor = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navigationPageEnvironment = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lcSettings = new DevExpress.XtraLayout.LayoutControl();
             this.simpleButtonCancelSaveSettings = new DevExpress.XtraEditors.SimpleButton();
@@ -70,18 +82,14 @@ namespace Databvase_Winforms.Views
             this.lciCancelSaveSettingsButton = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.mvvmContextSettingsView = new DevExpress.Utils.MVVM.MVVMContext();
-            this.fontEditDefaultFont = new DevExpress.XtraEditors.FontEdit();
-            this.lciDefaultTextEditorFont = new DevExpress.XtraLayout.LayoutControlItem();
-            this.colorPickEditDefaultTextColor = new DevExpress.XtraEditors.ColorPickEdit();
-            this.lciDefaultTextColor = new DevExpress.XtraLayout.LayoutControlItem();
-            this.colorPickEditDefaultKeywordColor = new DevExpress.XtraEditors.ColorPickEdit();
-            this.lciDefaultKeywordColor = new DevExpress.XtraLayout.LayoutControlItem();
-            this.colorPickEditDefaultStringColor = new DevExpress.XtraEditors.ColorPickEdit();
-            this.lciDefaultStringColor = new DevExpress.XtraLayout.LayoutControlItem();
-            this.colorPickEditDefaultCommentColor = new DevExpress.XtraEditors.ColorPickEdit();
-            this.lciDefaultCommentColor = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.mvvmContextSettingsView = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.lcEnvironment = new DevExpress.XtraLayout.LayoutControl();
+            this.lcgEnvironment = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.checkEditUseDirectX = new DevExpress.XtraEditors.CheckEdit();
+            this.lciDirectX = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.lcgGraphics = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lcgTextEditorFontStyles = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPaneSettings)).BeginInit();
             this.navigationPaneSettings.SuspendLayout();
             this.navigationPageQuerySettings.SuspendLayout();
@@ -90,7 +98,7 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.textEditNullText.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditNullColor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditShowRowNumberColumn.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgEnvironment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgQuerySettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryExecution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciShowRowNumberInGrid)).BeginInit();
@@ -104,7 +112,7 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorerSettings)).BeginInit();
             this.lcObjectExplorerSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditNumberOfRowsForTopScript.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgObjectExplorerSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryScripting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).BeginInit();
@@ -113,8 +121,20 @@ namespace Databvase_Winforms.Views
             this.navigationPageTextEditor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcTextEditorSettings)).BeginInit();
             this.lcTextEditorSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultCommentColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultStringColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultKeywordColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultTextColor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fontEditDefaultFont.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgTextEditorSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextEditorFont)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultKeywordColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultStringColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultCommentColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+            this.navigationPageEnvironment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcSettings)).BeginInit();
             this.lcSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcgSettings)).BeginInit();
@@ -124,17 +144,14 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fontEditDefaultFont.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextEditorFont)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultTextColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultKeywordColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultKeywordColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultStringColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultStringColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultCommentColor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultCommentColor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcEnvironment)).BeginInit();
+            this.lcEnvironment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgEnvironment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditUseDirectX.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDirectX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgGraphics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgTextEditorFontStyles)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationPaneSettings
@@ -174,7 +191,7 @@ namespace Databvase_Winforms.Views
             this.lclQuerySettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lclQuerySettings.Location = new System.Drawing.Point(0, 0);
             this.lclQuerySettings.Name = "lclQuerySettings";
-            this.lclQuerySettings.Root = this.lcgEnvironment;
+            this.lclQuerySettings.Root = this.lcgQuerySettings;
             this.lclQuerySettings.Size = new System.Drawing.Size(637, 463);
             this.lclQuerySettings.TabIndex = 0;
             this.lclQuerySettings.Text = "layoutControl1";
@@ -208,22 +225,24 @@ namespace Databvase_Winforms.Views
             this.checkEditShowRowNumberColumn.StyleController = this.lclQuerySettings;
             this.checkEditShowRowNumberColumn.TabIndex = 4;
             // 
-            // lcgEnvironment
+            // lcgQuerySettings
             // 
-            this.lcgEnvironment.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.lcgEnvironment.GroupBordersVisible = false;
-            this.lcgEnvironment.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lcgQuerySettings.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.lcgQuerySettings.GroupBordersVisible = false;
+            this.lcgQuerySettings.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            this.lcgQuerySettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lcgQueryExecution,
             this.emptySpaceItem2,
             this.lcgQueryGrid});
-            this.lcgEnvironment.Name = "Root";
-            this.lcgEnvironment.OptionsItemText.TextToControlDistance = 5;
-            this.lcgEnvironment.Size = new System.Drawing.Size(637, 463);
-            this.lcgEnvironment.TextVisible = false;
+            this.lcgQuerySettings.Name = "lcgQuerySettings";
+            this.lcgQuerySettings.OptionsItemText.TextToControlDistance = 5;
+            this.lcgQuerySettings.Size = new System.Drawing.Size(637, 463);
+            this.lcgQuerySettings.TextVisible = false;
             // 
             // lcgQueryExecution
             // 
             this.lcgQueryExecution.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("lcgQueryExecution.CaptionImageOptions.Image")));
+            this.lcgQueryExecution.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             this.lcgQueryExecution.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem4,
             this.lciShowRowNumberInGrid});
@@ -260,6 +279,7 @@ namespace Databvase_Winforms.Views
             // 
             // lcgQueryGrid
             // 
+            this.lcgQueryGrid.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             this.lcgQueryGrid.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem1,
             this.lciNullColor,
@@ -318,7 +338,7 @@ namespace Databvase_Winforms.Views
             this.lcObjectExplorerSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lcObjectExplorerSettings.Location = new System.Drawing.Point(0, 0);
             this.lcObjectExplorerSettings.Name = "lcObjectExplorerSettings";
-            this.lcObjectExplorerSettings.Root = this.layoutControlGroup1;
+            this.lcObjectExplorerSettings.Root = this.lcgObjectExplorerSettings;
             this.lcObjectExplorerSettings.Size = new System.Drawing.Size(637, 463);
             this.lcObjectExplorerSettings.TabIndex = 0;
             this.lcObjectExplorerSettings.Text = "layoutControl1";
@@ -339,16 +359,17 @@ namespace Databvase_Winforms.Views
             this.spinEditNumberOfRowsForTopScript.StyleController = this.lcObjectExplorerSettings;
             this.spinEditNumberOfRowsForTopScript.TabIndex = 5;
             // 
-            // layoutControlGroup1
+            // lcgObjectExplorerSettings
             // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lcgObjectExplorerSettings.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.lcgObjectExplorerSettings.GroupBordersVisible = false;
+            this.lcgObjectExplorerSettings.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            this.lcgObjectExplorerSettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lcgQueryScripting,
             this.emptySpaceItem8});
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(637, 463);
-            this.layoutControlGroup1.TextVisible = false;
+            this.lcgObjectExplorerSettings.Name = "lcgObjectExplorerSettings";
+            this.lcgObjectExplorerSettings.Size = new System.Drawing.Size(637, 463);
+            this.lcgObjectExplorerSettings.TextVisible = false;
             // 
             // lcgQueryScripting
             // 
@@ -424,18 +445,73 @@ namespace Databvase_Winforms.Views
             this.lcTextEditorSettings.TabIndex = 0;
             this.lcTextEditorSettings.Text = "TextEditorSettings";
             // 
+            // colorPickEditDefaultCommentColor
+            // 
+            this.colorPickEditDefaultCommentColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditDefaultCommentColor.Location = new System.Drawing.Point(143, 145);
+            this.colorPickEditDefaultCommentColor.Name = "colorPickEditDefaultCommentColor";
+            this.colorPickEditDefaultCommentColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditDefaultCommentColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditDefaultCommentColor.Size = new System.Drawing.Size(429, 20);
+            this.colorPickEditDefaultCommentColor.StyleController = this.lcTextEditorSettings;
+            this.colorPickEditDefaultCommentColor.TabIndex = 8;
+            // 
+            // colorPickEditDefaultStringColor
+            // 
+            this.colorPickEditDefaultStringColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditDefaultStringColor.Location = new System.Drawing.Point(143, 121);
+            this.colorPickEditDefaultStringColor.Name = "colorPickEditDefaultStringColor";
+            this.colorPickEditDefaultStringColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditDefaultStringColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditDefaultStringColor.Size = new System.Drawing.Size(429, 20);
+            this.colorPickEditDefaultStringColor.StyleController = this.lcTextEditorSettings;
+            this.colorPickEditDefaultStringColor.TabIndex = 7;
+            // 
+            // colorPickEditDefaultKeywordColor
+            // 
+            this.colorPickEditDefaultKeywordColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditDefaultKeywordColor.Location = new System.Drawing.Point(143, 97);
+            this.colorPickEditDefaultKeywordColor.Name = "colorPickEditDefaultKeywordColor";
+            this.colorPickEditDefaultKeywordColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditDefaultKeywordColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditDefaultKeywordColor.Size = new System.Drawing.Size(429, 20);
+            this.colorPickEditDefaultKeywordColor.StyleController = this.lcTextEditorSettings;
+            this.colorPickEditDefaultKeywordColor.TabIndex = 6;
+            // 
+            // colorPickEditDefaultTextColor
+            // 
+            this.colorPickEditDefaultTextColor.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEditDefaultTextColor.Location = new System.Drawing.Point(143, 73);
+            this.colorPickEditDefaultTextColor.Name = "colorPickEditDefaultTextColor";
+            this.colorPickEditDefaultTextColor.Properties.AutomaticColor = System.Drawing.Color.Black;
+            this.colorPickEditDefaultTextColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEditDefaultTextColor.Size = new System.Drawing.Size(429, 20);
+            this.colorPickEditDefaultTextColor.StyleController = this.lcTextEditorSettings;
+            this.colorPickEditDefaultTextColor.TabIndex = 5;
+            // 
+            // fontEditDefaultFont
+            // 
+            this.fontEditDefaultFont.Location = new System.Drawing.Point(143, 49);
+            this.fontEditDefaultFont.Name = "fontEditDefaultFont";
+            this.fontEditDefaultFont.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.fontEditDefaultFont.Size = new System.Drawing.Size(429, 20);
+            this.fontEditDefaultFont.StyleController = this.lcTextEditorSettings;
+            this.fontEditDefaultFont.TabIndex = 4;
+            // 
             // lcgTextEditorSettings
             // 
             this.lcgTextEditorSettings.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.lcgTextEditorSettings.GroupBordersVisible = false;
+            this.lcgTextEditorSettings.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             this.lcgTextEditorSettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem10,
-            this.lciDefaultTextEditorFont,
-            this.lciDefaultTextColor,
-            this.lciDefaultKeywordColor,
-            this.lciDefaultStringColor,
-            this.lciDefaultCommentColor,
-            this.emptySpaceItem11});
+            this.emptySpaceItem11,
+            this.lcgTextEditorFontStyles});
             this.lcgTextEditorSettings.Name = "lcgTextEditorSettings";
             this.lcgTextEditorSettings.Size = new System.Drawing.Size(637, 463);
             this.lcgTextEditorSettings.TextVisible = false;
@@ -443,14 +519,68 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 120);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 169);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(617, 323);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(617, 274);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // lciDefaultTextEditorFont
+            // 
+            this.lciDefaultTextEditorFont.Control = this.fontEditDefaultFont;
+            this.lciDefaultTextEditorFont.Location = new System.Drawing.Point(0, 0);
+            this.lciDefaultTextEditorFont.Name = "lciDefaultTextEditorFont";
+            this.lciDefaultTextEditorFont.Size = new System.Drawing.Size(552, 24);
+            this.lciDefaultTextEditorFont.Text = "Default Text Editor Font";
+            this.lciDefaultTextEditorFont.TextSize = new System.Drawing.Size(116, 13);
+            // 
+            // lciDefaultTextColor
+            // 
+            this.lciDefaultTextColor.Control = this.colorPickEditDefaultTextColor;
+            this.lciDefaultTextColor.Location = new System.Drawing.Point(0, 24);
+            this.lciDefaultTextColor.Name = "lciDefaultTextColor";
+            this.lciDefaultTextColor.Size = new System.Drawing.Size(552, 24);
+            this.lciDefaultTextColor.Text = "Default Text Color";
+            this.lciDefaultTextColor.TextSize = new System.Drawing.Size(116, 13);
+            // 
+            // lciDefaultKeywordColor
+            // 
+            this.lciDefaultKeywordColor.Control = this.colorPickEditDefaultKeywordColor;
+            this.lciDefaultKeywordColor.Location = new System.Drawing.Point(0, 48);
+            this.lciDefaultKeywordColor.Name = "lciDefaultKeywordColor";
+            this.lciDefaultKeywordColor.Size = new System.Drawing.Size(552, 24);
+            this.lciDefaultKeywordColor.Text = "Default Keyword Color";
+            this.lciDefaultKeywordColor.TextSize = new System.Drawing.Size(116, 13);
+            // 
+            // lciDefaultStringColor
+            // 
+            this.lciDefaultStringColor.Control = this.colorPickEditDefaultStringColor;
+            this.lciDefaultStringColor.Location = new System.Drawing.Point(0, 72);
+            this.lciDefaultStringColor.Name = "lciDefaultStringColor";
+            this.lciDefaultStringColor.Size = new System.Drawing.Size(552, 24);
+            this.lciDefaultStringColor.Text = "Default String Color";
+            this.lciDefaultStringColor.TextSize = new System.Drawing.Size(116, 13);
+            // 
+            // lciDefaultCommentColor
+            // 
+            this.lciDefaultCommentColor.Control = this.colorPickEditDefaultCommentColor;
+            this.lciDefaultCommentColor.Location = new System.Drawing.Point(0, 96);
+            this.lciDefaultCommentColor.Name = "lciDefaultCommentColor";
+            this.lciDefaultCommentColor.Size = new System.Drawing.Size(552, 24);
+            this.lciDefaultCommentColor.Text = "Default Comment Color";
+            this.lciDefaultCommentColor.TextSize = new System.Drawing.Size(116, 13);
+            // 
+            // emptySpaceItem11
+            // 
+            this.emptySpaceItem11.AllowHotTrack = false;
+            this.emptySpaceItem11.Location = new System.Drawing.Point(576, 0);
+            this.emptySpaceItem11.Name = "emptySpaceItem11";
+            this.emptySpaceItem11.Size = new System.Drawing.Size(41, 169);
+            this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navigationPageEnvironment
             // 
             this.navigationPageEnvironment.Caption = "Environment";
+            this.navigationPageEnvironment.Controls.Add(this.lcEnvironment);
             this.navigationPageEnvironment.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("navigationPageEnvironment.ImageOptions.Image")));
             this.navigationPageEnvironment.Name = "navigationPageEnvironment";
             this.navigationPageEnvironment.Size = new System.Drawing.Size(637, 463);
@@ -492,6 +622,7 @@ namespace Databvase_Winforms.Views
             // 
             this.lcgSettings.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.lcgSettings.GroupBordersVisible = false;
+            this.lcgSettings.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             this.lcgSettings.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lciSettingsNavigationPane,
             this.lciSaveSettingsButton,
@@ -550,116 +681,83 @@ namespace Databvase_Winforms.Views
             this.mvvmContextSettingsView.ContainerControl = this;
             this.mvvmContextSettingsView.ViewModelType = typeof(Databvase_Winforms.View_Models.SettingsViewModel);
             // 
-            // fontEditDefaultFont
+            // lcEnvironment
             // 
-            this.fontEditDefaultFont.Location = new System.Drawing.Point(131, 12);
-            this.fontEditDefaultFont.Name = "fontEditDefaultFont";
-            this.fontEditDefaultFont.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.fontEditDefaultFont.Size = new System.Drawing.Size(343, 20);
-            this.fontEditDefaultFont.StyleController = this.lcTextEditorSettings;
-            this.fontEditDefaultFont.TabIndex = 4;
+            this.lcEnvironment.Controls.Add(this.checkEditUseDirectX);
+            this.lcEnvironment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcEnvironment.Location = new System.Drawing.Point(0, 0);
+            this.lcEnvironment.Name = "lcEnvironment";
+            this.lcEnvironment.Root = this.lcgEnvironment;
+            this.lcEnvironment.Size = new System.Drawing.Size(637, 463);
+            this.lcEnvironment.TabIndex = 0;
+            this.lcEnvironment.Text = "Environment";
             // 
-            // lciDefaultTextEditorFont
+            // lcgEnvironment
             // 
-            this.lciDefaultTextEditorFont.Control = this.fontEditDefaultFont;
-            this.lciDefaultTextEditorFont.Location = new System.Drawing.Point(0, 0);
-            this.lciDefaultTextEditorFont.Name = "lciDefaultTextEditorFont";
-            this.lciDefaultTextEditorFont.Size = new System.Drawing.Size(466, 24);
-            this.lciDefaultTextEditorFont.Text = "Default Text Editor Font";
-            this.lciDefaultTextEditorFont.TextSize = new System.Drawing.Size(116, 13);
+            this.lcgEnvironment.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.lcgEnvironment.GroupBordersVisible = false;
+            this.lcgEnvironment.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            this.lcgEnvironment.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem12,
+            this.lcgGraphics});
+            this.lcgEnvironment.Name = "lcgEnvironment";
+            this.lcgEnvironment.Size = new System.Drawing.Size(637, 463);
+            this.lcgEnvironment.Text = "Environment";
+            this.lcgEnvironment.TextVisible = false;
             // 
-            // colorPickEditDefaultTextColor
+            // checkEditUseDirectX
             // 
-            this.colorPickEditDefaultTextColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditDefaultTextColor.Location = new System.Drawing.Point(131, 36);
-            this.colorPickEditDefaultTextColor.Name = "colorPickEditDefaultTextColor";
-            this.colorPickEditDefaultTextColor.Properties.AutomaticColor = System.Drawing.Color.Black;
-            this.colorPickEditDefaultTextColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditDefaultTextColor.Size = new System.Drawing.Size(343, 20);
-            this.colorPickEditDefaultTextColor.StyleController = this.lcTextEditorSettings;
-            this.colorPickEditDefaultTextColor.TabIndex = 5;
+            this.checkEditUseDirectX.Location = new System.Drawing.Point(24, 49);
+            this.checkEditUseDirectX.Name = "checkEditUseDirectX";
+            this.checkEditUseDirectX.Properties.Caption = "Use Direct X Hardware Acceleration (Changing Requires Restart)";
+            this.checkEditUseDirectX.Size = new System.Drawing.Size(589, 20);
+            this.checkEditUseDirectX.StyleController = this.lcEnvironment;
+            this.checkEditUseDirectX.TabIndex = 5;
             // 
-            // lciDefaultTextColor
+            // lciDirectX
             // 
-            this.lciDefaultTextColor.Control = this.colorPickEditDefaultTextColor;
-            this.lciDefaultTextColor.Location = new System.Drawing.Point(0, 24);
-            this.lciDefaultTextColor.Name = "lciDefaultTextColor";
-            this.lciDefaultTextColor.Size = new System.Drawing.Size(466, 24);
-            this.lciDefaultTextColor.Text = "Default Text Color";
-            this.lciDefaultTextColor.TextSize = new System.Drawing.Size(116, 13);
+            this.lciDirectX.Control = this.checkEditUseDirectX;
+            this.lciDirectX.Location = new System.Drawing.Point(0, 0);
+            this.lciDirectX.Name = "lciDirectX";
+            this.lciDirectX.Size = new System.Drawing.Size(593, 24);
+            this.lciDirectX.Text = "UseDirectX";
+            this.lciDirectX.TextSize = new System.Drawing.Size(0, 0);
+            this.lciDirectX.TextVisible = false;
             // 
-            // colorPickEditDefaultKeywordColor
+            // emptySpaceItem12
             // 
-            this.colorPickEditDefaultKeywordColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditDefaultKeywordColor.Location = new System.Drawing.Point(131, 60);
-            this.colorPickEditDefaultKeywordColor.Name = "colorPickEditDefaultKeywordColor";
-            this.colorPickEditDefaultKeywordColor.Properties.AutomaticColor = System.Drawing.Color.Black;
-            this.colorPickEditDefaultKeywordColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditDefaultKeywordColor.Size = new System.Drawing.Size(343, 20);
-            this.colorPickEditDefaultKeywordColor.StyleController = this.lcTextEditorSettings;
-            this.colorPickEditDefaultKeywordColor.TabIndex = 6;
+            this.emptySpaceItem12.AllowHotTrack = false;
+            this.emptySpaceItem12.Location = new System.Drawing.Point(0, 73);
+            this.emptySpaceItem12.Name = "emptySpaceItem12";
+            this.emptySpaceItem12.Size = new System.Drawing.Size(617, 370);
+            this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // lciDefaultKeywordColor
+            // lcgGraphics
             // 
-            this.lciDefaultKeywordColor.Control = this.colorPickEditDefaultKeywordColor;
-            this.lciDefaultKeywordColor.Location = new System.Drawing.Point(0, 48);
-            this.lciDefaultKeywordColor.Name = "lciDefaultKeywordColor";
-            this.lciDefaultKeywordColor.Size = new System.Drawing.Size(466, 24);
-            this.lciDefaultKeywordColor.Text = "Default Keyword Color";
-            this.lciDefaultKeywordColor.TextSize = new System.Drawing.Size(116, 13);
+            this.lcgGraphics.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("lcgGraphics.CaptionImageOptions.Image")));
+            this.lcgGraphics.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            this.lcgGraphics.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciDirectX});
+            this.lcgGraphics.Location = new System.Drawing.Point(0, 0);
+            this.lcgGraphics.Name = "lcgGraphics";
+            this.lcgGraphics.Size = new System.Drawing.Size(617, 73);
+            this.lcgGraphics.Text = "Graphics Rendering";
             // 
-            // colorPickEditDefaultStringColor
+            // lcgTextEditorFontStyles
             // 
-            this.colorPickEditDefaultStringColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditDefaultStringColor.Location = new System.Drawing.Point(131, 84);
-            this.colorPickEditDefaultStringColor.Name = "colorPickEditDefaultStringColor";
-            this.colorPickEditDefaultStringColor.Properties.AutomaticColor = System.Drawing.Color.Black;
-            this.colorPickEditDefaultStringColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditDefaultStringColor.Size = new System.Drawing.Size(343, 20);
-            this.colorPickEditDefaultStringColor.StyleController = this.lcTextEditorSettings;
-            this.colorPickEditDefaultStringColor.TabIndex = 7;
-            // 
-            // lciDefaultStringColor
-            // 
-            this.lciDefaultStringColor.Control = this.colorPickEditDefaultStringColor;
-            this.lciDefaultStringColor.Location = new System.Drawing.Point(0, 72);
-            this.lciDefaultStringColor.Name = "lciDefaultStringColor";
-            this.lciDefaultStringColor.Size = new System.Drawing.Size(466, 24);
-            this.lciDefaultStringColor.Text = "Default String Color";
-            this.lciDefaultStringColor.TextSize = new System.Drawing.Size(116, 13);
-            // 
-            // colorPickEditDefaultCommentColor
-            // 
-            this.colorPickEditDefaultCommentColor.EditValue = System.Drawing.Color.Empty;
-            this.colorPickEditDefaultCommentColor.Location = new System.Drawing.Point(131, 108);
-            this.colorPickEditDefaultCommentColor.Name = "colorPickEditDefaultCommentColor";
-            this.colorPickEditDefaultCommentColor.Properties.AutomaticColor = System.Drawing.Color.Black;
-            this.colorPickEditDefaultCommentColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.colorPickEditDefaultCommentColor.Size = new System.Drawing.Size(343, 20);
-            this.colorPickEditDefaultCommentColor.StyleController = this.lcTextEditorSettings;
-            this.colorPickEditDefaultCommentColor.TabIndex = 8;
-            // 
-            // lciDefaultCommentColor
-            // 
-            this.lciDefaultCommentColor.Control = this.colorPickEditDefaultCommentColor;
-            this.lciDefaultCommentColor.Location = new System.Drawing.Point(0, 96);
-            this.lciDefaultCommentColor.Name = "lciDefaultCommentColor";
-            this.lciDefaultCommentColor.Size = new System.Drawing.Size(466, 24);
-            this.lciDefaultCommentColor.Text = "Default Comment Color";
-            this.lciDefaultCommentColor.TextSize = new System.Drawing.Size(116, 13);
-            // 
-            // emptySpaceItem11
-            // 
-            this.emptySpaceItem11.AllowHotTrack = false;
-            this.emptySpaceItem11.Location = new System.Drawing.Point(466, 0);
-            this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(151, 120);
-            this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.lcgTextEditorFontStyles.CaptionImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("lcgTextEditorFontStyles.CaptionImageOptions.SvgImage")));
+            this.lcgTextEditorFontStyles.CaptionImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.lcgTextEditorFontStyles.GroupStyle = DevExpress.Utils.GroupStyle.Card;
+            this.lcgTextEditorFontStyles.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lciDefaultTextEditorFont,
+            this.lciDefaultTextColor,
+            this.lciDefaultKeywordColor,
+            this.lciDefaultStringColor,
+            this.lciDefaultCommentColor});
+            this.lcgTextEditorFontStyles.Location = new System.Drawing.Point(0, 0);
+            this.lcgTextEditorFontStyles.Name = "lcgTextEditorFontStyles";
+            this.lcgTextEditorFontStyles.Size = new System.Drawing.Size(576, 169);
+            this.lcgTextEditorFontStyles.Text = "Text Editor Font Styles";
             // 
             // SettingsView
             // 
@@ -678,7 +776,7 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.textEditNullText.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPickEditNullColor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditShowRowNumberColumn.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcgEnvironment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgQuerySettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryExecution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciShowRowNumberInGrid)).EndInit();
@@ -692,7 +790,7 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorerSettings)).EndInit();
             this.lcObjectExplorerSettings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spinEditNumberOfRowsForTopScript.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgObjectExplorerSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryScripting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciNumberOfRowsForSelectTop)).EndInit();
@@ -701,8 +799,20 @@ namespace Databvase_Winforms.Views
             this.navigationPageTextEditor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcTextEditorSettings)).EndInit();
             this.lcTextEditorSettings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultCommentColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultStringColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultKeywordColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultTextColor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fontEditDefaultFont.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgTextEditorSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextEditorFont)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultKeywordColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultStringColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultCommentColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+            this.navigationPageEnvironment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcSettings)).EndInit();
             this.lcSettings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcgSettings)).EndInit();
@@ -712,17 +822,14 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextSettingsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fontEditDefaultFont.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextEditorFont)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultTextColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultTextColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultKeywordColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultKeywordColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultStringColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultStringColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorPickEditDefaultCommentColor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciDefaultCommentColor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcEnvironment)).EndInit();
+            this.lcEnvironment.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lcgEnvironment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditUseDirectX.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lciDirectX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgGraphics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcgTextEditorFontStyles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -736,7 +843,7 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageObjectExplorer;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageEnvironment;
         private DevExpress.XtraLayout.LayoutControl lclQuerySettings;
-        private DevExpress.XtraLayout.LayoutControlGroup lcgEnvironment;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgQuerySettings;
         private DevExpress.XtraEditors.CheckEdit checkEditShowRowNumberColumn;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlGroup lcgQueryExecution;
@@ -754,7 +861,7 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.LayoutControl lcObjectExplorerSettings;
         private DevExpress.XtraEditors.SpinEdit spinEditNumberOfRowsForTopScript;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgObjectExplorerSettings;
         private DevExpress.XtraLayout.LayoutControlGroup lcgQueryScripting;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControlItem lciNumberOfRowsForSelectTop;
@@ -780,5 +887,12 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraLayout.LayoutControlItem lciDefaultStringColor;
         private DevExpress.XtraLayout.LayoutControlItem lciDefaultCommentColor;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
+        private DevExpress.XtraLayout.LayoutControl lcEnvironment;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgEnvironment;
+        private DevExpress.XtraEditors.CheckEdit checkEditUseDirectX;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgGraphics;
+        private DevExpress.XtraLayout.LayoutControlItem lciDirectX;
+        private DevExpress.XtraLayout.LayoutControlGroup lcgTextEditorFontStyles;
     }
 }

@@ -22,7 +22,10 @@ namespace Databvase_Winforms.View_Models
         public virtual Color DefaultStringColor { get; set; }
         public virtual Color DefaultCommentColor { get; set; }
         public virtual string DefaultFontName { get; set; }
+        public virtual bool UseDirectX { get; set; }
         private Font  DefaultFont { get; set; }
+
+        protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
 
         public SettingsViewModel()
         {
@@ -37,8 +40,15 @@ namespace Databvase_Winforms.View_Models
             DefaultStringColor = App.Config.TextEditorStringColor;
             DefaultFont = App.Config.DefaultTextEditorFont;
             DefaultFontName = DefaultFont.Name;
+            UseDirectX = App.Config.UseDirectX;
         }
 
+        protected void OnUseDirectXChanged()
+        {
+            MessageBoxService.ShowMessage(
+                "Changes to the Direct X setting will not take effect until Databvase is restarted.",
+                "Note About Direct X Settings", MessageButton.OK, MessageIcon.Information);
+        }
 
         public void Save()
         {
@@ -51,6 +61,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.TextEditorKeywordColor = DefaultKeywordColor;
             App.Config.TextEditorStringColor = DefaultStringColor;
             App.Config.DefaultTextEditorFont = DefaultFont;
+            App.Config.UseDirectX = UseDirectX;
             App.Config.Save();
             new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.NumberOfRowsForTopSelectScript);
             new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);

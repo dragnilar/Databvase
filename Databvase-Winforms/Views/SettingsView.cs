@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.Services.Window_Dialog_Services;
 using Databvase_Winforms.View_Models;
+using DevExpress.Utils.MVVM;
 using DevExpress.XtraEditors;
 
 namespace Databvase_Winforms.Views
@@ -33,6 +34,7 @@ namespace Databvase_Winforms.Views
         private void RegisterServices()
         {
             mvvmContextSettingsView.RegisterService(new FontDialogService());
+            MVVMContext.RegisterXtraMessageBoxService();
         }
 
         void InitializeBindings()
@@ -50,6 +52,7 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(colorPickEditDefaultStringColor, x => x.Color, vm => vm.DefaultStringColor);
             fluent.SetBinding(fontEditDefaultFont, x => x.EditValue, x => x.DefaultFontName);
             fluent.SetBinding(checkEditShowRowNumberColumn, x => x.Checked, vm => vm.ShowRowNumberColumn);
+            fluent.SetBinding(checkEditUseDirectX, x => x.Checked, vm => vm.UseDirectX);
             fluent.SetBinding(spinEditNumberOfRowsForTopScript, x => x.EditValue,
                 vm => vm.NumberOfRowsForSelectTopScript);
             fluent.SetBinding(colorPickEditNullColor, x => x.Color, vm => vm.NullColor);

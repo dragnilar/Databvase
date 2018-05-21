@@ -465,6 +465,7 @@
     <Content Include="Images\Select Column_16px.png" />
     <Content Include="Images\StoredProcedure_16px.png" />
     <Content Include="Images\Support_16px.png" />
+    <Content Include="Images\X Coordinate_16px.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
