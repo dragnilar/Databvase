@@ -21,6 +21,7 @@ namespace Databvase_Winforms.Models
         public bool UseExpireAfterDays { get; set; }
         public int ExpireAfterDays { get; set; }
         public DateTime ExpireDate { get; set; }
+        public string RecoveryModelString => _currentDatabase.RecoveryModel.ToString();
 
         public Database CurrentDatabase
         {

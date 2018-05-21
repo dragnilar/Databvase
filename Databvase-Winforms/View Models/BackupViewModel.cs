@@ -18,7 +18,6 @@ namespace Databvase_Winforms.View_Models
     {
 
         public virtual string ProgressMessage { get; set; }
-        public virtual string RecoveryModel { get; set; }
         public virtual string CurrentInstanceName { get; set; }
         public virtual string CurrentLoginName { get; set; }
         public virtual int StatusImageIndex { get; set; }
@@ -45,18 +44,12 @@ namespace Databvase_Winforms.View_Models
             VerifyBackupOnComplete = false;
             ExpireOption = ExpirationDateOption.After;
             HookUpEvents();
-            GetRecoveryModel();
             GetDatabaseList();
             GetCurrentInstanceAndLogin();
             GetIncrementalOptions();
             Test();
         }
 
-        //Binds at runtime
-        protected void OnCurrentDatabaseChanged()
-        {
-            GetRecoveryModel();
-        }
 
         //Binds at runtime
         protected void OnIncrementalTypeStringChanged()
@@ -160,11 +153,6 @@ namespace Databvase_Winforms.View_Models
             MessageBoxService.ShowMessage(e.Error.Message, "Backup Failed", MessageButton.OK, MessageIcon.Error);
         }
 
-        private void GetRecoveryModel()
-        {
-            if (BackupEntityForVm.CurrentDatabase != null)
-                RecoveryModel = BackupEntityForVm.CurrentDatabase.RecoveryModel.ToString();
-        }
 
         public void Cancel()
         {

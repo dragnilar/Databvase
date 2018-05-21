@@ -18,7 +18,7 @@ namespace Databvase_Winforms.Controls
     {
         private ComboBoxEdit cbeFont;
         private CheckedListBoxControl clbStyle;
-        private Container components;
+        private Container _components; //TODO - This is never assigned..
         private Font fCurrentFont;
         private Font fResultFont;
         private ImageListBoxControl ilbcFont;
@@ -81,10 +81,10 @@ namespace Databvase_Winforms.Controls
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && components != null)
+            if (disposing && _components != null)
             {
                 ResultFontDispose();
-                components.Dispose();
+                _components.Dispose();
             }
 
             base.Dispose(disposing);

@@ -59,13 +59,8 @@ namespace Databvase_Winforms.Views
 
         private void SetupControls()
         {
-            SetupRecoveryModel();
             SetupRadioGroups();
-        }
-
-        private void SetupRecoveryModel()
-        {
-            textEditRecoveryModel.Text = App.Connection.CurrentDatabase?.RecoveryModel.ToString();
+            SetupComboBoxes();
         }
 
         private void SetupRadioGroups()
@@ -75,6 +70,11 @@ namespace Databvase_Winforms.Views
             textEditNewMediaSetName.Enabled = false;
             memoEditNewMediaSetDescription.Enabled = false;
             radioGroupBackupSetExpire.Properties.Items.AddEnum(typeof(BackupViewModel.ExpirationDateOption));
+        }
+
+        private void SetupComboBoxes()
+        {
+            imageComboBoxEditCompressionSetting.Properties.Items.AddEnum(typeof(BackupCompressionOptions));
         }
 
         private void SimpleButtonBrowseOnClick(object sender, EventArgs e)
@@ -139,7 +139,7 @@ namespace Databvase_Winforms.Views
             });
 
             fluent.SetTrigger(vm => vm.BackupEntityForVm.IncrementalBackupOption,
-                b => { comboBoxEditBackupType.SelectedIndex = b ? 1 : 0; });
+                b => { imageComboBoxEditBackupType.SelectedIndex = b ? 1 : 0; });
 
             fluent.SetTrigger(vm => vm.StatusImageIndex,
                 i => { pictureEditProgressStatus.Image = imageCollectionBackupView.Images[i]; });
@@ -181,7 +181,6 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(lcProgressStatusImage, x => x.Text, vm => vm.ProgressMessage);
             fluent.SetBinding(labelControlServerName, x => x.Text, vm => vm.CurrentInstanceName);
             fluent.SetBinding(labelControlCurrentUser, x => x.Text, vm => vm.CurrentLoginName);
-            fluent.SetBinding(textEditRecoveryModel, x => x.Text, vm => vm.RecoveryModel);
             fluent.SetBinding(checkEditVerifyBackup, x => x.Checked, vm => vm.VerifyBackupOnComplete);
             fluent.SetBinding(radioGroupBackupSetExpire, x => x.EditValue, vm => vm.ExpireOption);
         }
@@ -190,34 +189,57 @@ namespace Databvase_Winforms.Views
         {
             //TODO - See if there's a simpler way to do this, this feels really... old fashioned.
             var entityBindingSource = new BindingSource {DataSource = typeof(BackupContainer)};
-            textEditBackupPath.DataBindings.Add(new Binding("EditValue", entityBindingSource, "BackupPath", 
+            SetEntityBindingsForTextEdits(entityBindingSource);
+            SetEntityBindingsForCheckEdits(entityBindingSource);
+            spinEditExpireAfterDays.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireAfterDays",
+                true,
+                DataSourceUpdateMode.OnPropertyChanged));
+            dateEditExpireOnDate.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireDate", true,
+                DataSourceUpdateMode.OnPropertyChanged));
+            SetEntityBindingsForComboBoxes(entityBindingSource);
+            fluent.SetObjectDataSourceBinding(entityBindingSource, x => x.BackupEntityForVm, x => x.Update());
+        }
+
+        private void SetEntityBindingsForTextEdits(BindingSource entityBindingSource)
+        {
+            textEditRecoveryModel.DataBindings.Add(new Binding("EditValue", entityBindingSource, "RecoveryModelString",
+                true,
+                DataSourceUpdateMode.OnPropertyChanged));
+            textEditBackupPath.DataBindings.Add(new Binding("EditValue", entityBindingSource, "BackupPath",
                 true, DataSourceUpdateMode.OnPropertyChanged));
             textEditBackupSetName.DataBindings.Add(new Binding("EditValue", entityBindingSource,
                 "CurrentBackup.BackupSetName",
                 true, DataSourceUpdateMode.OnPropertyChanged));
             textEditBackupDescription.DataBindings.Add(new Binding("EditValue", entityBindingSource,
                 "CurrentBackup.BackupSetDescription", true, DataSourceUpdateMode.OnPropertyChanged));
-            checkEditPerformChecksum.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.Checksum"));
-            checkEditCopyOnlyBackup.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.CopyOnly"));
-            checkEditContinueOnError.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.ContinueAfterError"));
-            spinEditExpireAfterDays.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireAfterDays",
-                true,
-                DataSourceUpdateMode.OnPropertyChanged));
-            dateEditExpireOnDate.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireDate", true,
-                DataSourceUpdateMode.OnPropertyChanged));
-            comboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase", 
-                true, DataSourceUpdateMode.OnPropertyChanged));
-            fluent.SetObjectDataSourceBinding(entityBindingSource, x => x.BackupEntityForVm, x => x.Update());
+        }
 
+        private void SetEntityBindingsForCheckEdits(BindingSource entityBindingSource)
+        {
+            checkEditPerformChecksum.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+                "CurrentBackup.Checksum"));
+            checkEditCopyOnlyBackup.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+                "CurrentBackup.CopyOnly"));
+            checkEditContinueOnError.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+                "CurrentBackup.ContinueAfterError"));
+        }
+
+        private void SetEntityBindingsForComboBoxes(BindingSource entityBindingSource)
+        {
+            imageComboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase",
+                true, DataSourceUpdateMode.OnPropertyChanged));
+            imageComboBoxEditCompressionSetting.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+                "CurrentBackup.CompressionOption",
+                true, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void SetComboBoxDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
         {
-            fluent.SetItemsSourceBinding(comboBoxEditDatabaseList.Properties, cb => cb.Items, x => x.DatabaseList,
+            fluent.SetItemsSourceBinding(imageComboBoxEditDatabaseList.Properties, cb => cb.Items, x => x.DatabaseList,
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
-            fluent.SetItemsSourceBinding(comboBoxEditBackupType.Properties, cb => cb.Items, x => x.IncrementalTypes,
+            fluent.SetItemsSourceBinding(imageComboBoxEditBackupType.Properties, cb => cb.Items, x => x.IncrementalTypes,
                 (i, e) => Equals(i.Value, e), entity => new ImageComboBoxItem(entity), null, null);
-            fluent.SetBinding(comboBoxEditBackupType, x => x.EditValue, vm => vm.IncrementalTypeString);
+            fluent.SetBinding(imageComboBoxEditBackupType, x => x.EditValue, vm => vm.IncrementalTypeString);
         }
 
         #endregion

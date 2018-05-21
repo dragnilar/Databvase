@@ -70,8 +70,8 @@ namespace Databvase_Winforms.Views
             this.simpleButtonBrowse = new DevExpress.XtraEditors.SimpleButton();
             this.textEditRecoveryModel = new DevExpress.XtraEditors.TextEdit();
             this.textEditBackupPath = new DevExpress.XtraEditors.TextEdit();
-            this.comboBoxEditDatabaseList = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.comboBoxEditBackupType = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.imageComboBoxEditDatabaseList = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.imageComboBoxEditBackupType = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.lcgBackupGeneral = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcgBackupSource = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -119,13 +119,12 @@ namespace Databvase_Winforms.Views
             this.lciTemp1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navigationPageBackupOptions = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.lcBackupOptions = new DevExpress.XtraLayout.LayoutControl();
-            this.comboBoxEditCompressionSetting = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControlTemp2 = new DevExpress.XtraEditors.LabelControl();
             this.dateEditExpireOnDate = new DevExpress.XtraEditors.DateEdit();
             this.spinEditExpireAfterDays = new DevExpress.XtraEditors.SpinEdit();
             this.radioGroupBackupSetExpire = new DevExpress.XtraEditors.RadioGroup();
             this.textEditBackupDescription = new DevExpress.XtraEditors.TextEdit();
             this.textEditBackupSetName = new DevExpress.XtraEditors.TextEdit();
+            this.imageComboBoxEditCompressionSetting = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.lcgBackupOptions = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcgBackupSet = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -140,7 +139,6 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem20 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem22 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem23 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.lciTemp2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgCompression = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciCompressionComboBox = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgBackupWindow = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -184,8 +182,8 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.checkEditCopyOnlyBackup.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditRecoveryModel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupPath.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabaseList.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBackupType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEditDatabaseList.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEditBackupType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupGeneral)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSource)).BeginInit();
@@ -234,13 +232,13 @@ namespace Databvase_Winforms.Views
             this.navigationPageBackupOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcBackupOptions)).BeginInit();
             this.lcBackupOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCompressionSetting.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupSetName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEditCompressionSetting.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).BeginInit();
@@ -255,7 +253,6 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciTemp2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgCompression)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCompressionComboBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupWindow)).BeginInit();
@@ -598,8 +595,8 @@ namespace Databvase_Winforms.Views
             this.lciBackupGeneral.Controls.Add(this.simpleButtonBrowse);
             this.lciBackupGeneral.Controls.Add(this.textEditRecoveryModel);
             this.lciBackupGeneral.Controls.Add(this.textEditBackupPath);
-            this.lciBackupGeneral.Controls.Add(this.comboBoxEditDatabaseList);
-            this.lciBackupGeneral.Controls.Add(this.comboBoxEditBackupType);
+            this.lciBackupGeneral.Controls.Add(this.imageComboBoxEditDatabaseList);
+            this.lciBackupGeneral.Controls.Add(this.imageComboBoxEditBackupType);
             this.lciBackupGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lciBackupGeneral.Location = new System.Drawing.Point(0, 0);
             this.lciBackupGeneral.Name = "lciBackupGeneral";
@@ -645,25 +642,25 @@ namespace Databvase_Winforms.Views
             this.textEditBackupPath.StyleController = this.lciBackupGeneral;
             this.textEditBackupPath.TabIndex = 7;
             // 
-            // comboBoxEditDatabaseList
+            // imageComboBoxEditDatabaseList
             // 
-            this.comboBoxEditDatabaseList.Location = new System.Drawing.Point(111, 49);
-            this.comboBoxEditDatabaseList.Name = "comboBoxEditDatabaseList";
-            this.comboBoxEditDatabaseList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.imageComboBoxEditDatabaseList.Location = new System.Drawing.Point(111, 49);
+            this.imageComboBoxEditDatabaseList.Name = "imageComboBoxEditDatabaseList";
+            this.imageComboBoxEditDatabaseList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditDatabaseList.Size = new System.Drawing.Size(314, 20);
-            this.comboBoxEditDatabaseList.StyleController = this.lciBackupGeneral;
-            this.comboBoxEditDatabaseList.TabIndex = 4;
+            this.imageComboBoxEditDatabaseList.Size = new System.Drawing.Size(314, 20);
+            this.imageComboBoxEditDatabaseList.StyleController = this.lciBackupGeneral;
+            this.imageComboBoxEditDatabaseList.TabIndex = 4;
             // 
-            // comboBoxEditBackupType
+            // imageComboBoxEditBackupType
             // 
-            this.comboBoxEditBackupType.Location = new System.Drawing.Point(111, 97);
-            this.comboBoxEditBackupType.Name = "comboBoxEditBackupType";
-            this.comboBoxEditBackupType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.imageComboBoxEditBackupType.Location = new System.Drawing.Point(111, 97);
+            this.imageComboBoxEditBackupType.Name = "imageComboBoxEditBackupType";
+            this.imageComboBoxEditBackupType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditBackupType.Size = new System.Drawing.Size(314, 20);
-            this.comboBoxEditBackupType.StyleController = this.lciBackupGeneral;
-            this.comboBoxEditBackupType.TabIndex = 6;
+            this.imageComboBoxEditBackupType.Size = new System.Drawing.Size(314, 20);
+            this.imageComboBoxEditBackupType.StyleController = this.lciBackupGeneral;
+            this.imageComboBoxEditBackupType.TabIndex = 6;
             // 
             // lcgBackupGeneral
             // 
@@ -704,7 +701,7 @@ namespace Databvase_Winforms.Views
             // 
             // lciBackupDatabaseName
             // 
-            this.lciBackupDatabaseName.Control = this.comboBoxEditDatabaseList;
+            this.lciBackupDatabaseName.Control = this.imageComboBoxEditDatabaseList;
             this.lciBackupDatabaseName.Location = new System.Drawing.Point(0, 0);
             this.lciBackupDatabaseName.Name = "lciBackupDatabaseName";
             this.lciBackupDatabaseName.Size = new System.Drawing.Size(405, 24);
@@ -713,7 +710,7 @@ namespace Databvase_Winforms.Views
             // 
             // lciBackupType
             // 
-            this.lciBackupType.Control = this.comboBoxEditBackupType;
+            this.lciBackupType.Control = this.imageComboBoxEditBackupType;
             this.lciBackupType.Location = new System.Drawing.Point(0, 48);
             this.lciBackupType.Name = "lciBackupType";
             this.lciBackupType.Size = new System.Drawing.Size(405, 24);
@@ -1125,13 +1122,12 @@ namespace Databvase_Winforms.Views
             // 
             // lcBackupOptions
             // 
-            this.lcBackupOptions.Controls.Add(this.comboBoxEditCompressionSetting);
-            this.lcBackupOptions.Controls.Add(this.labelControlTemp2);
             this.lcBackupOptions.Controls.Add(this.dateEditExpireOnDate);
             this.lcBackupOptions.Controls.Add(this.spinEditExpireAfterDays);
             this.lcBackupOptions.Controls.Add(this.radioGroupBackupSetExpire);
             this.lcBackupOptions.Controls.Add(this.textEditBackupDescription);
             this.lcBackupOptions.Controls.Add(this.textEditBackupSetName);
+            this.lcBackupOptions.Controls.Add(this.imageComboBoxEditCompressionSetting);
             this.lcBackupOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lcBackupOptions.Location = new System.Drawing.Point(0, 0);
             this.lcBackupOptions.Name = "lcBackupOptions";
@@ -1139,25 +1135,6 @@ namespace Databvase_Winforms.Views
             this.lcBackupOptions.Size = new System.Drawing.Size(556, 510);
             this.lcBackupOptions.TabIndex = 2;
             this.lcBackupOptions.Text = "layoutControl1";
-            // 
-            // comboBoxEditCompressionSetting
-            // 
-            this.comboBoxEditCompressionSetting.Location = new System.Drawing.Point(169, 276);
-            this.comboBoxEditCompressionSetting.Name = "comboBoxEditCompressionSetting";
-            this.comboBoxEditCompressionSetting.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEditCompressionSetting.Size = new System.Drawing.Size(363, 20);
-            this.comboBoxEditCompressionSetting.StyleController = this.lcBackupOptions;
-            this.comboBoxEditCompressionSetting.TabIndex = 10;
-            // 
-            // labelControlTemp2
-            // 
-            this.labelControlTemp2.Location = new System.Drawing.Point(12, 12);
-            this.labelControlTemp2.Name = "labelControlTemp2";
-            this.labelControlTemp2.Size = new System.Drawing.Size(148, 13);
-            this.labelControlTemp2.StyleController = this.lcBackupOptions;
-            this.labelControlTemp2.TabIndex = 9;
-            this.labelControlTemp2.Text = "NOTE: NOT IMPLEMENTED YET";
             // 
             // dateEditExpireOnDate
             // 
@@ -1190,19 +1167,19 @@ namespace Databvase_Winforms.Views
             // 
             // radioGroupBackupSetExpire
             // 
-            this.radioGroupBackupSetExpire.Location = new System.Drawing.Point(24, 167);
+            this.radioGroupBackupSetExpire.Location = new System.Drawing.Point(24, 155);
             this.radioGroupBackupSetExpire.Name = "radioGroupBackupSetExpire";
             this.radioGroupBackupSetExpire.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioGroupBackupSetExpire.Properties.Appearance.Options.UseBackColor = true;
             this.radioGroupBackupSetExpire.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioGroupBackupSetExpire.Properties.Columns = 1;
-            this.radioGroupBackupSetExpire.Size = new System.Drawing.Size(142, 56);
+            this.radioGroupBackupSetExpire.Size = new System.Drawing.Size(142, 68);
             this.radioGroupBackupSetExpire.StyleController = this.lcBackupOptions;
             this.radioGroupBackupSetExpire.TabIndex = 6;
             // 
             // textEditBackupDescription
             // 
-            this.textEditBackupDescription.Location = new System.Drawing.Point(169, 114);
+            this.textEditBackupDescription.Location = new System.Drawing.Point(169, 100);
             this.textEditBackupDescription.Name = "textEditBackupDescription";
             this.textEditBackupDescription.Size = new System.Drawing.Size(363, 20);
             this.textEditBackupDescription.StyleController = this.lcBackupOptions;
@@ -1210,11 +1187,21 @@ namespace Databvase_Winforms.Views
             // 
             // textEditBackupSetName
             // 
-            this.textEditBackupSetName.Location = new System.Drawing.Point(169, 66);
+            this.textEditBackupSetName.Location = new System.Drawing.Point(169, 49);
             this.textEditBackupSetName.Name = "textEditBackupSetName";
             this.textEditBackupSetName.Size = new System.Drawing.Size(363, 20);
             this.textEditBackupSetName.StyleController = this.lcBackupOptions;
             this.textEditBackupSetName.TabIndex = 4;
+            // 
+            // imageComboBoxEditCompressionSetting
+            // 
+            this.imageComboBoxEditCompressionSetting.Location = new System.Drawing.Point(169, 276);
+            this.imageComboBoxEditCompressionSetting.Name = "imageComboBoxEditCompressionSetting";
+            this.imageComboBoxEditCompressionSetting.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.imageComboBoxEditCompressionSetting.Size = new System.Drawing.Size(363, 20);
+            this.imageComboBoxEditCompressionSetting.StyleController = this.lcBackupOptions;
+            this.imageComboBoxEditCompressionSetting.TabIndex = 10;
             // 
             // lcgBackupOptions
             // 
@@ -1223,7 +1210,6 @@ namespace Databvase_Winforms.Views
             this.lcgBackupOptions.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem17,
             this.lcgBackupSet,
-            this.lciTemp2,
             this.lcgCompression});
             this.lcgBackupOptions.Name = "lcgBackupOptions";
             this.lcgBackupOptions.Size = new System.Drawing.Size(556, 510);
@@ -1253,9 +1239,9 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem20,
             this.emptySpaceItem22,
             this.emptySpaceItem23});
-            this.lcgBackupSet.Location = new System.Drawing.Point(0, 17);
+            this.lcgBackupSet.Location = new System.Drawing.Point(0, 0);
             this.lcgBackupSet.Name = "lcgBackupSet";
-            this.lcgBackupSet.Size = new System.Drawing.Size(536, 210);
+            this.lcgBackupSet.Size = new System.Drawing.Size(536, 227);
             this.lcgBackupSet.Text = "Backup Set";
             // 
             // lciBackupName
@@ -1270,7 +1256,7 @@ namespace Databvase_Winforms.Views
             // lciBackupDescription
             // 
             this.lciBackupDescription.Control = this.textEditBackupDescription;
-            this.lciBackupDescription.Location = new System.Drawing.Point(0, 48);
+            this.lciBackupDescription.Location = new System.Drawing.Point(0, 51);
             this.lciBackupDescription.Name = "lciBackupDescription";
             this.lciBackupDescription.Size = new System.Drawing.Size(512, 24);
             this.lciBackupDescription.Text = "Backup Description: ";
@@ -1279,9 +1265,9 @@ namespace Databvase_Winforms.Views
             // lciBackupSetExpire
             // 
             this.lciBackupSetExpire.Control = this.radioGroupBackupSetExpire;
-            this.lciBackupSetExpire.Location = new System.Drawing.Point(0, 85);
+            this.lciBackupSetExpire.Location = new System.Drawing.Point(0, 90);
             this.lciBackupSetExpire.Name = "lciBackupSetExpire";
-            this.lciBackupSetExpire.Size = new System.Drawing.Size(146, 76);
+            this.lciBackupSetExpire.Size = new System.Drawing.Size(146, 88);
             this.lciBackupSetExpire.Text = "Backup set will expire: ";
             this.lciBackupSetExpire.TextLocation = DevExpress.Utils.Locations.Top;
             this.lciBackupSetExpire.TextSize = new System.Drawing.Size(142, 13);
@@ -1289,7 +1275,7 @@ namespace Databvase_Winforms.Views
             // lciExpireAfterDays
             // 
             this.lciExpireAfterDays.Control = this.spinEditExpireAfterDays;
-            this.lciExpireAfterDays.Location = new System.Drawing.Point(189, 113);
+            this.lciExpireAfterDays.Location = new System.Drawing.Point(189, 130);
             this.lciExpireAfterDays.Name = "lciExpireAfterDays";
             this.lciExpireAfterDays.Size = new System.Drawing.Size(256, 24);
             this.lciExpireAfterDays.Text = "days";
@@ -1299,7 +1285,7 @@ namespace Databvase_Winforms.Views
             // lciExpireOnDate
             // 
             this.lciExpireOnDate.Control = this.dateEditExpireOnDate;
-            this.lciExpireOnDate.Location = new System.Drawing.Point(189, 137);
+            this.lciExpireOnDate.Location = new System.Drawing.Point(189, 154);
             this.lciExpireOnDate.Name = "lciExpireOnDate";
             this.lciExpireOnDate.Size = new System.Drawing.Size(150, 24);
             this.lciExpireOnDate.TextSize = new System.Drawing.Size(0, 0);
@@ -1308,23 +1294,23 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem18
             // 
             this.emptySpaceItem18.AllowHotTrack = false;
-            this.emptySpaceItem18.Location = new System.Drawing.Point(189, 85);
+            this.emptySpaceItem18.Location = new System.Drawing.Point(189, 90);
             this.emptySpaceItem18.Name = "emptySpaceItem18";
-            this.emptySpaceItem18.Size = new System.Drawing.Size(323, 28);
+            this.emptySpaceItem18.Size = new System.Drawing.Size(323, 40);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem19
             // 
             this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(146, 85);
+            this.emptySpaceItem19.Location = new System.Drawing.Point(146, 90);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(43, 76);
+            this.emptySpaceItem19.Size = new System.Drawing.Size(43, 88);
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem21
             // 
             this.emptySpaceItem21.AllowHotTrack = false;
-            this.emptySpaceItem21.Location = new System.Drawing.Point(339, 137);
+            this.emptySpaceItem21.Location = new System.Drawing.Point(339, 154);
             this.emptySpaceItem21.Name = "emptySpaceItem21";
             this.emptySpaceItem21.Size = new System.Drawing.Size(173, 24);
             this.emptySpaceItem21.TextSize = new System.Drawing.Size(0, 0);
@@ -1332,7 +1318,7 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem20
             // 
             this.emptySpaceItem20.AllowHotTrack = false;
-            this.emptySpaceItem20.Location = new System.Drawing.Point(445, 113);
+            this.emptySpaceItem20.Location = new System.Drawing.Point(445, 130);
             this.emptySpaceItem20.Name = "emptySpaceItem20";
             this.emptySpaceItem20.Size = new System.Drawing.Size(67, 24);
             this.emptySpaceItem20.TextSize = new System.Drawing.Size(0, 0);
@@ -1340,9 +1326,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem22
             // 
             this.emptySpaceItem22.AllowHotTrack = false;
-            this.emptySpaceItem22.Location = new System.Drawing.Point(0, 72);
+            this.emptySpaceItem22.Location = new System.Drawing.Point(0, 75);
             this.emptySpaceItem22.Name = "emptySpaceItem22";
-            this.emptySpaceItem22.Size = new System.Drawing.Size(512, 13);
+            this.emptySpaceItem22.Size = new System.Drawing.Size(512, 15);
             this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem23
@@ -1350,17 +1336,8 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem23.AllowHotTrack = false;
             this.emptySpaceItem23.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem23.Name = "emptySpaceItem23";
-            this.emptySpaceItem23.Size = new System.Drawing.Size(512, 24);
+            this.emptySpaceItem23.Size = new System.Drawing.Size(512, 27);
             this.emptySpaceItem23.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // lciTemp2
-            // 
-            this.lciTemp2.Control = this.labelControlTemp2;
-            this.lciTemp2.Location = new System.Drawing.Point(0, 0);
-            this.lciTemp2.Name = "lciTemp2";
-            this.lciTemp2.Size = new System.Drawing.Size(536, 17);
-            this.lciTemp2.TextSize = new System.Drawing.Size(0, 0);
-            this.lciTemp2.TextVisible = false;
             // 
             // lcgCompression
             // 
@@ -1375,7 +1352,7 @@ namespace Databvase_Winforms.Views
             // 
             // lciCompressionComboBox
             // 
-            this.lciCompressionComboBox.Control = this.comboBoxEditCompressionSetting;
+            this.lciCompressionComboBox.Control = this.imageComboBoxEditCompressionSetting;
             this.lciCompressionComboBox.Location = new System.Drawing.Point(0, 0);
             this.lciCompressionComboBox.Name = "lciCompressionComboBox";
             this.lciCompressionComboBox.Size = new System.Drawing.Size(512, 24);
@@ -1513,8 +1490,8 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.checkEditCopyOnlyBackup.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditRecoveryModel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupPath.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditDatabaseList.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditBackupType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEditDatabaseList.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEditBackupType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupGeneral)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSource)).EndInit();
@@ -1563,13 +1540,13 @@ namespace Databvase_Winforms.Views
             this.navigationPageBackupOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcBackupOptions)).EndInit();
             this.lcBackupOptions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditCompressionSetting.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditExpireOnDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditExpireAfterDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroupBackupSetExpire.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditBackupSetName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageComboBoxEditCompressionSetting.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupOptions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupSet)).EndInit();
@@ -1584,7 +1561,6 @@ namespace Databvase_Winforms.Views
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciTemp2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgCompression)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciCompressionComboBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgBackupWindow)).EndInit();
@@ -1713,16 +1689,14 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem20;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem22;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem23;
-        private DevExpress.XtraEditors.LabelControl labelControlTemp2;
-        private DevExpress.XtraLayout.LayoutControlItem lciTemp2;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextBackupView;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditCompressionSetting;
         private DevExpress.XtraLayout.LayoutControlGroup lcgCompression;
         private DevExpress.XtraLayout.LayoutControlItem lciCompressionComboBox;
         private DevExpress.XtraEditors.CheckEdit checkEditCopyOnlyBackup;
         private DevExpress.XtraLayout.LayoutControlItem lciCopyOnlyBackup;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem24;
-        private DevExpress.XtraEditors.ImageComboBoxEdit comboBoxEditDatabaseList;
-        private DevExpress.XtraEditors.ImageComboBoxEdit comboBoxEditBackupType;
+        private DevExpress.XtraEditors.ImageComboBoxEdit imageComboBoxEditDatabaseList;
+        private DevExpress.XtraEditors.ImageComboBoxEdit imageComboBoxEditBackupType;
+        private DevExpress.XtraEditors.ImageComboBoxEdit imageComboBoxEditCompressionSetting;
     }
 }
