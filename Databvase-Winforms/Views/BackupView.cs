@@ -74,6 +74,7 @@ namespace Databvase_Winforms.Views
             radioGroupBackupNewMediaSet.SelectedIndex = -1;
             textEditNewMediaSetName.Enabled = false;
             memoEditNewMediaSetDescription.Enabled = false;
+            radioGroupBackupSetExpire.Properties.Items.AddEnum(typeof(BackupViewModel.ExpirationDateOption));
         }
 
         private void SimpleButtonBrowseOnClick(object sender, EventArgs e)
@@ -142,6 +143,22 @@ namespace Databvase_Winforms.Views
 
             fluent.SetTrigger(vm => vm.StatusImageIndex,
                 i => { pictureEditProgressStatus.Image = imageCollectionBackupView.Images[i]; });
+
+            fluent.SetTrigger(vm => vm.ExpireOption,
+                exo =>
+                {
+                    switch (exo)
+                    {
+                        case BackupViewModel.ExpirationDateOption.On:
+                            dateEditExpireOnDate.Enabled = true;
+                            spinEditExpireAfterDays.Enabled = false;
+                            break;
+                        case BackupViewModel.ExpirationDateOption.After:
+                            dateEditExpireOnDate.Enabled = false;
+                            spinEditExpireAfterDays.Enabled = true;
+                            break;
+                    }
+                });
         }
 
         private void BindCommands(MVVMContextFluentAPI<BackupViewModel> fluent)
@@ -166,18 +183,30 @@ namespace Databvase_Winforms.Views
             fluent.SetBinding(labelControlCurrentUser, x => x.Text, vm => vm.CurrentLoginName);
             fluent.SetBinding(textEditRecoveryModel, x => x.Text, vm => vm.RecoveryModel);
             fluent.SetBinding(checkEditVerifyBackup, x => x.Checked, vm => vm.VerifyBackupOnComplete);
+            fluent.SetBinding(radioGroupBackupSetExpire, x => x.EditValue, vm => vm.ExpireOption);
         }
 
         private void SetEntityDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
         {
             //TODO - See if there's a simpler way to do this, this feels really... old fashioned.
-            BindingSource entityBindingSource = new BindingSource();
-            entityBindingSource.DataSource = typeof(BackupContainer);
-            textEditBackupPath.DataBindings.Add(new Binding("EditValue", entityBindingSource, "BackupPath", true, DataSourceUpdateMode.OnPropertyChanged));
+            var entityBindingSource = new BindingSource {DataSource = typeof(BackupContainer)};
+            textEditBackupPath.DataBindings.Add(new Binding("EditValue", entityBindingSource, "BackupPath", 
+                true, DataSourceUpdateMode.OnPropertyChanged));
+            textEditBackupSetName.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+                "CurrentBackup.BackupSetName",
+                true, DataSourceUpdateMode.OnPropertyChanged));
+            textEditBackupDescription.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+                "CurrentBackup.BackupSetDescription", true, DataSourceUpdateMode.OnPropertyChanged));
             checkEditPerformChecksum.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.Checksum"));
             checkEditCopyOnlyBackup.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.CopyOnly"));
             checkEditContinueOnError.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentBackup.ContinueAfterError"));
-            comboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase", true, DataSourceUpdateMode.OnPropertyChanged));
+            spinEditExpireAfterDays.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireAfterDays",
+                true,
+                DataSourceUpdateMode.OnPropertyChanged));
+            dateEditExpireOnDate.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireDate", true,
+                DataSourceUpdateMode.OnPropertyChanged));
+            comboBoxEditDatabaseList.DataBindings.Add(new Binding("EditValue", entityBindingSource, "CurrentDatabase", 
+                true, DataSourceUpdateMode.OnPropertyChanged));
             fluent.SetObjectDataSourceBinding(entityBindingSource, x => x.BackupEntityForVm, x => x.Update());
 
         }

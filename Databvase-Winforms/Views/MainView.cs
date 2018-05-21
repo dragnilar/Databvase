@@ -43,7 +43,6 @@ namespace Databvase_Winforms.Views
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
-            defaultLookAndFeelMain.LookAndFeel.StyleChanged += LookAndFeelOnStyleChanged;
         }
 
         private void RegisterMessages()
@@ -69,10 +68,6 @@ namespace Databvase_Winforms.Views
             barButtonItemColorPalette.Visibility = LookAndFeel.ActiveSkinName == SkinStyle.Bezier
                 ? BarItemVisibility.Always
                 : BarItemVisibility.Never;
-        }
-
-        private void LookAndFeelOnStyleChanged(object sender, EventArgs eventArgs)
-        {
             App.Skins.SaveSkinSettings();
         }
 

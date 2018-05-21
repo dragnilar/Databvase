@@ -840,7 +840,7 @@ namespace Databvase_Winforms.Views
             // 
             // checkEditVerifyBackup
             // 
-            this.checkEditVerifyBackup.Location = new System.Drawing.Point(24, 332);
+            this.checkEditVerifyBackup.Location = new System.Drawing.Point(24, 349);
             this.checkEditVerifyBackup.Name = "checkEditVerifyBackup";
             this.checkEditVerifyBackup.Properties.Caption = "Verify backup when finished";
             this.checkEditVerifyBackup.Size = new System.Drawing.Size(508, 20);
@@ -849,7 +849,7 @@ namespace Databvase_Winforms.Views
             // 
             // checkEditContinueOnError
             // 
-            this.checkEditContinueOnError.Location = new System.Drawing.Point(24, 380);
+            this.checkEditContinueOnError.Location = new System.Drawing.Point(24, 397);
             this.checkEditContinueOnError.Name = "checkEditContinueOnError";
             this.checkEditContinueOnError.Properties.Caption = "Continue On Error";
             this.checkEditContinueOnError.Size = new System.Drawing.Size(508, 20);
@@ -858,7 +858,7 @@ namespace Databvase_Winforms.Views
             // 
             // checkEditPerformChecksum
             // 
-            this.checkEditPerformChecksum.Location = new System.Drawing.Point(24, 356);
+            this.checkEditPerformChecksum.Location = new System.Drawing.Point(24, 373);
             this.checkEditPerformChecksum.Name = "checkEditPerformChecksum";
             this.checkEditPerformChecksum.Properties.Caption = "Perform checksum before writing to media";
             this.checkEditPerformChecksum.Size = new System.Drawing.Size(508, 20);
@@ -867,15 +867,15 @@ namespace Databvase_Winforms.Views
             // 
             // memoEditNewMediaSetDescription
             // 
-            this.memoEditNewMediaSetDescription.Location = new System.Drawing.Point(220, 248);
+            this.memoEditNewMediaSetDescription.Location = new System.Drawing.Point(220, 280);
             this.memoEditNewMediaSetDescription.Name = "memoEditNewMediaSetDescription";
-            this.memoEditNewMediaSetDescription.Size = new System.Drawing.Size(312, 31);
+            this.memoEditNewMediaSetDescription.Size = new System.Drawing.Size(312, 16);
             this.memoEditNewMediaSetDescription.StyleController = this.lcMediaOptions;
             this.memoEditNewMediaSetDescription.TabIndex = 10;
             // 
             // textEditNewMediaSetName
             // 
-            this.textEditNewMediaSetName.Location = new System.Drawing.Point(220, 224);
+            this.textEditNewMediaSetName.Location = new System.Drawing.Point(220, 256);
             this.textEditNewMediaSetName.Name = "textEditNewMediaSetName";
             this.textEditNewMediaSetName.Size = new System.Drawing.Size(312, 20);
             this.textEditNewMediaSetName.StyleController = this.lcMediaOptions;
@@ -883,20 +883,20 @@ namespace Databvase_Winforms.Views
             // 
             // radioGroupBackupNewMediaSet
             // 
-            this.radioGroupBackupNewMediaSet.Location = new System.Drawing.Point(24, 196);
+            this.radioGroupBackupNewMediaSet.Location = new System.Drawing.Point(24, 220);
             this.radioGroupBackupNewMediaSet.Name = "radioGroupBackupNewMediaSet";
             this.radioGroupBackupNewMediaSet.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioGroupBackupNewMediaSet.Properties.Appearance.Options.UseBackColor = true;
             this.radioGroupBackupNewMediaSet.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioGroupBackupNewMediaSet.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Back up to a new media set, and erase all existing backup sets")});
-            this.radioGroupBackupNewMediaSet.Size = new System.Drawing.Size(508, 24);
+            this.radioGroupBackupNewMediaSet.Size = new System.Drawing.Size(508, 32);
             this.radioGroupBackupNewMediaSet.StyleController = this.lcMediaOptions;
             this.radioGroupBackupNewMediaSet.TabIndex = 8;
             // 
             // textEditMediaSetName
             // 
-            this.textEditMediaSetName.Location = new System.Drawing.Point(220, 162);
+            this.textEditMediaSetName.Location = new System.Drawing.Point(220, 186);
             this.textEditMediaSetName.Name = "textEditMediaSetName";
             this.textEditMediaSetName.Size = new System.Drawing.Size(312, 20);
             this.textEditMediaSetName.StyleController = this.lcMediaOptions;
@@ -904,7 +904,7 @@ namespace Databvase_Winforms.Views
             // 
             // checkEditMediaSetName
             // 
-            this.checkEditMediaSetName.Location = new System.Drawing.Point(83, 138);
+            this.checkEditMediaSetName.Location = new System.Drawing.Point(83, 162);
             this.checkEditMediaSetName.Name = "checkEditMediaSetName";
             this.checkEditMediaSetName.Properties.Caption = "Check media set name and backup set expiration";
             this.checkEditMediaSetName.Size = new System.Drawing.Size(449, 20);
@@ -913,7 +913,7 @@ namespace Databvase_Winforms.Views
             // 
             // radioGroupAppendOrOverwriteBackupSet
             // 
-            this.radioGroupAppendOrOverwriteBackupSet.Location = new System.Drawing.Point(83, 94);
+            this.radioGroupAppendOrOverwriteBackupSet.Location = new System.Drawing.Point(83, 102);
             this.radioGroupAppendOrOverwriteBackupSet.Name = "radioGroupAppendOrOverwriteBackupSet";
             this.radioGroupAppendOrOverwriteBackupSet.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioGroupAppendOrOverwriteBackupSet.Properties.Appearance.Options.UseBackColor = true;
@@ -922,7 +922,7 @@ namespace Databvase_Winforms.Views
             this.radioGroupAppendOrOverwriteBackupSet.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Append to the existing backup set"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Overwrite all existing backup sets")});
-            this.radioGroupAppendOrOverwriteBackupSet.Size = new System.Drawing.Size(449, 40);
+            this.radioGroupAppendOrOverwriteBackupSet.Size = new System.Drawing.Size(449, 56);
             this.radioGroupAppendOrOverwriteBackupSet.StyleController = this.lcMediaOptions;
             this.radioGroupAppendOrOverwriteBackupSet.TabIndex = 5;
             // 
@@ -935,7 +935,7 @@ namespace Databvase_Winforms.Views
             this.radioGroupBackupToExisting.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioGroupBackupToExisting.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Back up to the existing media set")});
-            this.radioGroupBackupToExisting.Size = new System.Drawing.Size(508, 24);
+            this.radioGroupBackupToExisting.Size = new System.Drawing.Size(508, 32);
             this.radioGroupBackupToExisting.StyleController = this.lcMediaOptions;
             this.radioGroupBackupToExisting.TabIndex = 4;
             // 
@@ -955,9 +955,9 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem13
             // 
             this.emptySpaceItem13.AllowHotTrack = false;
-            this.emptySpaceItem13.Location = new System.Drawing.Point(0, 404);
+            this.emptySpaceItem13.Location = new System.Drawing.Point(0, 421);
             this.emptySpaceItem13.Name = "emptySpaceItem13";
-            this.emptySpaceItem13.Size = new System.Drawing.Size(536, 86);
+            this.emptySpaceItem13.Size = new System.Drawing.Size(536, 69);
             this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lcgOverwriteMedia
@@ -977,7 +977,7 @@ namespace Databvase_Winforms.Views
             this.lciNewMediaSetName});
             this.lcgOverwriteMedia.Location = new System.Drawing.Point(0, 17);
             this.lcgOverwriteMedia.Name = "lcgOverwriteMedia";
-            this.lcgOverwriteMedia.Size = new System.Drawing.Size(536, 266);
+            this.lcgOverwriteMedia.Size = new System.Drawing.Size(536, 283);
             this.lcgOverwriteMedia.Text = "Overwrite media";
             // 
             // lciOverwriteMedia
@@ -985,23 +985,23 @@ namespace Databvase_Winforms.Views
             this.lciOverwriteMedia.Control = this.radioGroupBackupToExisting;
             this.lciOverwriteMedia.Location = new System.Drawing.Point(0, 0);
             this.lciOverwriteMedia.Name = "lciOverwriteMedia";
-            this.lciOverwriteMedia.Size = new System.Drawing.Size(512, 28);
+            this.lciOverwriteMedia.Size = new System.Drawing.Size(512, 36);
             this.lciOverwriteMedia.TextSize = new System.Drawing.Size(0, 0);
             this.lciOverwriteMedia.TextVisible = false;
             // 
             // lciAppendOrOverwrite
             // 
             this.lciAppendOrOverwrite.Control = this.radioGroupAppendOrOverwriteBackupSet;
-            this.lciAppendOrOverwrite.Location = new System.Drawing.Point(59, 28);
+            this.lciAppendOrOverwrite.Location = new System.Drawing.Point(59, 36);
             this.lciAppendOrOverwrite.Name = "lciAppendOrOverwrite";
-            this.lciAppendOrOverwrite.Size = new System.Drawing.Size(453, 44);
+            this.lciAppendOrOverwrite.Size = new System.Drawing.Size(453, 60);
             this.lciAppendOrOverwrite.TextSize = new System.Drawing.Size(0, 0);
             this.lciAppendOrOverwrite.TextVisible = false;
             // 
             // lciCheckMediaSetName
             // 
             this.lciCheckMediaSetName.Control = this.checkEditMediaSetName;
-            this.lciCheckMediaSetName.Location = new System.Drawing.Point(59, 72);
+            this.lciCheckMediaSetName.Location = new System.Drawing.Point(59, 96);
             this.lciCheckMediaSetName.Name = "lciCheckMediaSetName";
             this.lciCheckMediaSetName.Size = new System.Drawing.Size(453, 24);
             this.lciCheckMediaSetName.TextSize = new System.Drawing.Size(0, 0);
@@ -1010,7 +1010,7 @@ namespace Databvase_Winforms.Views
             // lcMediaSetName
             // 
             this.lcMediaSetName.Control = this.textEditMediaSetName;
-            this.lcMediaSetName.Location = new System.Drawing.Point(59, 96);
+            this.lcMediaSetName.Location = new System.Drawing.Point(59, 120);
             this.lcMediaSetName.Name = "lcMediaSetName";
             this.lcMediaSetName.Size = new System.Drawing.Size(453, 24);
             this.lcMediaSetName.Text = "Media Set Name: ";
@@ -1019,24 +1019,24 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem14
             // 
             this.emptySpaceItem14.AllowHotTrack = false;
-            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 28);
+            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 36);
             this.emptySpaceItem14.Name = "emptySpaceItem14";
-            this.emptySpaceItem14.Size = new System.Drawing.Size(59, 92);
+            this.emptySpaceItem14.Size = new System.Drawing.Size(59, 108);
             this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lciBackupNewMediaSet
             // 
             this.lciBackupNewMediaSet.Control = this.radioGroupBackupNewMediaSet;
-            this.lciBackupNewMediaSet.Location = new System.Drawing.Point(0, 130);
+            this.lciBackupNewMediaSet.Location = new System.Drawing.Point(0, 154);
             this.lciBackupNewMediaSet.Name = "lciBackupNewMediaSet";
-            this.lciBackupNewMediaSet.Size = new System.Drawing.Size(512, 28);
+            this.lciBackupNewMediaSet.Size = new System.Drawing.Size(512, 36);
             this.lciBackupNewMediaSet.TextSize = new System.Drawing.Size(0, 0);
             this.lciBackupNewMediaSet.TextVisible = false;
             // 
             // emptySpaceItem15
             // 
             this.emptySpaceItem15.AllowHotTrack = false;
-            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 120);
+            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 144);
             this.emptySpaceItem15.Name = "emptySpaceItem15";
             this.emptySpaceItem15.Size = new System.Drawing.Size(512, 10);
             this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
@@ -1044,24 +1044,24 @@ namespace Databvase_Winforms.Views
             // lciNewMediaSetDescription
             // 
             this.lciNewMediaSetDescription.Control = this.memoEditNewMediaSetDescription;
-            this.lciNewMediaSetDescription.Location = new System.Drawing.Point(59, 182);
+            this.lciNewMediaSetDescription.Location = new System.Drawing.Point(59, 214);
             this.lciNewMediaSetDescription.Name = "lciNewMediaSetDescription";
-            this.lciNewMediaSetDescription.Size = new System.Drawing.Size(453, 35);
+            this.lciNewMediaSetDescription.Size = new System.Drawing.Size(453, 20);
             this.lciNewMediaSetDescription.Text = "New Media Set Description: ";
             this.lciNewMediaSetDescription.TextSize = new System.Drawing.Size(134, 13);
             // 
             // emptySpaceItem16
             // 
             this.emptySpaceItem16.AllowHotTrack = false;
-            this.emptySpaceItem16.Location = new System.Drawing.Point(0, 158);
+            this.emptySpaceItem16.Location = new System.Drawing.Point(0, 190);
             this.emptySpaceItem16.Name = "emptySpaceItem16";
-            this.emptySpaceItem16.Size = new System.Drawing.Size(59, 59);
+            this.emptySpaceItem16.Size = new System.Drawing.Size(59, 44);
             this.emptySpaceItem16.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lciNewMediaSetName
             // 
             this.lciNewMediaSetName.Control = this.textEditNewMediaSetName;
-            this.lciNewMediaSetName.Location = new System.Drawing.Point(59, 158);
+            this.lciNewMediaSetName.Location = new System.Drawing.Point(59, 190);
             this.lciNewMediaSetName.Name = "lciNewMediaSetName";
             this.lciNewMediaSetName.Size = new System.Drawing.Size(453, 24);
             this.lciNewMediaSetName.Text = "New Media Set Name: ";
@@ -1075,7 +1075,7 @@ namespace Databvase_Winforms.Views
             this.lciVerifyBacupWhenFinished,
             this.lciPerformChecksum,
             this.lciContinueOnError});
-            this.lcgReliability.Location = new System.Drawing.Point(0, 283);
+            this.lcgReliability.Location = new System.Drawing.Point(0, 300);
             this.lcgReliability.Name = "lcgReliability";
             this.lcgReliability.Size = new System.Drawing.Size(536, 121);
             this.lcgReliability.Text = "Reliability";
@@ -1162,6 +1162,7 @@ namespace Databvase_Winforms.Views
             // dateEditExpireOnDate
             // 
             this.dateEditExpireOnDate.EditValue = null;
+            this.dateEditExpireOnDate.Enabled = false;
             this.dateEditExpireOnDate.Location = new System.Drawing.Point(213, 203);
             this.dateEditExpireOnDate.Name = "dateEditExpireOnDate";
             this.dateEditExpireOnDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1189,16 +1190,13 @@ namespace Databvase_Winforms.Views
             // 
             // radioGroupBackupSetExpire
             // 
-            this.radioGroupBackupSetExpire.Location = new System.Drawing.Point(24, 176);
+            this.radioGroupBackupSetExpire.Location = new System.Drawing.Point(24, 167);
             this.radioGroupBackupSetExpire.Name = "radioGroupBackupSetExpire";
             this.radioGroupBackupSetExpire.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.radioGroupBackupSetExpire.Properties.Appearance.Options.UseBackColor = true;
             this.radioGroupBackupSetExpire.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioGroupBackupSetExpire.Properties.Columns = 1;
-            this.radioGroupBackupSetExpire.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "After: "),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "On: ")});
-            this.radioGroupBackupSetExpire.Size = new System.Drawing.Size(142, 47);
+            this.radioGroupBackupSetExpire.Size = new System.Drawing.Size(142, 56);
             this.radioGroupBackupSetExpire.StyleController = this.lcBackupOptions;
             this.radioGroupBackupSetExpire.TabIndex = 6;
             // 
@@ -1281,9 +1279,9 @@ namespace Databvase_Winforms.Views
             // lciBackupSetExpire
             // 
             this.lciBackupSetExpire.Control = this.radioGroupBackupSetExpire;
-            this.lciBackupSetExpire.Location = new System.Drawing.Point(0, 94);
+            this.lciBackupSetExpire.Location = new System.Drawing.Point(0, 85);
             this.lciBackupSetExpire.Name = "lciBackupSetExpire";
-            this.lciBackupSetExpire.Size = new System.Drawing.Size(146, 67);
+            this.lciBackupSetExpire.Size = new System.Drawing.Size(146, 76);
             this.lciBackupSetExpire.Text = "Backup set will expire: ";
             this.lciBackupSetExpire.TextLocation = DevExpress.Utils.Locations.Top;
             this.lciBackupSetExpire.TextSize = new System.Drawing.Size(142, 13);
@@ -1310,17 +1308,17 @@ namespace Databvase_Winforms.Views
             // emptySpaceItem18
             // 
             this.emptySpaceItem18.AllowHotTrack = false;
-            this.emptySpaceItem18.Location = new System.Drawing.Point(189, 94);
+            this.emptySpaceItem18.Location = new System.Drawing.Point(189, 85);
             this.emptySpaceItem18.Name = "emptySpaceItem18";
-            this.emptySpaceItem18.Size = new System.Drawing.Size(323, 19);
+            this.emptySpaceItem18.Size = new System.Drawing.Size(323, 28);
             this.emptySpaceItem18.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem19
             // 
             this.emptySpaceItem19.AllowHotTrack = false;
-            this.emptySpaceItem19.Location = new System.Drawing.Point(146, 94);
+            this.emptySpaceItem19.Location = new System.Drawing.Point(146, 85);
             this.emptySpaceItem19.Name = "emptySpaceItem19";
-            this.emptySpaceItem19.Size = new System.Drawing.Size(43, 67);
+            this.emptySpaceItem19.Size = new System.Drawing.Size(43, 76);
             this.emptySpaceItem19.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem21
@@ -1344,7 +1342,7 @@ namespace Databvase_Winforms.Views
             this.emptySpaceItem22.AllowHotTrack = false;
             this.emptySpaceItem22.Location = new System.Drawing.Point(0, 72);
             this.emptySpaceItem22.Name = "emptySpaceItem22";
-            this.emptySpaceItem22.Size = new System.Drawing.Size(512, 22);
+            this.emptySpaceItem22.Size = new System.Drawing.Size(512, 13);
             this.emptySpaceItem22.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem23

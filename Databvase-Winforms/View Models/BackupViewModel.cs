@@ -25,6 +25,7 @@ namespace Databvase_Winforms.View_Models
         public virtual int BackupPercentageComplete {get; set; }
         public virtual BackupContainer BackupEntityForVm { get; set; }
         public virtual WindowState State { get; set; }
+        public virtual ExpirationDateOption ExpireOption { get; set; }
         public virtual List<Database> DatabaseList { get; set; }
         public virtual List<string> IncrementalTypes { get; set; }
         public virtual string IncrementalTypeString { get; set; }
@@ -42,6 +43,7 @@ namespace Databvase_Winforms.View_Models
             BackupPercentageComplete = 0;
             State = WindowState.Open;
             VerifyBackupOnComplete = false;
+            ExpireOption = ExpirationDateOption.After;
             HookUpEvents();
             GetRecoveryModel();
             GetDatabaseList();
@@ -61,6 +63,19 @@ namespace Databvase_Winforms.View_Models
         {
             BackupEntityForVm.IncrementalBackupOption = IncrementalTypeString != "Full";
             
+        }
+
+        //Binds at runtime
+        protected void OnExpireOptionChanged()
+        {
+            if (ExpireOption == ExpirationDateOption.On)
+            {
+                BackupEntityForVm.UseExpireAfterDays = false;
+            }
+            else if (ExpireOption == ExpirationDateOption.After)
+            {
+                BackupEntityForVm.UseExpireAfterDays = true;
+            }
         }
 
         private void GetIncrementalOptions()
@@ -206,6 +221,10 @@ namespace Databvase_Winforms.View_Models
             Closed
         }
 
-        //public enum 
+        public enum ExpirationDateOption
+        {
+            After,
+            On
+        }
     }
 }

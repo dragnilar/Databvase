@@ -48,6 +48,7 @@ namespace Databvase_Winforms.Views
             this.riColorPickEditTextEditorLineNumberColor = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.barButtonItemTextEditorFontSettings = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemQueryBuilder = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemBackupWizard = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupDatabvase = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageView = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -55,7 +56,6 @@ namespace Databvase_Winforms.Views
             this.ribbonPageGroupWindows = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.mvvmContextMain = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.tabbedViewMain = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.defaultLookAndFeelMain = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.dockManagerMain = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -65,7 +65,6 @@ namespace Databvase_Winforms.Views
             this.objectExplorerContainer = new DevExpress.XtraBars.Docking.ControlContainer();
             this.documentManagerMain = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.splashScreenManagerMainWait = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true);
-            this.barButtonItemBackupWizard = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextBG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.riColorPickEditTextEditorLineNumberColor)).BeginInit();
@@ -226,6 +225,13 @@ namespace Databvase_Winforms.Views
             this.barButtonItemQueryBuilder.Name = "barButtonItemQueryBuilder";
             this.barButtonItemQueryBuilder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
+            // barButtonItemBackupWizard
+            // 
+            this.barButtonItemBackupWizard.Caption = "Backup Wizard";
+            this.barButtonItemBackupWizard.Id = 20;
+            this.barButtonItemBackupWizard.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemBackupWizard.ImageOptions.SvgImage")));
+            this.barButtonItemBackupWizard.Name = "barButtonItemBackupWizard";
+            // 
             // ribbonPageDatabvase
             // 
             this.ribbonPageDatabvase.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -276,10 +282,6 @@ namespace Databvase_Winforms.Views
             DevExpress.Utils.MVVM.RegistrationExpression.RegisterDocumentManagerService(null, false, this.tabbedViewMain)});
             this.mvvmContextMain.ViewModelType = typeof(Databvase_Winforms.View_Models.MainViewModel);
             // 
-            // defaultLookAndFeelMain
-            // 
-            this.defaultLookAndFeelMain.LookAndFeel.SkinName = "The Bezier";
-            // 
             // dockManagerMain
             // 
             this.dockManagerMain.Form = this;
@@ -309,6 +311,7 @@ namespace Databvase_Winforms.Views
             this.dockPanel2.Name = "dockPanel2";
             this.dockPanel2.OriginalSize = new System.Drawing.Size(200, 200);
             this.dockPanel2.SavedIndex = 1;
+            this.dockPanel2.SavedSizeFactor = 1D;
             this.dockPanel2.Size = new System.Drawing.Size(200, 200);
             this.dockPanel2.Text = "dockPanel2";
             this.dockPanel2.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
@@ -329,13 +332,14 @@ namespace Databvase_Winforms.Views
             this.dockPanelMain.OriginalSize = new System.Drawing.Size(200, 200);
             this.dockPanelMain.SavedIndex = 1;
             this.dockPanelMain.SavedMdiDocument = true;
+            this.dockPanelMain.SavedSizeFactor = 1D;
             this.dockPanelMain.Text = "Dock Panel";
             // 
             // dockPanel3_Container
             // 
-            this.dockPanel3_Container.Location = new System.Drawing.Point(4, 35);
+            this.dockPanel3_Container.Location = new System.Drawing.Point(4, 34);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(192, 161);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(192, 162);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // dockPanelObjectExplorer
@@ -346,6 +350,7 @@ namespace Databvase_Winforms.Views
             this.dockPanelObjectExplorer.Location = new System.Drawing.Point(0, 162);
             this.dockPanelObjectExplorer.Name = "dockPanelObjectExplorer";
             this.dockPanelObjectExplorer.OriginalSize = new System.Drawing.Size(350, 200);
+            this.dockPanelObjectExplorer.SavedSizeFactor = 0D;
             this.dockPanelObjectExplorer.Size = new System.Drawing.Size(350, 606);
             this.dockPanelObjectExplorer.Text = "Object Explorer";
             // 
@@ -368,13 +373,6 @@ namespace Databvase_Winforms.Views
             // splashScreenManagerMainWait
             // 
             this.splashScreenManagerMainWait.ClosingDelay = 500;
-            // 
-            // barButtonItemBackupWizard
-            // 
-            this.barButtonItemBackupWizard.Caption = "Backup Wizard";
-            this.barButtonItemBackupWizard.Id = 20;
-            this.barButtonItemBackupWizard.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemBackupWizard.ImageOptions.SvgImage")));
-            this.barButtonItemBackupWizard.Name = "barButtonItemBackupWizard";
             // 
             // MainView
             // 
@@ -410,7 +408,6 @@ namespace Databvase_Winforms.Views
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupLookAndFeel;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextMain;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeelMain;
         private DevExpress.XtraBars.BarButtonItem barButtonItemColorMixer;
         private DevExpress.XtraBars.BarButtonItem barButtonItemColorPalette;
         private DevExpress.XtraBars.Docking.DockManager dockManagerMain;

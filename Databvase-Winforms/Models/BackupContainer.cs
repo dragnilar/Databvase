@@ -18,6 +18,9 @@ namespace Databvase_Winforms.Models
         private Database _currentDatabase;
         public string BackupPath { get; set; }
         public bool IncrementalBackupOption { get; set; }
+        public bool UseExpireAfterDays { get; set; }
+        public int ExpireAfterDays { get; set; }
+        public DateTime ExpireDate { get; set; }
 
         public Database CurrentDatabase
         {
@@ -42,6 +45,8 @@ namespace Databvase_Winforms.Models
             CurrentBackup = new Backup();
             BackupPath = string.Empty;
             IncrementalBackupOption = false;
+            UseExpireAfterDays = false;
+            ExpireDate = DateTime.Now;
         }
 
         public void RunCurrentBackup()
@@ -55,10 +60,24 @@ namespace Databvase_Winforms.Models
             CurrentBackup.Action = BackupActionType.Database;
             CurrentBackup.Database = CurrentDatabase.Name;
             CurrentBackup.Devices.AddDevice(BackupPath, DeviceType.File);
-            CurrentBackup.BackupSetName = CurrentDatabase.Name + " Full Database Backup";
-            CurrentBackup.BackupSetDescription = string.Empty;
             CurrentBackup.Initialize = false;
             CurrentBackup.Incremental = IncrementalBackupOption;
+            GetBackupExpirationDate();
+        }
+
+        private void GetBackupExpirationDate()
+        {
+            if (UseExpireAfterDays)
+            {
+                if (ExpireAfterDays > 0)
+                {
+                    CurrentBackup.ExpirationDate = DateTime.Now.AddDays(ExpireAfterDays);
+                }
+            }
+            else
+            {
+                CurrentBackup.ExpirationDate = ExpireDate;
+            }
         }
 
         public bool VerifyBackup()
