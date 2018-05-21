@@ -13,6 +13,7 @@ using DevExpress.Utils.MVVM;
 using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTreeList;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -20,7 +21,9 @@ namespace Databvase_Winforms.Modules
 {
     public partial class ObjectExplorer : XtraUserControl
     {
-        private Dictionary<string, Action> PopupActionDictionary;
+        private Dictionary<string, Action> _popupActionDictionary;
+        private IOverlaySplashScreenHandle _overlayHandle;
+
         public ObjectExplorer()
         {
 
@@ -42,13 +45,12 @@ namespace Databvase_Winforms.Modules
 
         private void RegisterServices()
         {
-            mvvmContextObjectExplorer.RegisterService(SplashScreenService.Create(splashScreenManagerObjectExplorer));
             mvvmContextObjectExplorer.RegisterService(new BackupViewService());
         }
 
         private void CreatePopUpActions()
         {
-            PopupActionDictionary = new Dictionary<string, Action>
+            _popupActionDictionary = new Dictionary<string, Action>
             {
                 {GlobalStrings.ObjectExplorerTypes.Instance, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
                 {GlobalStrings.ObjectExplorerTypes.Database, () => popupMenuDatabase.ShowPopup(MousePosition)},
@@ -76,7 +78,7 @@ namespace Databvase_Winforms.Modules
         {
             var focusedNodeType = treeListObjExp.FocusedNode?.GetValue(treeListColumnType).ToString();
             if (focusedNodeType == null) return;
-            var popUpMenuAction = PopupActionDictionary[focusedNodeType];
+            var popUpMenuAction = _popupActionDictionary[focusedNodeType];
             popUpMenuAction.Invoke();
         }
 
@@ -112,6 +114,21 @@ namespace Databvase_Winforms.Modules
         }
 
         #endregion
+
+
+        private void ShowWaitOverlay()
+        {
+            _overlayHandle = SplashScreenManager.ShowOverlayForm(this);
+
+        }
+
+        private void CloseWaitOverlay()
+        {
+            if (_overlayHandle != null)
+            {
+                SplashScreenManager.CloseOverlayForm(_overlayHandle);
+            }
+        }
 
         private void InitializeBindings()
         {
@@ -158,10 +175,12 @@ namespace Databvase_Winforms.Modules
             {
                 case ObjectExplorerViewModel.UnboundLoadModes.BeginUnboundLoad:
                     treeListObjExp.BeginUnboundLoad();
+                    ShowWaitOverlay();
                     break;
                 case ObjectExplorerViewModel.UnboundLoadModes.FinishUnboundLoad:
                     treeListObjExp.EndUnboundLoad();
                     treeListObjExp.FocusedNode?.Expand(); //TODO - This is a hack to get the focused node to expand... see if there's a way to avoid doing this.
+                    CloseWaitOverlay();
                     break;
             }
         }

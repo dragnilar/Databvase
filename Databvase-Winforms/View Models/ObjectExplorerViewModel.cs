@@ -29,7 +29,6 @@ namespace Databvase_Winforms.View_Models
         public virtual string SelectTopContextMenuItemDescription { get; set; }
         public virtual BindingList<ObjectExplorerNode> ObjectExplorerSource { get; set; }
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
-        protected ISplashScreenService SplashScreenService => this.GetService<ISplashScreenService>();
         protected IBackupViewService BackupViewService => this.GetService<IBackupViewService>();
         public virtual ObjectExplorerNode FocusedNode { get; set; }
 
@@ -113,20 +112,15 @@ namespace Databvase_Winforms.View_Models
         private void LoadDataForObjectExplorerDynamically(ObjectExplorerNode model)
         {
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
-            ShowWaitMessageIfItsNotActive();
             try
             {
                 GetNodes(model);
+                FinishUnboundLoad();
             }
             catch (Exception e)
             {
                 _dataSourceModel.CreateEmptyNode(model);
                 DisplayErrorMessage(e.Message, "Error Getting Objects");
-            }
-            finally
-            {
-                KillWaitMessageIfItsActive();
-                FinishUnboundLoad();
             }
 
         }
@@ -234,24 +228,8 @@ namespace Databvase_Winforms.View_Models
 
         private void DisplayErrorMessage(string message, string header)
         {
-            KillWaitMessageIfItsActive();
+            FinishUnboundLoad();
             MessageBoxService.ShowMessage(message, header, MessageButton.OK, MessageIcon.Error);
-        }
-
-        private void ShowWaitMessageIfItsNotActive()
-        {
-            if (!SplashScreenService.IsSplashScreenActive)
-            {
-                SplashScreenService.ShowSplashScreen();
-            }
-        }
-
-        private void KillWaitMessageIfItsActive()
-        {
-            if (SplashScreenService.IsSplashScreenActive)
-            {
-                SplashScreenService.HideSplashScreen();
-            }
         }
 
         private void FinishUnboundLoad()

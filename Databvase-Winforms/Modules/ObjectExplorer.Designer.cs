@@ -58,7 +58,6 @@
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.splashScreenManagerObjectExplorer = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Databvase_Winforms.Views.WaitSplashyView), true, true, typeof(System.Windows.Forms.UserControl));
             this.popupMenuDatabase = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
@@ -96,7 +95,6 @@
             this.treeListColumnInstance,
             this.treeListColumnProperties});
             this.treeListObjExp.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeListObjExp.DataSource = null;
             this.treeListObjExp.KeyFieldName = "Id";
             this.treeListObjExp.Location = new System.Drawing.Point(12, 12);
             this.treeListObjExp.Name = "treeListObjExp";
@@ -335,10 +333,6 @@
             this.popupMenuStoredProcedure.Manager = this.barManagerObjectExplorer;
             this.popupMenuStoredProcedure.Name = "popupMenuStoredProcedure";
             // 
-            // splashScreenManagerObjectExplorer
-            // 
-            this.splashScreenManagerObjectExplorer.ClosingDelay = 500;
-            // 
             // popupMenuDatabase
             // 
             this.popupMenuDatabase.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -406,7 +400,6 @@
         private DevExpress.XtraBars.PopupMenu popupMenuStoredProcedure;
         private DevExpress.XtraBars.BarButtonItem barButtonItemViewFunction;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAlterScript;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManagerObjectExplorer;
         private DevExpress.XtraBars.PopupMenu popupMenuDatabase;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCreateDatabaseBackup;
     }
