@@ -27,7 +27,6 @@ namespace Databvase_Winforms.Views
             if (!mvvmContextMain.IsDesignMode)
                 InitializeBindings();
             AddObjectExplorerToUi();
-            App.Skins.LoadSkinSettings();
             HookupEvents();
         }
 

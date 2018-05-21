@@ -24,6 +24,7 @@ namespace Databvase_Winforms
             CheckSettings();
             ToggleDirectX();
             SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
+            App.Skins.LoadSkinSettings();
             Application.Run(new MainView());
         }
 
