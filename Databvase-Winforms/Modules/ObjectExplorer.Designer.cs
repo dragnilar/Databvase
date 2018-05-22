@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectExplorer));
             this.lcObjectExplorer = new DevExpress.XtraLayout.LayoutControl();
             this.treeListObjExp = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumnFullName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnDisplayName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnParentName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnData = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -55,10 +55,12 @@
             this.barButtonItemViewFunction = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemAlterScript = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemCreateDatabaseBackup = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuDatabase = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.treeListColumnFullName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -88,6 +90,7 @@
             // treeListObjExp
             // 
             this.treeListObjExp.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumnDisplayName,
             this.treeListColumnFullName,
             this.treeListColumnType,
             this.treeListColumnParentName,
@@ -108,15 +111,15 @@
             this.treeListObjExp.Size = new System.Drawing.Size(326, 576);
             this.treeListObjExp.TabIndex = 4;
             // 
-            // treeListColumnFullName
+            // treeListColumnDisplayName
             // 
-            this.treeListColumnFullName.Caption = "Name";
-            this.treeListColumnFullName.FieldName = "FullName";
-            this.treeListColumnFullName.Name = "treeListColumnFullName";
-            this.treeListColumnFullName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
-            this.treeListColumnFullName.Visible = true;
-            this.treeListColumnFullName.VisibleIndex = 0;
-            this.treeListColumnFullName.Width = 195;
+            this.treeListColumnDisplayName.Caption = "Name";
+            this.treeListColumnDisplayName.FieldName = "DisplayName";
+            this.treeListColumnDisplayName.Name = "treeListColumnDisplayName";
+            this.treeListColumnDisplayName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
+            this.treeListColumnDisplayName.Visible = true;
+            this.treeListColumnDisplayName.VisibleIndex = 0;
+            this.treeListColumnDisplayName.Width = 195;
             // 
             // treeListColumnType
             // 
@@ -128,7 +131,7 @@
             // treeListColumnParentName
             // 
             this.treeListColumnParentName.Caption = "Parent Name";
-            this.treeListColumnParentName.FieldName = "ParentName";
+            this.treeListColumnParentName.FieldName = "ParentNodeName";
             this.treeListColumnParentName.Name = "treeListColumnParentName";
             this.treeListColumnParentName.OptionsColumn.ShowInCustomizationForm = false;
             this.treeListColumnParentName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
@@ -234,8 +237,9 @@
             this.barButtonItemNewQuery,
             this.barButtonItemViewFunction,
             this.barButtonItemAlterScript,
-            this.barButtonItemCreateDatabaseBackup});
-            this.barManagerObjectExplorer.MaxItemId = 10;
+            this.barButtonItemCreateDatabaseBackup,
+            this.bbiRefresh});
+            this.barManagerObjectExplorer.MaxItemId = 11;
             // 
             // barDockControlTop
             // 
@@ -308,6 +312,14 @@
             this.barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage")));
             this.barButtonItemCreateDatabaseBackup.Name = "barButtonItemCreateDatabaseBackup";
             // 
+            // bbiRefresh
+            // 
+            this.bbiRefresh.Caption = "Refresh";
+            this.bbiRefresh.Id = 10;
+            this.bbiRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiRefresh.ImageOptions.SvgImage")));
+            this.bbiRefresh.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.bbiRefresh.Name = "bbiRefresh";
+            // 
             // popupMenuTable
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -338,9 +350,18 @@
             this.popupMenuDatabase.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCreateDatabaseBackup)});
             this.popupMenuDatabase.Manager = this.barManagerObjectExplorer;
             this.popupMenuDatabase.Name = "popupMenuDatabase";
+            // 
+            // treeListColumnFullName
+            // 
+            this.treeListColumnFullName.Caption = "Full Name";
+            this.treeListColumnFullName.FieldName = "FullName";
+            this.treeListColumnFullName.Name = "treeListColumnFullName";
+            this.treeListColumnFullName.OptionsColumn.AllowEdit = false;
+            this.treeListColumnFullName.OptionsColumn.ShowInCustomizationForm = false;
             // 
             // ObjectExplorer
             // 
@@ -379,7 +400,7 @@
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextObjectExplorer;
         private DevExpress.XtraTreeList.TreeList treeListObjExp;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnDisplayName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnType;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnParentName;
         private DevExpress.XtraBars.PopupMenu popupMenuObjectExplorer;
@@ -402,5 +423,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemAlterScript;
         private DevExpress.XtraBars.PopupMenu popupMenuDatabase;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCreateDatabaseBackup;
+        private DevExpress.XtraBars.BarButtonItem bbiRefresh;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullName;
     }
 }

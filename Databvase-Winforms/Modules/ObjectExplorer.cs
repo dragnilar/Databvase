@@ -15,6 +15,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Modules
@@ -26,7 +27,6 @@ namespace Databvase_Winforms.Modules
 
         public ObjectExplorer()
         {
-
             InitializeComponent();
             if (!mvvmContextObjectExplorer.IsDesignMode)
                 InitializeBindings();
@@ -166,6 +166,7 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemNewQuery, x => x.NewQueryScript());
             fluent.BindCommand(barButtonItemCopyFullName, x=>x.CopyNameCell());
             fluent.BindCommand(barButtonItemCreateDatabaseBackup, x => x.ShowBackupView());
+            fluent.BindCommand(bbiRefresh, x=>x.RefreshNode());
             fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);
         }
 
@@ -180,6 +181,11 @@ namespace Databvase_Winforms.Modules
                 case ObjectExplorerViewModel.UnboundLoadModes.FinishUnboundLoad:
                     treeListObjExp.EndUnboundLoad();
                     treeListObjExp.FocusedNode?.Expand(); //TODO - This is a hack to get the focused node to expand... see if there's a way to avoid doing this.
+                    CloseWaitOverlay();
+                    break;
+                case ObjectExplorerViewModel.UnboundLoadModes.FinishUnboundLoadRefresh:
+                    treeListObjExp.EndUnboundLoad();
+                    treeListObjExp.FocusedNode?.Collapse();
                     CloseWaitOverlay();
                     break;
             }

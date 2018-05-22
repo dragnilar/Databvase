@@ -31,6 +31,7 @@ namespace Databvase_Winforms.View_Models
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
         protected IBackupViewService BackupViewService => this.GetService<IBackupViewService>();
         public virtual ObjectExplorerNode FocusedNode { get; set; }
+        private bool _refreshing = false;
 
         public ObjectExplorerViewModel()
         {
@@ -77,7 +78,7 @@ namespace Databvase_Winforms.View_Models
 
         public void CopyNameCell()
         {
-            Clipboard.SetDataObject(FocusedNode.FullName);
+            Clipboard.SetDataObject(FocusedNode.DisplayName);
         }
 
         public void ShowBackupView()
@@ -86,6 +87,24 @@ namespace Databvase_Winforms.View_Models
         }
 
         #region Object Explorer On Demand Data Methods
+
+        public void RefreshNode()
+        {
+            var node = FocusedNode;
+            try
+            {
+                _refreshing = true;
+                LoadingMode = UnboundLoadModes.BeginUnboundLoad;
+                _dataSourceModel.RefreshNode(node);
+                FinishUnboundLoad();
+            }
+            catch (Exception e)
+            {
+                _dataSourceModel.CreateEmptyNode(node);
+                DisplayErrorMessage(e.Message, "Error Refreshing Objects");
+            }
+
+        }
 
         private void GetInstances(InstanceConnectedMessage message)
         {
@@ -102,46 +121,32 @@ namespace Databvase_Winforms.View_Models
 
         public void ObjectExplorer_OnBeforeExpand(BeforeExpandEventArgs e)
         {
+            if (_refreshing)
+            {
+                return;
+            }
+
             if (e.Node.Nodes.Count <= 0)
             {
                 var model = GetModelForNode(e.Node);
                 LoadDataForObjectExplorerDynamically(model);
-            };
+            }
         }
 
-        private void LoadDataForObjectExplorerDynamically(ObjectExplorerNode model)
+        private void LoadDataForObjectExplorerDynamically(ObjectExplorerNode selectedNode)
         {
             LoadingMode = UnboundLoadModes.BeginUnboundLoad;
             try
             {
-                GetNodes(model);
+                _dataSourceModel.GetNodes(selectedNode);
                 FinishUnboundLoad();
             }
             catch (Exception e)
             {
-                _dataSourceModel.CreateEmptyNode(model);
+                _dataSourceModel.CreateEmptyNode(selectedNode);
                 DisplayErrorMessage(e.Message, "Error Getting Objects");
             }
 
-        }
-
-        private void GetNodes(ObjectExplorerNode model)
-        {
-            switch (model.Type)
-            {
-                case GlobalStrings.ObjectExplorerTypes.Instance:
-                    _dataSourceModel.CreateUserDatabaseNodes(model);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Database:
-                    _dataSourceModel.CreateFolderNodesForDatabase(model);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Folder:
-                    _dataSourceModel.CreateFolderChildrenNodes(model);
-                    break;
-                case GlobalStrings.ObjectExplorerTypes.Table:
-                    _dataSourceModel.CreateColumnNodes(model);
-                    break;
-            }
         }
 
         private ObjectExplorerNode GetModelForNode(TreeListNode node)
@@ -149,6 +154,8 @@ namespace Databvase_Winforms.View_Models
             var model = node.TreeList.GetRow(node.Id) as ObjectExplorerNode;
             return model;
         }
+
+
 
 
 
@@ -234,15 +241,17 @@ namespace Databvase_Winforms.View_Models
 
         private void FinishUnboundLoad()
         {
-            LoadingMode = UnboundLoadModes.FinishUnboundLoad;
+            LoadingMode = _refreshing ? UnboundLoadModes.FinishUnboundLoadRefresh : UnboundLoadModes.FinishUnboundLoad;
             LoadingMode = UnboundLoadModes.NotLoading;
+            _refreshing = false;
         }
 
         public enum UnboundLoadModes
         {
             NotLoading,
             BeginUnboundLoad,
-            FinishUnboundLoad
+            FinishUnboundLoad,
+            FinishUnboundLoadRefresh
         }
     }
 }

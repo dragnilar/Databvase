@@ -22,8 +22,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = serverInstance.Name;
             Type = GlobalStrings.ObjectExplorerTypes.Instance;
             Data = serverInstance;
+            DisplayName = serverInstance.Name;
             FullName = serverInstance.Name;
-            ParentName = string.Empty;
+            ParentNodeName = string.Empty;
             ImageIndex = 0;
             Properties = serverInstance.Edition;
 
@@ -42,8 +43,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = db.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.Database;
             Data = db;
+            DisplayName = db.Name;
             FullName = db.Name;
-            ParentName = db.Parent.Name;
+            ParentNodeName = InstanceName + " " + GlobalStrings.FolderTypes.SystemDatabaseFolder + " " + "folder";
             ImageIndex = 1;
             Properties = string.Empty;
         }
@@ -61,8 +63,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = table.Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.Table;
             Data = table;
-            FullName = GetTableFullName(table);
-            ParentName = table.Parent.Name;
+            DisplayName = GetTableFullName(table);
+            FullName = table.Name;
+            ParentNodeName = InstanceName + " " + GlobalStrings.FolderTypes.TableFolder + " " + "folder";
             ImageIndex = 2;
             Properties = string.Empty;
         }
@@ -80,8 +83,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = ((Table) column.Parent).Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.Column;
             Data = column;
+            DisplayName = column.Name;
             FullName = column.Name;
-            ParentName = GetTableFullName((Table) column.Parent);
+            ParentNodeName = GetTableFullName((Table) column.Parent);
             ImageIndex = 3;
             Properties = BuildColumnProperties(column);
         }
@@ -100,11 +104,14 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = parentModel.InstanceName;
             Type = GlobalStrings.ObjectExplorerTypes.Folder;
             Data = parentModel.Data;
-            FullName = folderType;
-            ParentName = parentModel.FullName;
+            DisplayName = folderType;
+            FullName = GetFolderFullName(folderType, parentModel);
+            ParentNodeName = parentModel.FullName;
             ImageIndex = 4;
             Properties = null;
         }
+
+
 
         /// <summary>
         /// Creates a new object for a View data type
@@ -119,8 +126,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = view.Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.View;
             Data = view;
+            DisplayName = $"{view.Schema}.{view.Name}";
             FullName = $"{view.Schema}.{view.Name}";
-            ParentName = view.Parent.Name;
+            ParentNodeName = InstanceName + " " + GlobalStrings.FolderTypes.ViewFolder + " " + "folder";
             ImageIndex = 5;
             Properties = string.Empty;
         }
@@ -138,8 +146,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = function.Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.Function;
             Data = function;
+            DisplayName = $"{function.Schema}.{function.Name}";
             FullName = $"{function.Schema}.{function.Name}";
-            ParentName = function.Parent.Name;
+            ParentNodeName = InstanceName + " " + GlobalStrings.FolderTypes.FunctionsFolder + " " + "folder";
             ImageIndex = 6;
             Properties = string.Empty;
         }
@@ -157,8 +166,9 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = storedProcedure.Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.StoredProcedure;
             Data = storedProcedure;
+            DisplayName = $"{storedProcedure.Schema}.{storedProcedure.Name}";
             FullName = $"{storedProcedure.Schema}.{storedProcedure.Name}";
-            ParentName = storedProcedure.Parent.Name;
+            ParentNodeName = InstanceName + " " + GlobalStrings.FolderTypes.StoreProcedureFolder + " " + "folder";
             ImageIndex = 7;
             Properties = string.Empty;
         }
@@ -175,17 +185,19 @@ namespace Databvase_Winforms.Models.Data_Providers
             InstanceName = parentModel.InstanceName;
             Type = GlobalStrings.ObjectExplorerTypes.Nothing;
             Data = null;
-            FullName = "Nothing available";
-            ParentName = parentModel.FullName;
+            DisplayName = "Nothing available";
+            FullName = parentModel.FullName + " " + "Empty Child Node";
+            ParentNodeName = parentModel.FullName;
             ImageIndex = 8;
             Properties = string.Empty;
         }
 
         public int Id { get; set; }
         public int ParentId { get; set; }
+        public string DisplayName { get; set; }
         public string FullName { get; set; }
         public string Type { get; set; }
-        public string ParentName { get; set; }
+        public string ParentNodeName { get; set; }
         public object Data { get; set; }
         public string InstanceName { get; set; }
         public int ImageIndex { get; set; }
@@ -210,6 +222,12 @@ namespace Databvase_Winforms.Models.Data_Providers
                 case GlobalStrings.ObjectExplorerTypes.Column:
                     var column = Data as Column;
                     return ((Table)column?.Parent)?.Parent;
+                case GlobalStrings.ObjectExplorerTypes.Function:
+                    return ((UserDefinedFunction)Data).Parent;
+                case GlobalStrings.ObjectExplorerTypes.StoredProcedure:
+                    return ((StoredProcedure)Data).Parent;
+                case GlobalStrings.ObjectExplorerTypes.View:
+                    return ((View)Data).Parent;
             }
             return null;
         }
@@ -254,6 +272,17 @@ namespace Databvase_Winforms.Models.Data_Providers
             }
         }
 
+        public Column GetColumnFromNode()
+        {
+            if (Type != GlobalStrings.ObjectExplorerTypes.Column)
+            {
+                return Data as Column;
+                
+            }
+
+            return null;
+        }
+
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -285,6 +314,11 @@ namespace Databvase_Winforms.Models.Data_Providers
             propertiesBuilder.Append(column.Nullable ? " null" : " not null");
 
             return propertiesBuilder.ToString();
+        }
+
+        private static string GetFolderFullName(string folderType, ObjectExplorerNode parentModel)
+        {
+            return parentModel.InstanceName + " " + folderType + " " + "folder";
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Databvase_Winforms.Globals;
+using Databvase_Winforms.Utilities;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models.Data_Providers
@@ -12,6 +13,7 @@ namespace Databvase_Winforms.Models.Data_Providers
         private int _nodeId;
         public BindingList<ObjectExplorerNode> DataSource { get; set; }
         private Dictionary<string, Action<ObjectExplorerNode>> _folderActionDictionary = null;
+        private readonly ObjectExplorerDataSourceRefreshUtilities _objectExplorerDataSourceRefreshUtilities;
 
         private List<string> systemDatabaseNames => new List<string>
         {
@@ -40,6 +42,7 @@ namespace Databvase_Winforms.Models.Data_Providers
         public ObjectExplorerDataSource()
         {
             DataSource = new BindingList<ObjectExplorerNode>();
+            _objectExplorerDataSourceRefreshUtilities = new ObjectExplorerDataSourceRefreshUtilities(this);
         }
 
         public void GenerateInstances()
@@ -60,7 +63,27 @@ namespace Databvase_Winforms.Models.Data_Providers
         }
 
 
-        public void CreateUserDatabaseNodes(ObjectExplorerNode model)
+        public void GetNodes(ObjectExplorerNode selectedNode)
+        {
+            switch (selectedNode.Type)
+            {
+                case GlobalStrings.ObjectExplorerTypes.Instance:
+                    CreateUserDatabaseNodes(selectedNode);
+                    break;
+                case GlobalStrings.ObjectExplorerTypes.Database:
+                    CreateFolderNodesForDatabase(selectedNode);
+                    break;
+                case GlobalStrings.ObjectExplorerTypes.Folder:
+                    CreateFolderChildrenNodes(selectedNode);
+                    break;
+                case GlobalStrings.ObjectExplorerTypes.Table:
+                    CreateColumnNodes(selectedNode);
+                    break;
+            }
+        }
+
+
+        private void CreateUserDatabaseNodes(ObjectExplorerNode model)
         {
 
             if (!(model.Data is Server server)) return;
@@ -93,7 +116,7 @@ namespace Databvase_Winforms.Models.Data_Providers
             }
         }
 
-        public void CreateFolderNodesForDatabase(ObjectExplorerNode model)
+        private void CreateFolderNodesForDatabase(ObjectExplorerNode model)
         {
             if (!(model.Data is Database)) return;
             DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), GlobalStrings.FolderTypes.TableFolder,
@@ -106,10 +129,10 @@ namespace Databvase_Winforms.Models.Data_Providers
                 GlobalStrings.FolderTypes.FunctionsFolder, model));
         }
 
-        
-        public void CreateFolderChildrenNodes(ObjectExplorerNode model)
+
+        private void CreateFolderChildrenNodes(ObjectExplorerNode model)
         {
-            var createFolderNodeAction = FolderActionDictionary[model.FullName];
+            var createFolderNodeAction = FolderActionDictionary[model.DisplayName];
             createFolderNodeAction.Invoke(model);
         }
 
@@ -172,7 +195,7 @@ namespace Databvase_Winforms.Models.Data_Providers
 
         }
 
-        public void CreateColumnNodes(ObjectExplorerNode model)
+        private void CreateColumnNodes(ObjectExplorerNode model)
         {
 
             if (!(model.Data is Table table)) return;
@@ -193,7 +216,11 @@ namespace Databvase_Winforms.Models.Data_Providers
             DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model));
         }
 
-
+        public void RefreshNode(ObjectExplorerNode selectedNode)
+        {
+            _objectExplorerDataSourceRefreshUtilities.RemoveAllChildrenNodesOfNode(selectedNode);
+            
+        }
 
 
         private int GetNewNodeId()

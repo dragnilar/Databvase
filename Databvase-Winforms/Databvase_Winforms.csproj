@@ -283,6 +283,7 @@
     <Compile Include="Messages\SettingsUpdatedMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\BackupContainer.cs" />
+    <Compile Include="Utilities\ObjectExplorerDataSourceRefreshUtilities.cs" />
     <Compile Include="Models\Data Providers\ServerExplorerNode.cs" />
     <Compile Include="Models\InstanceAndDatabaseTracker.cs" />
     <Compile Include="Models\Data Providers\ObjectExplorerDataSource.cs" />
