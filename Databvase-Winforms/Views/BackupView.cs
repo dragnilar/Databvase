@@ -202,12 +202,14 @@ namespace Databvase_Winforms.Views
 
         private void SetEntityBindingsForTextEdits(BindingSource entityBindingSource)
         {
-            textEditRecoveryModel.DataBindings.Add(new Binding("EditValue", entityBindingSource, "RecoveryModelString",
+            textEditRecoveryModel.DataBindings.Add(new Binding(nameof(textEditRecoveryModel.EditValue), entityBindingSource, 
+                nameof(BackupContainer.RecoveryModelString),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged));
-            textEditBackupPath.DataBindings.Add(new Binding("EditValue", entityBindingSource, "BackupPath",
+            textEditBackupPath.DataBindings.Add(new Binding(nameof(textEditBackupPath.EditValue), entityBindingSource, 
+                nameof(BackupContainer.BackupPath),
                 true, DataSourceUpdateMode.OnPropertyChanged));
-            textEditBackupSetName.DataBindings.Add(new Binding("EditValue", entityBindingSource,
+            textEditBackupSetName.DataBindings.Add(new Binding(nameof(textEditBackupSetName.EditValue), entityBindingSource,
                 "CurrentBackup.BackupSetName",
                 true, DataSourceUpdateMode.OnPropertyChanged));
             textEditBackupDescription.DataBindings.Add(new Binding("EditValue", entityBindingSource,
