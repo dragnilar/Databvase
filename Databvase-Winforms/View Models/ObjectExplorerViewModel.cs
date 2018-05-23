@@ -172,44 +172,30 @@ namespace Databvase_Winforms.View_Models
 
         public void ScriptSelectTopForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateSelectTopStatement(FocusedNode);
-            ValidateResponseAndSendScriptMessage(response);
+            new ScriptGenerator().GenerateSelectTopStatement(FocusedNode);
         }
 
         public void ScriptSelectAllForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateSelectAllStatement(FocusedNode);
-            ValidateResponseAndSendScriptMessage(response);
+            new ScriptGenerator().GenerateSelectAllStatement(FocusedNode);
+
         }
 
         public void ScriptModifyForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateModifyScript(FocusedNode);
-            ValidateResponseAndSendScriptMessage(response);
+            new ScriptGenerator().GenerateModifyScript(FocusedNode);
+
         }
 
         public void ScriptAlterForObjectExplorerData()
         {
-            var response = new ScriptGeneratorService().GenerateAlterScript(FocusedNode);
-            ValidateResponseAndSendScriptMessage(response);
+            new ScriptGenerator().GenerateAlterScript(FocusedNode);
+
         }
 
         private void SendBlankScript(string selectedDatabaseName)
         {
-            new NewScriptMessage(string.Empty, selectedDatabaseName);
-        }
-
-        private void ValidateResponseAndSendScriptMessage(ScriptGenerationResult result)
-        {
-            if (result.HasErrors)
-            {
-                DisplayErrorMessage(result.ErrorMessage, "Error Generating Script");
-            }
-            else
-            {
-                new NewScriptMessage(result.Script, result.DatabaseName);
-            }
-            
+            new ScriptGenerator().GenerateBlankScript(selectedDatabaseName);
         }
 
         #endregion

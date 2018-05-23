@@ -291,7 +291,7 @@
     <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\RecentBackup.cs" />
     <Compile Include="Models\SavedConnection.cs" />
-    <Compile Include="Models\ScriptGenerationResult.cs" />
+    <Compile Include="Services\ScriptGenerationResultService.cs" />
     <Compile Include="Models\SQLServerInstance.cs" />
     <Compile Include="Modules\ObjectExplorer.cs">
       <SubType>UserControl</SubType>
@@ -318,7 +318,7 @@
     <Compile Include="Services\Window Dialog Services\BackupViewService.cs" />
     <Compile Include="Services\Window Dialog Services\ConnectionWindowService.cs" />
     <Compile Include="Services\Window Dialog Services\FontDialogService.cs" />
-    <Compile Include="Services\ScriptGeneratorService.cs" />
+    <Compile Include="Models\ScriptGenerator.cs" />
     <Compile Include="Services\Window Dialog Services\SettingsWindowService.cs" />
     <Compile Include="Services\SQLSyntaxHighlightingService.cs" />
     <Compile Include="Services\Window Dialog Services\TextEditorFontChangeService.cs" />
