@@ -12,7 +12,7 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Models
 {
-    public class BackupContainer
+    public class SMOBackupProcess
     {
         public Backup CurrentBackup { get; set; }
         private Database _currentDatabase;
@@ -37,11 +37,15 @@ namespace Databvase_Winforms.Models
 
         private void GetCurrentDatabaseMostRecentBackupPath()
         {
-            BackupPath = new RecentBackupRepository().GetMostRecentBackupsForDatabase(CurrentDatabase.Name).FirstOrDefault()
-                ?.PhysicalDeviceName;
+
+            if (CurrentDatabase != null)
+            {
+                BackupPath = new RecentBackupRepository().GetMostRecentBackupsForDatabase(CurrentDatabase.Name).FirstOrDefault()
+                    ?.PhysicalDeviceName;
+            }
         }
 
-        public BackupContainer()
+        public SMOBackupProcess()
         {
             CurrentBackup = new Backup();
             BackupPath = string.Empty;

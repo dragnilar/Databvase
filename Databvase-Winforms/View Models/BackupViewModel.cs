@@ -22,7 +22,7 @@ namespace Databvase_Winforms.View_Models
         public virtual string CurrentLoginName { get; set; }
         public virtual int StatusImageIndex { get; set; }
         public virtual int BackupPercentageComplete {get; set; }
-        public virtual BackupContainer BackupEntityForVm { get; set; }
+        public virtual SMOBackupProcess BackupEntityForVm { get; set; }
         public virtual WindowState State { get; set; }
         public virtual ExpirationDateOption ExpireOption { get; set; }
         public virtual List<Database> DatabaseList { get; set; }
@@ -34,7 +34,7 @@ namespace Databvase_Winforms.View_Models
 
         public BackupViewModel()
         {
-            BackupEntityForVm = new BackupContainer();
+            BackupEntityForVm = new SMOBackupProcess();
             BackupEntityForVm.CurrentDatabase = App.Connection.CurrentDatabase;
             StatusImageIndex = 0;
             ProgressMessage = "Ready";

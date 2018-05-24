@@ -188,7 +188,7 @@ namespace Databvase_Winforms.Views
         private void SetEntityDataBindings(MVVMContextFluentAPI<BackupViewModel> fluent)
         {
             //TODO - See if there's a simpler way to do this, this feels really... old fashioned.
-            var entityBindingSource = new BindingSource {DataSource = typeof(BackupContainer)};
+            var entityBindingSource = new BindingSource {DataSource = typeof(SMOBackupProcess)};
             SetEntityBindingsForTextEdits(entityBindingSource);
             SetEntityBindingsForCheckEdits(entityBindingSource);
             spinEditExpireAfterDays.DataBindings.Add(new Binding("EditValue", entityBindingSource, "ExpireAfterDays",
@@ -203,11 +203,11 @@ namespace Databvase_Winforms.Views
         private void SetEntityBindingsForTextEdits(BindingSource entityBindingSource)
         {
             textEditRecoveryModel.DataBindings.Add(new Binding(nameof(textEditRecoveryModel.EditValue), entityBindingSource, 
-                nameof(BackupContainer.RecoveryModelString),
+                nameof(SMOBackupProcess.RecoveryModelString),
                 true,
                 DataSourceUpdateMode.OnPropertyChanged));
             textEditBackupPath.DataBindings.Add(new Binding(nameof(textEditBackupPath.EditValue), entityBindingSource, 
-                nameof(BackupContainer.BackupPath),
+                nameof(SMOBackupProcess.BackupPath),
                 true, DataSourceUpdateMode.OnPropertyChanged));
             textEditBackupSetName.DataBindings.Add(new Binding(nameof(textEditBackupSetName.EditValue), entityBindingSource,
                 "CurrentBackup.BackupSetName",
