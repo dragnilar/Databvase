@@ -103,6 +103,7 @@
             this.treeListObjExp.Name = "treeListObjExp";
             this.treeListObjExp.OptionsBehavior.Editable = false;
             this.treeListObjExp.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.treeListObjExp.OptionsView.RowImagesShowMode = DevExpress.XtraTreeList.RowImagesShowMode.InCell;
             this.treeListObjExp.OptionsView.ShowFirstLines = false;
             this.treeListObjExp.OptionsView.ShowHorzLines = false;
             this.treeListObjExp.OptionsView.ShowVertLines = false;
