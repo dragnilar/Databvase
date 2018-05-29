@@ -118,8 +118,10 @@ namespace Databvase_Winforms.Modules
 
         private void ShowWaitOverlay()
         {
-            _overlayHandle = SplashScreenManager.ShowOverlayForm(this);
-
+            if (_overlayHandle == null)
+            {
+                _overlayHandle = SplashScreenManager.ShowOverlayForm(this);
+            }
         }
 
         private void CloseWaitOverlay()
@@ -127,6 +129,7 @@ namespace Databvase_Winforms.Modules
             if (_overlayHandle != null)
             {
                 SplashScreenManager.CloseOverlayForm(_overlayHandle);
+                _overlayHandle = null;
             }
         }
 

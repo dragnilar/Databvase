@@ -7,11 +7,11 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Utilities
 {
-    public class ObjectExplorerDataSourceRefreshUtilities
+    public class ObjectExplorerRefresherUtility
     {
         private readonly ObjectExplorerDataSource _objectExplorerDataSource;
 
-        public ObjectExplorerDataSourceRefreshUtilities(ObjectExplorerDataSource objectExplorerDataSource)
+        public ObjectExplorerRefresherUtility(ObjectExplorerDataSource objectExplorerDataSource)
         {
             _objectExplorerDataSource = objectExplorerDataSource;
         }

@@ -13,7 +13,7 @@ namespace Databvase_Winforms.Models.Data_Providers
         private int _nodeId;
         public BindingList<ObjectExplorerNode> DataSource { get; set; }
         private Dictionary<string, Action<ObjectExplorerNode>> _folderActionDictionary = null;
-        private readonly ObjectExplorerDataSourceRefreshUtilities _objectExplorerDataSourceRefreshUtilities;
+        private readonly ObjectExplorerRefresherUtility _objectExplorerRefresher;
 
         private List<string> systemDatabaseNames => new List<string>
         {
@@ -42,7 +42,7 @@ namespace Databvase_Winforms.Models.Data_Providers
         public ObjectExplorerDataSource()
         {
             DataSource = new BindingList<ObjectExplorerNode>();
-            _objectExplorerDataSourceRefreshUtilities = new ObjectExplorerDataSourceRefreshUtilities(this);
+            _objectExplorerRefresher = new ObjectExplorerRefresherUtility(this);
         }
 
         public void GenerateInstances()
@@ -218,7 +218,7 @@ namespace Databvase_Winforms.Models.Data_Providers
 
         public void RefreshNode(ObjectExplorerNode selectedNode)
         {
-            _objectExplorerDataSourceRefreshUtilities.RemoveAllChildrenNodesOfNode(selectedNode);
+            _objectExplorerRefresher.RemoveAllChildrenNodesOfNode(selectedNode);
             
         }
 
