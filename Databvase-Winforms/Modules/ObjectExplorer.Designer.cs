@@ -334,7 +334,8 @@
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectAll),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});
             this.popupMenuTable.Manager = this.barManagerObjectExplorer;
             this.popupMenuTable.Name = "popupMenuTable";
             // 

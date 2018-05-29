@@ -330,7 +330,7 @@
     <Compile Include="Services\SkinService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="Utilities\SMOChecker.cs" />
+    <Compile Include="Utilities\DatabvaseSMOExtensions.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Views\BackupView.cs">

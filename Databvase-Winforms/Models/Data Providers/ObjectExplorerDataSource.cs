@@ -222,6 +222,14 @@ namespace Databvase_Winforms.Models.Data_Providers
             
         }
 
+        public void RemoveListOfNodes(IEnumerable<ObjectExplorerNode> nodesToRemove)
+        {
+            foreach (var removable in nodesToRemove.ToList())
+            {
+                DataSource.Remove(removable);
+            }
+        }
+
 
         private int GetNewNodeId()
         {

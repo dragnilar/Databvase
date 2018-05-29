@@ -41,16 +41,13 @@ namespace Databvase_Winforms.Utilities
                 switch (selectedNode.Type)
                 {
                     case GlobalStrings.ObjectExplorerTypes.Column:
-                        _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(selectedNode.Id, selectedNode.ParentId,
-                            selectedNode.Data as Column);
+                        RefreshColumn(selectedNode, indexOfNodeToReplace);
                         break;
                     case GlobalStrings.ObjectExplorerTypes.Function:
-                        _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(selectedNode.Id, selectedNode.ParentId,
-                            selectedNode.Data as UserDefinedFunction);
+                        RefreshFunction(selectedNode, indexOfNodeToReplace);
                         break;
                     case GlobalStrings.ObjectExplorerTypes.StoredProcedure:
-                        _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(selectedNode.Id, selectedNode.ParentId,
-                            selectedNode.Data as StoredProcedure);
+                        RefreshStoredProcedure(selectedNode, indexOfNodeToReplace);
                         break;
                     default:
                         break;
@@ -59,30 +56,80 @@ namespace Databvase_Winforms.Utilities
 
 
         }
+        #region Refresh Individual Nodes
+        private void RefreshColumn(ObjectExplorerNode selectedNode, int indexOfNodeToReplace)
+        {
+            if (selectedNode.Data is Column column)
+            {
+                column.Refresh();
+                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(
+                    selectedNode.Id, selectedNode.ParentId,
+                    column);
+            }
+        }
+
+        private void RefreshFunction(ObjectExplorerNode selectedNode, int indexOfNodeToReplace)
+        {
+            if (selectedNode.Data is UserDefinedFunction function)
+            {
+                function.Refresh();
+                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(
+                    selectedNode.Id, selectedNode.ParentId,
+                    function);
+            }
+
+        }
+
+        private void RefreshStoredProcedure(ObjectExplorerNode selectedNode, int indexOfNodeToReplace)
+        {
+            if (selectedNode.Data is StoredProcedure storedProcedure)
+            {
+                storedProcedure.Refresh();
+                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(
+                    selectedNode.Id, selectedNode.ParentId,
+                    storedProcedure);
+            }
+
+        }
+        #endregion
+
 
         private void RemoveAllChildrenNodesOfNode(ObjectExplorerNode selectedNode)
         {
             switch (selectedNode.Type)
             {
                 case GlobalStrings.ObjectExplorerTypes.Instance:
-                    RemoveAllNodesForServerInstance(selectedNode.Data as Server);
+                    RefreshServer(selectedNode.Data as Server);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Database:
-                    RemoveNodesForDatabase(selectedNode.Data as Database);
+                    RefreshDatabase(selectedNode.Data as Database);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Folder:
                     //CreateFolderChildrenNodes(selectedNode);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
-                    RemoveAllColumnsForTable(selectedNode.Data as Table);
+                    RefreshTable(selectedNode.Data as Table);
                     break;
             }
         }
 
-        private void RemoveAllNodesForServerInstance(Server server)
+        private void RefreshDatabase(Database database)
+        {
+            database.RemoveNodesForDatabase(_objectExplorerDataSource);
+            database?.Refresh();
+        }
+
+        private void RefreshTable(Table table)
+        {
+            table.RemoveNodesForTable(_objectExplorerDataSource);
+            table?.Refresh();
+        }
+
+        private void RefreshServer(Server server)
         {
             RemoveAllDatabasesForServerInstance(server);
             RemoveAllFoldersForServerInstance(server);
+            server.Refresh();
         }
 
         private void RemoveAllDatabasesForServerInstance(Server server)
@@ -98,93 +145,14 @@ namespace Databvase_Winforms.Utilities
         {
             var foldersToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.Folder &&
                                                                                   r.InstanceName == server.Name);
-            RemoveListOfNodes(foldersToRemove);
+            _objectExplorerDataSource.RemoveListOfNodes(foldersToRemove);
         }
 
         private void RemoveDatabaseForServer(Database database)
         {
-            RemoveNodesForDatabase(database);
+            database.RemoveNodesForDatabase(_objectExplorerDataSource);
             _objectExplorerDataSource.DataSource.Remove(r =>
                 r.Type == GlobalStrings.ObjectExplorerTypes.Database && r.GetDatabaseFromNode().Name == database.Name);
-        }
-
-        private void RemoveNodesForDatabase(Database database)
-        {
-            RemoveAllColumnsForDatabase(database);
-            RemoveAllTablesForDatabase(database);
-            RemoveAllViewsForDatabase(database);
-            RemoveAllFunctionsForDatabase(database);
-            RemoveAllStoredProceduresForDatabase(database);
-            RemoveAllFoldersForDatabase(database);
-        }
-
-        private void RemoveAllColumnsForDatabase(Database database)
-        {
-            var columnsToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.Column &&
-                                                                                  r.GetDatabaseFromNode().Name == database.Name);
-            RemoveListOfNodes(columnsToRemove);
-        }
-
-        private void RemoveAllTablesForDatabase(Database database)
-        {
-            var tablesToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.Table &&
-                                                                                 r.GetDatabaseFromNode().Name == database.Name);
-            RemoveListOfNodes(tablesToRemove);
-        }
-
-        private void RemoveAllViewsForDatabase(Database database)
-        {
-            var viewsToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.View &&
-                                                                                r.GetDatabaseFromNode().Name == database.Name);
-            RemoveListOfNodes(viewsToRemove);
-        }
-
-        private void RemoveAllFunctionsForDatabase(Database database)
-        {
-            var functionsToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.Function &&
-                                                                                    r.GetDatabaseFromNode().Name == database.Name);
-            RemoveListOfNodes(functionsToRemove);
-        }
-
-        private void RemoveAllStoredProceduresForDatabase(Database database)
-        {
-            var storedProceduresToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.StoredProcedure &&
-                                                                                           r.GetDatabaseFromNode().Name == database.Name);
-            RemoveListOfNodes(storedProceduresToRemove);
-        }
-
-        private void RemoveAllFoldersForDatabase(Database database)
-        {
-            var functionsToRemove = _objectExplorerDataSource.DataSource.Where(r => IsFolderForDatabase(r) &&
-                                                                                    r.GetDatabaseFromNode().Name == database.Name);
-            RemoveListOfNodes(functionsToRemove);
-        }
-
-        private bool IsFolderForDatabase(ObjectExplorerNode node)
-        {
-            if (node.Type != GlobalStrings.ObjectExplorerTypes.Folder) return false;
-            return node.DisplayName == GlobalStrings.FolderTypes.FunctionsFolder ||
-                   node.DisplayName == GlobalStrings.FolderTypes.StoreProcedureFolder ||
-                   node.DisplayName == GlobalStrings.FolderTypes.TableFolder ||
-                   node.DisplayName == GlobalStrings.FolderTypes.ViewFolder;
-        }
-
-        private void RemoveListOfNodes(IEnumerable<ObjectExplorerNode> nodesToRemove)
-        {
-            foreach (var removable in nodesToRemove.ToList())
-            {
-                _objectExplorerDataSource.DataSource.Remove(removable);
-            }
-        }
-
-        private void RemoveAllColumnsForTable(Table table)
-        {
-            var columnsToRemove = _objectExplorerDataSource.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.Column &&
-                                                                                  ((Table)r.GetColumnFromNode().Parent) == table).ToList();
-            foreach (var removable in columnsToRemove)
-            {
-                _objectExplorerDataSource.DataSource.Remove(removable);
-            }
         }
     }
 }
