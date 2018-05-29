@@ -16,7 +16,51 @@ namespace Databvase_Winforms.Utilities
             _objectExplorerDataSource = objectExplorerDataSource;
         }
 
-        public void RemoveAllChildrenNodesOfNode(ObjectExplorerNode selectedNode)
+        public void RefreshNode(ObjectExplorerNode selectedNode)
+        {
+            if (selectedNode.Type == GlobalStrings.ObjectExplorerTypes.Column ||
+                selectedNode.Type == GlobalStrings.ObjectExplorerTypes.Function ||
+                selectedNode.Type == GlobalStrings.ObjectExplorerTypes.StoredProcedure ||
+                selectedNode.Type == GlobalStrings.ObjectExplorerTypes.Nothing)
+            {
+                ReloadSelectedNode(selectedNode);
+            }
+            else
+            {
+                RemoveAllChildrenNodesOfNode(selectedNode);
+            }
+        }
+
+        private void ReloadSelectedNode(ObjectExplorerNode selectedNode)
+        {
+            var nodeToReplace = _objectExplorerDataSource.DataSource.FirstOrDefault(x => x.Id == selectedNode.Id);
+            var indexOfNodeToReplace = _objectExplorerDataSource.DataSource.IndexOf(nodeToReplace);
+
+            if (indexOfNodeToReplace != -1)
+            {
+                switch (selectedNode.Type)
+                {
+                    case GlobalStrings.ObjectExplorerTypes.Column:
+                        _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(selectedNode.Id, selectedNode.ParentId,
+                            selectedNode.Data as Column);
+                        break;
+                    case GlobalStrings.ObjectExplorerTypes.Function:
+                        _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(selectedNode.Id, selectedNode.ParentId,
+                            selectedNode.Data as UserDefinedFunction);
+                        break;
+                    case GlobalStrings.ObjectExplorerTypes.StoredProcedure:
+                        _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(selectedNode.Id, selectedNode.ParentId,
+                            selectedNode.Data as StoredProcedure);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+        }
+
+        private void RemoveAllChildrenNodesOfNode(ObjectExplorerNode selectedNode)
         {
             switch (selectedNode.Type)
             {

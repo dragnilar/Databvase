@@ -218,7 +218,7 @@ namespace Databvase_Winforms.Models.Data_Providers
 
         public void RefreshNode(ObjectExplorerNode selectedNode)
         {
-            _objectExplorerRefresher.RemoveAllChildrenNodesOfNode(selectedNode);
+            _objectExplorerRefresher.RefreshNode(selectedNode);
             
         }
 

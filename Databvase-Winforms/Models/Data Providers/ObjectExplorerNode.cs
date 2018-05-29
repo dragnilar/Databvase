@@ -274,7 +274,7 @@ namespace Databvase_Winforms.Models.Data_Providers
 
         public Column GetColumnFromNode()
         {
-            if (Type != GlobalStrings.ObjectExplorerTypes.Column)
+            if (Type == GlobalStrings.ObjectExplorerTypes.Column)
             {
                 return Data as Column;
                 

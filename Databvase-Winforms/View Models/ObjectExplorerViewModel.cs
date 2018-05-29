@@ -26,7 +26,7 @@ namespace Databvase_Winforms.View_Models
         }
 
         private readonly ObjectExplorerDataSource _dataSourceModel;
-        private bool _refreshing;
+        private bool _refreshing; 
 
         public ObjectExplorerViewModel()
         {

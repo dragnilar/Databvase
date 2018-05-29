@@ -33,6 +33,7 @@
             this.lcObjectExplorer = new DevExpress.XtraLayout.LayoutControl();
             this.treeListObjExp = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumnDisplayName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumnFullName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnParentName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnData = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -45,6 +46,7 @@
             this.popupMenuObjectExplorer = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barButtonItemCopyFullName = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemNewQuery = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.barManagerObjectExplorer = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -55,12 +57,10 @@
             this.barButtonItemViewFunction = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemAlterScript = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemCreateDatabaseBackup = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenuTable = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuDatabase = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.treeListColumnFullName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -120,6 +120,14 @@
             this.treeListColumnDisplayName.Visible = true;
             this.treeListColumnDisplayName.VisibleIndex = 0;
             this.treeListColumnDisplayName.Width = 195;
+            // 
+            // treeListColumnFullName
+            // 
+            this.treeListColumnFullName.Caption = "Full Name";
+            this.treeListColumnFullName.FieldName = "FullName";
+            this.treeListColumnFullName.Name = "treeListColumnFullName";
+            this.treeListColumnFullName.OptionsColumn.AllowEdit = false;
+            this.treeListColumnFullName.OptionsColumn.ShowInCustomizationForm = false;
             // 
             // treeListColumnType
             // 
@@ -203,7 +211,8 @@
             // 
             this.popupMenuObjectExplorer.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});
             this.popupMenuObjectExplorer.Manager = this.barManagerObjectExplorer;
             this.popupMenuObjectExplorer.Name = "popupMenuObjectExplorer";
             // 
@@ -223,6 +232,14 @@
             this.barButtonItemNewQuery.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
             this.barButtonItemNewQuery.Name = "barButtonItemNewQuery";
             // 
+            // barButtonItemRefresh
+            // 
+            this.barButtonItemRefresh.Caption = "Refresh";
+            this.barButtonItemRefresh.Id = 10;
+            this.barButtonItemRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemRefresh.ImageOptions.SvgImage")));
+            this.barButtonItemRefresh.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
+            this.barButtonItemRefresh.Name = "barButtonItemRefresh";
+            // 
             // barManagerObjectExplorer
             // 
             this.barManagerObjectExplorer.DockControls.Add(this.barDockControlTop);
@@ -238,7 +255,7 @@
             this.barButtonItemViewFunction,
             this.barButtonItemAlterScript,
             this.barButtonItemCreateDatabaseBackup,
-            this.bbiRefresh});
+            this.barButtonItemRefresh});
             this.barManagerObjectExplorer.MaxItemId = 11;
             // 
             // barDockControlTop
@@ -312,14 +329,6 @@
             this.barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItemCreateDatabaseBackup.ImageOptions.SvgImage")));
             this.barButtonItemCreateDatabaseBackup.Name = "barButtonItemCreateDatabaseBackup";
             // 
-            // bbiRefresh
-            // 
-            this.bbiRefresh.Caption = "Refresh";
-            this.bbiRefresh.Id = 10;
-            this.bbiRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiRefresh.ImageOptions.SvgImage")));
-            this.bbiRefresh.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.bbiRefresh.Name = "bbiRefresh";
-            // 
             // popupMenuTable
             // 
             this.popupMenuTable.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -333,7 +342,8 @@
             // 
             this.popupMenuFunction.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});
             this.popupMenuFunction.Manager = this.barManagerObjectExplorer;
             this.popupMenuFunction.Name = "popupMenuFunction";
             // 
@@ -341,7 +351,8 @@
             // 
             this.popupMenuStoredProcedure.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});
             this.popupMenuStoredProcedure.Manager = this.barManagerObjectExplorer;
             this.popupMenuStoredProcedure.Name = "popupMenuStoredProcedure";
             // 
@@ -350,18 +361,10 @@
             this.popupMenuDatabase.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNewQuery),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCreateDatabaseBackup)});
             this.popupMenuDatabase.Manager = this.barManagerObjectExplorer;
             this.popupMenuDatabase.Name = "popupMenuDatabase";
-            // 
-            // treeListColumnFullName
-            // 
-            this.treeListColumnFullName.Caption = "Full Name";
-            this.treeListColumnFullName.FieldName = "FullName";
-            this.treeListColumnFullName.Name = "treeListColumnFullName";
-            this.treeListColumnFullName.OptionsColumn.AllowEdit = false;
-            this.treeListColumnFullName.OptionsColumn.ShowInCustomizationForm = false;
             // 
             // ObjectExplorer
             // 
@@ -423,7 +426,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemAlterScript;
         private DevExpress.XtraBars.PopupMenu popupMenuDatabase;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCreateDatabaseBackup;
-        private DevExpress.XtraBars.BarButtonItem bbiRefresh;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemRefresh;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullName;
     }
 }

@@ -169,7 +169,7 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemNewQuery, x => x.NewQueryScript());
             fluent.BindCommand(barButtonItemCopyFullName, x=>x.CopyNameCell());
             fluent.BindCommand(barButtonItemCreateDatabaseBackup, x => x.ShowBackupView());
-            fluent.BindCommand(bbiRefresh, x=>x.RefreshNode());
+            fluent.BindCommand(barButtonItemRefresh, x=>x.RefreshNode());
             fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);
         }
 
