@@ -283,7 +283,7 @@
     <Compile Include="Messages\SettingsUpdatedMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\SMOBackupProcess.cs" />
-    <Compile Include="Utilities\ControlExtensions.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Utilities\ObjectExplorerRefresherUtility.cs" />
     <Compile Include="Models\Data Providers\ServerExplorerNode.cs" />
     <Compile Include="Models\InstanceAndDatabaseTracker.cs" />
@@ -330,7 +330,7 @@
     <Compile Include="Services\SkinService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="Utilities\DatabvaseSMOExtensions.cs" />
+    <Compile Include="Extensions\SMOObjectExplorerExtensions.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
     <Compile Include="View Models\QueryControlViewModel.cs" />
     <Compile Include="Views\BackupView.cs">

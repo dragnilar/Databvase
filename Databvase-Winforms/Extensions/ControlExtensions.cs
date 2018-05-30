@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Databvase_Winforms.Utilities
+namespace Databvase_Winforms.Extensions
 {
     public static class ControlExtensions
     {

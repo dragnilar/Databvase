@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models.Data_Providers;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace Databvase_Winforms.Utilities
+namespace Databvase_Winforms.Extensions
 {
-    public static class DatabvaseSmoExtensions
+    public static class SMOObjectExplorerExtensions
     {
 
         public static void RemoveNodesForTable(this Table table, ObjectExplorerDataSource source)
