@@ -15,7 +15,9 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Columns;
 using DevExpress.XtraTreeList.Nodes;
+using DevExpress.XtraTreeList.Nodes.Operations;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.Modules
@@ -41,7 +43,9 @@ namespace Databvase_Winforms.Modules
             treeListObjExp.PopupMenuShowing += TreeListObjectExplorerOnPopupMenuShowing;
             treeListObjExp.MouseDown += TreeListObjExpOnMouseDown;
             treeListObjExp.NodeChanged += TreeListObjExpOnNodeChanged;
+            treeListObjExp.CustomRowFilter += TreeListObjExpOnCustomRowFilter;
         }
+
 
         private void RegisterServices()
         {
@@ -110,6 +114,22 @@ namespace Databvase_Winforms.Modules
                 default:
                     e.Node.HasChildren = false;
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Used to apply custom filter logic. For Databvase's object explorer, this is used to show the child nodes of anything that
+        /// matches the filter criteria.
+        /// Source: https://www.devexpress.com/Support/Center/Question/Details/T528434/treelist-how-to-show-child-nodes-if-their-parent-node-satisfies-the-currently-applied
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TreeListObjExpOnCustomRowFilter(object sender, CustomRowFilterEventArgs e)
+        {
+            if (e.Node.ParentNode != null && e.Node.ParentNode.Visible)
+            {
+                e.Node.Visible = true;
+                e.Handled = true;
             }
         }
 

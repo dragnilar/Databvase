@@ -102,6 +102,7 @@
             this.treeListObjExp.Location = new System.Drawing.Point(12, 12);
             this.treeListObjExp.Name = "treeListObjExp";
             this.treeListObjExp.OptionsBehavior.Editable = false;
+            this.treeListObjExp.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Smart;
             this.treeListObjExp.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.treeListObjExp.OptionsView.RowImagesShowMode = DevExpress.XtraTreeList.RowImagesShowMode.InCell;
             this.treeListObjExp.OptionsView.ShowFirstLines = false;
@@ -117,6 +118,7 @@
             this.treeListColumnDisplayName.Caption = "Name";
             this.treeListColumnDisplayName.FieldName = "DisplayName";
             this.treeListColumnDisplayName.Name = "treeListColumnDisplayName";
+            this.treeListColumnDisplayName.OptionsFilter.FilterPopupMode = DevExpress.XtraTreeList.FilterPopupMode.Excel;
             this.treeListColumnDisplayName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Object;
             this.treeListColumnDisplayName.Visible = true;
             this.treeListColumnDisplayName.VisibleIndex = 0;
