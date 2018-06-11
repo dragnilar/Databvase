@@ -273,6 +273,7 @@
     <Compile Include="Dialogs\RenameTabDialog.Designer.cs">
       <DependentUpon>RenameTabDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\SMOColumnExtensions.cs" />
     <Compile Include="Globals\GlobalStrings.cs" />
     <Compile Include="Messages\BackupPathMessage.cs" />
     <Compile Include="Messages\DisconnectInstanceMessage.cs" />

@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 using Databvase_Winforms.Annotations;
+using Databvase_Winforms.Extensions;
 using Databvase_Winforms.Globals;
 using Microsoft.SqlServer.Management.Smo;
 
@@ -87,7 +88,7 @@ namespace Databvase_Winforms.Models.Data_Providers
             FullName = column.Name;
             ParentNodeName = GetTableFullName((Table) column.Parent);
             ImageIndex = 3;
-            Properties = BuildColumnProperties(column);
+            Properties = column.GetDataTypeAndSizeForColumn();
         }
 
 
@@ -293,27 +294,6 @@ namespace Databvase_Winforms.Models.Data_Providers
         private string GetTableFullName(Table table)
         {
             return table.Schema != "dbo" ? $"{table.Schema}.{table.Name}" : table.Name;
-        }
-
-        private string BuildColumnProperties(Column column)
-        {
-            var propertiesBuilder = new StringBuilder();
-
-            if (column.InPrimaryKey)
-            {
-                propertiesBuilder.Append("PK ");
-            }
-
-            if (column.IsForeignKey)
-            {
-                propertiesBuilder.Append("FK ");
-            }
-
-            propertiesBuilder.Append(column.DataType); 
-            propertiesBuilder.Append(","); 
-            propertiesBuilder.Append(column.Nullable ? " null" : " not null");
-
-            return propertiesBuilder.ToString();
         }
 
         private static string GetFolderFullName(string folderType, ObjectExplorerNode parentModel)
