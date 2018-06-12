@@ -187,7 +187,7 @@ namespace Databvase_Winforms.Modules
             fluent.BindCommand(barButtonItemAlterScript, x => x.ScriptModifyForObjectExplorerData());
             fluent.BindCommand(barButtonItemViewFunction, x => x.ScriptAlterForObjectExplorerData());
             fluent.BindCommand(barButtonItemNewQuery, x => x.NewQueryScript());
-            fluent.BindCommand(barButtonItemCopyFullName, x=>x.CopyNameCell());
+            fluent.BindCommand(barButtonItemCopyFullName, x=>x.CopyFullName());
             fluent.BindCommand(barButtonItemCreateDatabaseBackup, x => x.ShowBackupView());
             fluent.BindCommand(barButtonItemRefresh, x=>x.RefreshNode());
             fluent.SetTrigger(vm => vm.LoadingMode, TriggerAction);

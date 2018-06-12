@@ -29,6 +29,16 @@ namespace Databvase_Winforms.Extensions
                 RemoveAllFoldersForDatabase(database, source);
         }
 
+        public static void RemoveAllStoredProceduresNodesForDatabase(this Database database, ObjectExplorerDataSource source)
+        {
+            RemoveAllStoredProceduresForDatabase(database, source);
+            var systemStoredProcedureFolderToRemove = source.DataSource.Where(r =>
+                r.DisplayName ==
+                GlobalStrings.FolderTypes.SystemStoredProcedureFolder
+                && r.GetDatabaseFromNode().Name == database.Name).ToList();
+            source.RemoveListOfNodes(systemStoredProcedureFolderToRemove);
+        }
+
         private static void RemoveAllColumnsForDatabase(Database database, ObjectExplorerDataSource source)
         {
             var columnsToRemove = source.DataSource.Where(r => r.Type == GlobalStrings.ObjectExplorerTypes.Column &&
@@ -66,9 +76,9 @@ namespace Databvase_Winforms.Extensions
 
         private static void RemoveAllFoldersForDatabase(Database database, ObjectExplorerDataSource source)
         {
-            var functionsToRemove = source.DataSource.Where(r => IsFolderForDatabase(r) &&
+            var foldersToRemove = source.DataSource.Where(r => IsFolderForDatabase(r) &&
                                                                                     r.GetDatabaseFromNode().Name == database.Name);
-            source.RemoveListOfNodes(functionsToRemove);
+            source.RemoveListOfNodes(foldersToRemove);
         }
 
         private static bool IsFolderForDatabase(ObjectExplorerNode node)
@@ -76,6 +86,7 @@ namespace Databvase_Winforms.Extensions
             if (node.Type != GlobalStrings.ObjectExplorerTypes.Folder) return false;
             return node.DisplayName == GlobalStrings.FolderTypes.FunctionsFolder ||
                    node.DisplayName == GlobalStrings.FolderTypes.StoreProcedureFolder ||
+                   node.DisplayName == GlobalStrings.FolderTypes.SystemStoredProcedureFolder ||
                    node.DisplayName == GlobalStrings.FolderTypes.TableFolder ||
                    node.DisplayName == GlobalStrings.FolderTypes.ViewFolder;
         }

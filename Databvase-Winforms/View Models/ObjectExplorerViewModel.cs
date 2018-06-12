@@ -77,9 +77,9 @@ namespace Databvase_Winforms.View_Models
             FinishUnboundLoad();
         }
 
-        public void CopyNameCell()
+        public void CopyFullName()
         {
-            Clipboard.SetDataObject(FocusedNode.DisplayName);
+            Clipboard.SetDataObject(FocusedNode.FullName);
         }
 
         public void ShowBackupView()

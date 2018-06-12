@@ -104,6 +104,22 @@ namespace Databvase_Winforms.Models
             server.ConnectionContext.NonPooledConnection = true;
             server.ConnectionContext.StatementTimeout = Timeout;
 
+            ApplyLoginSettingsToServer(server);
+
+            SetServerDefaults(server);
+
+            if (dataBaseName != null) server.ConnectionContext.DatabaseName = dataBaseName;
+
+            return server;
+
+        }
+
+        /// <summary>
+        /// Configures the server to use Windows Authentication or a UserName and Password (if Windows Authentication is false).
+        /// </summary>
+        /// <param name="server"></param>
+        private void ApplyLoginSettingsToServer(Server server)
+        {
             if (WindowsAuthentication == false)
             {
                 server.ConnectionContext.LoginSecure = false;
@@ -113,13 +129,17 @@ namespace Databvase_Winforms.Models
             else
             {
                 server.ConnectionContext.LoginSecure = true;
-
             }
+        }
 
-            if (dataBaseName != null) server.ConnectionContext.DatabaseName = dataBaseName;
-
-            return server;
-
+        /// <summary>
+        /// Initializes default fields for the server object that are used frequently by Databvase. This is primarily for performance reasons.
+        /// </summary>
+        /// <param name="server"></param>
+        private static void SetServerDefaults(Server server)
+        {
+            server.SetDefaultInitFields(typeof(StoredProcedure), "IsSystemObject");
+            server.SetDefaultInitFields(typeof(UserDefinedFunction), "IsSystemObject");
         }
     }
 }

@@ -79,16 +79,22 @@ namespace Databvase_Winforms.Models.Data_Providers
         /// <param name="column"></param>
         public ObjectExplorerNode(int columnId, int tableId, Column column)
         {
+            CreateColumnNode(columnId, tableId, column);
+        }
+
+        private void CreateColumnNode(int columnId, int tableId, Column column)
+        {
+            var columnProperties = column.GetDataTypeAndSizeForColumn();
             ParentId = tableId;
             Id = columnId;
             InstanceName = ((Table) column.Parent).Parent.Parent.Name;
             Type = GlobalStrings.ObjectExplorerTypes.Column;
             Data = column;
-            DisplayName = column.Name;
+            DisplayName = column.Name + " " + columnProperties;
             FullName = column.Name;
             ParentNodeName = GetTableFullName((Table) column.Parent);
             ImageIndex = 3;
-            Properties = column.GetDataTypeAndSizeForColumn();
+            Properties = columnProperties;
         }
 
 

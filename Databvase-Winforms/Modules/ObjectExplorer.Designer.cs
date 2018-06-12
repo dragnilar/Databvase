@@ -166,8 +166,6 @@
             this.treeListColumnProperties.Caption = "Properties";
             this.treeListColumnProperties.FieldName = "Properties";
             this.treeListColumnProperties.Name = "treeListColumnProperties";
-            this.treeListColumnProperties.Visible = true;
-            this.treeListColumnProperties.VisibleIndex = 1;
             this.treeListColumnProperties.Width = 103;
             // 
             // imageCollectionObjectExplorer
@@ -221,7 +219,7 @@
             // 
             // barButtonItemCopyFullName
             // 
-            this.barButtonItemCopyFullName.Caption = "Copy Text To Clipboard";
+            this.barButtonItemCopyFullName.Caption = "Copy Name To Clipboard";
             this.barButtonItemCopyFullName.Id = 0;
             this.barButtonItemCopyFullName.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopyFullName.ImageOptions.Image")));
             this.barButtonItemCopyFullName.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemCopyFullName.ImageOptions.LargeImage")));
@@ -345,6 +343,7 @@
             // popupMenuFunction
             // 
             this.popupMenuFunction.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});
@@ -354,6 +353,7 @@
             // popupMenuStoredProcedure
             // 
             this.popupMenuStoredProcedure.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});

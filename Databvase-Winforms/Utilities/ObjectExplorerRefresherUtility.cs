@@ -106,7 +106,7 @@ namespace Databvase_Winforms.Utilities
                     RefreshDatabase(selectedNode.Data as Database);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Folder:
-                    //CreateFolderChildrenNodes(selectedNode);
+                    RefreshFolderNode(selectedNode);
                     break;
                 case GlobalStrings.ObjectExplorerTypes.Table:
                     RefreshTable(selectedNode.Data as Table);
@@ -124,6 +124,59 @@ namespace Databvase_Winforms.Utilities
         {
             table.RemoveNodesForTable(_objectExplorerDataSource);
             table?.Refresh();
+        }
+
+        private void RefreshFolderNode(ObjectExplorerNode selectedFolderNode)
+        {
+            switch (selectedFolderNode.DisplayName)
+            {
+                case GlobalStrings.FolderTypes.StoreProcedureFolder:
+                    RefreshAllStoredProcedures(selectedFolderNode);
+                    break;
+                case GlobalStrings.FolderTypes.SystemStoredProcedureFolder:
+                    RefreshSystemStoredProcedures(selectedFolderNode);
+                    break;
+                case GlobalStrings.FolderTypes.FunctionsFolder:
+                    //TODO - Add refresh functions
+                    break;
+                case GlobalStrings.FolderTypes.SystemDatabaseFolder:
+                    //TODO - Add refresh system databases
+                    break;
+                case GlobalStrings.FolderTypes.TableFolder:
+                    //TODO - Add refresh tables
+                    break;
+                case GlobalStrings.FolderTypes.ViewFolder:
+                    RefreshViewsForDatabase(selectedFolderNode);
+                    break;
+            }
+        }
+
+        private void RefreshAllStoredProcedures(ObjectExplorerNode selectedFolderNode)
+        {
+            var database = selectedFolderNode.GetDatabaseFromNode();
+            database.RemoveAllStoredProceduresNodesForDatabase(_objectExplorerDataSource);
+            database.StoredProcedures.Refresh(true);
+        }
+
+        private void RefreshSystemStoredProcedures(ObjectExplorerNode selectedFolderNode)
+        {
+            var database = selectedFolderNode.GetDatabaseFromNode();
+            var nodesToRemove = _objectExplorerDataSource.DataSource.Where(r =>
+                r.Type == GlobalStrings.ObjectExplorerTypes.StoredProcedure
+                && r.GetDatabaseFromNode().Name == database.Name && r.ParentId == selectedFolderNode.Id).ToList();
+            _objectExplorerDataSource.RemoveListOfNodes(nodesToRemove);
+            database.StoredProcedures.Refresh(true);
+        }
+
+        private void RefreshViewsForDatabase(ObjectExplorerNode selectedFolderNode)
+        {
+            var database = selectedFolderNode.GetDatabaseFromNode();
+            var nodesToRemove = _objectExplorerDataSource.DataSource.Where(r =>
+                r.Type == GlobalStrings.ObjectExplorerTypes.View &&
+                r.GetDatabaseFromNode().Name == database.Name);
+            _objectExplorerDataSource.RemoveListOfNodes(nodesToRemove);
+            database.Views.Refresh(true);
+
         }
 
         private void RefreshServer(Server server)

@@ -34,7 +34,8 @@ namespace Databvase_Winforms.Models.Data_Providers
                                {GlobalStrings.FolderTypes.FunctionsFolder, CreateFunctionNodes},
                                {GlobalStrings.FolderTypes.TableFolder, CreateTableNodes},
                                {GlobalStrings.FolderTypes.ViewFolder, CreateViewNodes},
-                               {GlobalStrings.FolderTypes.SystemDatabaseFolder, CreateSystemDatabaseNodes }
+                               {GlobalStrings.FolderTypes.SystemDatabaseFolder, CreateSystemDatabaseNodes },
+                               {GlobalStrings.FolderTypes.SystemStoredProcedureFolder, CreateSystemStoredProcedureNodes }
                            });
             }
         }
@@ -167,7 +168,6 @@ namespace Databvase_Winforms.Models.Data_Providers
 
         private void CreateStoredProcedureNodes(ObjectExplorerNode model)
         {
-
             if (!(model.Data is Database database)) return;
             if ((database.StoredProcedures.Count <= 0))
             {
@@ -175,9 +175,30 @@ namespace Databvase_Winforms.Models.Data_Providers
                 return;
             }
 
-            foreach (StoredProcedure storedProcedure in database.StoredProcedures)
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, storedProcedure));
+            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), GlobalStrings.FolderTypes.SystemStoredProcedureFolder, model));
 
+            var nonSystemStoredProcedures = database.StoredProcedures.Cast<StoredProcedure>()
+                .Where(r => r.IsSystemObject == false).ToList();
+
+            foreach (var storedProcedure in nonSystemStoredProcedures)
+            {
+                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, storedProcedure));
+            }
+        }
+
+        private void CreateSystemStoredProcedureNodes(ObjectExplorerNode model)
+        {
+            if (!(model.Data is Database database)) return;
+            if ((database.StoredProcedures.Count <= 0))
+            {
+                CreateEmptyNode(model);
+                return;
+            }
+
+            foreach (StoredProcedure storedProcedure in database.StoredProcedures.Cast<StoredProcedure>().Where(r => r.IsSystemObject))
+            {
+                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, storedProcedure));
+            }
         }
 
         private void CreateFunctionNodes(ObjectExplorerNode model)
