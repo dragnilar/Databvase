@@ -43,7 +43,6 @@ namespace Databvase_Winforms.DAL
         private QueryResult Query(string sqlQuery, string dataBaseName, SavedConnection connection)
         {
             var server = connection.GetServer(dataBaseName);
-            server.ConnectionContext.DatabaseName = dataBaseName;
             server.ConnectionContext.Connect();
             var queryDataSet = server.ConnectionContext.ExecuteWithResults(sqlQuery);
             var result = GetResult(queryDataSet);

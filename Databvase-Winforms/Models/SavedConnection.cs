@@ -103,12 +103,13 @@ namespace Databvase_Winforms.Models
             server.ConnectionContext.ServerInstance = Instance;
             server.ConnectionContext.NonPooledConnection = true;
             server.ConnectionContext.StatementTimeout = Timeout;
+            if (dataBaseName != null) server.ConnectionContext.DatabaseName = dataBaseName;
 
             ApplyLoginSettingsToServer(server);
 
             SetServerDefaults(server);
 
-            if (dataBaseName != null) server.ConnectionContext.DatabaseName = dataBaseName;
+
 
             return server;
 
