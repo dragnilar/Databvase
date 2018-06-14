@@ -59,7 +59,7 @@ namespace Databvase_Winforms.Modules
                 {GlobalStrings.ObjectExplorerTypes.Instance, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
                 {GlobalStrings.ObjectExplorerTypes.Database, () => popupMenuDatabase.ShowPopup(MousePosition)},
                 {GlobalStrings.ObjectExplorerTypes.Table, () => popupMenuTable.ShowPopup(MousePosition)},
-                {GlobalStrings.ObjectExplorerTypes.View, () => popupMenuTable.ShowPopup(MousePosition)},
+                {GlobalStrings.ObjectExplorerTypes.View, () => popupMenuView.ShowPopup(MousePosition)},
                 {GlobalStrings.ObjectExplorerTypes.Column, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
                 {GlobalStrings.ObjectExplorerTypes.Folder, () => popupMenuObjectExplorer.ShowPopup(MousePosition)},
                 {GlobalStrings.ObjectExplorerTypes.Function, () => popupMenuFunction.ShowPopup(MousePosition)},

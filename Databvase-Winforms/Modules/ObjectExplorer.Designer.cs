@@ -61,6 +61,7 @@
             this.popupMenuFunction = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuStoredProcedure = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuDatabase = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuView = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lcObjectExplorer)).BeginInit();
             this.lcObjectExplorer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListObjExp)).BeginInit();
@@ -74,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuFunction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuStoredProcedure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuDatabase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuView)).BeginInit();
             this.SuspendLayout();
             // 
             // lcObjectExplorer
@@ -370,6 +372,18 @@
             this.popupMenuDatabase.Manager = this.barManagerObjectExplorer;
             this.popupMenuDatabase.Name = "popupMenuDatabase";
             // 
+            // popupMenuView
+            // 
+            this.popupMenuView.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCopyFullName),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectAll),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemGenerateSelectTopStatement),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemAlterScript),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemViewFunction),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemRefresh)});
+            this.popupMenuView.Manager = this.barManagerObjectExplorer;
+            this.popupMenuView.Name = "popupMenuView";
+            // 
             // ObjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,6 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuFunction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuStoredProcedure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuDatabase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,5 +447,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemCreateDatabaseBackup;
         private DevExpress.XtraBars.BarButtonItem barButtonItemRefresh;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullName;
+        private DevExpress.XtraBars.PopupMenu popupMenuView;
     }
 }

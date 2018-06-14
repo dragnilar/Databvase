@@ -70,6 +70,11 @@ namespace Databvase_Winforms.Models
                          GenerateStoredProcedureScript(storedProcedure, true);
                         break;
                     }
+                case View view:
+                {
+                    GenerateViewScript(view, true);
+                    break;
+                }
                 default:
                 {
                     ResultService.ResultWithNoErrors(string.Empty, string.Empty);
@@ -94,11 +99,32 @@ namespace Databvase_Winforms.Models
                          GenerateStoredProcedureScript(storedProcedure, false);
                         break;
                     }
+                case View view:
+                {
+                    GenerateViewScript(view, false);
+                    break;
+                }
                 default:
                 {
                     ResultService.ResultWithNoErrors(string.Empty, string.Empty);
                     break;
                 }
+            }
+        }
+
+        private void GenerateViewScript(View view, bool isModifyScript)
+        {
+            var scriptBuilder = new StringBuilder();
+
+            try
+            {
+                scriptBuilder.Append(view.ScriptHeader(isModifyScript));
+                scriptBuilder.Append(view.TextBody);
+                ResultService.ResultWithNoErrors(scriptBuilder.ToString(), view.Parent.Name);
+            }
+            catch (Exception e)
+            {
+                ResultService.ResultWithException(true, e.Message);
             }
         }
 

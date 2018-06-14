@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Databvase_Winforms.Factories;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Utilities;
 using Microsoft.SqlServer.Management.Smo;
@@ -53,7 +54,8 @@ namespace Databvase_Winforms.Models.Data_Providers
             {
                 if (InstanceAlreadyInDataSource(instance)) continue;
                 var serverInstance = App.Connection.GetServerAtInstanceName(instance);
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), serverInstance));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateServerNode(GetNewNodeId(), serverInstance));
+                
             }
 
         }
@@ -94,13 +96,13 @@ namespace Databvase_Winforms.Models.Data_Providers
                 return;
             }
 
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), GlobalStrings.FolderTypes.SystemDatabaseFolder, model));
+            DataSource.Add(ObjectExplorerNodeFactory.CreateFolderNode(GetNewNodeId(), GlobalStrings.FolderTypes.SystemDatabaseFolder, model));
 
             foreach (Database db in server.Databases) //TODO - This is probably not the most elegant way to handle this...
             {
                 if (!systemDatabaseNames.Contains(db.Name))
                 {
-                    DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, db));
+                    DataSource.Add(ObjectExplorerNodeFactory.CreateDatabaseNode(GetNewNodeId(), model.Id, db));
                 }
             }
         }
@@ -112,7 +114,7 @@ namespace Databvase_Winforms.Models.Data_Providers
             {
                 if (systemDatabaseNames.Contains(db.Name)) //TODO - This is probably not the most elegant way to handle this...
                 {
-                    DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, db));
+                    DataSource.Add(ObjectExplorerNodeFactory.CreateDatabaseNode(GetNewNodeId(), model.Id, db));
                 }
             }
         }
@@ -120,13 +122,13 @@ namespace Databvase_Winforms.Models.Data_Providers
         private void CreateFolderNodesForDatabase(ObjectExplorerNode model)
         {
             if (!(model.Data is Database)) return;
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), GlobalStrings.FolderTypes.TableFolder,
+            DataSource.Add(ObjectExplorerNodeFactory.CreateFolderNode(GetNewNodeId(), GlobalStrings.FolderTypes.TableFolder,
                 model));
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), GlobalStrings.FolderTypes.ViewFolder,
+            DataSource.Add(ObjectExplorerNodeFactory.CreateFolderNode(GetNewNodeId(), GlobalStrings.FolderTypes.ViewFolder,
                 model));
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(),
+            DataSource.Add(ObjectExplorerNodeFactory.CreateFolderNode(GetNewNodeId(),
                 GlobalStrings.FolderTypes.StoreProcedureFolder, model));
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(),
+            DataSource.Add(ObjectExplorerNodeFactory.CreateFolderNode(GetNewNodeId(),
                 GlobalStrings.FolderTypes.FunctionsFolder, model));
         }
 
@@ -148,7 +150,8 @@ namespace Databvase_Winforms.Models.Data_Providers
             }
 
             foreach (Table table in database.Tables)
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, table));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateTableNode(GetNewNodeId(), model.Id, table));
+            
         }
 
 
@@ -163,7 +166,7 @@ namespace Databvase_Winforms.Models.Data_Providers
             }
 
             foreach (View view in database.Views)
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, view));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateViewNode(GetNewNodeId(), model.Id, view));
         }
 
         private void CreateStoredProcedureNodes(ObjectExplorerNode model)
@@ -175,14 +178,14 @@ namespace Databvase_Winforms.Models.Data_Providers
                 return;
             }
 
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), GlobalStrings.FolderTypes.SystemStoredProcedureFolder, model));
+            DataSource.Add(ObjectExplorerNodeFactory.CreateFolderNode(GetNewNodeId(), GlobalStrings.FolderTypes.SystemStoredProcedureFolder, model));
 
             var nonSystemStoredProcedures = database.StoredProcedures.Cast<StoredProcedure>()
                 .Where(r => r.IsSystemObject == false).ToList();
 
             foreach (var storedProcedure in nonSystemStoredProcedures)
             {
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, storedProcedure));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateStoredProcedureNode(GetNewNodeId(), model.Id, storedProcedure));
             }
         }
 
@@ -197,7 +200,7 @@ namespace Databvase_Winforms.Models.Data_Providers
 
             foreach (StoredProcedure storedProcedure in database.StoredProcedures.Cast<StoredProcedure>().Where(r => r.IsSystemObject))
             {
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, storedProcedure));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateStoredProcedureNode(GetNewNodeId(), model.Id, storedProcedure));
             }
         }
 
@@ -212,7 +215,7 @@ namespace Databvase_Winforms.Models.Data_Providers
             }
 
             foreach (UserDefinedFunction function in database.UserDefinedFunctions)
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, function));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateFunctionNode(GetNewNodeId(), model.Id, function));
 
         }
 
@@ -227,14 +230,14 @@ namespace Databvase_Winforms.Models.Data_Providers
             }
 
             foreach (Column column in table.Columns)
-                DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model.Id, column));
+                DataSource.Add(ObjectExplorerNodeFactory.CreateColumnNode(GetNewNodeId(), model.Id, column));
 
 
         }
 
         public void CreateEmptyNode(ObjectExplorerNode model)
         {
-            DataSource.Add(new ObjectExplorerNode(GetNewNodeId(), model));
+            DataSource.Add(ObjectExplorerNodeFactory.CreateNothingNode(GetNewNodeId(), model));
         }
 
         public void RefreshNode(ObjectExplorerNode selectedNode)

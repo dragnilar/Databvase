@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Databvase_Winforms.Extensions;
+using Databvase_Winforms.Factories;
 using Databvase_Winforms.Globals;
 using Databvase_Winforms.Models.Data_Providers;
 using DevExpress.Utils.Extensions;
@@ -63,8 +64,8 @@ namespace Databvase_Winforms.Utilities
             if (selectedNode.Data is Column column)
             {
                 column.Refresh();
-                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(
-                    selectedNode.Id, selectedNode.ParentId,
+                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = ObjectExplorerNodeFactory.CreateColumnNode(selectedNode.Id, 
+                    selectedNode.ParentId,
                     column);
             }
         }
@@ -74,7 +75,7 @@ namespace Databvase_Winforms.Utilities
             if (selectedNode.Data is UserDefinedFunction function)
             {
                 function.Refresh();
-                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(
+                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = ObjectExplorerNodeFactory.CreateFunctionNode(
                     selectedNode.Id, selectedNode.ParentId,
                     function);
             }
@@ -86,7 +87,7 @@ namespace Databvase_Winforms.Utilities
             if (selectedNode.Data is StoredProcedure storedProcedure)
             {
                 storedProcedure.Refresh();
-                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = new ObjectExplorerNode(
+                _objectExplorerDataSource.DataSource[indexOfNodeToReplace] = ObjectExplorerNodeFactory.CreateStoredProcedureNode(
                     selectedNode.Id, selectedNode.ParentId,
                     storedProcedure);
             }

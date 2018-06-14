@@ -243,6 +243,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\ObjectExplorerNodeFactory.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridControl.cs">
       <SubType>Component</SubType>
     </Compile>
