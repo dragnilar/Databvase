@@ -220,6 +220,9 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -243,6 +246,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ScintillaNetEditor\ScintillaEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Factories\ObjectExplorerNodeFactory.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridControl.cs">
       <SubType>Component</SubType>
