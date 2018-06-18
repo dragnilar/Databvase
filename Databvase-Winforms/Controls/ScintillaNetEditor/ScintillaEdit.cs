@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Databvase_Winforms.DAL;
 using Databvase_Winforms.Messages;
+using Databvase_Winforms.Models;
 using DevExpress.Mvvm;
 using ScintillaNET;
 
@@ -18,6 +20,7 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
         public ScintillaEdit()
         {
             InitializeScintilla();
+            
         }
 
         private void InitializeScintilla()
@@ -31,34 +34,48 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
             Messenger.Default.Register<SettingsUpdatedMessage>(this, typeof(SettingsUpdatedMessage).Name, ApplySettingsUpdate);
         }
 
+        #region Setup And Styling
+
         private void SetupScintilla()
         {
 
-            CaretForeColor = Color.White; //TODO - Create setting for this
+
+            CaretForeColor = Color.Black; //TODO - Create setting for this
+            
 
             Margins[0].Width = 16;
 
-            StyleResetDefault();
-            ApplyStyles();
-            ApplyFontChange();
-            StyleClearAll();
+            ApplyTextEditorStyles();
+
 
             Lexer = Lexer.Sql;
 
-            ApplyColors();
-
+            ApplySqlSyntaxColors();
             ApplyKeywordsForLexer();
-
             UsePopup(false);
         }
 
-        private void ApplyStyles()
+        private void ApplyTextEditorStyles()
         {
 
-            Styles[Style.Default].BackColor = App.Config.TextEditorDefaultColor;
-            Styles[Style.LineNumber].BackColor = Color.White;
-            Styles[Style.LineNumber].ForeColor = App.Config.TextEditorLineNumberColor;
+            StyleResetDefault();
+            ApplyFontChange();
+            ApplyTextEditorColors();
+            StyleClearAll();
+            ApplyLineNumberColors();
 
+
+        }
+
+        private void ApplyTextEditorColors()
+        {
+            Styles[Style.Default].BackColor = App.Config.TextEditorBackgroundColor;
+        }
+
+        private void ApplyLineNumberColors() 
+        {
+            Styles[Style.LineNumber].BackColor = Color.Gray;
+            Styles[Style.LineNumber].ForeColor = App.Config.TextEditorLineNumberColor;
         }
 
         private void ApplyFontChange()
@@ -85,7 +102,7 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
             SetKeywords(2, keywords3);
         }
 
-        private void ApplyColors()
+        private void ApplySqlSyntaxColors()
         {
             Styles[Style.Sql.Word].ForeColor = App.Config.TextEditorKeywordColor;
             Styles[Style.Sql.Word].Bold = true;
@@ -99,15 +116,44 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
 
         private void ApplySettingsUpdate(SettingsUpdatedMessage message)
         {
-            if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground)
+            if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorStyles)
             {
-                ApplyColors();
-                ApplyStyles();
+                if (!IsDisposed)
+                {
+                    ApplyTextEditorStyles();
+                    ApplySqlSyntaxColors();
+                }
+
             }
-            else if (message.Type == SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle)
+        }
+
+        #endregion
+
+
+        public QueryResult RunQuery(string sqlQuery, string dbName, SavedConnection connection)
+        {
+            //TODO - See if this actually hurts performance, if so either switch back to static or something else so its always available.
+            var queryUnit = new SQLQuery();
+            return sqlQuery == null ? null : queryUnit.SendQueryAndGetResult(sqlQuery, dbName, connection);
+        }
+
+        public string GetSqlQueryFromQueryPane()
+        {
+            string sqlQuery = null;
+
+            if (!string.IsNullOrWhiteSpace(SelectedText))
             {
-                ApplyFontChange();
+                sqlQuery += SelectedText;
             }
+            else
+            {
+                sqlQuery = Text;
+            }
+
+            //TODO - Comment parsing needs to be improved
+            if (string.IsNullOrEmpty(sqlQuery) || sqlQuery.StartsWith("--") || sqlQuery.StartsWith("/*")) return null;
+
+            return sqlQuery;
         }
     }
 }

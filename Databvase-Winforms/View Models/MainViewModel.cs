@@ -44,7 +44,6 @@ namespace Databvase_Winforms.View_Models
         {
             Messenger.Default.Register<InstanceConnectedMessage>(this, typeof(InstanceConnectedMessage).Name, ReceiveInstanceConnectedMessage);
             Messenger.Default.Register<InstanceNameChangeMessage>(this, typeof(InstanceNameChangeMessage).Name, ReceiveInstanceNameChangedMessage);
-            Messenger.Default.Register<NewScriptMessage>(this, typeof(NewScriptMessage).Name, AddTabWithScriptText);
         }
 
         private void ReceiveInstanceNameChangedMessage(InstanceNameChangeMessage message)
@@ -109,25 +108,15 @@ namespace Databvase_Winforms.View_Models
             GenerateNewQueryTextEditor();
         }
 
-        private void AddTabWithScriptText(NewScriptMessage message)
-        {
-            if (message != null)
-            {
-                GenerateNewQueryTextEditor(message);
-            }
-        }
-
-        private void GenerateNewQueryTextEditor(NewScriptMessage optionalNewScriptMessage = null)
+        private void GenerateNewQueryTextEditor()
         {
             ShowSplashScreen();
             NumberOfQueries++;
             var vm = QueryControlViewModel.Create();
-            if (optionalNewScriptMessage != null) vm.ReceiveNewScriptMessageAndSetScriptText(optionalNewScriptMessage);
             var document = DocumentManagerService.CreateDocument("QueryControl", vm);
             document.Title = $"Query {NumberOfQueries}";
             document.DestroyOnClose = true;
             document.Show();
-            vm.ShowLineNumbersOnTextEditor();
             HideSplashScreen();
         }
 
@@ -141,7 +130,7 @@ namespace Databvase_Winforms.View_Models
             var dialogResult = this.GetService<ITextEditorFontChangeService>().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);
+                new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorStyles);
             }
         }
 
@@ -220,7 +209,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.TextEditorBackgroundColor = TextEditorBackgroundColor;
             App.Config.TextEditorLineNumberColor = TextEditorLineNumberColor;
             App.Config.Save();
-            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorBackground);
+            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorStyles);
         }
 
         #endregion

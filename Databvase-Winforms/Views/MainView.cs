@@ -47,6 +47,7 @@ namespace Databvase_Winforms.Views
         private void RegisterMessages()
         {
             Messenger.Default.Register<TabNameMessage>(this, typeof(TabNameMessage).Name, OnTabNameMessage);
+            Messenger.Default.Register<NewScriptMessage>(this, typeof(NewScriptMessage).Name, CreateNewQueryPaneWithScript);
         }
 
         private void RegisterServices()
@@ -109,6 +110,14 @@ namespace Databvase_Winforms.Views
         private void MergeMainRibbon(QueryControl queryControl)
         {
             if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
+        }
+
+        private void CreateNewQueryPaneWithScript(NewScriptMessage message)
+        {
+            mvvmContextMain.GetViewModel<MainViewModel>().AddBlankTab();
+            ((QueryControl)tabbedViewMain.ActiveDocument.Control).ReceiveNewScriptMessageAndSetScriptText(message);
+
+
         }
 
         #endregion

@@ -259,9 +259,6 @@
     </Compile>
     <Compile Include="Controls\QueryGrid\QueryGridRegistrator.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridViewInfo.cs" />
-    <Compile Include="Controls\QueryTextEditor\QueryTextEditor.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="DAL\RecentBackupRepository.cs" />
     <Compile Include="Dialogs\QueryBuilderDialogWrapper.cs" />
     <Compile Include="Dialogs\XtraFontDialog.cs">
@@ -293,12 +290,12 @@
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\SMOBackupProcess.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Utilities\ObjectExplorerRefresherUtility.cs" />
     <Compile Include="Models\Data Providers\ServerExplorerNode.cs" />
     <Compile Include="Models\InstanceAndDatabaseTracker.cs" />
     <Compile Include="Models\Data Providers\ObjectExplorerDataSource.cs" />
     <Compile Include="Models\Data Providers\ObjectExplorerNode.cs" />
-    <Compile Include="Models\QueryDocumentEntity.cs" />
     <Compile Include="Models\RecentBackup.cs" />
     <Compile Include="Models\SavedConnection.cs" />
     <Compile Include="Services\ScriptGenerationResultService.cs" />
@@ -334,7 +331,6 @@
     <Compile Include="Services\Window Dialog Services\TextEditorFontChangeService.cs" />
     <Compile Include="Services\ValidatorService.cs" />
     <Compile Include="Controls\QueryGrid\GridExtensions.cs" />
-    <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Models\QueryResult.cs" />
     <Compile Include="Services\SkinService.cs" />
     <Compile Include="Settings.cs" />

@@ -64,7 +64,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.UseDirectX = UseDirectX;
             App.Config.Save();
             new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.NumberOfRowsForTopSelectScript);
-            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorFontStyle);
+            new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorStyles);
             State = WindowState.Close;
         }
 

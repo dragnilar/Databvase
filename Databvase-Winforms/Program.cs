@@ -6,6 +6,7 @@ using Databvase_Winforms.Services;
 using Databvase_Winforms.Views;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using ScintillaNET;
 
 namespace Databvase_Winforms
 {
@@ -17,6 +18,7 @@ namespace Databvase_Winforms
         [STAThread]
         private static void Main()
         {
+            Scintilla.SetDestroyHandleBehavior(true);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             BonusSkins.Register();

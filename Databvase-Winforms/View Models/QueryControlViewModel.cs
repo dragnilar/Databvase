@@ -12,7 +12,6 @@ using DevExpress.Mvvm.POCO;
 using System.Drawing;
 using System.Linq;
 using Databvase_Winforms.Messages;
-using DevExpress.XtraGrid.Views.Grid;
 using Microsoft.SqlServer.Management.Smo;
 
 namespace Databvase_Winforms.View_Models
@@ -27,7 +26,6 @@ namespace Databvase_Winforms.View_Models
 
         public QueryControlViewModel()
         {
-            Entity = new QueryDocumentEntity {DocumentText = string.Empty};
             GridSource = null;
             ResultsMessage = string.Empty;
             QueryRunning = false;
@@ -46,8 +44,6 @@ namespace Databvase_Winforms.View_Models
             ShowMessages
         }
         public virtual QueryResultState ControlState { get; set; }
-
-        public virtual QueryDocumentEntity Entity { get;  set; }
         public virtual DataTable GridSource { get; set; }
         public virtual bool ClearGrid { get; set; }
         public virtual string ResultsMessage { get; set; }
@@ -63,23 +59,16 @@ namespace Databvase_Winforms.View_Models
         /// <summary>
         ///     Executes an asynchronous query using the text on the query editor pane
         /// </summary>
-        public async void AsynchronousQuery()
+        public async void AsynchronousQuery(string queryString)
         {
             if (QueryRunning) return;
 
             QueryRunning = true;
-            var sqlQuery = GetSQLQueryString();
-            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(sqlQuery, CurrentDatabase, QueryConnection )).ContinueWith(
+            await Task.Run(() => this.GetService<IQueryEditorService>().RunQuery(queryString, CurrentDatabase, QueryConnection )).ContinueWith(
                 x => ProcessResults(x.Result),
                 TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);
+            
             QueryRunning = false;
-        }
-
-        private string GetSQLQueryString()
-        {
-            var sqlQueryString = this.GetService<IQueryEditorService>().GetSqlQueryFromQueryPane();
-
-            return sqlQueryString;
         }
 
         private void ProcessResults(QueryResult result)
@@ -116,32 +105,6 @@ namespace Databvase_Winforms.View_Models
             AddIndicator = false;
         }
 
-        public void Update()
-        {
-            //TODO - Implement some kind of functionality if necessary, otherwise do nothing here since this is needed for the MVVM context
-        }
-
-        public void CopyFromQueryTextEditor()
-        {
-            this.GetService<IQueryEditorService>().Copy();
-        }
-
-        public void CutFromQueryTextEditor()
-        {
-            this.GetService<IQueryEditorService>().Cut();
-        }
-
-        public void PasteIntoQueryTextEditor()
-        {
-            this.GetService<IQueryEditorService>().Paste();
-            this.GetService<IQueryEditorService>().ShowLineNumbers();
-        }
-
-        public void ShowLineNumbersOnTextEditor()
-        {
-            this.GetService<IQueryEditorService>().ShowLineNumbers();
-        }
-
         private string GetCurrentDatabaseFromTracker()
         {
             return App.Connection.CurrentDatabase != null ? App.Connection.CurrentDatabase.Name : string.Empty;
@@ -153,21 +116,6 @@ namespace Databvase_Winforms.View_Models
             foreach (Database db in App.Connection.CurrentServer.Databases) list.Add(db.Name);
 
             return list;
-        }
-
-        /// <summary>
-        /// Appends the text on the query text editor entity's document text with a new document message's text. Also changes the currently database
-        /// value (if one is included in the message).
-        /// </summary>
-        /// <param name="message"></param>
-        public void ReceiveNewScriptMessageAndSetScriptText(NewScriptMessage message)
-        {
-            if (message != null)
-            {
-                Entity.DocumentText += message.Script;
-                CurrentDatabase = message.SelectedDatabase;
-            }
-
         }
 
 
