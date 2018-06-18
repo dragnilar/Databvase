@@ -61,10 +61,11 @@ This also uses icons from <a href="http://www.icons8.com">Icons8</a>.
 Other dependencies:
 
 <ul>
-<li><a href='https://github.com/Fody/Costura'>Costura/Fody</a></li>
-<li><a href='https://github.com/Tyrrrz/Settings'>Tyrrrz.Settings</a></li>
-<li><a href='https://www.newtonsoft.com/json'>Newtonsoft.Json</a></li>
-<li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.Types/'>Micorsoft.SqlServer.Types</a></li>
-<li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.SqlManagementObjects'>Microsoft.SqlServer.SqlManagementObjects</a></li>
+  <li><a href='https://github.com/jacobslusser/ScintillaNET'>Scintilla.NET</a>- Used for the text editor</li>
+<li><a href='https://github.com/Fody/Costura'>Costura/Fody</a>- Used for compressing and packaging the executable</li>
+<li><a href='https://github.com/Tyrrrz/Settings'>Tyrrrz.Settings</a>- Used for storing configuration</li>
+<li><a href='https://www.newtonsoft.com/json'>Newtonsoft.Json</a>- Used to serialize configuration</li>
+<li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.Types/'>Micorsoft.SqlServer.Types</a>- Used for SQL Spatial types</li>
+<li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.SqlManagementObjects'>Microsoft.SqlServer.SqlManagementObjects</a>- Used for much of the SSMS like functionality, especially in the Object Explorer</li>
 </ul>
 
