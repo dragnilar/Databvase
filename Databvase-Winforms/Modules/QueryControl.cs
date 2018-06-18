@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.Controls.QueryGrid;
@@ -68,8 +69,22 @@ namespace Databvase_Winforms.Modules
 
         private void SaveQueryButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //Its probably better to leave this in the view because its using stuff baked into the view.
-            //queryTextEditor.
+            var popup = new XtraSaveFileDialog {Filter = "SQL Files (*.sql)|*.sql|Text Files(*.txt)|*.txt"};
+            var result = popup.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                if (popup.FileName != null)
+                {
+                    using (var writer = new StreamWriter(popup.FileName))
+                    {
+                        writer.WriteAsync(queryTextEditor.Text);
+                        writer.Close();
+                        XtraMessageBox.Show($"{popup.FileName} has been saved!");
+                    }
+                }
+
+            }
         }
 
         private void SetupGridButtons()
