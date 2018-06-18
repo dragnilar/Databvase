@@ -44,18 +44,27 @@ namespace Databvase_Winforms.Modules
             gridViewResults.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
             barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
             barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
-            barButtonItemCopy.ItemClick += (s, e) => queryTextEditor.Copy();
-            barButtonItemPaste.ItemClick += (s, e) => queryTextEditor.Paste();
-            barButtonItemCut.ItemClick += (s, e) => queryTextEditor.Cut();
-            queryTextEditor.KeyDown += QueryTextEditorOnKeyDown;
+            barButtonItemCopy.ItemClick += (s, e) => scintilla.Copy();
+            barButtonItemPaste.ItemClick += (s, e) => scintilla.Paste();
+            barButtonItemCut.ItemClick += (s, e) => scintilla.Cut();
+            scintilla.KeyDown += ScintillaOnKeyDown;
+            scintilla.MouseClick += ScintillaOnMouseClick;
 
         }
 
-        private void QueryTextEditorOnKeyDown(object sender, KeyEventArgs e)
+        private void ScintillaOnMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                popupMenuScintilla.ShowPopup(MousePosition);
+            }
+        }
+
+        private void ScintillaOnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F5)
             {
-                mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().AsynchronousQuery(queryTextEditor.GetSqlQueryFromQueryPane());
+                mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().AsynchronousQuery(scintilla.GetSqlQueryFromQueryPane());
             }
         }
 
@@ -78,9 +87,10 @@ namespace Databvase_Winforms.Modules
                 {
                     using (var writer = new StreamWriter(popup.FileName))
                     {
-                        writer.WriteAsync(queryTextEditor.Text);
+                        writer.WriteAsync(scintilla.Text);
                         writer.Close();
                         XtraMessageBox.Show($"{popup.FileName} has been saved!");
+
                     }
                 }
 
@@ -109,7 +119,7 @@ namespace Databvase_Winforms.Modules
         {
             if (message != null)
             {
-                queryTextEditor.Text += message.Script;
+                scintilla.Text += message.Script;
                 barEditItemDatabaseList.EditValue = message.SelectedDatabase;
             }
 
@@ -127,7 +137,7 @@ namespace Databvase_Winforms.Modules
 
             //Event to command
             fluent.EventToCommand<ItemClickEventArgs>(QueryButton, "ItemClick", x => x.AsynchronousQuery(string.Empty), 
-                args=> queryTextEditor.GetSqlQueryFromQueryPane());
+                args=> scintilla.GetSqlQueryFromQueryPane());
 
 
             SetBindingForControls(fluent);

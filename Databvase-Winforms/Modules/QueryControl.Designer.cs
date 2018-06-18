@@ -31,7 +31,9 @@ namespace Databvase_Winforms.Modules
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryControl));
+            DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
             this.ribbonControlQueryControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.QueryButton = new DevExpress.XtraBars.BarButtonItem();
@@ -63,14 +65,16 @@ namespace Databvase_Winforms.Modules
             this.gridViewResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridView();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
-            this.queryTextEditor = new Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit();
+            this.scintilla = new Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit();
             this.lcgQueryControl = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciQueryEditor = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
             this.lcIResultsPane = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciRibbon = new DevExpress.XtraLayout.LayoutControlItem();
-            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext();
-            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu();
+            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.workspaceManager1 = new DevExpress.Utils.WorkspaceManager();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -89,13 +93,14 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.lciRibbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuQueryGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuScintilla)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControlQueryControl
             // 
             this.layoutControlQueryControl.Controls.Add(this.ribbonControlQueryControl);
             this.layoutControlQueryControl.Controls.Add(this.xtraTabControlResultsPane);
-            this.layoutControlQueryControl.Controls.Add(this.queryTextEditor);
+            this.layoutControlQueryControl.Controls.Add(this.scintilla);
             this.layoutControlQueryControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControlQueryControl.Location = new System.Drawing.Point(0, 0);
             this.layoutControlQueryControl.Name = "layoutControlQueryControl";
@@ -129,7 +134,7 @@ namespace Databvase_Winforms.Modules
             this.barButtonItemCut,
             this.barButtonItemPaste});
             this.ribbonControlQueryControl.Location = new System.Drawing.Point(12, 12);
-            this.ribbonControlQueryControl.MaxItemId = 21;
+            this.ribbonControlQueryControl.MaxItemId = 1;
             this.ribbonControlQueryControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControlQueryControl.Name = "ribbonControlQueryControl";
             this.ribbonControlQueryControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -401,15 +406,15 @@ namespace Databvase_Winforms.Modules
             this.memoEditResults.Size = new System.Drawing.Size(774, 266);
             this.memoEditResults.TabIndex = 0;
             // 
-            // queryTextEditor
+            // scintilla
             // 
-            this.queryTextEditor.CaretForeColor = System.Drawing.Color.White;
-            this.queryTextEditor.EdgeColor = System.Drawing.Color.White;
-            this.queryTextEditor.Lexer = ScintillaNET.Lexer.Sql;
-            this.queryTextEditor.Location = new System.Drawing.Point(12, 36);
-            this.queryTextEditor.Name = "queryTextEditor";
-            this.queryTextEditor.Size = new System.Drawing.Size(776, 240);
-            this.queryTextEditor.TabIndex = 10;
+            this.scintilla.CaretForeColor = System.Drawing.Color.White;
+            this.scintilla.EdgeColor = System.Drawing.Color.White;
+            this.scintilla.Lexer = ScintillaNET.Lexer.Sql;
+            this.scintilla.Location = new System.Drawing.Point(12, 36);
+            this.scintilla.Name = "scintilla";
+            this.scintilla.Size = new System.Drawing.Size(776, 240);
+            this.scintilla.TabIndex = 10;
             // 
             // lcgQueryControl
             // 
@@ -427,7 +432,7 @@ namespace Databvase_Winforms.Modules
             // 
             // lciQueryEditor
             // 
-            this.lciQueryEditor.Control = this.queryTextEditor;
+            this.lciQueryEditor.Control = this.scintilla;
             this.lciQueryEditor.Location = new System.Drawing.Point(0, 24);
             this.lciQueryEditor.Name = "lciQueryEditor";
             this.lciQueryEditor.Size = new System.Drawing.Size(780, 244);
@@ -474,6 +479,21 @@ namespace Databvase_Winforms.Modules
             this.popupMenuQueryGrid.Name = "popupMenuQueryGrid";
             this.popupMenuQueryGrid.Ribbon = this.ribbonControlQueryControl;
             // 
+            // popupMenuScintilla
+            // 
+            this.popupMenuScintilla.ItemLinks.Add(this.barButtonItemCopy);
+            this.popupMenuScintilla.ItemLinks.Add(this.barButtonItemCut);
+            this.popupMenuScintilla.ItemLinks.Add(this.barButtonItemPaste);
+            this.popupMenuScintilla.ItemLinks.Add(this.QueryButton, true);
+            this.popupMenuScintilla.ItemLinks.Add(this.SaveQueryButton);
+            this.popupMenuScintilla.Name = "popupMenuScintilla";
+            this.popupMenuScintilla.Ribbon = this.ribbonControlQueryControl;
+            // 
+            // workspaceManager1
+            // 
+            this.workspaceManager1.TargetControl = this.layoutControlQueryControl;
+            this.workspaceManager1.TransitionType = pushTransition1;
+            // 
             // QueryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +520,7 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.lciRibbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mvvmContextQueryControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuQueryGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenuScintilla)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -508,7 +529,7 @@ namespace Databvase_Winforms.Modules
 
         private DevExpress.XtraLayout.LayoutControl layoutControlQueryControl;
         private DevExpress.XtraLayout.LayoutControlGroup lcgQueryControl;
-        private Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit queryTextEditor;
+        private Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit scintilla;
         private DevExpress.XtraLayout.LayoutControlItem lciQueryEditor;
         private DevExpress.XtraLayout.SplitterItem splitterItemQueryEditor;
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextQueryControl;
@@ -545,5 +566,7 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraBars.BarButtonItem barButtonItemCut;
         private DevExpress.XtraBars.BarButtonItem barButtonItemPaste;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupClipBoard;
+        private DevExpress.XtraBars.PopupMenu popupMenuScintilla;
+        private DevExpress.Utils.WorkspaceManager workspaceManager1;
     }
 }
