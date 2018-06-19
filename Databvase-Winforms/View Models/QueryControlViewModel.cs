@@ -53,6 +53,8 @@ namespace Databvase_Winforms.View_Models
         public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
+
+        protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
         //TODO - See if perhaps we can use a server object in here instead of having to keep a saved connection...
 
 
@@ -69,6 +71,15 @@ namespace Databvase_Winforms.View_Models
                 TaskScheduler.FromCurrentSynchronizationContext()).ConfigureAwait(false);
             
             QueryRunning = false;
+        }
+
+        /// <summary>
+        /// Saves the current query in the query pane to a file.
+        /// </summary>
+        /// <param name="content"></param>
+        public void SaveCurrentQuery(string content)
+        {
+            new FileSaveService().SaveQueryDialogAsync(content);
         }
 
         private void ProcessResults(QueryResult result)

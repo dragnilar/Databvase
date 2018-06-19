@@ -10,8 +10,10 @@ using Databvase_Winforms.View_Models;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Utils;
+using DevExpress.Utils.CommonDialogs;
 using DevExpress.Utils.Drawing;
 using DevExpress.Utils.MVVM;
+using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
@@ -31,16 +33,14 @@ namespace Databvase_Winforms.Modules
             SetupGridButtons();
             if (!mvvmContextQueryControl.IsDesignMode)
                 mvvmContextQueryControl.ViewModelSet += MvvmContextQueryControlOnViewModelSet;
+            MVVMContext.RegisterXtraMessageBoxService();
         }
-
-
 
 
         public RibbonControl Ribbon => ribbonControlQueryControl;
 
         private void HookupEvents()
         {
-            SaveQueryButton.ItemClick += SaveQueryButton_ItemClick;
             gridViewResults.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
             barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
             barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
@@ -73,27 +73,6 @@ namespace Databvase_Winforms.Modules
             if (e.MenuType == GridMenuType.Row )
             {
                 popupMenuQueryGrid.ShowPopup(MousePosition);
-            }
-        }
-
-        private void SaveQueryButton_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var popup = new XtraSaveFileDialog {Filter = "SQL Files (*.sql)|*.sql|Text Files(*.txt)|*.txt"};
-            var result = popup.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                if (popup.FileName != null)
-                {
-                    using (var writer = new StreamWriter(popup.FileName))
-                    {
-                        writer.WriteAsync(scintilla.Text);
-                        writer.Close();
-                        XtraMessageBox.Show($"{popup.FileName} has been saved!");
-
-                    }
-                }
-
             }
         }
 
@@ -143,6 +122,8 @@ namespace Databvase_Winforms.Modules
             SetBindingForControls(fluent);
 
             SetTriggers(fluent);
+
+            fluent.EventToCommand<ItemClickEventArgs>(SaveQueryButton, "ItemClick", x=>x.SaveCurrentQuery(string.Empty), args => scintilla.Text);
 
         }
 

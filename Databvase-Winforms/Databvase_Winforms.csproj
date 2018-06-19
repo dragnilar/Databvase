@@ -290,6 +290,7 @@
     <Compile Include="Messages\TabNameMessage.cs" />
     <Compile Include="Models\SMOBackupProcess.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Services\FileSaveService.cs" />
     <Compile Include="Services\QueryEditorService.cs" />
     <Compile Include="Utilities\ObjectExplorerRefresherUtility.cs" />
     <Compile Include="Models\Data Providers\ServerExplorerNode.cs" />
