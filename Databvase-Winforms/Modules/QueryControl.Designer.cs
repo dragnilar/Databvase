@@ -33,7 +33,6 @@ namespace Databvase_Winforms.Modules
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryControl));
-            DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
             this.ribbonControlQueryControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.QueryButton = new DevExpress.XtraBars.BarButtonItem();
@@ -74,7 +73,6 @@ namespace Databvase_Winforms.Modules
             this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.workspaceManager1 = new DevExpress.Utils.WorkspaceManager();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -489,11 +487,6 @@ namespace Databvase_Winforms.Modules
             this.popupMenuScintilla.Name = "popupMenuScintilla";
             this.popupMenuScintilla.Ribbon = this.ribbonControlQueryControl;
             // 
-            // workspaceManager1
-            // 
-            this.workspaceManager1.TargetControl = this.layoutControlQueryControl;
-            this.workspaceManager1.TransitionType = pushTransition1;
-            // 
             // QueryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,6 +560,5 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraBars.BarButtonItem barButtonItemPaste;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupClipBoard;
         private DevExpress.XtraBars.PopupMenu popupMenuScintilla;
-        private DevExpress.Utils.WorkspaceManager workspaceManager1;
     }
 }
