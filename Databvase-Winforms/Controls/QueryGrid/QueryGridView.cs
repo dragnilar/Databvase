@@ -15,12 +15,14 @@ namespace Databvase_Winforms.Controls.QueryGrid
         public QueryGridView()
         {
             InitializeGridView();
+            AdjustProperties();
         }
 
         public QueryGridView(GridControl grid)
             : base(grid)
         {
             InitializeGridView();
+            AdjustProperties();
         }
 
         private void InitializeGridView()
@@ -28,6 +30,15 @@ namespace Databvase_Winforms.Controls.QueryGrid
             this.CustomUnboundColumnData += OnCustomUnboundColumnData;
             this.RowCellStyle += QueryGridView_RowCellStyle;
             this.CustomColumnDisplayText += OnCustomColumnDisplayText;
+        }
+
+        private void AdjustProperties()
+        {
+            OptionsBehavior.Editable = false;
+            OptionsSelection.MultiSelectMode = GridMultiSelectMode.CellSelect;
+            OptionsSelection.MultiSelect = true;
+            OptionsView.ColumnAutoWidth = false;
+
         }
 
         private void OnCustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)

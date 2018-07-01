@@ -15,5 +15,15 @@ namespace Databvase_Winforms.Controls.QueryGrid
             base.RegisterAvailableViewsCore(collection);
             collection.Add(new QueryGridRegistrator());
         }
+
+        public QueryGridControl()
+        {
+            AdjustProperties();
+        }
+
+        private void AdjustProperties()
+        {
+            this.UseEmbeddedNavigator = true;
+        }
     }
 }

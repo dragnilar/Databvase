@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Databvase_Winforms.Controls.QueryGrid;
+using Databvase_Winforms.Factories;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
@@ -41,9 +42,6 @@ namespace Databvase_Winforms.Modules
 
         private void HookupEvents()
         {
-            gridViewResults.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
-            barButtonCopyCells.ItemClick += (sender, args) => gridViewResults.CopyToClipboard();
-            barButtonItemSelectAll.ItemClick += (sender, args) => gridViewResults.SelectAll();
             barButtonItemCopy.ItemClick += (s, e) => scintilla.Copy();
             barButtonItemPaste.ItemClick += (s, e) => scintilla.Paste();
             barButtonItemCut.ItemClick += (s, e) => scintilla.Cut();
@@ -78,15 +76,45 @@ namespace Databvase_Winforms.Modules
 
         private void SetupGridButtons()
         {
-            barButtonItemPrintGrid.ItemClick += (sender, args) => gridViewResults.ShowRibbonPrintPreview();
-            barButtonItemExportGridToExcel.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("xls");
-            barButtonItemExportToXLSX.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("xlsx");
-            barButtonItemExportToHTML.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("html");
-            barButtonItemExportToMHT.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("mht");
-            barButtonItemExportToPDF.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("pdf");
-            barButtonItemExportToRTF.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("rtf");
-            barButtonItemExportToText.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("txt");
-            barButtonItemExportToCSV.ItemClick += (sender, args) => gridViewResults.ExportGridAsFileType("csv");
+            barButtonItemPrintGrid.ItemClick += (sender, args) => PrintGrid();
+            barButtonItemExportGridToExcel.ItemClick += (sender, args) => ExportGrid("xls");
+            barButtonItemExportToXLSX.ItemClick += (sender, args) => ExportGrid("xlsx");
+            barButtonItemExportToHTML.ItemClick += (sender, args) => ExportGrid("html");
+            barButtonItemExportToMHT.ItemClick += (sender, args) => ExportGrid("mht");
+            barButtonItemExportToPDF.ItemClick += (sender, args) => ExportGrid("pdf");
+            barButtonItemExportToRTF.ItemClick += (sender, args) => ExportGrid("rtf");
+            barButtonItemExportToText.ItemClick += (sender, args) => ExportGrid("txt");
+            barButtonItemExportToCSV.ItemClick += (sender, args) => ExportGrid("csv");
+        }
+
+        private void PrintGrid()
+        {
+            if (splitTableLayoutPanelResults.Controls.Count == 1)
+            {
+                var grid = splitTableLayoutPanelResults.Controls[0] as QueryGridControl;
+                var gridView = grid.DefaultView as QueryGridView;
+                gridView?.ShowRibbonPrintPreview();
+            }
+            else
+            {
+                //TODO - Need to get focused grid and print...
+
+            }
+        }
+        private void ExportGrid(string fileTypeExtension)
+        {
+            if (splitTableLayoutPanelResults.Controls.Count == 1)
+            {
+                var grid = splitTableLayoutPanelResults.Controls[0] as QueryGridControl;
+                var gridView = grid.DefaultView as QueryGridView;
+                gridView.ExportGridAsFileType(fileTypeExtension);
+            }
+            else
+            {
+
+                //TODO - Need to get focused grid and export...
+
+            }
         }
 
         /// <summary>
@@ -102,6 +130,52 @@ namespace Databvase_Winforms.Modules
                 barEditItemDatabaseList.EditValue = message.SelectedDatabase;
             }
 
+        }
+
+        private void AddRowIndicatorsToQueryGrids()
+        {
+            foreach (var control in splitTableLayoutPanelResults.Controls)
+            {
+                if (control.GetType() == typeof(QueryGridControl))
+                {
+                    var queryGridView = ((QueryGridControl)control).MainView as QueryGridView;
+                    queryGridView?.AddRowNumberColumn();
+                }
+            }
+        }
+
+        private void ClearResultsTableLayout()
+        {
+            if (splitTableLayoutPanelResults.Controls.Count > 0)
+            {
+                for (int i = splitTableLayoutPanelResults.Controls.Count - 1; i >= 0; --i)
+                {
+                    splitTableLayoutPanelResults.Controls[i].Dispose();
+
+                }
+            }
+        }
+
+        private void AddGrids()
+        {
+            var numberOfGrids = mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().GridSources.Tables.Count;
+            for (int i = 0; i < numberOfGrids; i++)
+            {
+                var gridControl = new QueryGridFactory().BuildADockedGrid(numberOfGrids);
+                gridControl.DataSource =
+                    mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().GridSources.Tables[i]; //This is safer than using the fluent UI
+                splitTableLayoutPanelResults.Controls.Add(gridControl, 0, i);
+                AddEventsToGrid(gridControl);
+            }
+
+        }
+
+        private void AddEventsToGrid(QueryGridControl grid)
+        {
+            if (!(grid.DefaultView is QueryGridView queryGridView)) return;
+            queryGridView.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
+            barButtonCopyCells.ItemClick += (sender, args) => queryGridView.CopyToClipboard();
+            barButtonItemSelectAll.ItemClick += (sender, args) => queryGridView.SelectAll();
         }
 
         #region MVVMContext
@@ -129,7 +203,6 @@ namespace Databvase_Winforms.Modules
 
         private void SetBindingForControls(MVVMContextFluentAPI<QueryControlViewModel> fluent)
         {
-            fluent.SetBinding(gridControlResults, x => x.DataSource, y => y.GridSource);
             fluent.SetBinding(memoEditResults, x => x.EditValue, y => y.ResultsMessage);
             fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
             fluent.SetBinding(barEditItemDatabaseList, x => x.EditValue, y => y.CurrentDatabase);
@@ -138,20 +211,29 @@ namespace Databvase_Winforms.Modules
 
         private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)
         {
-            //Grid clear trigger
+
             fluent.SetTrigger(x => x.ClearGrid, clear =>
             {
-                if (clear) gridViewResults.Columns.Clear();
+                if (clear)
+                {
+                    ClearResultsTableLayout();
+                }
             });
 
-            fluent.SetTrigger(x => x.QueryRunning, state => { QueryButton.Enabled = !state; });
+            fluent.SetTrigger(x => x.GridDataReady, ready =>
+            {
+                if (ready)
+                {
+                    AddGrids();
+                }
+            });
+
             fluent.SetTrigger(x => x.AddIndicator, add =>
             {
                 if (add)
                 {
-                    gridViewResults.AddRowNumberColumn();
+                    AddRowIndicatorsToQueryGrids();
                 }
-
             });
 
             fluent.SetTrigger(x => x.ControlState, state =>
@@ -175,6 +257,7 @@ namespace Databvase_Winforms.Modules
 
         }
 
+ 
 
         #endregion
     }

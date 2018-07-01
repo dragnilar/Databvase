@@ -31,7 +31,6 @@ namespace Databvase_Winforms.Modules
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryControl));
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
             this.ribbonControlQueryControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -60,8 +59,7 @@ namespace Databvase_Winforms.Modules
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControlResultsPane = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageResultsGrid = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControlResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridControl();
-            this.gridViewResults = new Databvase_Winforms.Controls.QueryGrid.QueryGridView();
+            this.splitTableLayoutPanelResults = new Databvase_Winforms.Controls.SplitTableLayout.SplitTableLayoutPanel();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
             this.scintilla = new Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit();
@@ -70,9 +68,9 @@ namespace Databvase_Winforms.Modules
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
             this.lcIResultsPane = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciRibbon = new DevExpress.XtraLayout.LayoutControlItem();
-            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
-            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext();
+            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu();
+            this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -80,8 +78,6 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlResultsPane)).BeginInit();
             this.xtraTabControlResultsPane.SuspendLayout();
             this.xtraTabPageResultsGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlResults)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewResults)).BeginInit();
             this.xtraTabPageMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditResults.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryControl)).BeginInit();
@@ -350,43 +346,28 @@ namespace Databvase_Winforms.Modules
             // 
             // xtraTabPageResultsGrid
             // 
-            this.xtraTabPageResultsGrid.Controls.Add(this.gridControlResults);
+            this.xtraTabPageResultsGrid.Controls.Add(this.splitTableLayoutPanelResults);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
             this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
             this.xtraTabPageResultsGrid.Text = "Results";
             // 
-            // gridControlResults
+            // splitTableLayoutPanelResults
             // 
-            this.gridControlResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlResults.EmbeddedNavigator.Buttons.Append.Enabled = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.Append.Visible = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.CancelEdit.Enabled = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.CancelEdit.Visible = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.Edit.Enabled = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.Edit.Visible = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.EndEdit.Enabled = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.EndEdit.Visible = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.Remove.Enabled = false;
-            this.gridControlResults.EmbeddedNavigator.Buttons.Remove.Visible = false;
-            this.gridControlResults.EmbeddedNavigator.TextStringFormat = "Row {0} of {1}";
-            this.gridControlResults.Location = new System.Drawing.Point(0, 0);
-            this.gridControlResults.MainView = this.gridViewResults;
-            this.gridControlResults.Name = "gridControlResults";
-            this.gridControlResults.Size = new System.Drawing.Size(774, 266);
-            this.gridControlResults.TabIndex = 12;
-            this.gridControlResults.UseEmbeddedNavigator = true;
-            this.gridControlResults.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewResults});
-            // 
-            // gridViewResults
-            // 
-            this.gridViewResults.GridControl = this.gridControlResults;
-            this.gridViewResults.Name = "gridViewResults";
-            this.gridViewResults.OptionsBehavior.Editable = false;
-            this.gridViewResults.OptionsSelection.MultiSelect = true;
-            this.gridViewResults.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
-            this.gridViewResults.OptionsView.ColumnAutoWidth = false;
+            this.splitTableLayoutPanelResults.AutoScroll = true;
+            this.splitTableLayoutPanelResults.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.splitTableLayoutPanelResults.ColumnCount = 1;
+            this.splitTableLayoutPanelResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.splitTableLayoutPanelResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.splitTableLayoutPanelResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitTableLayoutPanelResults.Location = new System.Drawing.Point(0, 0);
+            this.splitTableLayoutPanelResults.Name = "splitTableLayoutPanelResults";
+            this.splitTableLayoutPanelResults.RowCount = 1;
+            this.splitTableLayoutPanelResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.splitTableLayoutPanelResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.splitTableLayoutPanelResults.Size = new System.Drawing.Size(774, 266);
+            this.splitTableLayoutPanelResults.SplitterSize = 6;
+            this.splitTableLayoutPanelResults.TabIndex = 0;
             // 
             // xtraTabPageMessages
             // 
@@ -502,8 +483,6 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlResultsPane)).EndInit();
             this.xtraTabControlResultsPane.ResumeLayout(false);
             this.xtraTabPageResultsGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlResults)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewResults)).EndInit();
             this.xtraTabPageMessages.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEditResults.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryControl)).EndInit();
@@ -528,7 +507,6 @@ namespace Databvase_Winforms.Modules
         private DevExpress.Utils.MVVM.MVVMContext mvvmContextQueryControl;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlResultsPane;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageResultsGrid;
-        private Databvase_Winforms.Controls.QueryGrid.QueryGridControl gridControlResults;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageMessages;
         private DevExpress.XtraLayout.LayoutControlItem lcIResultsPane;
         private DevExpress.XtraEditors.MemoEdit memoEditResults;
@@ -551,7 +529,6 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraBars.BarEditItem barEditItemDatabaseList;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditDatabaseList;
         private DevExpress.XtraBars.BarButtonItem barButtonItemExportToCSV;
-        private Controls.QueryGrid.QueryGridView gridViewResults;
         private DevExpress.XtraBars.PopupMenu popupMenuQueryGrid;
         private DevExpress.XtraBars.BarButtonItem barButtonCopyCells;
         private DevExpress.XtraBars.BarButtonItem barButtonItemSelectAll;
@@ -560,5 +537,6 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraBars.BarButtonItem barButtonItemPaste;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupClipBoard;
         private DevExpress.XtraBars.PopupMenu popupMenuScintilla;
+        private Controls.SplitTableLayout.SplitTableLayoutPanel splitTableLayoutPanelResults;
     }
 }

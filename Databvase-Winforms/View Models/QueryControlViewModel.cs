@@ -25,8 +25,8 @@ namespace Databvase_Winforms.View_Models
         }
 
         public QueryControlViewModel()
-        {
-            GridSource = null;
+        {   
+            GridSources = null;
             ResultsMessage = string.Empty;
             QueryRunning = false;
             CurrentDatabase = GetCurrentDatabaseFromTracker();
@@ -35,6 +35,7 @@ namespace Databvase_Winforms.View_Models
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
             QueryConnection = App.Connection.GetCurrentConnection();
             ControlState = QueryResultState.Default;
+            GridDataReady = false;
         }
 
         public enum QueryResultState
@@ -44,8 +45,9 @@ namespace Databvase_Winforms.View_Models
             ShowMessages
         }
         public virtual QueryResultState ControlState { get; set; }
-        public virtual DataTable GridSource { get; set; }
+        public virtual DataSet GridSources { get; set; }
         public virtual bool ClearGrid { get; set; }
+        public virtual bool GridDataReady { get; set; }
         public virtual string ResultsMessage { get; set; }
         public virtual bool QueryRunning { get; set; }
         public virtual string CurrentDatabase { get; set; }
@@ -99,10 +101,10 @@ namespace Databvase_Winforms.View_Models
         private void UpgradeGridStateWithResults(QueryResult result)
         {
             ClearGrid = true;
-            var doesResultHaveData = result.ResultsSet.Tables.Count > 0;
-            GridSource = doesResultHaveData ? result.ResultsSet.Tables[0] : null;
-            ControlState = doesResultHaveData ? QueryResultState.ShowGrid : QueryResultState.ShowMessages;
+            GridSources = result.ResultsSet;
+            GridDataReady = true;
             ClearGrid = false;
+            GridDataReady = false;
             ResultsMessage = result.ResultsMessage;
             if (App.Config.ShowRowNumberColumn)
             {

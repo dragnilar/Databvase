@@ -8,7 +8,7 @@ namespace Databvase_Winforms.Controls.QueryGrid
 {
     public class QueryGridRegistrator : GridInfoRegistrator
     {
-        public override string ViewName { get { return "MyGridView"; } }
+        public override string ViewName => "QueryGridView";
 
         public override BaseView CreateView(GridControl grid)
         {
@@ -23,6 +23,11 @@ namespace Databvase_Winforms.Controls.QueryGrid
         public override BaseViewHandler CreateHandler(BaseView view)
         {
             return new QueryGridHandler(view as QueryGridView);
+        }
+
+        public override BaseViewPainter CreatePainter(BaseView view)
+        {
+            return new QueryGridViewPainter(view as QueryGridView);
         }
     }
 }

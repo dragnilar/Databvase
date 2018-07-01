@@ -246,7 +246,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\QueryGrid\QueryGridViewPainter.cs" />
     <Compile Include="Controls\ScintillaNetEditor\ScintillaEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SplitTableLayout\SplitTableLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Factories\ObjectExplorerNodeFactory.cs" />
@@ -279,6 +283,7 @@
     </Compile>
     <Compile Include="Extensions\SMOColumnExtensions.cs" />
     <Compile Include="Extensions\SMODataTypeExtensions.cs" />
+    <Compile Include="Factories\QueryGridFactory.cs" />
     <Compile Include="Globals\GlobalStrings.cs" />
     <Compile Include="Messages\BackupPathMessage.cs" />
     <Compile Include="Messages\DisconnectInstanceMessage.cs" />
