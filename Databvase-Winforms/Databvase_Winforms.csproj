@@ -220,6 +220,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
     </Reference>
@@ -233,6 +234,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -244,6 +246,8 @@
     <Reference Include="Tyrrrz.Settings, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Tyrrrz.Settings.1.3.2\lib\net45\Tyrrrz.Settings.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\QueryGrid\QueryGridViewPainter.cs" />
@@ -252,6 +256,9 @@
     </Compile>
     <Compile Include="Controls\SplitTableLayout\SplitTableLayoutPanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WPFGridLayout\WPFGridLayoutPanel.xaml.cs">
+      <DependentUpon>WPFGridLayoutPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Factories\ObjectExplorerNodeFactory.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridControl.cs">
@@ -507,6 +514,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\WPFGridLayout\WPFGridLayoutPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
