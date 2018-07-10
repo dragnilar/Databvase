@@ -3,7 +3,7 @@
 
 namespace Databvase_Winforms.Modules
 {
-    partial class QueryControl
+    partial class QueryPane
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace Databvase_Winforms.Modules
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryControl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryPane));
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
             this.ribbonControlQueryControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.QueryButton = new DevExpress.XtraBars.BarButtonItem();
@@ -434,7 +434,7 @@ namespace Databvase_Winforms.Modules
             // mvvmContextQueryControl
             // 
             this.mvvmContextQueryControl.ContainerControl = this;
-            this.mvvmContextQueryControl.ViewModelType = typeof(Databvase_Winforms.View_Models.QueryControlViewModel);
+            this.mvvmContextQueryControl.ViewModelType = typeof(Databvase_Winforms.View_Models.QueryPaneViewModel);
             // 
             // popupMenuQueryGrid
             // 

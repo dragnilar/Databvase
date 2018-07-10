@@ -353,7 +353,7 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Extensions\SMOObjectExplorerExtensions.cs" />
     <Compile Include="View Models\ObjectExplorerViewModel.cs" />
-    <Compile Include="View Models\QueryControlViewModel.cs" />
+    <Compile Include="View Models\QueryPaneViewModel.cs" />
     <Compile Include="Views\BackupView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -367,11 +367,11 @@
     <Compile Include="Views\ConnectionWindowView.Designer.cs">
       <DependentUpon>ConnectionWindowView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\QueryControl.cs">
+    <Compile Include="Modules\QueryPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\QueryControl.Designer.cs">
-      <DependentUpon>QueryControl.cs</DependentUpon>
+    <Compile Include="Modules\QueryPane.Designer.cs">
+      <DependentUpon>QueryPane.cs</DependentUpon>
     </Compile>
     <Compile Include="View Models\ConnectionWindowViewModel.cs" />
     <Compile Include="Views\MainView.cs">
@@ -414,8 +414,8 @@
     <EmbeddedResource Include="Modules\ObjectExplorer.resx">
       <DependentUpon>ObjectExplorer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\QueryControl.resx">
-      <DependentUpon>QueryControl.cs</DependentUpon>
+    <EmbeddedResource Include="Modules\QueryPane.resx">
+      <DependentUpon>QueryPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ServerFolderExplorer.resx">
       <DependentUpon>ServerFolderExplorer.cs</DependentUpon>

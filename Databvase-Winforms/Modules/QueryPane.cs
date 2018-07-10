@@ -29,9 +29,9 @@ using DevExpress.Utils.Text;
 
 namespace Databvase_Winforms.Modules
 {
-    public partial class QueryControl : XtraUserControl
+    public partial class QueryPane : XtraUserControl
     {
-        public QueryControl()
+        public QueryPane()
         {
             InitializeComponent();
             HookupEvents();
@@ -65,7 +65,7 @@ namespace Databvase_Winforms.Modules
         {
             if (e.KeyCode == Keys.F5)
             {
-                mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().AsynchronousQuery(scintilla.GetSqlQueryFromQueryPane());
+                mvvmContextQueryControl.GetViewModel<QueryPaneViewModel>().AsynchronousQuery(scintilla.GetSqlQueryFromQueryPane());
             }
         }
 
@@ -157,7 +157,7 @@ namespace Databvase_Winforms.Modules
         private void MvvmContextQueryControlOnViewModelSet(object sender, ViewModelSetEventArgs e)
         {
             //Instantiate fluent API
-            var fluent = mvvmContextQueryControl.OfType<QueryControlViewModel>();
+            var fluent = mvvmContextQueryControl.OfType<QueryPaneViewModel>();
 
             //Register services
             mvvmContextQueryControl.RegisterService(new QueryEditorService());
@@ -174,11 +174,11 @@ namespace Databvase_Winforms.Modules
             fluent.EventToCommand<ItemClickEventArgs>(SaveQueryButton, "ItemClick", x=>x.SaveCurrentQuery(string.Empty), args => scintilla.Text);
 
             wpfGridLayoutPanelQueryControl.QueryPaneName =
-                mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().QueryPaneName;
+                mvvmContextQueryControl.GetViewModel<QueryPaneViewModel>().QueryPaneName;
 
         }
 
-        private void SetBindingForControls(MVVMContextFluentAPI<QueryControlViewModel> fluent)
+        private void SetBindingForControls(MVVMContextFluentAPI<QueryPaneViewModel> fluent)
         {
             fluent.SetBinding(memoEditResults, x => x.EditValue, y => y.ResultsMessage);
             fluent.SetBinding(repositoryItemLookUpEditDatabaseList, x => x.DataSource, y => y.DatabasesList);
@@ -186,20 +186,20 @@ namespace Databvase_Winforms.Modules
 
         }
 
-        private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)
+        private void SetTriggers(MVVMContextFluentAPI<QueryPaneViewModel> fluent)
         {
 
             fluent.SetTrigger(x => x.ControlState, state =>
             {
                 switch (state)
                 {
-                    case QueryControlViewModel.QueryResultState.ShowGrid:
+                    case QueryPaneViewModel.QueryResultState.ShowGrid:
                         xtraTabControlResultsPane.SelectedTabPage = xtraTabPageResultsGrid;
                         break;
-                    case QueryControlViewModel.QueryResultState.ShowMessages:
+                    case QueryPaneViewModel.QueryResultState.ShowMessages:
                         xtraTabControlResultsPane.SelectedTabPage = xtraTabPageMessages;
                         break;
-                    case QueryControlViewModel.QueryResultState.Default:
+                    case QueryPaneViewModel.QueryResultState.Default:
                         xtraTabControlResultsPane.SelectedTabPage = xtraTabPageResultsGrid; //For now just default to the grid
                         break;
                     default:

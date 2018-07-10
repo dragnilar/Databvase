@@ -17,14 +17,14 @@ using Microsoft.SqlServer.Management.Smo;
 namespace Databvase_Winforms.View_Models
 {
     [POCOViewModel]
-    public class QueryControlViewModel
+    public class QueryPaneViewModel
     {
-        public static QueryControlViewModel Create()
+        public static QueryPaneViewModel Create()
         {
-            return ViewModelSource.Create<QueryControlViewModel>();
+            return ViewModelSource.Create<QueryPaneViewModel>();
         }
 
-        public QueryControlViewModel()
+        public QueryPaneViewModel()
         {   
             ResultsMessage = string.Empty;
             QueryRunning = false;

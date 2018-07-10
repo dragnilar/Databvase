@@ -104,10 +104,10 @@ namespace Databvase_Winforms.Views
         private void TabbedViewMainOnDocumentActivated(object sender, DocumentEventArgs e)
         {
             
-            MergeMainRibbon(e.Document.Control as QueryControl);
+            MergeMainRibbon(e.Document.Control as QueryPane);
         }
 
-        private void MergeMainRibbon(QueryControl queryControl)
+        private void MergeMainRibbon(QueryPane queryControl)
         {
             if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
         }
@@ -115,7 +115,7 @@ namespace Databvase_Winforms.Views
         private void CreateNewQueryPaneWithScript(NewScriptMessage message)
         {
             mvvmContextMain.GetViewModel<MainViewModel>().AddBlankTab();
-            ((QueryControl)tabbedViewMain.ActiveDocument.Control).ReceiveNewScriptMessageAndSetScriptText(message);
+            ((QueryPane)tabbedViewMain.ActiveDocument.Control).ReceiveNewScriptMessageAndSetScriptText(message);
 
 
         }
