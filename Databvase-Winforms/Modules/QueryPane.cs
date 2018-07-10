@@ -84,57 +84,11 @@ namespace Databvase_Winforms.Modules
 
         private void PrintGrid()
         {
-            //try
-            //{
-            //    //TODO - This probably will not work...
-            //    if (wpfGridLayoutPanelQueryControl.LayoutGrid.Children.Count == 1)
-            //    {
-            //        var element = wpfGridLayoutPanelQueryControl.LayoutGrid.Children.Cast<UIElement>().First(e =>
-            //            Grid.GetRow(e) ==
-            //            1 && Grid.GetColumn(e) == 0);
-            //        if (element is WindowsFormsHost)
-            //        {
-            //            var control = ((WindowsFormsHost) element).Child;
-
-            //            if (control is QueryGridControl)
-            //            {
-            //                var grid = control as QueryGridControl;
-            //                var gridView = grid.DefaultView as QueryGridView;
-            //                gridView?.ShowRibbonPrintPreview();
-            //            }
-
-            //        }
-            //        // var grid = wpfGridLayoutPanelQueryControl.LayoutGrid.Children[0] as QueryGridControl;
-            //        //var gridView = grid.DefaultView as QueryGridView;
-            //        //gridView?.ShowRibbonPrintPreview();
-            //    }
-            //    else
-            //    {
-            //        //TODO - Need to get focused grid and print...
-
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //    XtraMessageBox.Show("Error printing: \n" + e)
-            //}
+            wpfGridLayoutPanelQueryControl.PrintGrid();
         }
         private void ExportGrid(string fileTypeExtension)
         {
-            //TODO this will probably not work...
-            //if (splitTableLayoutPanelResults.Controls.Count == 1)
-            //{
-            //    var grid = splitTableLayoutPanelResults.Controls[0] as QueryGridControl;
-            //    var gridView = grid.DefaultView as QueryGridView;
-            //    gridView.ExportGridAsFileType(fileTypeExtension);
-            //}
-            //else
-            //{
-
-            //    //TODO - Need to get focused grid and export...
-
-            //}
+            wpfGridLayoutPanelQueryControl.ExportGrid(fileTypeExtension);
         }
 
         /// <summary>

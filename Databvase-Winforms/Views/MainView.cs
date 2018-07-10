@@ -107,9 +107,9 @@ namespace Databvase_Winforms.Views
             MergeMainRibbon(e.Document.Control as QueryPane);
         }
 
-        private void MergeMainRibbon(QueryPane queryControl)
+        private void MergeMainRibbon(QueryPane queryPane)
         {
-            if (queryControl != null) ribbonControlMain.MergeRibbon(queryControl.Ribbon);
+            if (queryPane != null) ribbonControlMain.MergeRibbon(queryPane.Ribbon);
         }
 
         private void CreateNewQueryPaneWithScript(NewScriptMessage message)

@@ -113,7 +113,7 @@ namespace Databvase_Winforms.View_Models
             ShowSplashScreen();
             NumberOfQueries++;
             var vm = QueryPaneViewModel.Create();
-            var document = DocumentManagerService.CreateDocument("QueryControl", vm);
+            var document = DocumentManagerService.CreateDocument("QueryPane", vm);
             document.Title = $"Query {NumberOfQueries}";
             vm.QueryPaneName = $"Query {NumberOfQueries}";
             document.DestroyOnClose = true;

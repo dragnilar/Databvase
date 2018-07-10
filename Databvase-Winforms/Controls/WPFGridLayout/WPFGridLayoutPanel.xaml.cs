@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Databvase_Winforms.Factories;
 using System.Windows.Forms.Integration;
+using Databvase_Winforms.Controls.QueryGrid;
 using Databvase_Winforms.Messages;
 using DevExpress.Mvvm;
 
@@ -53,6 +54,66 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
             }
 
         }
+
+
+        #region Printing And Exporting
+
+        public void PrintGrid()
+        {
+            if (LayoutGrid.Children.Count == 1)
+            {
+                PrintSingleGrid();
+            }
+
+            else
+            {
+                //TODO - Implement printing multiple grids...
+            }
+        }
+
+        private void PrintSingleGrid()
+        {
+            //TODO - This is duplicate code, possibly could be refactored
+            var element = LayoutGrid.Children.Cast<UIElement>()
+                .First(e => Grid.GetRow(e) == 0);
+            if (!(element is WindowsFormsHost host)) return;
+            var control = host.Child;
+            if (control is QueryGridControl grid)
+            {
+                var gridView = grid.DefaultView as QueryGridView;
+                gridView?.ShowRibbonPrintPreview();
+            }
+        }
+
+        public void ExportGrid(string fileExtension)
+        {
+
+            if (LayoutGrid.Children.Count == 1)
+            {
+                ExportSingleGrid(fileExtension);
+            }
+            else
+            {
+                //TODO - Implement exporting multiple grids...
+            }
+
+        }
+
+        private void ExportSingleGrid(string fileExtension)
+        {
+            //TODO - This is duplicate code, possibly could be refactored
+            var element = LayoutGrid.Children.Cast<UIElement>()
+                .First(e => Grid.GetRow(e) == 0);
+            if (!(element is WindowsFormsHost host)) return;
+            var control = host.Child;
+            if (control is QueryGridControl grid)
+            {
+                var gridView = grid.DefaultView as QueryGridView;
+                gridView?.ExportGridAsFileType(fileExtension);
+            }
+        }
+
+        #endregion
 
         #region Grid Management
 
