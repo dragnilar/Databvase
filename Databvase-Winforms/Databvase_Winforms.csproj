@@ -297,6 +297,8 @@
     <Compile Include="Messages\InstanceConnectedMessage.cs" />
     <Compile Include="Messages\InstanceNameChangeMessage.cs" />
     <Compile Include="Messages\NewScriptMessage.cs" />
+    <Compile Include="Messages\QueryGridDataSourceMessage.cs" />
+    <Compile Include="Messages\QueryGridCreateMessage.cs" />
     <Compile Include="Messages\ServerExplorerNodeChangedMessage.cs" />
     <Compile Include="Messages\SettingsUpdatedMessage.cs" />
     <Compile Include="Messages\TabNameMessage.cs" />
@@ -325,6 +327,7 @@
     <Compile Include="Dialogs\ServerFolderExplorer.Designer.cs">
       <DependentUpon>ServerFolderExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="View Models\QueryGridControlViewModel.cs" />
     <Compile Include="View Models\ServerFolderExplorerViewModel.cs" />
     <Compile Include="Modules\TextEditorFontEdit.cs">
       <SubType>UserControl</SubType>

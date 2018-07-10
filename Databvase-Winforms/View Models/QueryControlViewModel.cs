@@ -26,16 +26,14 @@ namespace Databvase_Winforms.View_Models
 
         public QueryControlViewModel()
         {   
-            GridSources = null;
             ResultsMessage = string.Empty;
             QueryRunning = false;
             CurrentDatabase = GetCurrentDatabaseFromTracker();
             DatabasesList = GetDatabaseNamesFromTracker();
-            AddIndicator = false;
             DefaultTextEditorFont = App.Config.DefaultTextEditorFont;
             QueryConnection = App.Connection.GetCurrentConnection();
             ControlState = QueryResultState.Default;
-            GridDataReady = false;
+            QueryPaneName = string.Empty;
         }
 
         public enum QueryResultState
@@ -45,16 +43,13 @@ namespace Databvase_Winforms.View_Models
             ShowMessages
         }
         public virtual QueryResultState ControlState { get; set; }
-        public virtual DataSet GridSources { get; set; }
-        public virtual bool ClearGrid { get; set; }
-        public virtual bool GridDataReady { get; set; }
         public virtual string ResultsMessage { get; set; }
         public virtual bool QueryRunning { get; set; }
         public virtual string CurrentDatabase { get; set; }
         public virtual List<string> DatabasesList { get; set; }
-        public virtual bool AddIndicator { get; set; }
         public virtual Font DefaultTextEditorFont { get; set; }
         public virtual SavedConnection QueryConnection { get; set; }
+        public virtual string QueryPaneName { get; set; }
 
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
         //TODO - See if perhaps we can use a server object in here instead of having to keep a saved connection...
@@ -100,22 +95,15 @@ namespace Databvase_Winforms.View_Models
 
         private void UpgradeGridStateWithResults(QueryResult result)
         {
-            ClearGrid = true;
-            GridSources = result.ResultsSet;
-            GridDataReady = true;
-            ClearGrid = false;
-            GridDataReady = false;
-            ResultsMessage = result.ResultsMessage;
-            if (App.Config.ShowRowNumberColumn)
-            {
-                AddRowNumberColumn();
-            }
-        }
+            new QueryGridCreateMessage(result.ResultsSet.Tables.Count, QueryPaneName);
 
-        private void AddRowNumberColumn()
-        {
-            AddIndicator = true;
-            AddIndicator = false;
+            for (int i = 0; i < result.ResultsSet.Tables.Count; i++)
+            {
+                var gridNumber = i + 1;
+                new QueryGridDataSourceMessage(result.ResultsSet.Tables[i], $"Grid Control {gridNumber}", QueryPaneName);
+            }
+
+            
         }
 
         private string GetCurrentDatabaseFromTracker()

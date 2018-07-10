@@ -24,6 +24,7 @@ namespace Databvase_Winforms.Factories
             gridControl.Name = $"Grid Control {gridNumber}";
             gridView.Name = $"Grid View {gridNumber}";
             gridControl.Dock = DockStyle.Fill;
+            gridControl.SetGridName($"Grid Control {gridNumber}");
 
 
             return gridControl;

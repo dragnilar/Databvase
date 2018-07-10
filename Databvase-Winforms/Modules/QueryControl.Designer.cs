@@ -31,6 +31,7 @@ namespace Databvase_Winforms.Modules
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryControl));
             this.layoutControlQueryControl = new DevExpress.XtraLayout.LayoutControl();
             this.ribbonControlQueryControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -59,7 +60,6 @@ namespace Databvase_Winforms.Modules
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControlResultsPane = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageResultsGrid = new DevExpress.XtraTab.XtraTabPage();
-            this.splitTableLayoutPanelResults = new Databvase_Winforms.Controls.SplitTableLayout.SplitTableLayoutPanel();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
             this.scintilla = new Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit();
@@ -68,9 +68,11 @@ namespace Databvase_Winforms.Modules
             this.splitterItemQueryEditor = new DevExpress.XtraLayout.SplitterItem();
             this.lcIResultsPane = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciRibbon = new DevExpress.XtraLayout.LayoutControlItem();
-            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext();
-            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu();
-            this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu();
+            this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
+            this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.elementHostWPFGridLayoutPanel = new System.Windows.Forms.Integration.ElementHost();
+            this.wpfGridLayoutPanelQueryControl = new Databvase_Winforms.Controls.WPFGridLayout.WPFGridLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -346,28 +348,11 @@ namespace Databvase_Winforms.Modules
             // 
             // xtraTabPageResultsGrid
             // 
-            this.xtraTabPageResultsGrid.Controls.Add(this.splitTableLayoutPanelResults);
+            this.xtraTabPageResultsGrid.Controls.Add(this.elementHostWPFGridLayoutPanel);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
             this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
             this.xtraTabPageResultsGrid.Text = "Results";
-            // 
-            // splitTableLayoutPanelResults
-            // 
-            this.splitTableLayoutPanelResults.AutoScroll = true;
-            this.splitTableLayoutPanelResults.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.splitTableLayoutPanelResults.ColumnCount = 1;
-            this.splitTableLayoutPanelResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.splitTableLayoutPanelResults.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.splitTableLayoutPanelResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitTableLayoutPanelResults.Location = new System.Drawing.Point(0, 0);
-            this.splitTableLayoutPanelResults.Name = "splitTableLayoutPanelResults";
-            this.splitTableLayoutPanelResults.RowCount = 1;
-            this.splitTableLayoutPanelResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.splitTableLayoutPanelResults.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.splitTableLayoutPanelResults.Size = new System.Drawing.Size(774, 266);
-            this.splitTableLayoutPanelResults.SplitterSize = 6;
-            this.splitTableLayoutPanelResults.TabIndex = 0;
             // 
             // xtraTabPageMessages
             // 
@@ -468,6 +453,16 @@ namespace Databvase_Winforms.Modules
             this.popupMenuScintilla.Name = "popupMenuScintilla";
             this.popupMenuScintilla.Ribbon = this.ribbonControlQueryControl;
             // 
+            // elementHostWPFGridLayoutPanel
+            // 
+            this.elementHostWPFGridLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHostWPFGridLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.elementHostWPFGridLayoutPanel.Name = "elementHostWPFGridLayoutPanel";
+            this.elementHostWPFGridLayoutPanel.Size = new System.Drawing.Size(774, 266);
+            this.elementHostWPFGridLayoutPanel.TabIndex = 0;
+            this.elementHostWPFGridLayoutPanel.Text = "Grid Layout";
+            this.elementHostWPFGridLayoutPanel.Child = this.wpfGridLayoutPanelQueryControl;
+            // 
             // QueryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -537,6 +532,7 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraBars.BarButtonItem barButtonItemPaste;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupClipBoard;
         private DevExpress.XtraBars.PopupMenu popupMenuScintilla;
-        private Controls.SplitTableLayout.SplitTableLayoutPanel splitTableLayoutPanelResults;
+        private System.Windows.Forms.Integration.ElementHost elementHostWPFGridLayoutPanel;
+        private Controls.WPFGridLayout.WPFGridLayoutPanel wpfGridLayoutPanelQueryControl;
     }
 }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraBars;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
@@ -12,6 +13,8 @@ namespace Databvase_Winforms.Controls.QueryGrid
     public class QueryGridView : GridView
     {
         public GridColumn RowNumberColumn = new GridColumn();
+        public PopupMenu RightClickPopupMenu = new PopupMenu();
+        private BarManager RightClickBarManager = new BarManager();
         public QueryGridView()
         {
             InitializeGridView();
@@ -30,6 +33,38 @@ namespace Databvase_Winforms.Controls.QueryGrid
             this.CustomUnboundColumnData += OnCustomUnboundColumnData;
             this.RowCellStyle += QueryGridView_RowCellStyle;
             this.CustomColumnDisplayText += OnCustomColumnDisplayText;
+            SetUpPopUpMenu();
+            this.PopupMenuShowing += OnPopupMenuShowing;
+        }
+
+        private void SetUpPopUpMenu()
+        {
+            RightClickPopupMenu.Manager = RightClickBarManager;
+            BarButtonItem copyCellsItem = new BarButtonItem(RightClickBarManager, "Copy Selected Cells", 0 );
+            BarButtonItem selectAllItem = new BarButtonItem(RightClickBarManager, "Select All", 0 );
+            RightClickPopupMenu.AddItems(new BarItem[] {copyCellsItem, selectAllItem});
+            copyCellsItem.ItemClick += CopyCellsItemOnItemClick;
+            selectAllItem.ItemClick += SelectAllItem_ItemClick;
+        }
+
+
+
+        private void SelectAllItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SelectAll();
+        }
+
+        private void CopyCellsItemOnItemClick(object sender, ItemClickEventArgs e)
+        {
+            CopyToClipboard();
+        }
+
+        private void OnPopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                RightClickPopupMenu.ShowPopup(Control.MousePosition);
+            }
         }
 
         private void AdjustProperties()

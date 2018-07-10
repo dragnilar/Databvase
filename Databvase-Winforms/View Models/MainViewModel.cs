@@ -115,6 +115,7 @@ namespace Databvase_Winforms.View_Models
             var vm = QueryControlViewModel.Create();
             var document = DocumentManagerService.CreateDocument("QueryControl", vm);
             document.Title = $"Query {NumberOfQueries}";
+            vm.QueryPaneName = $"Query {NumberOfQueries}";
             document.DestroyOnClose = true;
             document.Show();
             HideSplashScreen();

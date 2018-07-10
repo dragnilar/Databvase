@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Databvase_Winforms.Factories;
 using System.Windows.Forms.Integration;
+using Databvase_Winforms.Messages;
+using DevExpress.Mvvm;
 
 namespace Databvase_Winforms.Controls.WPFGridLayout
 {
@@ -22,20 +24,44 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
     /// </summary>
     public partial class WPFGridLayoutPanel : UserControl
     {
+        public string QueryPaneName { get; set; }
         /// <summary>
         /// A layout panel that uses the WPF Grid to display DevExpress QueryGrids in a tabular fashion. Multiple grids are separated by splitters.
         /// </summary>
         public WPFGridLayoutPanel()
         {
             InitializeComponent();
+            RegisterMessages();
         }
 
-        public void SetupGrid(int numberOfGrids)
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<QueryGridCreateMessage>(this, typeof(QueryGridCreateMessage).Name,
+                OnQueryGridCreateMessage);
+        }
+
+        private void OnQueryGridCreateMessage(QueryGridCreateMessage message)
+        {
+            if (message.QueryPaneName == QueryPaneName)
+            {
+                if (LayoutGrid.Children.Count > 0)
+                {
+                    ClearGrid();
+                }
+
+                SetupGrid(message.NumberOfGrids);
+            }
+
+        }
+
+        #region Grid Management
+
+        private void SetupGrid(int numberOfGrids)
         {
             if (numberOfGrids == 1)
             {
                 AddRows(1);
-                AddGrid(0);
+                AddGrid(1, 0);
             }
             else
             {
@@ -45,8 +71,16 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
 
         }
 
-        public void ClearGrid()
+        private void ClearGrid()
         {
+            foreach (object control in LayoutGrid.Children)
+            {
+                if (control is WindowsFormsHost host)
+                {
+                    var grid = host.Child;
+                    grid.Dispose();
+                }
+            }
             LayoutGrid.Children.Clear();
             LayoutGrid.RowDefinitions.Clear();
         }
@@ -83,9 +117,10 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
             LayoutGrid.RowDefinitions.Add(row);
         }
 
-        private void AddGrid(int rowNumber)
+        private void AddGrid(int gridNumber, int rowNumber)
         {
-            var grid = new QueryGridFactory().BuildADockedGrid(rowNumber);
+            var grid = new QueryGridFactory().BuildADockedGrid(gridNumber);
+            grid.SetQueryPaneName(QueryPaneName);
             var host = new WindowsFormsHost { Child = grid };
             Grid.SetRow(host, rowNumber);
             LayoutGrid.Children.Add(host);
@@ -107,6 +142,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
 
         private void AddMultipleGrids()
         {
+            var gridNumber = 1;
             for (int i = 0; i < LayoutGrid.RowDefinitions.Count; i++)
             {
                 if (i == 0)
@@ -120,7 +156,8 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
                 }
                 else
                 {
-                    AddGrid(i);
+                    AddGrid(gridNumber, i);
+                    gridNumber++;
                 }
 
 
@@ -134,5 +171,10 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
             AddSingleRow(LayoutGrid.RowDefinitions.Count + 1);
             AddSplitter(LayoutGrid.RowDefinitions.Count + 1);
         }
+
+        #endregion
+
+
+
     }
 }

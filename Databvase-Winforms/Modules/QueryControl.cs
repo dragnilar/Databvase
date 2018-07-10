@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 using Databvase_Winforms.Controls.QueryGrid;
 using Databvase_Winforms.Factories;
 using Databvase_Winforms.Messages;
@@ -47,7 +51,6 @@ namespace Databvase_Winforms.Modules
             barButtonItemCut.ItemClick += (s, e) => scintilla.Cut();
             scintilla.KeyDown += ScintillaOnKeyDown;
             scintilla.MouseClick += ScintillaOnMouseClick;
-
         }
 
         private void ScintillaOnMouseClick(object sender, MouseEventArgs e)
@@ -66,14 +69,6 @@ namespace Databvase_Winforms.Modules
             }
         }
 
-        private void GridViewResultsOnPopupMenuShowing(object o, PopupMenuShowingEventArgs e)
-        {
-            if (e.MenuType == GridMenuType.Row )
-            {
-                popupMenuQueryGrid.ShowPopup(MousePosition);
-            }
-        }
-
         private void SetupGridButtons()
         {
             barButtonItemPrintGrid.ItemClick += (sender, args) => PrintGrid();
@@ -89,32 +84,57 @@ namespace Databvase_Winforms.Modules
 
         private void PrintGrid()
         {
-            if (splitTableLayoutPanelResults.Controls.Count == 1)
-            {
-                var grid = splitTableLayoutPanelResults.Controls[0] as QueryGridControl;
-                var gridView = grid.DefaultView as QueryGridView;
-                gridView?.ShowRibbonPrintPreview();
-            }
-            else
-            {
-                //TODO - Need to get focused grid and print...
+            //try
+            //{
+            //    //TODO - This probably will not work...
+            //    if (wpfGridLayoutPanelQueryControl.LayoutGrid.Children.Count == 1)
+            //    {
+            //        var element = wpfGridLayoutPanelQueryControl.LayoutGrid.Children.Cast<UIElement>().First(e =>
+            //            Grid.GetRow(e) ==
+            //            1 && Grid.GetColumn(e) == 0);
+            //        if (element is WindowsFormsHost)
+            //        {
+            //            var control = ((WindowsFormsHost) element).Child;
 
-            }
+            //            if (control is QueryGridControl)
+            //            {
+            //                var grid = control as QueryGridControl;
+            //                var gridView = grid.DefaultView as QueryGridView;
+            //                gridView?.ShowRibbonPrintPreview();
+            //            }
+
+            //        }
+            //        // var grid = wpfGridLayoutPanelQueryControl.LayoutGrid.Children[0] as QueryGridControl;
+            //        //var gridView = grid.DefaultView as QueryGridView;
+            //        //gridView?.ShowRibbonPrintPreview();
+            //    }
+            //    else
+            //    {
+            //        //TODO - Need to get focused grid and print...
+
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //    XtraMessageBox.Show("Error printing: \n" + e)
+            //}
         }
         private void ExportGrid(string fileTypeExtension)
         {
-            if (splitTableLayoutPanelResults.Controls.Count == 1)
-            {
-                var grid = splitTableLayoutPanelResults.Controls[0] as QueryGridControl;
-                var gridView = grid.DefaultView as QueryGridView;
-                gridView.ExportGridAsFileType(fileTypeExtension);
-            }
-            else
-            {
+            //TODO this will probably not work...
+            //if (splitTableLayoutPanelResults.Controls.Count == 1)
+            //{
+            //    var grid = splitTableLayoutPanelResults.Controls[0] as QueryGridControl;
+            //    var gridView = grid.DefaultView as QueryGridView;
+            //    gridView.ExportGridAsFileType(fileTypeExtension);
+            //}
+            //else
+            //{
 
-                //TODO - Need to get focused grid and export...
+            //    //TODO - Need to get focused grid and export...
 
-            }
+            //}
         }
 
         /// <summary>
@@ -130,52 +150,6 @@ namespace Databvase_Winforms.Modules
                 barEditItemDatabaseList.EditValue = message.SelectedDatabase;
             }
 
-        }
-
-        private void AddRowIndicatorsToQueryGrids()
-        {
-            foreach (var control in splitTableLayoutPanelResults.Controls)
-            {
-                if (control.GetType() == typeof(QueryGridControl))
-                {
-                    var queryGridView = ((QueryGridControl)control).MainView as QueryGridView;
-                    queryGridView?.AddRowNumberColumn();
-                }
-            }
-        }
-
-        private void ClearResultsTableLayout()
-        {
-            if (splitTableLayoutPanelResults.Controls.Count > 0)
-            {
-                for (int i = splitTableLayoutPanelResults.Controls.Count - 1; i >= 0; --i)
-                {
-                    splitTableLayoutPanelResults.Controls[i].Dispose();
-
-                }
-            }
-        }
-
-        private void AddGrids()
-        {
-            var numberOfGrids = mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().GridSources.Tables.Count;
-            for (int i = 0; i < numberOfGrids; i++)
-            {
-                var gridControl = new QueryGridFactory().BuildADockedGrid(numberOfGrids);
-                gridControl.DataSource =
-                    mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().GridSources.Tables[i]; //This is safer than using the fluent UI
-                splitTableLayoutPanelResults.Controls.Add(gridControl, 0, i);
-                AddEventsToGrid(gridControl);
-            }
-
-        }
-
-        private void AddEventsToGrid(QueryGridControl grid)
-        {
-            if (!(grid.DefaultView is QueryGridView queryGridView)) return;
-            queryGridView.PopupMenuShowing += GridViewResultsOnPopupMenuShowing;
-            barButtonCopyCells.ItemClick += (sender, args) => queryGridView.CopyToClipboard();
-            barButtonItemSelectAll.ItemClick += (sender, args) => queryGridView.SelectAll();
         }
 
         #region MVVMContext
@@ -199,6 +173,9 @@ namespace Databvase_Winforms.Modules
 
             fluent.EventToCommand<ItemClickEventArgs>(SaveQueryButton, "ItemClick", x=>x.SaveCurrentQuery(string.Empty), args => scintilla.Text);
 
+            wpfGridLayoutPanelQueryControl.QueryPaneName =
+                mvvmContextQueryControl.GetViewModel<QueryControlViewModel>().QueryPaneName;
+
         }
 
         private void SetBindingForControls(MVVMContextFluentAPI<QueryControlViewModel> fluent)
@@ -211,30 +188,6 @@ namespace Databvase_Winforms.Modules
 
         private void SetTriggers(MVVMContextFluentAPI<QueryControlViewModel> fluent)
         {
-
-            fluent.SetTrigger(x => x.ClearGrid, clear =>
-            {
-                if (clear)
-                {
-                    ClearResultsTableLayout();
-                }
-            });
-
-            fluent.SetTrigger(x => x.GridDataReady, ready =>
-            {
-                if (ready)
-                {
-                    AddGrids();
-                }
-            });
-
-            fluent.SetTrigger(x => x.AddIndicator, add =>
-            {
-                if (add)
-                {
-                    AddRowIndicatorsToQueryGrids();
-                }
-            });
 
             fluent.SetTrigger(x => x.ControlState, state =>
             {
