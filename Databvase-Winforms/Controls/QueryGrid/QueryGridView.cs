@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.Utils;
 using DevExpress.XtraBars;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
@@ -39,12 +40,27 @@ namespace Databvase_Winforms.Controls.QueryGrid
 
         private void SetUpPopUpMenu()
         {
+            RightClickBarManager.Images = GetPopupMenuImages();
+            RightClickBarManager.Form = this.GridControl;
             RightClickPopupMenu.Manager = RightClickBarManager;
+
             BarButtonItem copyCellsItem = new BarButtonItem(RightClickBarManager, "Copy Selected Cells", 0 );
-            BarButtonItem selectAllItem = new BarButtonItem(RightClickBarManager, "Select All", 0 );
+            BarButtonItem selectAllItem = new BarButtonItem(RightClickBarManager, "Select All", 1 );
             RightClickPopupMenu.AddItems(new BarItem[] {copyCellsItem, selectAllItem});
             copyCellsItem.ItemClick += CopyCellsItemOnItemClick;
             selectAllItem.ItemClick += SelectAllItem_ItemClick;
+        }
+
+        private ImageCollection GetPopupMenuImages()
+        {
+            //TODO - This does not work, image paths are possibly wrong...
+            var imageCollection = new ImageCollection();
+            imageCollection.Images.Add(
+                DevExpress.Images.ImageResourceCache.Default.GetImage("images/office2013/edit/copy_16x16.png"));
+            imageCollection.Images.Add(
+                DevExpress.Images.ImageResourceCache.Default.GetImage("images/office2013/actions/selectall_16x16.png"));
+            return imageCollection;
+
         }
 
 
@@ -65,6 +81,8 @@ namespace Databvase_Winforms.Controls.QueryGrid
             {
                 RightClickPopupMenu.ShowPopup(Control.MousePosition);
             }
+
+
         }
 
         private void AdjustProperties()

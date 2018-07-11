@@ -49,8 +49,6 @@ namespace Databvase_Winforms.Modules
             this.barButtonItemPrintGrid = new DevExpress.XtraBars.BarButtonItem();
             this.barEditItemDatabaseList = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemLookUpEditDatabaseList = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.barButtonCopyCells = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemSelectAll = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemCopy = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemCut = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemPaste = new DevExpress.XtraBars.BarButtonItem();
@@ -60,6 +58,8 @@ namespace Databvase_Winforms.Modules
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControlResultsPane = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageResultsGrid = new DevExpress.XtraTab.XtraTabPage();
+            this.elementHostWPFGridLayoutPanel = new System.Windows.Forms.Integration.ElementHost();
+            this.wpfGridLayoutPanelQueryControl = new Databvase_Winforms.Controls.WPFGridLayout.WPFGridLayoutPanel();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
             this.scintilla = new Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit();
@@ -71,8 +71,6 @@ namespace Databvase_Winforms.Modules
             this.mvvmContextQueryControl = new DevExpress.Utils.MVVM.MVVMContext(this.components);
             this.popupMenuQueryGrid = new DevExpress.XtraBars.PopupMenu(this.components);
             this.popupMenuScintilla = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.elementHostWPFGridLayoutPanel = new System.Windows.Forms.Integration.ElementHost();
-            this.wpfGridLayoutPanelQueryControl = new Databvase_Winforms.Controls.WPFGridLayout.WPFGridLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).BeginInit();
             this.layoutControlQueryControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlQueryControl)).BeginInit();
@@ -124,8 +122,6 @@ namespace Databvase_Winforms.Modules
             this.barButtonItemPrintGrid,
             this.barEditItemDatabaseList,
             this.barButtonItemExportToCSV,
-            this.barButtonCopyCells,
-            this.barButtonItemSelectAll,
             this.barButtonItemCopy,
             this.barButtonItemCut,
             this.barButtonItemPaste});
@@ -263,22 +259,6 @@ namespace Databvase_Winforms.Modules
             this.repositoryItemLookUpEditDatabaseList.Name = "repositoryItemLookUpEditDatabaseList";
             this.repositoryItemLookUpEditDatabaseList.NullText = "Select a database...";
             // 
-            // barButtonCopyCells
-            // 
-            this.barButtonCopyCells.Caption = "Copy Selected Cells";
-            this.barButtonCopyCells.Id = 16;
-            this.barButtonCopyCells.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonCopyCells.ImageOptions.Image")));
-            this.barButtonCopyCells.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonCopyCells.ImageOptions.LargeImage")));
-            this.barButtonCopyCells.Name = "barButtonCopyCells";
-            // 
-            // barButtonItemSelectAll
-            // 
-            this.barButtonItemSelectAll.Caption = "Select All";
-            this.barButtonItemSelectAll.Id = 17;
-            this.barButtonItemSelectAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemSelectAll.ImageOptions.Image")));
-            this.barButtonItemSelectAll.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemSelectAll.ImageOptions.LargeImage")));
-            this.barButtonItemSelectAll.Name = "barButtonItemSelectAll";
-            // 
             // barButtonItemCopy
             // 
             this.barButtonItemCopy.Caption = "Copy";
@@ -353,6 +333,16 @@ namespace Databvase_Winforms.Modules
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
             this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
             this.xtraTabPageResultsGrid.Text = "Results";
+            // 
+            // elementHostWPFGridLayoutPanel
+            // 
+            this.elementHostWPFGridLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHostWPFGridLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.elementHostWPFGridLayoutPanel.Name = "elementHostWPFGridLayoutPanel";
+            this.elementHostWPFGridLayoutPanel.Size = new System.Drawing.Size(774, 266);
+            this.elementHostWPFGridLayoutPanel.TabIndex = 0;
+            this.elementHostWPFGridLayoutPanel.Text = "Grid Layout";
+            this.elementHostWPFGridLayoutPanel.Child = this.wpfGridLayoutPanelQueryControl;
             // 
             // xtraTabPageMessages
             // 
@@ -438,8 +428,6 @@ namespace Databvase_Winforms.Modules
             // 
             // popupMenuQueryGrid
             // 
-            this.popupMenuQueryGrid.ItemLinks.Add(this.barButtonCopyCells);
-            this.popupMenuQueryGrid.ItemLinks.Add(this.barButtonItemSelectAll);
             this.popupMenuQueryGrid.Name = "popupMenuQueryGrid";
             this.popupMenuQueryGrid.Ribbon = this.ribbonControlQueryControl;
             // 
@@ -453,22 +441,12 @@ namespace Databvase_Winforms.Modules
             this.popupMenuScintilla.Name = "popupMenuScintilla";
             this.popupMenuScintilla.Ribbon = this.ribbonControlQueryControl;
             // 
-            // elementHostWPFGridLayoutPanel
-            // 
-            this.elementHostWPFGridLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHostWPFGridLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.elementHostWPFGridLayoutPanel.Name = "elementHostWPFGridLayoutPanel";
-            this.elementHostWPFGridLayoutPanel.Size = new System.Drawing.Size(774, 266);
-            this.elementHostWPFGridLayoutPanel.TabIndex = 0;
-            this.elementHostWPFGridLayoutPanel.Text = "Grid Layout";
-            this.elementHostWPFGridLayoutPanel.Child = this.wpfGridLayoutPanelQueryControl;
-            // 
-            // QueryControl
+            // QueryPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControlQueryControl);
-            this.Name = "QueryControl";
+            this.Name = "QueryPane";
             this.Size = new System.Drawing.Size(800, 600);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlQueryControl)).EndInit();
             this.layoutControlQueryControl.ResumeLayout(false);
@@ -525,8 +503,6 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditDatabaseList;
         private DevExpress.XtraBars.BarButtonItem barButtonItemExportToCSV;
         private DevExpress.XtraBars.PopupMenu popupMenuQueryGrid;
-        private DevExpress.XtraBars.BarButtonItem barButtonCopyCells;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemSelectAll;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCopy;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCut;
         private DevExpress.XtraBars.BarButtonItem barButtonItemPaste;
