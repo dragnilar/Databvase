@@ -42,6 +42,7 @@ namespace Databvase_Winforms.Views
             barButtonItemObjectExplorer.ItemClick += BarButtonItemObjectExplorerOnItemClick;
             tabbedViewMain.PopupMenuShowing += TabbedViewMainOnPopupMenuShowing;
             tabbedViewMain.DocumentActivated += TabbedViewMainOnDocumentActivated;
+            ribbonControlMain.Manager.UseAltKeyForMenu = false;
         }
 
         private void RegisterMessages()
@@ -103,7 +104,6 @@ namespace Databvase_Winforms.Views
 
         private void TabbedViewMainOnDocumentActivated(object sender, DocumentEventArgs e)
         {
-            
             MergeMainRibbon(e.Document.Control as QueryPane);
         }
 

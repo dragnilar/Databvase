@@ -51,6 +51,7 @@ namespace Databvase_Winforms.Modules
             barButtonItemCut.ItemClick += (s, e) => scintilla.Cut();
             scintilla.KeyDown += ScintillaOnKeyDown;
             scintilla.MouseClick += ScintillaOnMouseClick;
+            ribbonControlQueryControl.Manager.UseAltKeyForMenu = false;
         }
 
         private void ScintillaOnMouseClick(object sender, MouseEventArgs e)

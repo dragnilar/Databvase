@@ -29,9 +29,9 @@ namespace Databvase_Winforms.View_Models
 
         public SettingsViewModel()
         {
+            State = WindowState.Loading;
             ShowRowNumberColumn = App.Config.ShowRowNumberColumn;
             NumberOfRowsForSelectTopScript = App.Config.NumberOfRowsForTopSelectScript;
-            State = WindowState.Open;
             NullColor = App.Config.NullGridCellColor;
             NullText = App.Config.NullGridText;
             DefaultTextColor = App.Config.TextEditorDefaultColor;
@@ -41,13 +41,18 @@ namespace Databvase_Winforms.View_Models
             DefaultFont = App.Config.DefaultTextEditorFont;
             DefaultFontName = DefaultFont.Name;
             UseDirectX = App.Config.UseDirectX;
+            State = WindowState.Shown;
         }
 
         protected void OnUseDirectXChanged()
         {
-            MessageBoxService.ShowMessage(
-                "Changes to the Direct X setting will not take effect until Databvase is restarted.",
-                "Note About Direct X Settings", MessageButton.OK, MessageIcon.Information);
+            if (State == WindowState.Shown)
+            {
+                MessageBoxService.ShowMessage(
+                    "Changes to the Direct X setting will not take effect until Databvase is restarted.",
+                    "Note About Direct X Settings", MessageButton.OK, MessageIcon.Information);
+            }
+
         }
 
         public void Save()
@@ -84,7 +89,8 @@ namespace Databvase_Winforms.View_Models
 
         public enum WindowState
         {
-            Open,
+            Loading,
+            Shown,
             Close
         }
     }

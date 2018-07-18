@@ -105,7 +105,6 @@ namespace Databvase_Winforms.Modules
             // 
             // ribbonControlQueryControl
             // 
-            this.ribbonControlQueryControl.AllowKeyTips = false;
             this.ribbonControlQueryControl.Dock = System.Windows.Forms.DockStyle.None;
             this.ribbonControlQueryControl.ExpandCollapseItem.Id = 0;
             this.ribbonControlQueryControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -363,13 +362,17 @@ namespace Databvase_Winforms.Modules
             // 
             // scintilla
             // 
+            this.scintilla.AdditionalSelectionTyping = true;
             this.scintilla.CaretForeColor = System.Drawing.Color.White;
             this.scintilla.EdgeColor = System.Drawing.Color.White;
             this.scintilla.Lexer = ScintillaNET.Lexer.Sql;
             this.scintilla.Location = new System.Drawing.Point(12, 36);
+            this.scintilla.MouseSelectionRectangularSwitch = true;
+            this.scintilla.MultipleSelection = true;
             this.scintilla.Name = "scintilla";
             this.scintilla.Size = new System.Drawing.Size(776, 240);
             this.scintilla.TabIndex = 10;
+            this.scintilla.VirtualSpaceOptions = ScintillaNET.VirtualSpace.RectangularSelection;
             // 
             // lcgQueryControl
             // 
