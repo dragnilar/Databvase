@@ -17,6 +17,7 @@ using System.Windows.Forms.Integration;
 using Databvase_Winforms.Controls.QueryGrid;
 using Databvase_Winforms.Messages;
 using DevExpress.Mvvm;
+using Control = System.Windows.Forms.Control;
 
 namespace Databvase_Winforms.Controls.WPFGridLayout
 {
@@ -67,22 +68,36 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
 
             else
             {
-                //TODO - Implement printing multiple grids...
+                PrintMultipleGrids();
             }
         }
 
         private void PrintSingleGrid()
         {
-            //TODO - This is duplicate code, possibly could be refactored
-            var element = LayoutGrid.Children.Cast<UIElement>()
-                .First(e => Grid.GetRow(e) == 0);
-            if (!(element is WindowsFormsHost host)) return;
-            var control = host.Child;
+            var control = GetWindowsFormsControlsFromWpfGrid().FirstOrDefault();
             if (control is QueryGridControl grid)
             {
                 var gridView = grid.DefaultView as QueryGridView;
                 gridView?.ShowRibbonPrintPreview();
             }
+        }
+
+        private void PrintMultipleGrids()
+        {
+            //TODO - Add some way to select what to print instead of just showing all of the windows.
+            foreach (var control in GetWindowsFormsControlsFromWpfGrid())
+            {
+                if (!(control is QueryGridControl grid)) continue;
+                var gridView = grid.DefaultView as QueryGridView;
+                gridView?.ShowRibbonPrintPreview();
+            }
+        }
+
+        private List<Control> GetWindowsFormsControlsFromWpfGrid()
+        {
+            var controls = (LayoutGrid.Children.Cast<Object>().Where(c => c.GetType() == typeof(WindowsFormsHost)))
+                .Cast<WindowsFormsHost>().Select(r => r.Child).ToList();
+            return controls;
         }
 
         public void ExportGrid(string fileExtension)
@@ -94,20 +109,27 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
             }
             else
             {
-                //TODO - Implement exporting multiple grids...
+                ExportMultipleGrids(fileExtension);
             }
 
         }
 
         private void ExportSingleGrid(string fileExtension)
         {
-            //TODO - This is duplicate code, possibly could be refactored
-            var element = LayoutGrid.Children.Cast<UIElement>()
-                .First(e => Grid.GetRow(e) == 0);
-            if (!(element is WindowsFormsHost host)) return;
-            var control = host.Child;
+            var control = GetWindowsFormsControlsFromWpfGrid().FirstOrDefault();
             if (control is QueryGridControl grid)
             {
+                var gridView = grid.DefaultView as QueryGridView;
+                gridView?.ExportGridAsFileType(fileExtension);
+            }
+        }
+
+        private void ExportMultipleGrids(string fileExtension)
+        {
+            foreach (var control in GetWindowsFormsControlsFromWpfGrid())
+            {
+                //TODO - Add some way to select what to print instead of just exporting all at once.
+                if (!(control is QueryGridControl grid)) continue;
                 var gridView = grid.DefaultView as QueryGridView;
                 gridView?.ExportGridAsFileType(fileExtension);
             }
