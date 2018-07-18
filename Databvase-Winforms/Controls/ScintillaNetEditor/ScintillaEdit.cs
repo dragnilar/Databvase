@@ -46,6 +46,7 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
             Margins[0].Width = 16;
 
             ApplyTextEditorStyles();
+            ApplyRectangularSelectionSettings();
 
 
             Lexer = Lexer.Sql;
@@ -54,6 +55,8 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
             ApplyKeywordsForLexer();
             UsePopup(false);
         }
+
+
 
         private void ApplyTextEditorStyles()
         {
@@ -65,6 +68,14 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
             ApplyLineNumberColors();
 
 
+        }
+
+        private void ApplyRectangularSelectionSettings()
+        {
+            MultipleSelection = true;
+            MouseSelectionRectangularSwitch = true;
+            AdditionalSelectionTyping = true;
+            VirtualSpaceOptions = VirtualSpace.RectangularSelection;
         }
 
         private void ApplyTextEditorColors()
@@ -128,14 +139,6 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
         }
 
         #endregion
-
-
-        public QueryResult RunQuery(string sqlQuery, string dbName, SavedConnection connection)
-        {
-            //TODO - See if this actually hurts performance, if so either switch back to static or something else so its always available.
-            var queryUnit = new SQLQuery();
-            return sqlQuery == null ? null : queryUnit.SendQueryAndGetResult(sqlQuery, dbName, connection);
-        }
 
         public string GetSqlQueryFromQueryPane()
         {
