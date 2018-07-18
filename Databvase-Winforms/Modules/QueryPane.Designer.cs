@@ -105,6 +105,7 @@ namespace Databvase_Winforms.Modules
             // 
             // ribbonControlQueryControl
             // 
+            this.ribbonControlQueryControl.AllowKeyTips = false;
             this.ribbonControlQueryControl.Dock = System.Windows.Forms.DockStyle.None;
             this.ribbonControlQueryControl.ExpandCollapseItem.Id = 0;
             this.ribbonControlQueryControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {

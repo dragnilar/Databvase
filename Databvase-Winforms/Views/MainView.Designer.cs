@@ -83,6 +83,7 @@ namespace Databvase_Winforms.Views
             // 
             // ribbonControlMain
             // 
+            this.ribbonControlMain.AllowKeyTips = false;
             this.ribbonControlMain.ExpandCollapseItem.Id = 0;
             this.ribbonControlMain.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControlMain.ExpandCollapseItem,

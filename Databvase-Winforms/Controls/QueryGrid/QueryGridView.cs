@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Databvase_Winforms.Properties;
 using DevExpress.Utils;
 using DevExpress.XtraBars;
 using DevExpress.XtraGrid;
@@ -43,22 +44,35 @@ namespace Databvase_Winforms.Controls.QueryGrid
             RightClickBarManager.Images = GetPopupMenuImages();
             RightClickBarManager.Form = this.GridControl;
             RightClickPopupMenu.Manager = RightClickBarManager;
+            RightClickPopupMenu.AddItems(GetPopupItems());
 
-            BarButtonItem copyCellsItem = new BarButtonItem(RightClickBarManager, "Copy Selected Cells", 0 );
-            BarButtonItem selectAllItem = new BarButtonItem(RightClickBarManager, "Select All", 1 );
-            RightClickPopupMenu.AddItems(new BarItem[] {copyCellsItem, selectAllItem});
+
+        }
+
+        private BarItem[] GetPopupItems()
+        {
+            return new BarItem[] {CreateCopyCellsItem(), CreateSelectAllItem()};
+        }
+
+        private BarButtonItem CreateCopyCellsItem()
+        {
+            BarButtonItem copyCellsItem = new BarButtonItem(RightClickBarManager, "Copy Selected Cells", 0);
             copyCellsItem.ItemClick += CopyCellsItemOnItemClick;
+            return copyCellsItem;
+        }
+
+        private BarButtonItem CreateSelectAllItem()
+        {
+            BarButtonItem selectAllItem = new BarButtonItem(RightClickBarManager, "Select All", 1);
             selectAllItem.ItemClick += SelectAllItem_ItemClick;
+            return selectAllItem;
         }
 
         private ImageCollection GetPopupMenuImages()
         {
-            //TODO - This does not work, image paths are possibly wrong...
             var imageCollection = new ImageCollection();
-            imageCollection.Images.Add(
-                DevExpress.Images.ImageResourceCache.Default.GetImage("images/office2013/edit/copy_16x16.png"));
-            imageCollection.Images.Add(
-                DevExpress.Images.ImageResourceCache.Default.GetImage("images/office2013/actions/selectall_16x16.png"));
+            imageCollection.Images.Add(Resources.Copy_16x16);
+            imageCollection.Images.Add(Resources.SelectAll_16x16);
             return imageCollection;
 
         }

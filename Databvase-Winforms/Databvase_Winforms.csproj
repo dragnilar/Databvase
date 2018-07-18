@@ -489,6 +489,10 @@
     <Content Include="Images\StoredProcedure_16px.png" />
     <Content Include="Images\Support_16px.png" />
     <Content Include="Images\X Coordinate_16px.png" />
+    <None Include="Resources\CopyCell.bmp" />
+    <None Include="Resources\CopyCell.png" />
+    <None Include="Resources\Copy_16x16.png" />
+    <None Include="Resources\SelectAll_16x16.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
