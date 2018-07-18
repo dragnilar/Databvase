@@ -99,7 +99,7 @@ namespace Databvase_Winforms.View_Models
 
             for (int i = 0; i < result.ResultsSet.Tables.Count; i++)
             {
-                var gridNumber = i + 1;
+                var gridNumber = i;
                 new QueryGridDataSourceMessage(result.ResultsSet.Tables[i], $"Grid Control {gridNumber}", QueryPaneName);
             }
 

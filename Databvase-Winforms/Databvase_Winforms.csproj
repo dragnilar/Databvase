@@ -254,9 +254,6 @@
     <Compile Include="Controls\ScintillaNetEditor\ScintillaEdit.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SplitTableLayout\SplitTableLayoutPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\WPFGridLayout\WPFGridLayoutPanel.xaml.cs">
       <DependentUpon>WPFGridLayoutPanel.xaml</DependentUpon>
     </Compile>
