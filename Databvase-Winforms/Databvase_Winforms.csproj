@@ -257,6 +257,12 @@
     <Compile Include="Controls\WPFGridLayout\WPFGridLayoutPanel.xaml.cs">
       <DependentUpon>WPFGridLayoutPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DocumentPrintExportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DocumentPrintExportDialog.Designer.cs">
+      <DependentUpon>DocumentPrintExportDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factories\ObjectExplorerNodeFactory.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridControl.cs">
       <SubType>Component</SubType>
@@ -399,6 +405,9 @@
     <Compile Include="Views\WaitSplashyView.Designer.cs">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\DocumentPrintExportDialog.resx">
+      <DependentUpon>DocumentPrintExportDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\TextEditorFontChangeDialog.resx">
       <DependentUpon>TextEditorFontChangeDialog.cs</DependentUpon>
     </EmbeddedResource>

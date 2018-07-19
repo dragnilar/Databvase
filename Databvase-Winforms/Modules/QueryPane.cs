@@ -85,11 +85,11 @@ namespace Databvase_Winforms.Modules
 
         private void PrintGrid()
         {
-            wpfGridLayoutPanelQueryControl.PrintGrid();
+            wpfGridLayoutPanelQueryControl.PrintQueryResultGrids();
         }
         private void ExportGrid(string fileTypeExtension)
         {
-            wpfGridLayoutPanelQueryControl.ExportGrid(fileTypeExtension);
+            wpfGridLayoutPanelQueryControl.ExportGrids(fileTypeExtension);
         }
 
         /// <summary>

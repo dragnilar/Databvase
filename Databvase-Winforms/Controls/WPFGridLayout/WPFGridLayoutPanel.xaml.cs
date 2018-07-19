@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -15,9 +16,13 @@ using System.Windows.Shapes;
 using Databvase_Winforms.Factories;
 using System.Windows.Forms.Integration;
 using Databvase_Winforms.Controls.QueryGrid;
+using Databvase_Winforms.Dialogs;
 using Databvase_Winforms.Messages;
 using DevExpress.Mvvm;
 using Control = System.Windows.Forms.Control;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
+using Panel = System.Windows.Controls.Panel;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace Databvase_Winforms.Controls.WPFGridLayout
 {
@@ -59,7 +64,10 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
 
         #region Printing And Exporting
 
-        public void PrintGrid()
+        /// <summary>
+        /// Prints the Query Result Grid or prompts the user to select a specific Query Result Grid to print
+        /// </summary>
+        public void PrintQueryResultGrids()
         {
             if (LayoutGrid.Children.Count == 1)
             {
@@ -84,23 +92,35 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
 
         private void PrintMultipleGrids()
         {
-            //TODO - Add some way to select what to print instead of just showing all of the windows.
-            foreach (var control in GetWindowsFormsControlsFromWpfGrid())
+            var gridNamesList = GetListOfGridNames();
+
+            if (gridNamesList.Count <= 0) return;
             {
-                if (!(control is QueryGridControl grid)) continue;
-                var gridView = grid.DefaultView as QueryGridView;
-                gridView?.ShowRibbonPrintPreview();
+                var printDialog =
+                    new DocumentPrintExportDialog(gridNamesList)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                printDialog.ShowDialog();
+                var selectedGrid = printDialog.SelectedDocumentName;
+                printDialog.Dispose();
+                PrintSelectedGrid(selectedGrid);
             }
         }
 
-        private List<Control> GetWindowsFormsControlsFromWpfGrid()
+        private IEnumerable<Control> GetWindowsFormsControlsFromWpfGrid()
         {
             var controls = (LayoutGrid.Children.Cast<Object>().Where(c => c.GetType() == typeof(WindowsFormsHost)))
                 .Cast<WindowsFormsHost>().Select(r => r.Child).ToList();
             return controls;
         }
 
-        public void ExportGrid(string fileExtension)
+        /// <summary>
+        /// Exports the specific Query Result Grid using the specified file extension/type or prompts the user to select a
+        /// specific Query Result grid to print.
+        /// </summary>
+        /// <param name="fileExtension"></param>
+        public void ExportGrids(string fileExtension)
         {
 
             if (LayoutGrid.Children.Count == 1)
@@ -126,13 +146,53 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
 
         private void ExportMultipleGrids(string fileExtension)
         {
+            var gridNamesList = GetListOfGridNames();
+
+            if (gridNamesList.Count <= 0) return;
+            {
+                var printDialog =
+                    new DocumentPrintExportDialog(gridNamesList, fileExtension)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                printDialog.ShowDialog();
+                var selectedGrid = printDialog.SelectedDocumentName;
+                printDialog.Dispose();
+                ExportSelectedGrid(fileExtension, selectedGrid);
+            }
+
+
+
+        }
+
+        private void ExportSelectedGrid(string fileExtension, string selectedGrid)
+        {
+            var control = GetWindowsFormsControlsFromWpfGrid().FirstOrDefault(r => r.Name == selectedGrid);
+            if (control == null) return;
+            if ((!(control is QueryGridControl grid))) return;
+            var gridView = grid.DefaultView as QueryGridView;
+            gridView?.ExportGridAsFileType(fileExtension);
+        }
+
+        private void PrintSelectedGrid(string selectedGrid)
+        {
+            var control = GetWindowsFormsControlsFromWpfGrid().FirstOrDefault(r => r.Name == selectedGrid);
+            if (control == null) return;
+            if ((!(control is QueryGridControl grid))) return;
+            var gridView = grid.DefaultView as QueryGridView;
+            gridView?.ShowRibbonPrintPreview();
+        }
+
+        private List<string> GetListOfGridNames()
+        {
+            var gridNamesList = new List<string>();
             foreach (var control in GetWindowsFormsControlsFromWpfGrid())
             {
-                //TODO - Add some way to select what to print instead of just exporting all at once.
                 if (!(control is QueryGridControl grid)) continue;
-                var gridView = grid.DefaultView as QueryGridView;
-                gridView?.ExportGridAsFileType(fileExtension);
+                gridNamesList.Add(grid.Name);
             }
+
+            return gridNamesList;
         }
 
         #endregion
