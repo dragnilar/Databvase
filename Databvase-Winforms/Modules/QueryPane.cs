@@ -7,8 +7,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
+using Databvase_Winforms.Controls;
 using Databvase_Winforms.Controls.QueryGrid;
+using Databvase_Winforms.Controls.WPFGridLayout;
 using Databvase_Winforms.Factories;
+using Databvase_Winforms.Globals;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Services;
 using Databvase_Winforms.View_Models;
@@ -31,6 +34,8 @@ namespace Databvase_Winforms.Modules
 {
     public partial class QueryPane : XtraUserControl
     {
+        private IGridLayout _currentGridLayout;
+
         public QueryPane()
         {
             InitializeComponent();
@@ -39,6 +44,7 @@ namespace Databvase_Winforms.Modules
             if (!mvvmContextQueryControl.IsDesignMode)
                 mvvmContextQueryControl.ViewModelSet += MvvmContextQueryControlOnViewModelSet;
             MVVMContext.RegisterXtraMessageBoxService();
+            ApplyGridLayout();
         }
 
 
@@ -85,11 +91,11 @@ namespace Databvase_Winforms.Modules
 
         private void PrintGrid()
         {
-            wpfGridLayoutPanelQueryControl.PrintQueryResultGrids();
+            _currentGridLayout.PrintQueryResultGrids();
         }
         private void ExportGrid(string fileTypeExtension)
         {
-            wpfGridLayoutPanelQueryControl.ExportGrids(fileTypeExtension);
+            _currentGridLayout.ExportQueryResultsGrids(fileTypeExtension);
         }
 
         /// <summary>
@@ -105,6 +111,39 @@ namespace Databvase_Winforms.Modules
                 barEditItemDatabaseList.EditValue = message.SelectedDatabase;
             }
 
+        }
+
+        private void ApplyGridLayout()
+        {
+            switch (App.Config.GridLayoutTypePreference)
+            {
+                case GlobalEnumerations.GridLayoutType.WpfGridLayout:
+                    SetupWpfGridLayout();
+                    break;
+                case GlobalEnumerations.GridLayoutType.DockPanelGridLayout:
+                    SetupDockPanelLayout();
+                    break;
+                default:
+                    SetupWpfGridLayout(); //Default to WPF Grid Layout for now...
+                    break;
+            }
+        }
+
+        private void SetupWpfGridLayout()
+        {
+            var wpfGridLayout = new WPFGridLayoutPanel();
+            _currentGridLayout = wpfGridLayout;
+            var elementHostWpfGridLayoutPanel = new ElementHost
+            {
+                Dock = DockStyle.Fill,
+                Child = wpfGridLayout
+            };
+            xtraTabPageResultsGrid.Controls.Add(elementHostWpfGridLayoutPanel);
+        }
+
+        private void SetupDockPanelLayout()
+        {
+            SetupWpfGridLayout(); //TODO replace..
         }
 
         #region MVVMContext
@@ -128,7 +167,7 @@ namespace Databvase_Winforms.Modules
 
             fluent.EventToCommand<ItemClickEventArgs>(SaveQueryButton, "ItemClick", x=>x.SaveCurrentQuery(string.Empty), args => scintilla.Text);
 
-            wpfGridLayoutPanelQueryControl.QueryPaneName =
+            _currentGridLayout.QueryPaneName =
                 mvvmContextQueryControl.GetViewModel<QueryPaneViewModel>().QueryPaneName;
 
         }

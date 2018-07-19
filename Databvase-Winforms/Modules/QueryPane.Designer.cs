@@ -58,8 +58,6 @@ namespace Databvase_Winforms.Modules
             this.ribbonPageGroupGridPrintAndExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControlResultsPane = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageResultsGrid = new DevExpress.XtraTab.XtraTabPage();
-            this.elementHostWPFGridLayoutPanel = new System.Windows.Forms.Integration.ElementHost();
-            this.wpfGridLayoutPanelQueryControl = new Databvase_Winforms.Controls.WPFGridLayout.WPFGridLayoutPanel();
             this.xtraTabPageMessages = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditResults = new DevExpress.XtraEditors.MemoEdit();
             this.scintilla = new Databvase_Winforms.Controls.ScintillaNetEditor.ScintillaEdit();
@@ -77,7 +75,6 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditDatabaseList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlResultsPane)).BeginInit();
             this.xtraTabControlResultsPane.SuspendLayout();
-            this.xtraTabPageResultsGrid.SuspendLayout();
             this.xtraTabPageMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditResults.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryControl)).BeginInit();
@@ -328,21 +325,10 @@ namespace Databvase_Winforms.Modules
             // 
             // xtraTabPageResultsGrid
             // 
-            this.xtraTabPageResultsGrid.Controls.Add(this.elementHostWPFGridLayoutPanel);
             this.xtraTabPageResultsGrid.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPageResultsGrid.ImageOptions.Image")));
             this.xtraTabPageResultsGrid.Name = "xtraTabPageResultsGrid";
             this.xtraTabPageResultsGrid.Size = new System.Drawing.Size(774, 266);
             this.xtraTabPageResultsGrid.Text = "Results";
-            // 
-            // elementHostWPFGridLayoutPanel
-            // 
-            this.elementHostWPFGridLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHostWPFGridLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.elementHostWPFGridLayoutPanel.Name = "elementHostWPFGridLayoutPanel";
-            this.elementHostWPFGridLayoutPanel.Size = new System.Drawing.Size(774, 266);
-            this.elementHostWPFGridLayoutPanel.TabIndex = 0;
-            this.elementHostWPFGridLayoutPanel.Text = "Grid Layout";
-            this.elementHostWPFGridLayoutPanel.Child = this.wpfGridLayoutPanelQueryControl;
             // 
             // xtraTabPageMessages
             // 
@@ -459,7 +445,6 @@ namespace Databvase_Winforms.Modules
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditDatabaseList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlResultsPane)).EndInit();
             this.xtraTabControlResultsPane.ResumeLayout(false);
-            this.xtraTabPageResultsGrid.ResumeLayout(false);
             this.xtraTabPageMessages.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEditResults.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgQueryControl)).EndInit();
@@ -512,7 +497,5 @@ namespace Databvase_Winforms.Modules
         private DevExpress.XtraBars.BarButtonItem barButtonItemPaste;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupClipBoard;
         private DevExpress.XtraBars.PopupMenu popupMenuScintilla;
-        private System.Windows.Forms.Integration.ElementHost elementHostWPFGridLayoutPanel;
-        private Controls.WPFGridLayout.WPFGridLayoutPanel wpfGridLayoutPanelQueryControl;
     }
 }

@@ -59,7 +59,7 @@ namespace Databvase_Winforms.DAL
                numberOfRows = ds.Tables[0].Rows.Count;
             }
 
-
+            //TODO - This needs to be more robust
             result.ResultsMessage = numberOfRows > 0
                 ? numberOfRows + " row(s) affected."
                 : "Command(s) completed successfully";

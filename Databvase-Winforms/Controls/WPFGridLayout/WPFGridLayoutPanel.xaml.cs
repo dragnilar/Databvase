@@ -29,7 +29,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
     /// <summary>
     /// Interaction logic for WPFGridLayoutPanel.xaml
     /// </summary>
-    public partial class WPFGridLayoutPanel : UserControl
+    public partial class WPFGridLayoutPanel : UserControl, IGridLayout
     {
         public string QueryPaneName { get; set; }
         /// <summary>
@@ -120,7 +120,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
         /// specific Query Result grid to print.
         /// </summary>
         /// <param name="fileExtension"></param>
-        public void ExportGrids(string fileExtension)
+        public void ExportQueryResultsGrids(string fileExtension)
         {
 
             if (LayoutGrid.Children.Count == 1)

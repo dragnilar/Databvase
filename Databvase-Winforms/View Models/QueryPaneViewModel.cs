@@ -90,6 +90,7 @@ namespace Databvase_Winforms.View_Models
                 else
                 {
                     UpgradeGridStateWithResults(result);
+                    ResultsMessage = result.ResultsMessage;
                 }
         }
 

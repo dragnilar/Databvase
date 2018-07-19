@@ -250,6 +250,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\IGridLayout.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridViewPainter.cs" />
     <Compile Include="Controls\ScintillaNetEditor\ScintillaEdit.cs">
       <SubType>Component</SubType>
@@ -294,6 +295,7 @@
     <Compile Include="Extensions\SMOColumnExtensions.cs" />
     <Compile Include="Extensions\SMODataTypeExtensions.cs" />
     <Compile Include="Factories\QueryGridFactory.cs" />
+    <Compile Include="Globals\GlobalEnumerations.cs" />
     <Compile Include="Globals\GlobalStrings.cs" />
     <Compile Include="Messages\BackupPathMessage.cs" />
     <Compile Include="Messages\DisconnectInstanceMessage.cs" />
