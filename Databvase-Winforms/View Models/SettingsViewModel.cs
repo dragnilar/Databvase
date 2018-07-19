@@ -23,6 +23,7 @@ namespace Databvase_Winforms.View_Models
         public virtual Color DefaultCommentColor { get; set; }
         public virtual string DefaultFontName { get; set; }
         public virtual bool UseDirectX { get; set; }
+        public virtual Globals.GlobalEnumerations.GridLayoutType GridLayoutPreference { get; set; }
         private Font  DefaultFont { get; set; }
 
         protected IMessageBoxService MessageBoxService => this.GetService<IMessageBoxService>();
@@ -41,6 +42,7 @@ namespace Databvase_Winforms.View_Models
             DefaultFont = App.Config.DefaultTextEditorFont;
             DefaultFontName = DefaultFont.Name;
             UseDirectX = App.Config.UseDirectX;
+            GridLayoutPreference = App.Config.GridLayoutTypePreference;
             State = WindowState.Shown;
         }
 
@@ -67,6 +69,7 @@ namespace Databvase_Winforms.View_Models
             App.Config.TextEditorStringColor = DefaultStringColor;
             App.Config.DefaultTextEditorFont = DefaultFont;
             App.Config.UseDirectX = UseDirectX;
+            App.Config.GridLayoutTypePreference = GridLayoutPreference;
             App.Config.Save();
             new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.NumberOfRowsForTopSelectScript);
             new SettingsUpdatedMessage(SettingsUpdatedMessage.SettingsUpdateType.TextEditorStyles);

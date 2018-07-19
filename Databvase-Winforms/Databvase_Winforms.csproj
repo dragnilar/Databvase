@@ -250,6 +250,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DockPanelLayout\DockLayoutPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DockPanelLayout\DockLayoutPanel.Designer.cs">
+      <DependentUpon>DockLayoutPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\IGridLayout.cs" />
     <Compile Include="Controls\QueryGrid\QueryGridViewPainter.cs" />
     <Compile Include="Controls\ScintillaNetEditor\ScintillaEdit.cs">
@@ -407,6 +413,9 @@
     <Compile Include="Views\WaitSplashyView.Designer.cs">
       <DependentUpon>WaitSplashyView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\DockPanelLayout\DockLayoutPanel.resx">
+      <DependentUpon>DockLayoutPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DocumentPrintExportDialog.resx">
       <DependentUpon>DocumentPrintExportDialog.cs</DependentUpon>
     </EmbeddedResource>

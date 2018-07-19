@@ -26,7 +26,7 @@ namespace Databvase_Winforms
         public Color TextEditorStringColor = Color.Red;
         public Color TextEditorCommentsColor = Color.Green;
         public bool ShowConnectionWindowOnStartup = true;
-        public Globals.GlobalEnumerations.GridLayoutType GridLayoutTypePreference = Globals.GlobalEnumerations.GridLayoutType.WpfGridLayout;
+        public Globals.GlobalEnumerations.GridLayoutType GridLayoutTypePreference = Globals.GlobalEnumerations.GridLayoutType.Wpf;
 
 
         public Settings()

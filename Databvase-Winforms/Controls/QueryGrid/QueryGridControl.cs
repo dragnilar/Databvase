@@ -42,7 +42,7 @@ namespace Databvase_Winforms.Controls.QueryGrid
         /// <summary>
         /// Sets the name of the query pane that the grid control belongs so that messages can find their way to the correct recipient.
         /// This could probably be refactored. This is also being used as a work around because the DX WinForms MVVM Framework does not
-        /// seem to play nicely with WPF.
+        /// seem to play nicely with Wpf.
         /// </summary>
         /// <param name="queryPaneName"></param>
         public void SetQueryPaneName(string queryPaneName)

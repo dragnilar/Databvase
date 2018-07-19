@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using Databvase_Winforms.Controls;
+using Databvase_Winforms.Controls.DockPanelLayout;
 using Databvase_Winforms.Controls.QueryGrid;
 using Databvase_Winforms.Controls.WPFGridLayout;
 using Databvase_Winforms.Factories;
@@ -117,14 +118,14 @@ namespace Databvase_Winforms.Modules
         {
             switch (App.Config.GridLayoutTypePreference)
             {
-                case GlobalEnumerations.GridLayoutType.WpfGridLayout:
+                case GlobalEnumerations.GridLayoutType.Wpf:
                     SetupWpfGridLayout();
                     break;
-                case GlobalEnumerations.GridLayoutType.DockPanelGridLayout:
+                case GlobalEnumerations.GridLayoutType.DockPanel:
                     SetupDockPanelLayout();
                     break;
                 default:
-                    SetupWpfGridLayout(); //Default to WPF Grid Layout for now...
+                    SetupWpfGridLayout(); //Default to Wpf Grid Layout for now...
                     break;
             }
         }
@@ -143,7 +144,13 @@ namespace Databvase_Winforms.Modules
 
         private void SetupDockPanelLayout()
         {
-            SetupWpfGridLayout(); //TODO replace..
+            var xtraScrollableControl = new XtraScrollableControl();
+            xtraScrollableControl.Dock = DockStyle.Fill;
+            var dockLayoutPanel = new DockLayoutPanel {Dock = DockStyle.Fill, AutoScroll = true};
+            _currentGridLayout = dockLayoutPanel;
+            xtraScrollableControl.Controls.Add(dockLayoutPanel);
+            xtraTabPageResultsGrid.Controls.Add(xtraScrollableControl);
+
         }
 
         #region MVVMContext

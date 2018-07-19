@@ -33,7 +33,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
     {
         public string QueryPaneName { get; set; }
         /// <summary>
-        /// A layout panel that uses the WPF Grid to display DevExpress QueryGrids in a tabular fashion. Multiple grids are separated by splitters.
+        /// A layout panel that uses the Wpf Grid to display DevExpress QueryGrids in a tabular fashion. Multiple grids are separated by splitters.
         /// </summary>
         public WPFGridLayoutPanel()
         {
@@ -200,7 +200,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
         #region Grid Management
 
         /// <summary>
-        /// Sets up the WPF grid for either single grid or multi grid mode. If the number of grids is greater than 1, it uses multi grid mode.
+        /// Sets up the Wpf grid for either single grid or multi grid mode. If the number of grids is greater than 1, it uses multi grid mode.
         /// Otherwise it uses single grid mode.
         /// </summary>
         /// <param name="numberOfGrids"></param>
@@ -220,7 +220,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
         }
 
         /// <summary>
-        /// Clears the WPF grid of all elements and Windows Forms controls. The Windows Forms controls are explicitly disposed.
+        /// Clears the Wpf grid of all elements and Windows Forms controls. The Windows Forms controls are explicitly disposed.
         /// </summary>
         private void ClearGrid()
         {
@@ -235,8 +235,8 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
         }
 
         /// <summary>
-        /// Adds the specified number of rows to the WPF grid and then proceeds to run through the add multiple results grids routine.
-        /// The number of grids is determined by the number of rows created on the WPF grid.
+        /// Adds the specified number of rows to the Wpf grid and then proceeds to run through the add multiple results grids routine.
+        /// The number of grids is determined by the number of rows created on the Wpf grid.
         /// </summary>
         /// <param name="numberOfRows"></param>
         private void AddRowsAndMultipleQueryGrids(int numberOfRows)
@@ -247,7 +247,7 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
         }
 
         /// <summary>
-        /// Adds rows to the WPF Grid. If there is more than 1 row, the grids are added using the multiple rows method.
+        /// Adds rows to the Wpf Grid. If there is more than 1 row, the grids are added using the multiple rows method.
         /// Otherwise we use single grid. The major difference between the two is the height property for the row definition.
         /// </summary>
         /// <param name="numberOfRows"></param>
@@ -306,13 +306,13 @@ namespace Databvase_Winforms.Controls.WPFGridLayout
         }
 
         /// <summary>
-        /// Adds a Query Grid Control to the WPF Grid. The row number passed in determine which row to place the query grid control.
+        /// Adds a Query Grid Control to the Wpf Grid. The row number passed in determine which row to place the query grid control.
         /// </summary>
         /// <param name="rowNumber"></param>
         private void AddQueryGridControl(int rowNumber)
         {
             var grid = new QueryGridFactory().BuildADockedGrid(rowNumber);
-            grid.SetQueryPaneName(QueryPaneName); //NOTE - This is being used as a work around since the DX Windows Forms MVVM Framework does not seem to play nice with WPF.
+            grid.SetQueryPaneName(QueryPaneName); //NOTE - This is being used as a work around since the DX Windows Forms MVVM Framework does not seem to play nice with Wpf.
             var host = new WindowsFormsHost { Child = grid };
             Grid.SetRow(host, rowNumber);
             var margin = host.Margin;

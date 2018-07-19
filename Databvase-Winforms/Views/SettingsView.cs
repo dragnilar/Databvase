@@ -24,7 +24,10 @@ namespace Databvase_Winforms.Views
                 InitializeBindings();
             HookUpEvents();
             RegisterServices();
+            SetUpControls();
         }
+
+
 
         private void HookUpEvents()
         {
@@ -35,6 +38,11 @@ namespace Databvase_Winforms.Views
         {
             mvvmContextSettingsView.RegisterService(new FontDialogService());
             MVVMContext.RegisterXtraMessageBoxService();
+        }
+
+        private void SetUpControls()
+        {
+            radioGroupGridLayoutPreference.Properties.Items.AddEnum(typeof(Globals.GlobalEnumerations.GridLayoutType));
         }
 
         void InitializeBindings()
@@ -57,6 +65,7 @@ namespace Databvase_Winforms.Views
                 vm => vm.NumberOfRowsForSelectTopScript);
             fluent.SetBinding(colorPickEditNullColor, x => x.Color, vm => vm.NullColor);
             fluent.SetBinding(textEditNullText, x => x.EditValue, vm => vm.NullText);
+            fluent.SetBinding(radioGroupGridLayoutPreference, x => x.EditValue, x => x.GridLayoutPreference);
             fluent.SetTrigger(model => model.State, state =>
             {
                 if (state == SettingsViewModel.WindowState.Close)
