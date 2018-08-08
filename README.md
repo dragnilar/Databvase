@@ -51,12 +51,52 @@ That being said, are some of the forseeable reasons why you may want to use this
 
 Pretty much all dependencies are either Nuget packages or DevExpress. You will need .NET 4.7 in order to build this and of course run it.  There is currently an installer for it as well, but currently this application is still in heavy development and thus the installer is only being distributed to people who are willing to give the application test spins and provide feedback.
 
+<u>The Current List Of DevExpress Dependencies Are As Follows (version 18.1.5):</u>
+<ul>
+<li>DevExpress.BonusSkins.v18.1</li>
+<li>DevExpress.Charts.v18.1.Core</li>
+<li>DevExpress.CodeParser.v18.1</li>
+<li>DevExpress.Dashboard.v18.1.Core</li>
+<li>DevExpress.Dashboard.v18.1.Win</li>
+<li>DevExpress.Data.v18.1</li>
+<li>DevExpress.DataAccess.v18.1</li>
+<li>DevExpress.DataAccess.v18.1.UI</li>
+<li>DevExpress.Images.v18.1</li>
+<li>DevExpress.Map.v18.1.Core</li>
+<li>DevExpress.Mvvm.v18.1</li>
+<li>DevExpress.Office.v18.1.Core</li>
+<li>DevExpress.PivotGrid.v18.1.Core</li>
+<li>DevExpress.Printing.v18.1.Core</li>
+<li>DevExpress.RichEdit.v18.1.Core</li>
+<li>DevExpress.Sparkline.v18.1.Core</li>
+<li>DevExpress.TreeMap.v18.1.Core</li>
+<li>DevExpress.Utils.v18.1</li>
+<li>DevExpress.Utils.v18.1.UI</li>
+<li>DevExpress.Xpo.v18.1</li>
+<li>DevExpress.XtraBars.v18.1</li>
+<li>DevExpress.XtraCharts.v18.1</li>
+<li>DevExpress.XtraCharts.v18.1.UI</li>
+<li>DevExpress.XtraCharts.v18.1.Wizard</li>
+<li>DevExpress.XtraDialogs.v18.1</li>
+<li>DevExpress.XtraEditors.v18.1</li>
+<li>DevExpress.XtraGauges.v18.1.Core</li>
+<li>DevExpress.XtraGauges.v18.1.Presets</li>
+<li>DevExpress.XtraGauges.v18.1.Win</li>
+<li>DevExpress.XtraGrid.v18.1</li>
+<li>DevExpress.XtraLayout.v18.1</li>
+<li>DevExpress.XtraMap.v18.1</li>
+<li>DevExpress.XtraPivotGrid.v18.1</li>
+<li>DevExpress.XtraPrinting.v18.1</li>
+<li>DevExpress.XtraReports.v18.1.Extensions</li>
+<li>DevExpress.XtraReports.v18.1</li>
+<li>DevExpress.XtraRichEdit.v18.1</li>
+<li>DevExpress.XtraRichEdit.v18.1.Extensions</li>
+<li>DevExpress.XtraTreeList.v18.1</li>
+<li>DevExpress.XtraTreeMap.v18.1</li>
+<li>DevExpress.XtraWizard.v18.1</li>
+</ul>
 
-
-<b>NOTE:</b> Since this uses DevExpress, unfortunately, that means that if you wish to build from the source you will need to have 
-DevExpress' libraries installed on your computer. This probably means you will need a license. 
-
-This also uses icons from <a href="http://www.icons8.com">Icons8</a>.
+<b>NOTE:</b> Since this uses DevExpress, it is recommended that you have their libraries installed on your computer in advance. This means that you should probably also have a license.
 
 Other dependencies:
 
@@ -67,5 +107,6 @@ Other dependencies:
 <li><a href='https://www.newtonsoft.com/json'>Newtonsoft.Json</a>- Used to serialize configuration</li>
 <li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.Types/'>Micorsoft.SqlServer.Types</a>- Used for SQL Spatial types</li>
 <li><a href= 'https://www.nuget.org/packages/Microsoft.SqlServer.SqlManagementObjects'>Microsoft.SqlServer.SqlManagementObjects</a>- Used for much of the SSMS like functionality, especially in the Object Explorer</li>
+  <li>Databvase also uses icons from <a href="http://www.icons8.com">Icons8</a>.</li>
 </ul>
 
