@@ -8,7 +8,7 @@ namespace Databvase_Winforms.Factories
     /// <summary>
     /// A factory that produces object explorer nodes
     /// </summary>
-    public class ObjectExplorerNodeFactory
+    public static class ObjectExplorerNodeFactory
     {
         /// <summary>
         /// Creates a new server/instance node for the object explorer
