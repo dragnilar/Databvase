@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutocompleteMenuNS;
 using Databvase_Winforms.DAL;
 using Databvase_Winforms.Messages;
 using Databvase_Winforms.Models;
@@ -15,7 +16,7 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
 {
     public class ScintillaEdit : Scintilla
     {
-
+        private AutocompleteMenu _AutoCompleteMenu = new AutocompleteMenu();
 
         public ScintillaEdit()
         {
@@ -26,6 +27,7 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
         private void InitializeScintilla()
         {
             SetupScintilla();
+            SetupAutoCompleteMenu();
             RegisterMessages();
         }
 
@@ -157,6 +159,22 @@ namespace Databvase_Winforms.Controls.ScintillaNetEditor
             if (string.IsNullOrEmpty(sqlQuery) || sqlQuery.StartsWith("--") || sqlQuery.StartsWith("/*")) return null;
 
             return sqlQuery;
+        }
+
+
+        private void SetupAutoCompleteMenu()
+        {
+            _AutoCompleteMenu.TargetControlWrapper = new ScintillaWrapper(this);
+            string[] testKeyWords =
+            {
+                "SELECT", "*", "FROM", "WHERE", "ORDER", "BY", "IN", "NOT", "JOIN", "LEFT", "RIGHT", "CROSS", "OUTER",
+                "(", ")"
+            };
+
+            var itemsToAddToAutoComplete = testKeyWords.Select(keyWord => new SnippetAutocompleteItem(keyWord)).Cast<AutocompleteItem>().ToList();
+
+            _AutoCompleteMenu.AllowsTabKey = true;
+            _AutoCompleteMenu.SetAutocompleteItems(itemsToAddToAutoComplete);
         }
     }
 }
