@@ -44,6 +44,7 @@ namespace Databvase_Winforms
         }
 
         //TODO - See if this is actually feasible. This seems to cause display problems where the app doesn't use the default font.
+        //TODO - Remove this.
         private static void ChangeFonts()
         {
             DevExpress.XtraEditors.WindowsFormsSettings.DefaultFont = new Font("Comic Sans MS", 10);
